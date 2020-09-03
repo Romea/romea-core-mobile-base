@@ -1,0 +1,9 @@
+- git:
+    local-name: src/romea
+    uri: git@gitlab-ssh.irstea.fr:romea/romea.git
+- git:
+    local-name: src/four_wheel_steering_msgs
+    uri: https://github.com/ros-drivers/four_wheel_steering_msgs.git
+- git:
+    local-name: src/romea_localisation_msgs
+    uri: git@gitlab-ssh.irstea.fr:romea/ros-localisation/romea_localisation_msgs.git
