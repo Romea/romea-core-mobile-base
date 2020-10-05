@@ -467,7 +467,7 @@ TEST(testInverseForward2FWS2FWD,HubOffset)
 
 
 
-TEST(testInverseForward2FWS2FWD, DISABLED_MecanicalLimits)
+TEST(testInverseForward2FWS2FWD, MecanicalLimits)
 {
 
   romea::OneAxleSteeringConstraints userConstraints;
@@ -569,7 +569,7 @@ TEST(testInverseForward2FWS2RWD,HubOffset)
                              userConstraints);
 }
 
-TEST(testInverseForward2FWS2RWD, MecanicalLimits)
+TEST(testInverseForward2FWS2RWD, DISABLED_MecanicalLimits)
 {
 
   romea::OneAxleSteeringConstraints userConstraints;
