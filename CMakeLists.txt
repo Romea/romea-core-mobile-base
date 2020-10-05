@@ -1,123 +1,110 @@
-cmake_minimum_required(VERSION 2.8.3)
-project(romea_odo)
+cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -std=c++17")
+project(
+  "romea_odo"
+  VERSION 0.1.0
+  #  DESCRIPTION
+  #  HOMEPAGE_URL
+  LANGUAGES CXX)
 
-#######################
-## Find dependencies ##
-#######################
-set(${PROJECT_NAME}_CATKIN_DEPS romea_common)
+find_package(romea_common REQUIRED)
 
-find_package(catkin REQUIRED COMPONENTS ${${PROJECT_NAME}_CATKIN_DEPS})
+add_library(${PROJECT_NAME} SHARED
+  src/odometry/OdometryFrame.cpp
+  src/odometry/OdometryFrame1FAS2RWD.cpp
+  src/odometry/OdometryFrame1FAS2FWD.cpp
+  src/odometry/OdometryFrame2AS4WD.cpp
+  src/odometry/OdometryFrame2WD.cpp
+  src/odometry/OdometryFrame4WD.cpp
+  src/odometry/OdometryFrame1FWS2RWD.cpp
+  src/odometry/OdometryFrame2FWS2RWD.cpp
+  src/odometry/OdometryFrame2FWS2FWD.cpp
+  src/odometry/OdometryFrame4WS4WD.cpp
+  src/kinematic/axle_steering/OneAxleSteeringKinematic.cpp
+  src/kinematic/axle_steering/OneAxleSteeringCommand.cpp
+  src/kinematic/axle_steering/OneAxleSteeringMeasure.cpp
+  src/kinematic/axle_steering/OneAxleSteeringConstraints.cpp
+  src/kinematic/axle_steering/TwoAxleSteeringKinematic.cpp
+  src/kinematic/axle_steering/TwoAxleSteeringCommand.cpp
+  src/kinematic/axle_steering/TwoAxleSteeringConstraints.cpp
+  src/kinematic/axle_steering/TwoAxleSteeringMeasure.cpp
+  src/kinematic/axle_steering/FowardOneAxleSteeringKinematic.cpp
+  src/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.cpp
+  src/kinematic/axle_steering/InverseOneAxleSteeringKinematic.cpp
+  src/kinematic/axle_steering/InverseTwoAxleSteeringKinematic.cpp
+  src/kinematic/skid_steering/SkidSteeringKinematic.cpp
+  src/kinematic/skid_steering/SkidSteeringCommand.cpp
+  src/kinematic/skid_steering/SkidSteeringMeasure.cpp
+  src/kinematic/skid_steering/SkidSteeringConstraints.cpp
+  src/kinematic/skid_steering/ForwardSkidSteeringKinematic.cpp
+  src/kinematic/skid_steering/InverseSkidSteeringKinematic.cpp
+  src/kinematic/omni_steering/OmniSteeringCommand.cpp
+  src/kinematic/omni_steering/OmniSteeringMeasure.cpp
+  src/kinematic/omni_steering/OmniSteeringConstraints.cpp
+  src/kinematic/omni_steering/MecanumWheelSteeringKinematic.cpp
+  src/kinematic/omni_steering/ForwardMecanumWheelSteeringKinematic.cpp
+  src/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/FourWheelSteeringKinematic.cpp
+  src/kinematic/wheel_steering/TwoWheelSteeringKinematic.cpp
+  src/kinematic/KinematicMeasure.cpp
+  )
 
-find_package( PkgConfig )
-pkg_check_modules( EIGEN3 REQUIRED eigen3 )
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-###################################
-## catkin specific configuration ##
-###################################
-catkin_package(
-    INCLUDE_DIRS include
-    LIBRARIES ${PROJECT_NAME}
-    CATKIN_DEPENDS ${${PROJECT_NAME}_CATKIN_DEPS}
-    )
+target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC
+  ${romea_common_INCLUDE_DIRS})
 
-###########
-## Build ##
-###########
+target_compile_options(${PROJECT_NAME} PRIVATE
+  -Wall -Wextra -O3 -std=c++17)
 
-include_directories(
-    include
-    SYSTEM ${catkin_INCLUDE_DIRS}
-    SYSTEM ${EIGEN3_INCLUDE_DIRS}
-    )
+target_link_libraries(${PROJECT_NAME} PUBLIC
+  romea_common::romea_common)
 
-add_library(romea_odo
-    src/odometry/OdometryFrame.cpp
-    src/odometry/OdometryFrame1FAS2RWD.cpp
-    src/odometry/OdometryFrame1FAS2FWD.cpp
-    src/odometry/OdometryFrame2AS4WD.cpp
-    src/odometry/OdometryFrame2WD.cpp
-    src/odometry/OdometryFrame4WD.cpp
-    src/odometry/OdometryFrame1FWS2RWD.cpp
-    src/odometry/OdometryFrame2FWS2RWD.cpp
-    src/odometry/OdometryFrame2FWS2FWD.cpp
-    src/odometry/OdometryFrame4WS4WD.cpp
-    src/kinematic/axle_steering/OneAxleSteeringKinematic.cpp
-    src/kinematic/axle_steering/OneAxleSteeringCommand.cpp
-    src/kinematic/axle_steering/OneAxleSteeringMeasure.cpp
-    src/kinematic/axle_steering/OneAxleSteeringConstraints.cpp
-    src/kinematic/axle_steering/TwoAxleSteeringKinematic.cpp
-    src/kinematic/axle_steering/TwoAxleSteeringCommand.cpp
-    src/kinematic/axle_steering/TwoAxleSteeringConstraints.cpp
-    src/kinematic/axle_steering/TwoAxleSteeringMeasure.cpp
-    src/kinematic/axle_steering/FowardOneAxleSteeringKinematic.cpp
-    src/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.cpp
-    src/kinematic/axle_steering/InverseOneAxleSteeringKinematic.cpp
-    src/kinematic/axle_steering/InverseTwoAxleSteeringKinematic.cpp
-    src/kinematic/skid_steering/SkidSteeringKinematic.cpp
-    src/kinematic/skid_steering/SkidSteeringCommand.cpp
-    src/kinematic/skid_steering/SkidSteeringMeasure.cpp
-    src/kinematic/skid_steering/SkidSteeringConstraints.cpp
-    src/kinematic/skid_steering/ForwardSkidSteeringKinematic.cpp
-    src/kinematic/skid_steering/InverseSkidSteeringKinematic.cpp
-    src/kinematic/omni_steering/OmniSteeringCommand.cpp
-    src/kinematic/omni_steering/OmniSteeringMeasure.cpp
-    src/kinematic/omni_steering/OmniSteeringConstraints.cpp
-    src/kinematic/omni_steering/MecanumWheelSteeringKinematic.cpp
-    src/kinematic/omni_steering/ForwardMecanumWheelSteeringKinematic.cpp
-    src/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/FourWheelSteeringKinematic.cpp
-    src/kinematic/wheel_steering/TwoWheelSteeringKinematic.cpp
-    src/kinematic/KinematicMeasure.cpp
-    )
+include(GNUInstallDirs)
 
-target_link_libraries(romea_odo ${catkin_LIBRARIES} yaml-cpp)
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}Targets
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
+install(FILES package.xml DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME})
 
-#############
-## Install ##
-#############
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+  "${PROJECT_NAME}ConfigVersion.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion)
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+configure_package_config_file(
+  "${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" INSTALL_DESTINATION
+  ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
-## Mark executable scripts (Python etc.) for installation
-## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+install(
+  EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME}Targets.cmake
+  NAMESPACE ${PROJECT_NAME}::
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
-## Mark executables and/or libraries for installation
-# install(TARGETS trackbod_driver trackbod_driver_node
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+  "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
 
-## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
-# )
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 
-#############
-## Testing ##
-#############
-
-if(CATKIN_ENABLE_TESTING)
+option(BUILD_TESTS "BUILD WITH TESTS" OFF)
+if(BUILD_TESTS)
+  enable_testing()
   add_subdirectory(test)
-endif(CATKIN_ENABLE_TESTING)
+endif(BUILD_TESTS)
