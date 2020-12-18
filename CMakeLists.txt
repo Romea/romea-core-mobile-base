@@ -68,6 +68,8 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 include(GNUInstallDirs)
 
+message(${romea_common_INCLUDE_DIRS})
+
 install(
   TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}Targets
