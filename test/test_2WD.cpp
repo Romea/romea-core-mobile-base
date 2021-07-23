@@ -62,7 +62,6 @@ inline void testCinematicClamp(const romea::SkidSteeringKinematic::Parameters  &
                                const romea::SkidSteeringConstraints & userConstraints)
 {
 
-//  std::cout << " COUCOU " << std::endl;
   double dt =0.1;
   for(size_t i=0;i<21;i++)
   {
@@ -75,16 +74,11 @@ inline void testCinematicClamp(const romea::SkidSteeringKinematic::Parameters  &
         double secondLinearSpeed=-1+k*0.1;
         for(size_t l=0;l<21;l++)
         {
-//            std::cout<<"ijkl "<< i <<" "<<j <<" "<<k <<" "<<l<< std::endl;
-
           double secondAngularSpeed = -0.5+l*0.05;
-//          std::cout << " COUCOU2 " << std::endl;
 
           romea::SkidSteeringCommand firstCommandFrame;
           firstCommandFrame.longitudinalSpeed = firstLinearSpeed;
           firstCommandFrame.angularSpeed= firstAngularSpeed;
-
-//          std::cout << " COUCOU3 " << std::endl;
 
           romea::SkidSteeringCommand firstClampedCommandFrame = romea::clamp(parameters,userConstraints,firstCommandFrame);
 
@@ -92,17 +86,9 @@ inline void testCinematicClamp(const romea::SkidSteeringKinematic::Parameters  &
           secondCommandFrame.longitudinalSpeed = secondLinearSpeed;
           secondCommandFrame.angularSpeed= secondAngularSpeed;
 
-//          std::cout << " COUCOU4 " << std::endl;
-
           romea::SkidSteeringCommand secondClampedCommandFrame = romea::clamp(parameters,userConstraints,secondCommandFrame);
-
-
-//          std::cout << " COUCOU5 " << std::endl;
           secondClampedCommandFrame = romea::clamp(parameters,firstClampedCommandFrame,secondClampedCommandFrame,dt);
 
-//          std::cout << " COUCOU6 " << std::endl;
-
-//          std::cout << secondClampedCommandFrame << std::endl;
           ASSERT_LE(secondClampedCommandFrame.longitudinalSpeed,userConstraints.getMaximalLinearSpeed());
           ASSERT_GE(secondClampedCommandFrame.longitudinalSpeed,userConstraints.getMinimalLinearSpeed());
           ASSERT_LE(std::abs(secondClampedCommandFrame.angularSpeed),userConstraints.getMaximalAbsoluteAngularSpeed());
@@ -113,13 +99,8 @@ inline void testCinematicClamp(const romea::SkidSteeringKinematic::Parameters  &
           romea::OdometryFrame2WD secondOdometryFrame;
           romea::forwardKinematic(parameters,secondClampedCommandFrame,secondOdometryFrame);
 
-
-//          std::cout <<"diff "<< (secondOdometryFrame.leftWheelSpeed-firstOdometryFrame.leftWheelSpeed)/dt <<" "<< (secondOdometryFrame.rightWheelSpeed-firstOdometryFrame.rightWheelSpeed)/dt<< std::endl;
           ASSERT_LE(std::abs((secondOdometryFrame.leftWheelSpeed-firstOdometryFrame.leftWheelSpeed)),parameters.maximalWheelAcceleration*dt+0.000001);
           ASSERT_LE(std::abs((secondOdometryFrame.rightWheelSpeed-firstOdometryFrame.rightWheelSpeed)),parameters.maximalWheelAcceleration*dt+0.000001);
-
-//          std::cout<< std::endl;
-//          std::cout<< std::endl;
 
         }
       }
