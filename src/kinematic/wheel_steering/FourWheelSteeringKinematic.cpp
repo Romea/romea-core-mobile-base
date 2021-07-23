@@ -60,8 +60,6 @@ double FourWheelSteeringKinematic::computeRearSteeringAngle(const double & insta
   return std::atan2(-instantaneousCurvature*rearWheelBase+std::sin(beta),std::cos(beta));
 }
 
-
-
 //--------------------------------------------------------------------------
 TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
                              const TwoAxleSteeringConstraints & userConstraints,
@@ -82,20 +80,43 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                                          command);
 }
 
-
 //--------------------------------------------------------------------------
-double maximalPermissibleLinearSpeed(const FourWheelSteeringKinematic::Parameters & parameters,
-                                     const double & instantaneousCurvature)
+TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
+                             const TwoAxleSteeringCommand & previousCommand,
+                             const TwoAxleSteeringCommand & curentCommand,
+                             const double & dt)
 {
+
+    double  maximalSteeringAngularSpeed =0;
+
+    return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
+                                           parameters.rearWheelBase,
+                                           parameters.track/2.,
+                                           parameters.track/2.,
+                                           parameters.hubCarrierOffset,
+                                           parameters.hubCarrierOffset,
+                                           parameters.maximalWheelAcceleration,
+                                           maximalSteeringAngularSpeed,
+                                           previousCommand,
+                                           curentCommand,
+                                           dt);
 
 }
 
-//--------------------------------------------------------------------------
-double maximalPermissibleInstantaneousCurvature(const FourWheelSteeringKinematic::Parameters & parameters,
-                                                const double & linearSpeed)
-{
 
-}
+////--------------------------------------------------------------------------
+//double maximalPermissibleLinearSpeed(const FourWheelSteeringKinematic::Parameters & parameters,
+//                                     const double & instantaneousCurvature)
+//{
+
+//}
+
+////--------------------------------------------------------------------------
+//double maximalPermissibleInstantaneousCurvature(const FourWheelSteeringKinematic::Parameters & parameters,
+//                                                const double & linearSpeed)
+//{
+
+//}
 
 
 ////--------------------------------------------------------------------------

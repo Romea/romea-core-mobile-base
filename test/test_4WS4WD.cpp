@@ -66,58 +66,6 @@ inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Pa
   }
 }
 
-////-----------------------------------------------------------------------------
-//inline void testInverseForwardTranslation(const romea::FourWheelSteeringKinematic & kinematic1,
-//                                          const romea::FourWheelSteeringKinematic & kinematic2,
-//                                          const romea::WheelSteeringOdometry & odometry)
-//{
-
-//  double track=kinematic1.getTrack("rear_track").get();
-
-//  for(size_t i=0;i<21;i++)
-//  {
-//    double linearSpeed=-1+i*0.1;
-//    for(size_t j=0;j<21;j++)
-//    {
-//      double beta=-M_PI_2+M_PI_2*0.1*j;
-//      for(size_t k=0;k<21;k++)
-//      {
-//        double instantaneousCurvature = -0.5+k*0.05;
-//        if(std::cos(beta)>std::abs(instantaneousCurvature)*track/2 &&
-//           !((std::abs(std::cos(beta))<std::numeric_limits<float>::epsilon() &&
-//              std::abs(instantaneousCurvature)>std::numeric_limits<float>::epsilon())))
-//        {
-
-//          romea::KinematicCommand kinematicCommand;
-//          kinematicCommand.speed =linearSpeed;
-//          kinematicCommand.beta =beta;
-//          kinematicCommand.angularSpeed=instantaneousCurvature*linearSpeed;
-//          kinematicCommand.instantaneousCurvature = instantaneousCurvature;
-
-//          romea::OdometryFrame4WS4WD odometryFrame = romea::forwardKinematic4WS4WD(odometry.getName(),kinematic1,kinematicCommand);
-//          romea::KinematicMeasure kinematicMeasure1 = romea::inverseKinematic4WS4WD(kinematic1,odometry,odometryFrame);
-//          romea::KinematicMeasure kinematicMeasure2 = romea::inverseKinematic4WS4WD(kinematic2,odometry,odometryFrame);
-
-
-//          ASSERT_EQ(false,std::isnan(linearSpeed));
-//          ASSERT_EQ(false,std::isnan(beta));
-//          ASSERT_EQ(false,std::isnan(instantaneousCurvature));
-
-//          ASSERT_NEAR(kinematicMeasure1.speed*std::cos(kinematicMeasure1.beta),
-//                      kinematicMeasure2.speed*std::cos(kinematicMeasure2.beta),0.001);
-
-////          romea::TwoAxleSteeringMeasure twoAxleSteeringMeasure = romea::toTwoAxleSteeringMeasure(kinematicMeasure,kinematic);
-////          romea::KinematicMeasure kinematicMeasure3 = romea::toKinematicMeasure(twoAxleSteeringMeasure,kinematic);
-////          compareKinematicMeasure(kinematicMeasure1,kinematicMeasure3);
-
-
-//        }
-//      }
-//    }
-//  }
-//}
-
-
 //-----------------------------------------------------------------------------
 inline double radius(double x, double y, double theta, double xw, double yw, double thetaw)
 {

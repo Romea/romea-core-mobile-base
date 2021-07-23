@@ -76,14 +76,28 @@ struct OneAxleSteeringKinematic
                                       const OneAxleSteeringConstraints & userConstraints,
                                       const OneAxleSteeringCommand & command);
 
-};
+  static OneAxleSteeringCommand clamp(const double & wheelbase,
+                                      const double & frontHalfTrack,
+                                      const double & rearHalfTrack,
+                                      const double & frontHubCarrierOffset,
+                                      const double & rearHubCarrierOffset,
+                                      const double & maximalSteeringAngularSpeed,
+                                      const double & maximalWheelAcceleration,
+                                      const OneAxleSteeringCommand & previousCommand,
+                                      const OneAxleSteeringCommand & currentCommand,
+                                      const double & dt);
 
+};
 
 
 OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parameters,
                              const OneAxleSteeringConstraints & userConstraints,
                              const OneAxleSteeringCommand & command);
 
+OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parameters,
+                             const OneAxleSteeringCommand & previousCommand,
+                             const OneAxleSteeringCommand & currentCommand,
+                             const double & dt);
 
 }
 #endif

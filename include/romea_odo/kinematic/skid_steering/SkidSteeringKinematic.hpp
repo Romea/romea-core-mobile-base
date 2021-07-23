@@ -49,6 +49,10 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
                           const SkidSteeringConstraints & userConstraints,
                           const SkidSteeringCommand & command);
 
+SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
+                          const SkidSteeringCommand & previousCommand,
+                          const SkidSteeringCommand & currentCommand,
+                          const double & dt);
 
 }//end romea
 

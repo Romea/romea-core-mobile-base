@@ -55,5 +55,10 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
                              const OneAxleSteeringConstraints & userConstraints,
                              const OneAxleSteeringCommand & command);
 
+OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
+                             const OneAxleSteeringCommand & previousCommand,
+                             const OneAxleSteeringCommand & currentCommand,
+                             const double & dt);
+
 }
 #endif

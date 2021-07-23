@@ -12,11 +12,11 @@ namespace romea {
 
 //--------------------------------------------------------------------------
 MecanumWheelSteeringKinematic::Parameters::Parameters():
-  track(0),
-  wheelbase(0),
-  maximalWheelSpeed(std::numeric_limits<double>::max()),
-  maximalWheelAcceleration(std::numeric_limits<double>::max()),
-  wheelSpeedVariance(0)
+    track(0),
+    wheelbase(0),
+    maximalWheelSpeed(std::numeric_limits<double>::max()),
+    maximalWheelAcceleration(std::numeric_limits<double>::max()),
+    wheelSpeedVariance(0)
 {
 
 }
@@ -28,7 +28,7 @@ double MecanumWheelSteeringKinematic::computeFrontLeftWheelSpeed(const double & 
                                                                  const double & halfWheelbase,
                                                                  const double & halfTrack)
 {
-  return longitidutinalSpeed-lateralSpeed-angularSpeed*(halfWheelbase+halfTrack);
+    return longitidutinalSpeed-lateralSpeed-angularSpeed*(halfWheelbase+halfTrack);
 }
 
 //--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ double MecanumWheelSteeringKinematic::computeFrontRightWheelSpeed(const double &
                                                                   const double & halfWheelbase,
                                                                   const double & halfTrack)
 {
-  return longitidutinalSpeed+lateralSpeed+angularSpeed*(halfWheelbase+halfTrack);
+    return longitidutinalSpeed+lateralSpeed+angularSpeed*(halfWheelbase+halfTrack);
 }
 
 //--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ double MecanumWheelSteeringKinematic::computeRearLeftWheelSpeed(const double & l
                                                                 const double & halfWheelbase,
                                                                 const double & halfTrack)
 {
-  return longitidutinalSpeed+lateralSpeed-angularSpeed*(halfWheelbase+halfTrack);
+    return longitidutinalSpeed+lateralSpeed-angularSpeed*(halfWheelbase+halfTrack);
 }
 
 //--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ double MecanumWheelSteeringKinematic::computeRearRightWheelSpeed(const double & 
                                                                  const double & halfWheelbase,
                                                                  const double & halfTrack)
 {
-  return longitidutinalSpeed-lateralSpeed+angularSpeed*(halfWheelbase+halfTrack);
+    return longitidutinalSpeed-lateralSpeed+angularSpeed*(halfWheelbase+halfTrack);
 }
 
 //--------------------------------------------------------------------------
@@ -67,8 +67,8 @@ double MecanumWheelSteeringKinematic::computeLongitudinalSpeed(const double & fr
                                                                const double & rearLeftWheelSpeed,
                                                                const double & rearRightWheelSpeed)
 {
-  return 0.25*(frontLeftWheelSpeed+frontRightWheelSpeed+
-               rearLeftWheelSpeed+rearRightWheelSpeed);
+    return 0.25*(frontLeftWheelSpeed+frontRightWheelSpeed+
+                 rearLeftWheelSpeed+rearRightWheelSpeed);
 }
 
 //--------------------------------------------------------------------------
@@ -78,8 +78,8 @@ double MecanumWheelSteeringKinematic::computeLateralSpeed(const double & frontLe
                                                           const double & rearRightWheelSpeed)
 {
 
-  return  0.25* ((frontRightWheelSpeed+rearLeftWheelSpeed)-
-                 (frontLeftWheelSpeed+rearRightWheelSpeed));
+    return  0.25* ((frontRightWheelSpeed+rearLeftWheelSpeed)-
+                   (frontLeftWheelSpeed+rearRightWheelSpeed));
 }
 
 //--------------------------------------------------------------------------
@@ -90,8 +90,8 @@ double MecanumWheelSteeringKinematic::computeAngularSpeed(const double & frontLe
                                                           const double & halfWheelbase,
                                                           const double & halfTrack)
 {
-  return  0.25 *((frontRightWheelSpeed+rearRightWheelSpeed)-
-                 (rearLeftWheelSpeed+frontLeftWheelSpeed))/(halfWheelbase+halfTrack);
+    return  0.25 *((frontRightWheelSpeed+rearRightWheelSpeed)-
+                   (rearLeftWheelSpeed+frontLeftWheelSpeed))/(halfWheelbase+halfTrack);
 
 }
 
@@ -100,46 +100,93 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                           const OmniSteeringConstraints & userConstraints,
                           const OmniSteeringCommand & command)
 {
-  double alpha = parameters.track+parameters.wheelbase;
+    double alpha = parameters.track+parameters.wheelbase;
 
-  //Clamp angular speed
-  double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/alpha;
+    //Clamp angular speed
+    double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/alpha;
 
-  maximalAbsoluteAngularSpeed = std::min(maximalAbsoluteAngularSpeed,
-                                         userConstraints.getMaximalAbsoluteAngularSpeed());
+    maximalAbsoluteAngularSpeed = std::min(maximalAbsoluteAngularSpeed,
+                                           userConstraints.getMaximalAbsoluteAngularSpeed());
 
-  double angularSpeed = romea::clamp(command.angularSpeed,
-                                     -maximalAbsoluteAngularSpeed,
-                                     maximalAbsoluteAngularSpeed);
+    double angularSpeed = romea::clamp(command.angularSpeed,
+                                       -maximalAbsoluteAngularSpeed,
+                                       maximalAbsoluteAngularSpeed);
 
-  //Clamp lateral speed
-  double maximalAbsoluteSpeed= parameters.maximalWheelSpeed - std::abs(angularSpeed)*alpha/2.0;
+    //Clamp lateral speed
+    double maximalAbsoluteSpeed= parameters.maximalWheelSpeed - std::abs(angularSpeed)*alpha/2.0;
 
-  double maximalAbsboluteLateralSpeed = std::min(maximalAbsoluteSpeed,userConstraints.getMaximalAbsoluteLateralSpeed());
+    double maximalAbsboluteLateralSpeed = std::min(maximalAbsoluteSpeed,userConstraints.getMaximalAbsoluteLateralSpeed());
 
-  double lateralSpeed = romea::clamp(command.lateralSpeed,
-                                     -maximalAbsboluteLateralSpeed,
-                                     maximalAbsboluteLateralSpeed);
+    double lateralSpeed = romea::clamp(command.lateralSpeed,
+                                       -maximalAbsboluteLateralSpeed,
+                                       maximalAbsboluteLateralSpeed);
 
-  //Clamp longitudinal speed
-  double longitudinalSpeed = command.longitudinalSpeed;
+    //Clamp longitudinal speed
+    double longitudinalSpeed = command.longitudinalSpeed;
 
-  double maximalAbsoluteLongitudinalSpeed = maximalAbsoluteSpeed-std::abs(lateralSpeed);
+    double maximalAbsoluteLongitudinalSpeed = maximalAbsoluteSpeed-std::abs(lateralSpeed);
 
-  double minimalLongitudinalSpeed = std::max(-maximalAbsoluteLongitudinalSpeed,userConstraints.getMinimalLongitudinalSpeed());
+    double minimalLongitudinalSpeed = std::max(-maximalAbsoluteLongitudinalSpeed,userConstraints.getMinimalLongitudinalSpeed());
 
-  longitudinalSpeed = std::max(longitudinalSpeed,minimalLongitudinalSpeed);
+    longitudinalSpeed = std::max(longitudinalSpeed,minimalLongitudinalSpeed);
 
-  double maximalLongitudinalSpeed = std::min( maximalAbsoluteLongitudinalSpeed,userConstraints.getMaximalLongitudinalSpeed());
+    double maximalLongitudinalSpeed = std::min( maximalAbsoluteLongitudinalSpeed,userConstraints.getMaximalLongitudinalSpeed());
 
-  longitudinalSpeed = std::min(longitudinalSpeed,maximalLongitudinalSpeed);
+    longitudinalSpeed = std::min(longitudinalSpeed,maximalLongitudinalSpeed);
 
 
-  OmniSteeringCommand clampedCommand;
-  clampedCommand.longitudinalSpeed=longitudinalSpeed;
-  clampedCommand.lateralSpeed=lateralSpeed;
-  clampedCommand.angularSpeed=angularSpeed;
-  return clampedCommand;
+    OmniSteeringCommand clampedCommand;
+    clampedCommand.longitudinalSpeed=longitudinalSpeed;
+    clampedCommand.lateralSpeed=lateralSpeed;
+    clampedCommand.angularSpeed=angularSpeed;
+    return clampedCommand;
+
+}
+
+
+//--------------------------------------------------------------------------
+OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,
+                          const OmniSteeringCommand & previousCommand,
+                          const OmniSteeringCommand & currentCommand,
+                          const double & dt)
+{
+    double alpha = parameters.track+parameters.wheelbase;
+
+    //Clamp angular speed
+    double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelAcceleration/alpha;
+
+    double angularAcceleration = currentCommand.angularSpeed-previousCommand.angularSpeed;
+
+    angularAcceleration = romea::clamp(angularAcceleration,
+                                       -maximalAbsoluteAngularSpeed,
+                                       maximalAbsoluteAngularSpeed);
+
+    //Clamp lateral speed
+    double maximalAbsoluteLateralAcceleration = parameters.maximalWheelAcceleration - std::abs(angularAcceleration)*alpha/2.0;
+
+    double lateralAcceleration = currentCommand.lateralSpeed-previousCommand.lateralSpeed;
+
+    lateralAcceleration = romea::clamp(lateralAcceleration,
+                                       -maximalAbsoluteLateralAcceleration,
+                                       maximalAbsoluteLateralAcceleration);
+
+    //Clamp longitudinal speed
+
+    double maximalAbsoluteLongitudinalAcceleration = maximalAbsoluteLateralAcceleration-std::abs(lateralAcceleration);
+
+    double longitudinalAcceleration = currentCommand.longitudinalSpeed - previousCommand.longitudinalSpeed;
+
+    longitudinalAcceleration = romea::clamp(longitudinalAcceleration,
+                                            -maximalAbsoluteLongitudinalAcceleration,
+                                            maximalAbsoluteLongitudinalAcceleration);
+
+
+    //return command
+    OmniSteeringCommand clampedCommand;
+    clampedCommand.longitudinalSpeed=previousCommand.longitudinalSpeed+longitudinalAcceleration*dt;
+    clampedCommand.lateralSpeed=previousCommand.lateralSpeed+lateralAcceleration*dt;
+    clampedCommand.angularSpeed=previousCommand.angularSpeed+angularAcceleration*dt;
+    return clampedCommand;
 
 }
 

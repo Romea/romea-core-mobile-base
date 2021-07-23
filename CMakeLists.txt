@@ -19,6 +19,7 @@ add_library(${PROJECT_NAME} SHARED
   src/odometry/OdometryFrame1FWS2RWD.cpp
   src/odometry/OdometryFrame2FWS2RWD.cpp
   src/odometry/OdometryFrame2FWS2FWD.cpp
+  src/odometry/OdometryFrame2FWS4WD.cpp
   src/odometry/OdometryFrame4WS4WD.cpp
   src/kinematic/axle_steering/OneAxleSteeringKinematic.cpp
   src/kinematic/axle_steering/OneAxleSteeringCommand.cpp

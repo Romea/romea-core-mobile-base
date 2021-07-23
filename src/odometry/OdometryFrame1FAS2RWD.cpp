@@ -7,22 +7,21 @@
 namespace romea {
 
 
-//--------------------------------------------------------------------------
-void toOdometryFrame(const OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD, OdometryFrame & odometryFrame)
-{
-  odometryFrame.setWheelSpeed("rear_left_wheel",odometryFrame1FAS2RWD.rearLeftWheelSpeed);
-  odometryFrame.setWheelSpeed("rear_right_wheel",odometryFrame1FAS2RWD.rearRightWheelSpeed);
-  odometryFrame.setSteeringAngle("front_steering",odometryFrame1FAS2RWD.frontAxleSteeringAngle);
-}
+////--------------------------------------------------------------------------
+//void toOdometryFrame(const OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD, OdometryFrame & odometryFrame)
+//{
+//  odometryFrame.set("rear_left_wheel_speed",odometryFrame1FAS2RWD.rearLeftWheelSpeed);
+//  odometryFrame.set("rear_right_wheel_speed",odometryFrame1FAS2RWD.rearRightWheelSpeed);
+//  odometryFrame.set("front_axle_steering_angle",odometryFrame1FAS2RWD.frontAxleSteeringAngle);
+//}
 
-//--------------------------------------------------------------------------
-void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD)
-{
-  assert(odometryFrame.getWheelSpeed("rear_left_wheel",odometryFrame1FAS2RWD.rearLeftWheelSpeed));
-  assert(odometryFrame.getWheelSpeed("rear_right_wheel",odometryFrame1FAS2RWD.rearRightWheelSpeed));
-  assert(odometryFrame.getSteeringAngle("front_steering",odometryFrame1FAS2RWD.frontAxleSteeringAngle));
-}
-
+////--------------------------------------------------------------------------
+//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD)
+//{
+//  assert(odometryFrame.get("rear_left_wheel_speed",odometryFrame1FAS2RWD.rearLeftWheelSpeed));
+//  assert(odometryFrame.get("rear_right_wheel_speed",odometryFrame1FAS2RWD.rearRightWheelSpeed));
+//  assert(odometryFrame.get("front_axle_steering_angle",odometryFrame1FAS2RWD.frontAxleSteeringAngle));
+//}
 
 //--------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & s, const OdometryFrame1FAS2RWD &frame)

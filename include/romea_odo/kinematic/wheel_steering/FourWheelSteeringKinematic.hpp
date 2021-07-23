@@ -45,5 +45,10 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                              const TwoAxleSteeringConstraints & userConstraints,
                              const TwoAxleSteeringCommand & command);
 
+TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
+                             const TwoAxleSteeringCommand & previousCommand,
+                             const TwoAxleSteeringCommand &curentCommand,
+                             const double & dt);
+
 }
 #endif

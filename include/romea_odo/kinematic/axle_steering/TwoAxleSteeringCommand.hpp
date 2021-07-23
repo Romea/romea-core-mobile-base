@@ -21,5 +21,7 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringCommand & command,
 
 std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & command);
 
+bool isValid(const TwoAxleSteeringCommand & command);
+
 }//end romea
 #endif

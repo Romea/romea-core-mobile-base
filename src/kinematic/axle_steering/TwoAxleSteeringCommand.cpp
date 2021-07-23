@@ -108,6 +108,14 @@ std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & comman
   return os;
 }
 
+//-----------------------------------------------------------------------------
+bool isValid(const TwoAxleSteeringCommand & command)
+{
+    return std::isfinite(command.longitudinalSpeed) &&
+            std::isfinite(command.frontSteeringAngle) &&
+            std::isfinite(command.rearSteeringAngle);
+}
+
 
 
 }//end romea

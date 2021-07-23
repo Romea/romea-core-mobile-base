@@ -21,5 +21,7 @@ std::ostream& operator<<(std::ostream& os, const OmniSteeringCommand & command);
 OmniSteeringCommand clamp(const OmniSteeringCommand & command,
                           const OmniSteeringConstraints & constraints);
 
+bool isValid(const OmniSteeringCommand & commaand);
+
 }//end romea
 #endif

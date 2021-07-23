@@ -23,5 +23,8 @@ std::ostream& operator<<(std::ostream& os, const SkidSteeringCommand & command);
 SkidSteeringCommand clamp(const SkidSteeringCommand & command,
                           const SkidSteeringConstraints & constraints);
 
+
+bool isValid(const SkidSteeringCommand & command);
+
 }//end romea
 #endif

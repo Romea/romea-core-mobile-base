@@ -20,6 +20,16 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
                       OdometryFrame4WD & odometryCommandFrame);
 
 
+void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
+                      const SkidSteeringCommand &commandFrame,
+                      const OdometryFrame2WD & startOdometryFrame,
+                      OdometryFrame2WD & odometryCommandFrame);
+
+
+void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
+                      const SkidSteeringCommand &commandFrame,
+                      const OdometryFrame2WD & startOdometryFrame,
+                      OdometryFrame4WD & odometryCommandFrame);
 
 
 }//end romea

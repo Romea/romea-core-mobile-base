@@ -106,7 +106,12 @@ SkidSteeringCommand clamp(const SkidSteeringCommand & command,
   return clamped_command;
 }
 
-
+//-----------------------------------------------------------------------------
+bool isValid(const SkidSteeringCommand & command)
+{
+    return std::isfinite(command.longitudinalSpeed) &&
+            std::isfinite(command.angularSpeed);
+}
 
 
 }//end romea

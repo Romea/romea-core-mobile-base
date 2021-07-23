@@ -57,10 +57,22 @@ struct TwoAxleSteeringKinematic
                                       const double  & rearHubCarrierOffset,
                                       const double  & frontMaximalWheelSpeed,
                                       const double  & rearMaximalWheelSpeed,
-                                      const double  &frontMaximalSteeringAngle,
+                                      const double  & frontMaximalSteeringAngle,
                                       const double  & rearMaximalSteeringAngle,
                                       const TwoAxleSteeringConstraints & userConstraints,
                                       const TwoAxleSteeringCommand & command);
+
+  static TwoAxleSteeringCommand clamp(const double  & frontWheelBase,
+                                      const double  & rearWheelBase,
+                                      const double  & frontHalfTrack,
+                                      const double  & rearHalfTrack,
+                                      const double  & frontHubCarrierOffset,
+                                      const double  & rearHubCarrierOffset,
+                                      const double  & maximalWheelAcceleration,
+                                      const double  & maximalSteeringAngularSpeed,
+                                      const TwoAxleSteeringCommand & previousCommand,
+                                      const TwoAxleSteeringCommand & currentCommand,
+                                      const double & dt);
 
 };
 
@@ -68,6 +80,11 @@ struct TwoAxleSteeringKinematic
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parameters,
                              const TwoAxleSteeringConstraints & userConstraints,
                              const TwoAxleSteeringCommand & command);
+
+TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parameters,
+                             const TwoAxleSteeringCommand & previousCommand,
+                             const TwoAxleSteeringCommand & currentCommand,
+                             const double & dt);
 
 
 }

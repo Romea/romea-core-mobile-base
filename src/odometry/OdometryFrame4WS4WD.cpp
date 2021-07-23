@@ -8,34 +8,32 @@
 namespace romea {
 
 
-//--------------------------------------------------------------------------
-void toOdometryFrame(const OdometryFrame4WS4WD & odometryFrame4WS4WD, OdometryFrame & odometryFrame)
-{
-  odometryFrame.setWheelSpeed("front_left_wheel",odometryFrame4WS4WD.frontLeftWheelSpeed);
-  odometryFrame.setWheelSpeed("front_right_wheel",odometryFrame4WS4WD.frontRightWheelSpeed);
-  odometryFrame.setWheelSpeed("rear_left_wheel",odometryFrame4WS4WD.rearLeftWheelSpeed);
-  odometryFrame.setWheelSpeed("rear_right_wheel",odometryFrame4WS4WD.rearRightWheelSpeed);
-  odometryFrame.setSteeringAngle("front_left_steering",odometryFrame4WS4WD.frontLeftWheelAngle);
-  odometryFrame.setSteeringAngle("front_right_steering",odometryFrame4WS4WD.frontRightWheelAngle);
-  odometryFrame.setSteeringAngle("rear_left_steering",odometryFrame4WS4WD.rearLeftWheelAngle);
-  odometryFrame.setSteeringAngle("rear_right_steering",odometryFrame4WS4WD.rearRightWheelAngle);
+////--------------------------------------------------------------------------
+//void toOdometryFrame(const OdometryFrame4WS4WD & odometryFrame4WS4WD, OdometryFrame & odometryFrame)
+//{
+//  odometryFrame.set("front_left_wheel_speed",odometryFrame4WS4WD.frontLeftWheelSpeed);
+//  odometryFrame.set("front_right_wheel_speed",odometryFrame4WS4WD.frontRightWheelSpeed);
+//  odometryFrame.set("rear_left_wheel_speed",odometryFrame4WS4WD.rearLeftWheelSpeed);
+//  odometryFrame.set("rear_right_wheel_speed",odometryFrame4WS4WD.rearRightWheelSpeed);
+//  odometryFrame.set("front_left_wheel_angle",odometryFrame4WS4WD.frontLeftWheelAngle);
+//  odometryFrame.set("front_right_wheel_angle",odometryFrame4WS4WD.frontRightWheelAngle);
+//  odometryFrame.set("rear_left_wheel_angle",odometryFrame4WS4WD.rearLeftWheelAngle);
+//  odometryFrame.set("rear_right_wheel_angle",odometryFrame4WS4WD.rearRightWheelAngle);
 
-}
+//}
 
-//--------------------------------------------------------------------------
-void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame4WS4WD & odometryFrame4WS4WD)
-{
-  assert(odometryFrame.getWheelSpeeds().size()==4);
-  assert(odometryFrame.getWheelSpeed("front_left_wheel",odometryFrame4WS4WD.frontLeftWheelSpeed));
-  assert(odometryFrame.getWheelSpeed("front_right_wheel",odometryFrame4WS4WD.frontRightWheelSpeed));
-  assert(odometryFrame.getWheelSpeed("rear_left_wheel",odometryFrame4WS4WD.rearLeftWheelSpeed));
-  assert(odometryFrame.getWheelSpeed("rear_right_wheel",odometryFrame4WS4WD.rearRightWheelSpeed));
-  assert(odometryFrame.getSteeringAngles().size()==4);
-  assert(odometryFrame.getSteeringAngle("front_left_steering",odometryFrame4WS4WD.frontLeftWheelAngle));
-  assert(odometryFrame.getSteeringAngle("front_right_steering",odometryFrame4WS4WD.frontRightWheelAngle));
-  assert(odometryFrame.getSteeringAngle("rear_left_steering",odometryFrame4WS4WD.rearLeftWheelAngle));
-  assert(odometryFrame.getSteeringAngle("rear_right_steering",odometryFrame4WS4WD.rearRightWheelAngle));
-}
+////--------------------------------------------------------------------------
+//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame4WS4WD & odometryFrame4WS4WD)
+//{
+//  assert(odometryFrame.get("front_left_wheel_speed",odometryFrame4WS4WD.frontLeftWheelSpeed));
+//  assert(odometryFrame.get("front_right_wheel_speed",odometryFrame4WS4WD.frontRightWheelSpeed));
+//  assert(odometryFrame.get("rear_left_wheel_speed",odometryFrame4WS4WD.rearLeftWheelSpeed));
+//  assert(odometryFrame.get("rear_right_wheel_speed",odometryFrame4WS4WD.rearRightWheelSpeed));
+//  assert(odometryFrame.get("front_left_wheel_angle",odometryFrame4WS4WD.frontLeftWheelAngle));
+//  assert(odometryFrame.get("front_right_wheel_angle",odometryFrame4WS4WD.frontRightWheelAngle));
+//  assert(odometryFrame.get("rear_left_wheel_angle",odometryFrame4WS4WD.rearLeftWheelAngle));
+//  assert(odometryFrame.get("rear_right_wheel_angle",odometryFrame4WS4WD.rearRightWheelAngle));
+//}
 
 
 

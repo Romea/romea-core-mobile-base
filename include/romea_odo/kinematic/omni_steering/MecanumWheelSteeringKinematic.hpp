@@ -72,6 +72,11 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                           const OmniSteeringConstraints & userConstraints,
                           const OmniSteeringCommand & command);
 
+OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,
+                          const OmniSteeringCommand & previousCommand,
+                          const OmniSteeringCommand & currentCommand,
+                          const double & dt);
+
 
 }//end romea
 

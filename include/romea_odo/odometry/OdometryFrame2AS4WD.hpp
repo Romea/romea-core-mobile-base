@@ -28,9 +28,9 @@ struct OdometryFrame2AS4WD
 
 };
 
-void toOdometryFrame(const OdometryFrame2AS4WD & odometryFrame2AS4WD, OdometryFrame & odometryFrame);
+//void toOdometryFrame(const OdometryFrame2AS4WD & odometryFrame2AS4WD, OdometryFrame & odometryFrame);
 
-void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame2AS4WD & odometryFrame2AS4WD);
+//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame2AS4WD & odometryFrame2AS4WD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame2AS4WD &frame);
 

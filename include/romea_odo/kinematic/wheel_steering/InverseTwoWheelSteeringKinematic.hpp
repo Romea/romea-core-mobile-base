@@ -7,6 +7,7 @@
 #include "../axle_steering/OneAxleSteeringMeasure.hpp"
 #include "../../odometry/OdometryFrame2FWS2FWD.hpp"
 #include "../../odometry/OdometryFrame2FWS2RWD.hpp"
+#include "../../odometry/OdometryFrame2FWS4WD.hpp"
 
 namespace romea {
 
@@ -16,6 +17,10 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
 
 void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       const OdometryFrame2FWS2RWD & odometryFrame,
+                      OneAxleSteeringMeasure & oneAxleSteeringMeasure);
+
+void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
+                      const OdometryFrame2FWS4WD & odometryFrame,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure);
 
 

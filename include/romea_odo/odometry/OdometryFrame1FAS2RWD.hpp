@@ -19,11 +19,14 @@ struct OdometryFrame1FAS2RWD
   double rearLeftWheelSpeed;
   double rearRightWheelSpeed;
 
+//  static const inline std::vector<std::string> fields={"front_axle_steering_angle",
+//                                                       "rear_left_wheel_speed",
+//                                                       "rear_left_wheel_speed}
 };
 
-void toOdometryFrame(const OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD, OdometryFrame & odometryFrame);
+//void toOdometryFrame(const OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD, OdometryFrame & odometryFrame);
 
-void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD);
+//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FAS2RWD & odometryFrame1FAS2RWD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame1FAS2RWD &frame);
 

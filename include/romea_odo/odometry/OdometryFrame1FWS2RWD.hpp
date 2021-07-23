@@ -22,9 +22,9 @@ struct OdometryFrame1FWS2RWD
 
 };
 
-void toOdometryFrame(const OdometryFrame1FWS2RWD & odometryFrame1FWS2RWD, OdometryFrame & odometryFrame);
+//void toOdometryFrame(const OdometryFrame1FWS2RWD & odometryFrame1FWS2RWD, OdometryFrame & odometryFrame);
 
-void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FWS2RWD & odometryFrame1FWS2RWD);
+//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame1FWS2RWD & odometryFrame1FWS2RWD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame1FWS2RWD &frame);
 }//end romea

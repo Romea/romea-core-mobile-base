@@ -4,7 +4,7 @@
 #include <iostream>
 namespace {
 
-const double LINEAR_SPEED_EPSILON = 0.00001;
+//const double LINEAR_SPEED_EPSILON = 0.00001;
 
 ////--------------------------------------------------------------------------
 //inline Eigen::Matrix4d computeCovarianceMatrix(const double & leftWheelSpeed,

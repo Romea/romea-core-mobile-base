@@ -22,15 +22,6 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters &parameters,
 
 }
 
-////--------------------------------------------------------------------------
-//OdometryFrame2WD forwardKinematic2WD(const std::string &emitterName,
-//                                     const SkidSteeringKinematic & kinematic,
-//                                     const KinematicCommand & commandFrame)
-//{
-
-//  return forwardKinematic2WD(emitterName,kinematic,toSkidSteeringCommand(commandFrame));
-//}
-
 //--------------------------------------------------------------------------
 void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
                       const SkidSteeringCommand & commandFrame,
@@ -49,15 +40,19 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
   odometryCommandFrame.rearRightWheelSpeed = rightWheelSpeed;
 }
 
-
 ////--------------------------------------------------------------------------
-//OdometryFrame4WD forwardKinematic4WD(const std::string &emitterName,
-//                                     const SkidSteeringKinematic & kinematic,
-//                                     const KinematicCommand & commandFrame)
+//void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
+//                      const SkidSteeringCommand &commandFrame,
+//                      const OdometryFrame2WD & startOdometryFrame,
+//                      OdometryFrame2WD & odometryCommandFrame)
 //{
-//  return forwardKinematic4WD(emitterName,kinematic,toSkidSteeringCommand(commandFrame));
-//}
+//    const double track = parameters.track;
+//    const double & linearSpeed = commandFrame.longitudinalSpeed;
+//    const double & angularSpeed = commandFrame.angularSpeed;
 
+//   double
+//   double commandLeftWheelSpeed= SkidSteeringKinematic::computeLeftWheelSpeed(linearSpeed,angularSpeed,track)
+//}
 
 
 }//end romea
