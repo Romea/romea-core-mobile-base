@@ -40,9 +40,4 @@ target_link_libraries(${PROJECT_NAME}_test_2WD ${PROJECT_NAME} GTest::GTest GTes
 target_compile_options(${PROJECT_NAME}_test_2WD PRIVATE -std=c++17)
 add_test(test_ss ${PROJECT_NAME}_test_2WD)
 
-add_executable(${PROJECT_NAME}_test_frame test_frame.cpp )
-target_link_libraries(${PROJECT_NAME}_test_frame ${PROJECT_NAME} GTest::GTest GTest::Main)
-target_compile_options(${PROJECT_NAME}_test_frame PRIVATE -std=c++17)
-add_test(test_frame ${PROJECT_NAME}_test_frame)
-
 
