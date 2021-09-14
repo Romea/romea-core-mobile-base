@@ -1,13 +1,9 @@
 #ifndef romea_OdometryFrame2AS4WD_hpp
 #define romea_OdometryFrame2AS4WD_hpp
 
-
 //stl
 #include <memory>
 #include <ostream>
-
-//romea
-#include "OdometryFrame.hpp"
 
 namespace romea {
 

@@ -1,9 +1,6 @@
 #ifndef romea_OdometryFrame4WD_hpp
 #define romea_OdometryFrame4WD_hpp
 
-//romea
-#include "OdometryFrame.hpp"
-
 //stl
 #include <memory>
 #include <ostream>
@@ -22,10 +19,6 @@ struct OdometryFrame4WD
   double rearRightWheelSpeed;
 
 };
-
-//void toOdometryFrame(const OdometryFrame4WD & odometryFrame4WD, OdometryFrame & odometryFrame);
-
-//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame4WD & odometryFrame4WD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame4WD &frame);
 

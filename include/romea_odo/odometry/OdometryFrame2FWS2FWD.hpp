@@ -5,9 +5,6 @@
 #include <memory>
 #include <ostream>
 
-//romea
-#include "OdometryFrame.hpp"
-
 namespace romea {
 
 struct OdometryFrame2FWS2FWD
@@ -22,11 +19,6 @@ struct OdometryFrame2FWS2FWD
   double frontRightWheelAngle;
 
 };
-
-
-//void toOdometryFrame(const OdometryFrame2FWS2FWD & odometryFrame2FWS2FWD, OdometryFrame & odometryFrame);
-
-//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame2FWS2FWD & odometryFrame2FWS2FWD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame2FWS2FWD &frame);
 

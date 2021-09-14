@@ -5,9 +5,6 @@
 #include <memory>
 #include <ostream>
 
-//romea
-#include "OdometryFrame.hpp"
-
 namespace romea {
 
 
@@ -33,10 +30,6 @@ public :
   double rearRightWheelAngle;
 
 };
-
-//void toOdometryFrame(const OdometryFrame4WS4WD & odometryFrame4WS4WD, OdometryFrame & odometryFrame);
-
-//void fromOdometryFrame(const OdometryFrame & odometryFrame,OdometryFrame4WS4WD & odometryFrame4WS4WD);
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame4WS4WD &frame);
 

@@ -10,7 +10,6 @@ project(
 find_package(romea_common REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED
-  src/odometry/OdometryFrame.cpp
   src/odometry/OdometryFrame1FAS2RWD.cpp
   src/odometry/OdometryFrame1FAS2FWD.cpp
   src/odometry/OdometryFrame2AS4WD.cpp
