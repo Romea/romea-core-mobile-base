@@ -3,11 +3,11 @@
 #include "test_utils.hpp"
 
 //romea
-#include "romea_odo/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringMeasure.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringMeasure.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 //-----------------------------------------------------------------------------
 inline void testInverseForward2FWS2RWD(const romea::TwoWheelSteeringKinematic::Parameters & parameters,

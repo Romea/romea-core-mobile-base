@@ -1,9 +1,9 @@
 //romea
-#include "romea_odo/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 #include <iostream>
 

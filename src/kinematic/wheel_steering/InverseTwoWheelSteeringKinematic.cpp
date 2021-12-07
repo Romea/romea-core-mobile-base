@@ -1,6 +1,6 @@
 //romea
-#include "romea_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include <iostream>
 
 namespace romea {

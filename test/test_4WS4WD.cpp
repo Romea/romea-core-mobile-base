@@ -3,14 +3,14 @@
 #include "test_utils.hpp"
 
 //romea
-#include "romea_odo/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/skid_steering/SkidSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/TwoAxleSteeringMeasure.hpp"
-#include "romea_odo/kinematic/axle_steering/TwoAxleSteeringCommand.hpp"
-#include "romea_common/math/Matrix.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/skid_steering/SkidSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/TwoAxleSteeringMeasure.hpp"
+#include "romea_core_odo/kinematic/axle_steering/TwoAxleSteeringCommand.hpp"
+#include "romea_core_common/math/Matrix.hpp"
 
 
 

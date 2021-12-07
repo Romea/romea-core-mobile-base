@@ -1,5 +1,5 @@
 //romea
-#include "romea_odo/odometry/OdometryFrame2FWS4WD.hpp"
+#include "romea_core_odo/odometry/OdometryFrame2FWS4WD.hpp"
 
 namespace romea {
 

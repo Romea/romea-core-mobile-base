@@ -1,6 +1,6 @@
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 namespace romea {
 

@@ -1,4 +1,4 @@
-#include "romea_odo/kinematic/KinematicMeasure.hpp"
+#include "romea_core_odo/kinematic/KinematicMeasure.hpp"
 
 void compareKinematicMeasure(const romea::KinematicMeasure & measure1,
                              const romea::KinematicMeasure & measure2)

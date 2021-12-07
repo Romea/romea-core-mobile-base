@@ -1,10 +1,10 @@
 //romea
-#include "romea_odo/kinematic/skid_steering/SkidSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include "romea_odo/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
-#include "romea_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/skid_steering/SkidSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 //std
 #include <cmath>

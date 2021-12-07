@@ -1,5 +1,5 @@
 //romea
-#include "romea_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
 
 //std
 #include <cmath>

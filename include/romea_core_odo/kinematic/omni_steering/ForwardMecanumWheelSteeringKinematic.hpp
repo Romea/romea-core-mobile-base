@@ -4,8 +4,8 @@
 //romea
 #include "OmniSteeringCommand.hpp"
 #include "MecanumWheelSteeringKinematic.hpp"
-#include "romea_odo/odometry/OdometryFrame2WD.hpp"
-#include "romea_odo/odometry/OdometryFrame4WD.hpp"
+#include "romea_core_odo/odometry/OdometryFrame2WD.hpp"
+#include "romea_core_odo/odometry/OdometryFrame4WD.hpp"
 
 namespace romea
 {

@@ -2,9 +2,9 @@
 #define romea_OmniSteeringMeasure_hpp
 
 //romea
-#include "romea_odo/kinematic/KinematicMeasure.hpp"
-#include "romea_odo/kinematic/omni_steering/OmniSteeringCommand.hpp"
-#include "romea_odo/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/KinematicMeasure.hpp"
+#include "romea_core_odo/kinematic/omni_steering/OmniSteeringCommand.hpp"
+#include "romea_core_odo/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
 
 namespace romea {
 

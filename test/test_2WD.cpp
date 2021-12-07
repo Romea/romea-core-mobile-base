@@ -3,9 +3,9 @@
 #include <limits>
 
 //romea
-#include "romea_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
-#include "romea_odo/kinematic/skid_steering/InverseSkidSteeringKinematic.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/skid_steering/InverseSkidSteeringKinematic.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 
 //-----------------------------------------------------------------------------

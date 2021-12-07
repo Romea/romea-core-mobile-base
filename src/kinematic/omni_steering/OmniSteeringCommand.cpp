@@ -1,5 +1,5 @@
-#include "romea_odo/kinematic/omni_steering/OmniSteeringCommand.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/omni_steering/OmniSteeringCommand.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 namespace romea {
 

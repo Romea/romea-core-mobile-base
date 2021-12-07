@@ -1,5 +1,5 @@
-#include "romea_odo/kinematic/skid_steering/SkidSteeringMeasure.hpp"
-#include <romea_common/math/Algorithm.hpp>
+#include "romea_core_odo/kinematic/skid_steering/SkidSteeringMeasure.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
 
 namespace {
 const double EPSILON = 0.0000001;

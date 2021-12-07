@@ -1,4 +1,4 @@
-#include "romea_odo/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.hpp"
+#include "romea_core_odo/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.hpp"
 #include <iostream>
 
 namespace romea
