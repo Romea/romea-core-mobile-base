@@ -15,7 +15,7 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
   const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
   const double &wheelAngleVariance = parameters.wheelAngleVariance;
 
-  const double halfTrack = parameters.frontTrack/2;
+  const double halfTrack = parameters.frontWheelTrack/2;
   const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
   const double hubCarrierOffset = parameters.frontHubCarrierOffset;
 
@@ -65,8 +65,8 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters &parameters,
   const double &wheelAngleVariance = parameters.wheelAngleVariance;
 
   const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
-  const double frontHalfTrack = parameters.frontTrack/2;
-  const double rearHalfTrack = parameters.rearTrack/2 + parameters.rearHubCarrierOffset;
+  const double frontHalfTrack = parameters.frontWheelTrack/2;
+  const double rearHalfTrack = parameters.rearWheelTrack/2 + parameters.rearHubCarrierOffset;
 
 
   const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
@@ -117,8 +117,8 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
     const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
     const double fronthubCarrierOffset = parameters.frontHubCarrierOffset;
     const double rearhubCarrierOffset = parameters.rearHubCarrierOffset;
-    const double frontHalfTrack = parameters.frontTrack/2;
-    const double rearHalfTrack = parameters.rearTrack/2 +rearhubCarrierOffset;
+    const double frontHalfTrack = parameters.frontWheelTrack/2;
+    const double rearHalfTrack = parameters.rearWheelTrack/2 +rearhubCarrierOffset;
 
     const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
     const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;

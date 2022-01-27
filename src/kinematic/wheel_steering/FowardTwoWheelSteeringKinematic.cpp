@@ -12,7 +12,7 @@ void forwardKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       const OneAxleSteeringCommand & commandFrame,
                       OdometryFrame2FWS2FWD & commandOdometryFrame)
 {
-  const double halfTrack = parameters.frontTrack/2;
+  const double halfTrack = parameters.frontWheelTrack/2;
   const double wheelBase= parameters.rearWheelBase+parameters.frontWheelBase;
   const double & hubCarrierOffset = parameters.frontHubCarrierOffset;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
@@ -58,8 +58,8 @@ void forwardKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       OdometryFrame2FWS2RWD & commandOdometryFrame)
 {
   const double wheelBase= parameters.rearWheelBase + parameters.frontWheelBase;
-  const double frontTrack  = parameters.frontTrack;
-  const double rearTrack = parameters.rearTrack;
+  const double frontTrack  = parameters.frontWheelTrack;
+  const double rearTrack = parameters.rearWheelTrack;
   const double & rearHubCarrierOffset = parameters.rearHubCarrierOffset;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & steeringAngle = commandFrame.steeringAngle;
@@ -102,8 +102,8 @@ void forwardKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       OdometryFrame2FWS4WD & commandOdometryFrame)
 {
     const double wheelBase= parameters.rearWheelBase + parameters.frontWheelBase;
-    const double frontTrack  = parameters.frontTrack;
-    const double rearTrack = parameters.rearTrack;
+    const double frontTrack  = parameters.frontWheelTrack;
+    const double rearTrack = parameters.rearWheelTrack;
     const double & rearHubCarrierOffset = parameters.rearHubCarrierOffset;
     const double & frontHubCarrierOffset = parameters.frontHubCarrierOffset;
     const double & linearSpeed = commandFrame.longitudinalSpeed;

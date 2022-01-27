@@ -168,7 +168,7 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
   ASSERT_NEAR(xrl,0,0.01);
   ASSERT_NEAR(yrl, rearWheelTrack/2.,0.01);
   ASSERT_NEAR(xrr,0,0.01);
-  ASSERT_NEAR(yrr,-rearTrack/2.,0.01);
+  ASSERT_NEAR(yrr,-rearWheelTrack/2.,0.01);
 }
 
 

@@ -16,7 +16,7 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
 
   const double frontWheelBase = parameters.frontWheelBase;
   const double rearWheelBase = parameters.rearWheelBase;
-  const double halfWheelTrack = parameters.track/2.;
+  const double halfWheelTrack = parameters.wheelTrack/2.;
   const double hubCarrierOffset = parameters.hubCarrierOffset;
 
   double speed = commandFrame.longitudinalSpeed;

@@ -16,8 +16,8 @@ namespace romea {
 TwoWheelSteeringKinematic::Parameters::Parameters():
     frontWheelBase(0),
     rearWheelBase(0),
-    frontTrack(0),
-    rearTrack(0),
+    frontWheelTrack(0),
+    rearWheelTrack(0),
     frontHubCarrierOffset(0),
     rearHubCarrierOffset(0),
     frontMaximalWheelSpeed(std::numeric_limits<double>::max()),
@@ -144,13 +144,13 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
 
     double maximalInstantaneousCurvature =
             TwoWheelSteeringKinematic::computeMaximalInstantaneousCurvature(wheelbase,
-                                                                            parameters.frontTrack/2.,
+                                                                            parameters.frontWheelTrack/2.,
                                                                             parameters.maximalWheelAngle);
 
 
     return OneAxleSteeringKinematic::clamp(wheelbase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            std::atan(maximalInstantaneousCurvature*wheelbase),
@@ -170,14 +170,14 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
 
     double tanSteeringAngle = std::tan(previousCommand.steeringAngle);
     double alpha = tanSteeringAngle *tanSteeringAngle;
-    double beta = 1+tanSteeringAngle*parameters.frontTrack/(2*wheelbase);
+    double beta = 1+tanSteeringAngle*parameters.frontWheelTrack/(2*wheelbase);
 
     double maximalSteeringAngularSpeed =parameters.maximalWheelAngularSpeed*
             (alpha + std::pow(beta,2.))/(1+alpha);
 
     return OneAxleSteeringKinematic::clamp(wheelbase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            maximalSteeringAngularSpeed,

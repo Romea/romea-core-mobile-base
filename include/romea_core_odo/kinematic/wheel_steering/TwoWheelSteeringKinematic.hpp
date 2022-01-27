@@ -17,8 +17,8 @@ public:
     Parameters();
     double frontWheelBase;
     double rearWheelBase;
-    double frontTrack;
-    double rearTrack;
+    double frontWheelTrack;
+    double rearWheelTrack;
     double frontHubCarrierOffset;
     double rearHubCarrierOffset;
     double frontMaximalWheelSpeed;

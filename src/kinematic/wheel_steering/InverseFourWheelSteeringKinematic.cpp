@@ -17,7 +17,7 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
   const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
   const double &wheelAngleVariance = parameters.wheelAngleVariance;
 
-  const double halfWheelTrack = parameters.track/2;
+  const double halfWheelTrack = parameters.wheelTrack/2;
   const double hubCarrierOffset = parameters.hubCarrierOffset;
   const double frontWheelBase = parameters.frontWheelBase;
   const double rearWheelBase = parameters.rearWheelBase;

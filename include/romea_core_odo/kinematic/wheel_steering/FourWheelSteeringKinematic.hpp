@@ -14,7 +14,7 @@ struct FourWheelSteeringKinematic
     Parameters();
     double frontWheelBase;
     double rearWheelBase;
-    double track;
+    double wheelTrack;
     double hubCarrierOffset;
     double maximalWheelSpeed;
     double maximalWheelAcceleration;
