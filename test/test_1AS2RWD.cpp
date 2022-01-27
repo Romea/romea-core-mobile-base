@@ -57,8 +57,8 @@ TEST(testInverseForward1FAS2RWD,SameTrack)
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 0.7;
   parameters.rearWheelBase= 0.7;
-  parameters.frontTrack=1.2;
-  parameters.rearTrack=1.2;
+  parameters.frontWheelTrack=1.2;
+  parameters.rearWheelTrack=1.2;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
@@ -74,8 +74,8 @@ TEST(testInverseForward1FAS2RWD,DiffTrack)
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.8;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.8;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
@@ -95,8 +95,8 @@ TEST(testInverseForward1FAS2RWD,HubOffset)
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.8;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.8;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.wheelSpeedVariance=0.1*0.1;
@@ -117,8 +117,8 @@ TEST(testInverseForward1FAS2RWD, MecanicalLimits)
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.8;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.8;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.frontMaximalWheelSpeed=1;
@@ -140,8 +140,8 @@ TEST(testInverseForward1FAS2RWD, UserLimits)
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.8;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.8;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.frontMaximalWheelSpeed=1;

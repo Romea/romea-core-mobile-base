@@ -93,8 +93,8 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
 {
 
   const double wheelBase= parameters.frontWheelBase+parameters.rearWheelBase;
-  const double frontTrack  = parameters.frontTrack;
-  const double rearTrack = parameters.rearTrack;
+  const double frontWheelTrack  = parameters.frontWheelTrack;
+  const double rearWheelTrack = parameters.rearWheelTrack;
 
   double dt = 0.0001;
   double K = 1/R;
@@ -122,13 +122,13 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
   vrr =odometryFrame.rearRightWheelSpeed;
 
   double xfl =  wheelBase;
-  double yfl =  frontTrack/2.;
+  double yfl =  frontWheelTrack/2.;
   double xfr =  wheelBase;
-  double yfr = -frontTrack/2.;
+  double yfr = -frontWheelTrack/2.;
   double xrl =  0;
-  double yrl =  rearTrack/2.;
+  double yrl =  rearWheelTrack/2.;
   double xrr =  0;
-  double yrr = -rearTrack/2.;
+  double yrr = -rearWheelTrack/2.;
 
 
   for(size_t i =1;i<n; i++){
@@ -162,11 +162,11 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
 
   }
   ASSERT_NEAR(xfl, wheelBase ,0.01);
-  ASSERT_NEAR(yfl, frontTrack/2.,0.01);
+  ASSERT_NEAR(yfl, frontWheelTrack/2.,0.01);
   ASSERT_NEAR(xfr, wheelBase ,0.01);
-  ASSERT_NEAR(yfr,-frontTrack/2.,0.01);
+  ASSERT_NEAR(yfr,-frontWheelTrack/2.,0.01);
   ASSERT_NEAR(xrl,0,0.01);
-  ASSERT_NEAR(yrl, rearTrack/2.,0.01);
+  ASSERT_NEAR(yrl, rearWheelTrack/2.,0.01);
   ASSERT_NEAR(xrr,0,0.01);
   ASSERT_NEAR(yrr,-rearTrack/2.,0.01);
 }
@@ -182,8 +182,8 @@ TEST(testInverseForward2FWS4WD, SameTrack)
   romea::TwoWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 0.8;
   parameters.rearWheelBase= 0.8;
-  parameters.frontTrack=1.1;
-  parameters.rearTrack=1.1;
+  parameters.frontWheelTrack=1.1;
+  parameters.rearWheelTrack=1.1;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.wheelAngleVariance=0.02*0.02;
 
@@ -199,8 +199,8 @@ TEST(testInverseForward2FWS4WD,DiffTrack)
   romea::TwoWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 0.8;
   parameters.rearWheelBase= 0.8;
-  parameters.frontTrack=1.5;
-  parameters.rearTrack=1.2;
+  parameters.frontWheelTrack=1.5;
+  parameters.rearWheelTrack=1.2;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.wheelAngleVariance=0.02*0.02;
 
@@ -218,8 +218,8 @@ TEST(testInverseForward2FWS4WD,HubOffset)
   romea::TwoWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 0.7;
   parameters.rearWheelBase= 0.7;
-  parameters.frontTrack=1.1;
-  parameters.rearTrack=1.4;
+  parameters.frontWheelTrack=1.1;
+  parameters.rearWheelTrack=1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.wheelSpeedVariance=0.1*0.1;
@@ -237,8 +237,8 @@ TEST(testInverseForward2FWS4WD, DISABLED_MecanicalLimits)
   romea::TwoWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.6;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.6;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.rearMaximalWheelSpeed=1;
@@ -258,8 +258,8 @@ TEST(testInverseForward2FWS4WD, UserLimits)
   romea::TwoWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
   parameters.rearWheelBase= 1.25;
-  parameters.frontTrack=1.4;
-  parameters.rearTrack=1.6;
+  parameters.frontWheelTrack=1.4;
+  parameters.rearWheelTrack=1.6;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.rearMaximalWheelSpeed=1;
@@ -281,8 +281,8 @@ TEST(Test2WS, testCircularMovement2FWS4WD)
     romea::TwoWheelSteeringKinematic::Parameters parameters;
     parameters.frontWheelBase=1.4;
     parameters.rearWheelBase=0;
-    parameters.frontTrack=1.2;
-    parameters.rearTrack=1.2;
+    parameters.frontWheelTrack=1.2;
+    parameters.rearWheelTrack=1.2;
     testCircularMovement(parameters,1,3);
   }
 
@@ -290,8 +290,8 @@ TEST(Test2WS, testCircularMovement2FWS4WD)
     romea::TwoWheelSteeringKinematic::Parameters parameters;
     parameters.frontWheelBase=1.4;
     parameters.rearWheelBase=0;
-    parameters.frontTrack=0.8;
-    parameters.rearTrack=0.8;
+    parameters.frontWheelTrack=0.8;
+    parameters.rearWheelTrack=0.8;
     testCircularMovement(parameters,1,-3);
   }
 
@@ -299,8 +299,8 @@ TEST(Test2WS, testCircularMovement2FWS4WD)
     romea::TwoWheelSteeringKinematic::Parameters parameters;
     parameters.frontWheelBase=1.4;
     parameters.rearWheelBase=0;
-    parameters.frontTrack=0.8;
-    parameters.rearTrack=1.2;
+    parameters.frontWheelTrack=0.8;
+    parameters.rearWheelTrack=1.2;
     testCircularMovement(parameters,1,3);
   }
 
@@ -308,8 +308,8 @@ TEST(Test2WS, testCircularMovement2FWS4WD)
     romea::TwoWheelSteeringKinematic::Parameters parameters;
     parameters.frontWheelBase=1.4;
     parameters.rearWheelBase=0;
-    parameters.frontTrack=0.8;
-    parameters.rearTrack=1.2;
+    parameters.frontWheelTrack=0.8;
+    parameters.rearWheelTrack=1.2;
     testCircularMovement(parameters,1,-3);
   }
 }

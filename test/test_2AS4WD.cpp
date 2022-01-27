@@ -91,8 +91,8 @@ TEST(testInverseForward2AS4WD,SameTrackSameWheelbase)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 0.7;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.2;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.2;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
@@ -109,8 +109,8 @@ TEST(testInverseForward2AS4WD,DiffTrackSameWheelbase)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 0.7;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.4;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.4;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
@@ -128,8 +128,8 @@ TEST(testInverseForward2AS4WD,DiffTrackDiffWheelbase)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.4;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.4;
   parameters.wheelSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
@@ -148,8 +148,8 @@ TEST(testInverseForward2AS24WD,HubOffset)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.4;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.wheelSpeedVariance=0.1*0.1;
@@ -169,8 +169,8 @@ TEST(testInverseForward2AS24WD, MecanicalLimits)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.4;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.frontMaximalWheelSpeed=1;
@@ -194,8 +194,8 @@ TEST(testInverseForward2AS24WD, UserLimits)
   romea::TwoAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
-  parameters.frontTrack = 1.2;
-  parameters.rearTrack = 1.4;
+  parameters.frontWheelTrack = 1.2;
+  parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
   parameters.frontMaximalWheelSpeed=1;
