@@ -16,7 +16,7 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
 
   const double frontWheelBase = parameters.frontWheelBase;
   const double rearWheelBase = parameters.rearWheelBase;
-  const double halfTrack = parameters.track/2.;
+  const double halfWheelTrack = parameters.track/2.;
   const double hubCarrierOffset = parameters.hubCarrierOffset;
 
   double speed = commandFrame.longitudinalSpeed;
@@ -33,22 +33,22 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
   double frontLeftWheelAngle  =
       TwoWheelSteeringKinematic::computeLeftWheelAngle(tanFrontSteeringAngle,
                                                        orthogonalInstantaneousCurvature,
-                                                       halfTrack);
+                                                       halfWheelTrack);
 
   double frontRightWheelAngle =
       TwoWheelSteeringKinematic::computeRightWheelAngle(tanFrontSteeringAngle,
                                                         orthogonalInstantaneousCurvature,
-                                                        halfTrack);
+                                                        halfWheelTrack);
 
   double rearLeftWheelAngle  =
       TwoWheelSteeringKinematic::computeLeftWheelAngle(tanRearSteeringAngle,
                                                        orthogonalInstantaneousCurvature,
-                                                       halfTrack);
+                                                       halfWheelTrack);
 
   double rearRightWheelAngle =
       TwoWheelSteeringKinematic::computeRightWheelAngle(tanRearSteeringAngle,
                                                         orthogonalInstantaneousCurvature,
-                                                        halfTrack);
+                                                        halfWheelTrack);
 
 
 
@@ -57,14 +57,14 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
                                                       tanFrontSteeringAngle,
                                                       orthogonalInstantaneousCurvature,
                                                       hubCarrierOffset,
-                                                      halfTrack);
+                                                      halfWheelTrack);
 
   double frontRightWheelSpeed =
       OneAxleSteeringKinematic::computeRightWheelSpeed(speed,
                                                        tanFrontSteeringAngle,
                                                        orthogonalInstantaneousCurvature,
                                                        hubCarrierOffset,
-                                                       halfTrack);
+                                                       halfWheelTrack);
 
 
   double rearLeftWheelSpeed =
@@ -72,14 +72,14 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
                                                       tanRearSteeringAngle,
                                                       orthogonalInstantaneousCurvature,
                                                       hubCarrierOffset,
-                                                      halfTrack);
+                                                      halfWheelTrack);
 
   double rearRightWheelSpeed =
       OneAxleSteeringKinematic::computeRightWheelSpeed(speed,
                                                        tanRearSteeringAngle,
                                                        orthogonalInstantaneousCurvature,
                                                        hubCarrierOffset,
-                                                       halfTrack);
+                                                       halfWheelTrack);
 
   assert(std::abs(frontLeftWheelAngle)<=M_PI_2);
   assert(std::abs(frontRightWheelAngle)<=M_PI_2);

@@ -16,7 +16,7 @@ void forwardKinematic(const MecanumWheelSteeringKinematic::Parameters & paramete
   const double & lateralSpeed  = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
   const double halfWheebase = parameters.wheelbase/2.;
-  const double halfTrack = parameters.track/2.;
+  const double halfTrack = parameters.wheelTrack/2.;
 
   odometryFrame.frontLeftWheelSpeed=MecanumWheelSteeringKinematic::
       computeFrontLeftWheelSpeed(longitudinalSpeed,lateralSpeed,angularSpeed,halfWheebase,halfTrack);

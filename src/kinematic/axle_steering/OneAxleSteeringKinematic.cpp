@@ -14,8 +14,8 @@ namespace romea {
 OneAxleSteeringKinematic::Parameters::Parameters():
     frontWheelBase(0),
     rearWheelBase(0),
-    frontTrack(0),
-    rearTrack(0),
+    frontWheelTrack(0),
+    rearWheelTrack(0),
     frontHubCarrierOffset(0),
     rearHubCarrierOffset(0),
     frontMaximalWheelSpeed(std::numeric_limits<double>::max()),
@@ -191,8 +191,8 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                              const OneAxleSteeringCommand & command)
 {
     return OneAxleSteeringKinematic::clamp(parameters.rearWheelBase+parameters.frontWheelBase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            parameters.maximalSteeringAngle,
@@ -209,8 +209,8 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                              const double & dt)
 {
     return OneAxleSteeringKinematic::clamp(parameters.rearWheelBase+parameters.frontWheelBase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            parameters.maximalSteeringAngularSpeed,

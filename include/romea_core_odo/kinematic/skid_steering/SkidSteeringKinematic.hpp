@@ -14,7 +14,7 @@ struct SkidSteeringKinematic
   struct Parameters
   {
     Parameters();
-    double track;
+    double wheelTrack;
     double maximalWheelSpeed;
     double maximalWheelAcceleration;
     double wheelSpeedVariance;
@@ -34,11 +34,11 @@ struct SkidSteeringKinematic
 
   static double computeLeftWheelSpeed(const double & linearSpeed ,
                                       const double & angularSpeed,
-                                      const double & track);
+                                      const double & wheelTrack);
 
   static double computeRightWheelSpeed(const double & linearSpeed ,
                                        const double & angularSpeed,
-                                       const double & track);
+                                       const double & wheelTrack);
 
   static double minWheelSpeed(const double &frontWheelSpeed, const double & rearWheelSpeed);
 

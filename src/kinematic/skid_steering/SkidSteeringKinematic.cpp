@@ -11,7 +11,7 @@ namespace romea {
 
 //--------------------------------------------------------------------------
 SkidSteeringKinematic::Parameters::Parameters():
-    track(0),
+    wheelTrack(0),
     maximalWheelSpeed(std::numeric_limits<double>::max()),
     maximalWheelAcceleration(std::numeric_limits<double>::max()),
     wheelSpeedVariance(0)
@@ -62,17 +62,17 @@ double SkidSteeringKinematic::computeInstantaneousCurvature(const double &leftWh
 //--------------------------------------------------------------------------
 double SkidSteeringKinematic::computeLeftWheelSpeed(const double & linearSpeed,
                                                     const double & angularSpeed,
-                                                    const double & track)
+                                                    const double & wheelTrack)
 {
-    return linearSpeed-angularSpeed*track/2;
+    return linearSpeed-angularSpeed*wheelTrack/2;
 }
 
 //--------------------------------------------------------------------------
 double SkidSteeringKinematic::computeRightWheelSpeed(const double & linearSpeed,
                                                      const double & angularSpeed,
-                                                     const double & track)
+                                                     const double & wheelTrack)
 {
-    return linearSpeed+angularSpeed*track/2;
+    return linearSpeed+angularSpeed*wheelTrack/2;
 }
 
 
@@ -93,7 +93,7 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters &parameters,
                           const SkidSteeringCommand & command)
 {
     //Clamp angular speed
-    double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/parameters.track;
+    double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/parameters.wheelTrack;
 
     maximalAbsoluteAngularSpeed = std::min(maximalAbsoluteAngularSpeed,
                                            userConstraints.getMaximalAbsoluteAngularSpeed());
@@ -105,7 +105,7 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters &parameters,
 
     //Clamp linear speed
 
-    double maximalAbsoluteLinearSpeed= parameters.maximalWheelSpeed - std::abs(angularSpeed)* parameters.track/2.0;
+    double maximalAbsoluteLinearSpeed= parameters.maximalWheelSpeed - std::abs(angularSpeed)* parameters.wheelTrack/2.0;
 
     double minimalLinearSpeed = std::max(-maximalAbsoluteLinearSpeed,
                                          userConstraints.getMinimalLinearSpeed());
@@ -132,7 +132,7 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
                           const double & dt)
 {
     //Clamp angular speed
-    double maximalAbsoluteAngularAcceleration = 2*parameters.maximalWheelAcceleration/parameters.track;
+    double maximalAbsoluteAngularAcceleration = 2*parameters.maximalWheelAcceleration/parameters.wheelTrack;
 
     double angularAccelaration = romea::clamp(currentCommand.angularSpeed-previousCommand.angularSpeed,
                                               -maximalAbsoluteAngularAcceleration,
@@ -141,7 +141,7 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
 
     //Clamp linear speed
     double maximalAbsoluteLinearAcceleration= parameters.maximalWheelAcceleration -
-            std::abs(angularAccelaration)* parameters.track/2.0;
+            std::abs(angularAccelaration)* parameters.wheelTrack/2.0;
 
 
     double linearAcceleration = romea::clamp(currentCommand.longitudinalSpeed-previousCommand.longitudinalSpeed,

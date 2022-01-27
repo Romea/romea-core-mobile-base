@@ -44,15 +44,15 @@ namespace {
 //}
 
 //--------------------------------------------------------------------------
-void inverseKinematicImpl(const double & track,
+void inverseKinematicImpl(const double & wheelTrack,
                           const double & leftWheelSpeed,
                           const double & rightWheelSpeed,
                           const double & wheelSpeedVariance,
                           romea::SkidSteeringMeasure & skidSteeringMeasure)
 {
   skidSteeringMeasure.longitudinalSpeed = romea::SkidSteeringKinematic::computeLinearSpeed(leftWheelSpeed,rightWheelSpeed);
-  skidSteeringMeasure.angularSpeed = romea::SkidSteeringKinematic::computeAngularSpeed(leftWheelSpeed,rightWheelSpeed,track);
-  skidSteeringMeasure.covariance << 0.5, 1/track, 1/track, 1/(track*track);
+  skidSteeringMeasure.angularSpeed = romea::SkidSteeringKinematic::computeAngularSpeed(leftWheelSpeed,rightWheelSpeed,wheelTrack);
+  skidSteeringMeasure.covariance << 0.5, 1/wheelTrack, 1/wheelTrack, 1/(wheelTrack*wheelTrack);
   skidSteeringMeasure.covariance*= wheelSpeedVariance;
 }
 
@@ -101,7 +101,7 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters &parameters,
                       const OdometryFrame2WD & odometryFrame,
                       SkidSteeringMeasure & skidSteeringMeasure)
 {
-  inverseKinematicImpl(parameters.track,
+  inverseKinematicImpl(parameters.wheelTrack,
                        odometryFrame.leftWheelSpeed,
                        odometryFrame.rightWheelSpeed,
                        parameters.wheelSpeedVariance,
@@ -160,7 +160,7 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters &parameters,
                                                                 odometryFrame.rearRightWheelSpeed);
 
 
-  inverseKinematicImpl(parameters.track,
+  inverseKinematicImpl(parameters.wheelTrack,
                        leftWheelSpeed,
                        rightWheelSpeed,
                        parameters.wheelSpeedVariance,

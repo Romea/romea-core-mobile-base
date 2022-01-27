@@ -14,7 +14,7 @@ struct MecanumWheelSteeringKinematic
   struct Parameters
   {
     Parameters();
-    double track;
+    double wheelTrack;
     double wheelbase;
     double maximalWheelSpeed;
     double maximalWheelAcceleration;

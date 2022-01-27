@@ -22,12 +22,12 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
   double frontSteeringAngle = commandFrame.frontSteeringAngle;
   double tanFrontSteeringAngle = std::tan(frontSteeringAngle);
   const double frontHubCarrierOffset = parameters.frontHubCarrierOffset;
-  const double frontHalfTrack = parameters.frontTrack/2;
+  const double frontHalfWheelTrack = parameters.frontWheelTrack/2;
 
   double rearSteeringAngle = commandFrame.rearSteeringAngle;
   double tanRearSteeringAngle = std::tan(rearSteeringAngle);
   const double rearHubCarrierOffset = parameters.rearHubCarrierOffset;
-  const double rearHalfTrack = parameters.rearTrack/2;
+  const double rearHalfTrack = parameters.rearWheelTrack/2;
 
   double instantaneousCurvature = (tanFrontSteeringAngle - tanRearSteeringAngle)/wheelbase;
 
@@ -35,13 +35,13 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
                                                                              tanFrontSteeringAngle,
                                                                              instantaneousCurvature,
                                                                              frontHubCarrierOffset,
-                                                                             frontHalfTrack);
+                                                                             frontHalfWheelTrack);
 
   double frontRightWheelSpeed=OneAxleSteeringKinematic::computeRightWheelSpeed(linearSpeed,
                                                                                tanFrontSteeringAngle,
                                                                                instantaneousCurvature,
                                                                                frontHubCarrierOffset,
-                                                                               frontHalfTrack);
+                                                                               frontHalfWheelTrack);
 
 
   double rearLeftWheelSpeed=OneAxleSteeringKinematic::computeLeftWheelSpeed(linearSpeed,

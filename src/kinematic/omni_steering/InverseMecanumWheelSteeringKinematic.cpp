@@ -8,7 +8,7 @@ void inverseKinematic(const MecanumWheelSteeringKinematic::Parameters & paramete
                       const OdometryFrame4WD & odometryFrame,
                       OmniSteeringMeasure & omniSteeringMeasure)
 {
-  const double halfTrack = parameters.track/2.;
+  const double halfTrack = parameters.wheelTrack/2.;
   const double halfWheebase = parameters.wheelbase/2;
 
   omniSteeringMeasure.longitudinalSpeed=

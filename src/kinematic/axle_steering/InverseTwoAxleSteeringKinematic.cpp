@@ -16,14 +16,14 @@ void inverseKinematic(const TwoAxleSteeringKinematic::Parameters & parameters,
   const double &steeringAngleVariance = parameters.steeringAngleVariance;
 
   const double frontWheelbase = parameters.frontWheelBase;
-  const double frontHalfTrack = parameters.frontTrack/2;
+  const double frontHalfWheelTrack = parameters.frontWheelTrack/2;
   const double frontHubCarrierOffset = parameters.frontHubCarrierOffset;
   const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
   const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
   const double & frontSteeringAngle = odometryFrame.frontAxleSteeringAngle;
 
   const double rearWheelbase = parameters.rearWheelBase;
-  const double rearHalfTrack = parameters.rearTrack/2;
+  const double rearHalfTrack = parameters.rearWheelTrack/2;
   const double rearHubCarrierOffset = parameters.rearHubCarrierOffset;
   const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
   const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
@@ -35,7 +35,7 @@ void inverseKinematic(const TwoAxleSteeringKinematic::Parameters & parameters,
 
 //  double frontInstantaneousCurvature =tanFrontSteeringAngle/frontWheelbase;
 //  double frontInstantaneousCurvatureHalfTrack_ = frontInstantaneousCurvature*frontHalfTrack;
-  double frontInstantaneousCurvatureHalfTrack_ = instantaneousCurvature*frontHalfTrack;
+  double frontInstantaneousCurvatureHalfTrack_ = instantaneousCurvature*frontHalfWheelTrack;
 
   double frontAlphaLeft = 1 - frontInstantaneousCurvatureHalfTrack_;
   double frontAlphaRight =1 + frontInstantaneousCurvatureHalfTrack_;

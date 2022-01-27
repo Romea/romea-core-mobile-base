@@ -12,7 +12,7 @@ namespace romea {
 
 //--------------------------------------------------------------------------
 MecanumWheelSteeringKinematic::Parameters::Parameters():
-    track(0),
+    wheelTrack(0),
     wheelbase(0),
     maximalWheelSpeed(std::numeric_limits<double>::max()),
     maximalWheelAcceleration(std::numeric_limits<double>::max()),
@@ -100,7 +100,7 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                           const OmniSteeringConstraints & userConstraints,
                           const OmniSteeringCommand & command)
 {
-    double alpha = parameters.track+parameters.wheelbase;
+    double alpha = parameters.wheelTrack+parameters.wheelbase;
 
     //Clamp angular speed
     double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/alpha;
@@ -150,7 +150,7 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                           const OmniSteeringCommand & currentCommand,
                           const double & dt)
 {
-    double alpha = parameters.track+parameters.wheelbase;
+    double alpha = parameters.wheelTrack+parameters.wheelbase;
 
     //Clamp angular speed
     double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelAcceleration/alpha;

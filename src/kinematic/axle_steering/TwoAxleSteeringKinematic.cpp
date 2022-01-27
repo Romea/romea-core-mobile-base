@@ -17,8 +17,8 @@ namespace romea {
 TwoAxleSteeringKinematic::Parameters::Parameters():
     frontWheelBase(0),
     rearWheelBase(0),
-    frontTrack(0),
-    rearTrack(0),
+    frontWheelTrack(0),
+    rearWheelTrack(0),
     frontHubCarrierOffset(0),
     rearHubCarrierOffset(0),
     frontMaximalWheelSpeed(std::numeric_limits<double>::max()),
@@ -211,8 +211,8 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 
     return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
                                            parameters.rearWheelBase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            parameters.frontMaximalWheelSpeed,
@@ -231,8 +231,8 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 {
     return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
                                            parameters.rearWheelBase,
-                                           parameters.frontTrack/2.,
-                                           parameters.rearTrack/2.,
+                                           parameters.frontWheelTrack/2.,
+                                           parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
                                            parameters.maximalWheelAcceleration,

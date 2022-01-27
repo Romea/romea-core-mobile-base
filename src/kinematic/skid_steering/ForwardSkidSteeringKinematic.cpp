@@ -13,7 +13,7 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters &parameters,
                       OdometryFrame2WD & odometryCommandFrame)
 {
 
-  const double track = parameters.track;
+  const double track = parameters.wheelTrack;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
 
@@ -27,7 +27,7 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
                       const SkidSteeringCommand & commandFrame,
                       OdometryFrame4WD & odometryCommandFrame)
 {
-  const double track = parameters.track;
+  const double track = parameters.wheelTrack;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
 
