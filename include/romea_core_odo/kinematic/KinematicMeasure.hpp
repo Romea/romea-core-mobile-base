@@ -15,7 +15,7 @@ struct KinematicMeasure
   double angularSpeed;
   double instantaneousCurvature;
   Eigen::Matrix4d covariance;
-  EIGEN_MAKE_ALIGNED_OPERATOR_NEW;
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 
 
