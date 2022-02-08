@@ -2,8 +2,8 @@
 #define romea_SkidSteeringMeasure_hpp
 
 //romea
-#include "romea_core_odo/kinematic/skid_steering/SkidSteeringCommand.hpp"
-#include "romea_core_odo/kinematic/skid_steering/SkidSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
 #include "../KinematicMeasure.hpp"
 
 namespace romea {

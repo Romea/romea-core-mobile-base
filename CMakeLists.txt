@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(
-  "romea_core_odo"
+  "romea_core_mobile_base"
   VERSION 0.1.0
   #  DESCRIPTION
   #  HOMEPAGE_URL
@@ -51,6 +51,19 @@ add_library(${PROJECT_NAME} SHARED
   src/kinematic/wheel_steering/FourWheelSteeringKinematic.cpp
   src/kinematic/wheel_steering/TwoWheelSteeringKinematic.cpp
   src/kinematic/KinematicMeasure.cpp
+  src/info/MobileBaseControl.cpp
+  src/info/MobileBaseInfo1FAS2RWD.cpp
+  src/info/MobileBaseInfo1FAS2FWD.cpp
+  src/info/MobileBaseInfo1FWS2RWD.cpp
+  src/info/MobileBaseInfo2AS4WD.cpp
+  src/info/MobileBaseInfo2FWS2FWD.cpp
+  src/info/MobileBaseInfo2FWS2RWD.cpp
+  src/info/MobileBaseInfo2TD.cpp
+  src/info/MobileBaseInfo2WD.cpp
+  src/info/MobileBaseInfo4WD.cpp
+  src/info/MobileBaseInfo4WS4WD.cpp
+  src/info/MobileBaseGeometry.cpp
+
   )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

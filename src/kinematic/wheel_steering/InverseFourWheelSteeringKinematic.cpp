@@ -1,6 +1,6 @@
 //romea
-#include "romea_core_odo/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.hpp"
-#include "romea_core_odo/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
 #include <iostream>

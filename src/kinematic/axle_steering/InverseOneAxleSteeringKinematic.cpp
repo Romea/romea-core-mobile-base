@@ -1,5 +1,5 @@
 //romea
-#include "romea_core_odo/kinematic/axle_steering/InverseOneAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/InverseOneAxleSteeringKinematic.hpp"
 
 namespace romea {
 

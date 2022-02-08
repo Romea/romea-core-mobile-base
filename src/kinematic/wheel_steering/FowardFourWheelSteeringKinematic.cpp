@@ -1,7 +1,7 @@
 //romea
-#include "romea_core_odo/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
-#include "romea_core_odo/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
-#include "romea_core_odo/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 #include <iostream>
 

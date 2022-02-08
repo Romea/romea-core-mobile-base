@@ -1,4 +1,4 @@
-#include "romea_core_odo/kinematic/skid_steering/SkidSteeringMeasure.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringMeasure.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
 namespace {

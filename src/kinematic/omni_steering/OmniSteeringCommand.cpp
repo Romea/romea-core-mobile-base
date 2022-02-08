@@ -1,4 +1,4 @@
-#include "romea_core_odo/kinematic/omni_steering/OmniSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommand.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
 namespace romea {
