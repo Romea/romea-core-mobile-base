@@ -88,12 +88,12 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
                                                        const double  & rearMaximalWheelSpeed,
                                                        const double  & frontMaximalSteeringAngle,
                                                        const double  & rearMaximalSteeringAngle,
-                                                       const TwoAxleSteeringConstraints & userConstraints,
+                                                       const TwoAxleSteeringCommandLimits & userLimits,
                                                        const TwoAxleSteeringCommand & command)
 {
     //clamp steering angle
     double maximalAbsoluteFrontSteeringAngle = std::min(frontMaximalSteeringAngle,
-                                                        userConstraints.getMaximalAbsoluteFrontSteeringAngle());
+                                                        userLimits.frontSteeringAngle.upper());
 
 
     double frontSteeringAngle =romea::clamp(command.frontSteeringAngle,
@@ -101,7 +101,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
                                             maximalAbsoluteFrontSteeringAngle);
 
     double maximalAbsoluteRearSteeringAngle = std::min(rearMaximalSteeringAngle,
-                                                       userConstraints.getMaximalAbsoluteRearSteeringAngle());
+                                                       userLimits.rearSteeringAngle.upper());
 
     double rearSteeringAngle =romea::clamp(command.rearSteeringAngle,
                                            -maximalAbsoluteRearSteeringAngle,
@@ -128,10 +128,10 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,rearMaximalWheelSpeed/rearRightRatio);
 
     double minimalLinearSpeed = std::max(-maximalAbsoluteLinearSpeed,
-                                         userConstraints.getMinimalLinearSpeed());
+                                         userLimits.longitudinalSpeed.lower());
 
     double maximalLinearSpeed = std::min(maximalAbsoluteLinearSpeed,
-                                         userConstraints.getMaximalLinearSpeed());
+                                         userLimits.longitudinalSpeed.upper());
 
     double linearSpeed = romea::clamp(command.longitudinalSpeed,
                                       minimalLinearSpeed,
@@ -205,7 +205,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
 
 //-----------------------------------------------------------------------------
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringConstraints & userConstraints,
+                             const TwoAxleSteeringCommandLimits & userLimits,
                              const TwoAxleSteeringCommand & command)
 {
 
@@ -219,7 +219,7 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
                                            parameters.rearMaximalWheelSpeed,
                                            parameters.frontMaximalSteeringAngle,
                                            parameters.rearMaximalSteeringAngle,
-                                           userConstraints,
+                                           userLimits,
                                            command);
 }
 
@@ -292,10 +292,10 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 
 ////--------------------------------------------------------------------------
 //double TwoAxleSteeringKinematic::computeMaximalLinearSpeed(const double & instantaneousCurvature,
-//                                                           const KinematicConstraints &userConstraints)const
+//                                                           const KinematicConstraints &userLimits)const
 //{
 
-//  assert(userConstraints.isValidInstantaneousCurvature(instantaneousCurvature));
+//  assert(userLimits.isValidInstantaneousCurvature(instantaneousCurvature));
 
 //  double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
 //  if( absoluteInstantaneousCurvature < std::numeric_limits<float>::epsilon() )
@@ -334,7 +334,7 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 //  double maximalLinearSpeed =std::min(frontMaximalLinearSpeed,rearMaximalLinearSpeed);
 
 //  //saturation according maximal angular speed
-//  double maximalAngularSpeed = userConstraints.getMaximalAbsoluteAngularSpeed();
+//  double maximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeed();
 //  if(maximalAngularSpeed< absoluteInstantaneousCurvature * maximalLinearSpeed)
 //    maximalLinearSpeed = maximalAngularSpeed/absoluteInstantaneousCurvature;
 
@@ -343,10 +343,10 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 
 ////--------------------------------------------------------------------------
 //double TwoAxleSteeringKinematic::computeMaximalInstantaneousCurvature(const double & linearSpeed,
-//                                                                      const KinematicConstraints & userConstraints)const
+//                                                                      const KinematicConstraints & userLimits)const
 //{
 
-//  userConstraints.isValidSpeed(linearSpeed);
+//  userLimits.isValidSpeed(linearSpeed);
 
 //  double absoluteLinearSpeed = std::abs(linearSpeed);
 //  if(absoluteLinearSpeed < std::numeric_limits<float>::epsilon())
@@ -370,7 +370,7 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 
 //  double frontMaximalInstantaneousCurvature = (-bf + std::sqrt(df))/(2*af);
 //  frontMaximalInstantaneousCurvature = std::min(frontMaximalInstantaneousCurvature,
-//                                                userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                                userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 
 //  double rearWheelBase = getWheelBase("rear_wheelBase");
@@ -382,14 +382,14 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
 
 //  double rearMaximalInstantaneousCurvature = (-br + std::sqrt(dr))/(2*ar);
 //  rearMaximalInstantaneousCurvature = std::min(rearMaximalInstantaneousCurvature,
-//                                               userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                               userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 
 //  double maximalInstantaneousCurvature = std::min(frontMaximalInstantaneousCurvature,
 //                                                  rearMaximalInstantaneousCurvature);
 
 //  //saturation according maximal angular speed
-//  double maximalAngularSpeed = userConstraints.getMaximalAbsoluteAngularSpeed();
+//  double maximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeed();
 //  if(maximalAngularSpeed< maximalInstantaneousCurvature * absoluteLinearSpeed)
 //    maximalInstantaneousCurvature = maximalAngularSpeed/absoluteLinearSpeed;
 

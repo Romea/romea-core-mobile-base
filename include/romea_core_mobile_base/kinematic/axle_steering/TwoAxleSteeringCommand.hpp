@@ -2,13 +2,18 @@
 #define romea_TwoAxleSteeringCommand_hpp
 
 //romea
-#include "TwoAxleSteeringConstraints.hpp"
+#include "TwoAxleSteeringCommandLimits.hpp"
 
 namespace romea {
 
 struct TwoAxleSteeringCommand
 {
   TwoAxleSteeringCommand();
+
+  TwoAxleSteeringCommand(const double & longitudinalSpeed,
+                         const double & frontSteeringAngle,
+                         const double & rearSteeringAngle);
+
 
   double longitudinalSpeed;
   double frontSteeringAngle;
@@ -17,7 +22,7 @@ struct TwoAxleSteeringCommand
 };
 
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringCommand & command,
-                             const TwoAxleSteeringConstraints & constraints);
+                             const TwoAxleSteeringCommandLimits & limits);
 
 std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & command);
 

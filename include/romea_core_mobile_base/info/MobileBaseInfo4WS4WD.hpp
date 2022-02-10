@@ -12,7 +12,7 @@ namespace romea {
 struct MobileBaseInfo4WS4WD
 {
   MobileBaseInfo4WS4WD();
-  TwoAxlesGeometry<Wheel,Wheel> geometry;
+  TwoAxles<WheeledAxle,WheeledAxle> geometry;
   SteeringAngleControl wheelsSteeringControl;
   WheelSpeedControl wheelsSpeedControl;
   MobileBaseInertia inertia;

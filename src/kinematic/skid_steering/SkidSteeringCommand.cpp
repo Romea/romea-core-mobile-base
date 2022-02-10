@@ -96,13 +96,11 @@ std::ostream& operator<<(std::ostream& os, const SkidSteeringCommand & command)
 
 //-----------------------------------------------------------------------------
 SkidSteeringCommand clamp(const SkidSteeringCommand & command,
-                          const SkidSteeringConstraints & constraints)
+                          const SkidSteeringCommandLimits & limits)
 {
   SkidSteeringCommand clamped_command = command;
-  clamped_command.longitudinalSpeed=std::max(clamped_command.longitudinalSpeed,-constraints.getMinimalLinearSpeed());
-  clamped_command.longitudinalSpeed=std::min(clamped_command.longitudinalSpeed,constraints.getMaximalLinearSpeed());
-  clamped_command.angularSpeed=std::max(clamped_command.angularSpeed,-constraints.getMaximalAbsoluteAngularSpeed());
-  clamped_command.angularSpeed=std::min(clamped_command.angularSpeed, constraints.getMaximalAbsoluteAngularSpeed());
+  clamped_command.longitudinalSpeed=clamp(command.longitudinalSpeed,limits.longitudinalSpeed);
+  clamped_command.angularSpeed=clamp(command.angularSpeed,limits.angularSpeed);
   return clamped_command;
 }
 

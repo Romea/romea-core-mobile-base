@@ -3,7 +3,7 @@
 
 //romea
 #include "TwoAxleSteeringCommand.hpp"
-#include "TwoAxleSteeringConstraints.hpp"
+#include "TwoAxleSteeringCommandLimits.hpp"
 
 //std
 #include <cmath>
@@ -59,7 +59,7 @@ struct TwoAxleSteeringKinematic
                                       const double  & rearMaximalWheelSpeed,
                                       const double  & frontMaximalSteeringAngle,
                                       const double  & rearMaximalSteeringAngle,
-                                      const TwoAxleSteeringConstraints & userConstraints,
+                                      const TwoAxleSteeringCommandLimits & userLimits,
                                       const TwoAxleSteeringCommand & command);
 
   static TwoAxleSteeringCommand clamp(const double  & frontWheelBase,
@@ -78,7 +78,7 @@ struct TwoAxleSteeringKinematic
 
 
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringConstraints & userConstraints,
+                             const TwoAxleSteeringCommandLimits & userLimits,
                              const TwoAxleSteeringCommand & command);
 
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parameters,

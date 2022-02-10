@@ -62,7 +62,7 @@ double FourWheelSteeringKinematic::computeRearSteeringAngle(const double & insta
 
 //--------------------------------------------------------------------------
 TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringConstraints & userConstraints,
+                             const TwoAxleSteeringCommandLimits & userLimits,
                              const TwoAxleSteeringCommand & command)
 {
 
@@ -76,7 +76,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                                          parameters.maximalWheelSpeed,
                                          parameters.maximalWheelAngle,
                                          parameters.maximalWheelAngle,
-                                         userConstraints,
+                                         userLimits,
                                          command);
 }
 
@@ -146,7 +146,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
 
 ////--------------------------------------------------------------------------
 //KinematicCommand FourWheelSteeringKinematic::clamp(const KinematicCommand & command,
-//                                                   const KinematicConstraints &userConstraints)const
+//                                                   const KinematicConstraints &userLimits)const
 //{
 
 
@@ -155,7 +155,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
 
 //  double maximalAbsoluteLateralSpeed = maximalWheelSpeed_;
 //  maximalAbsoluteLateralSpeed = std::min(maximalAbsoluteLateralSpeed,
-//                                         userConstraints.getMaximalAbsoluteLinearSpeedAlongYBodyAxis());
+//                                         userLimits.getMaximalAbsoluteLinearSpeedAlongYBodyAxis());
 
 //  double lateralSpeed = romea::clamp(command.getLinearSpeedAlongYBodyAxis(),
 //                                         -maximalAbsoluteLateralSpeed,
@@ -166,7 +166,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
 
 //  double maximalAbsoluteInstantaneousCurvature = 2*cosBeta/track_;
 //  maximalAbsoluteInstantaneousCurvature=std::min(maximalAbsoluteInstantaneousCurvature,
-//                                                 userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                                 userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 //  double instantaneousCurvature =romea::clamp(command.getInstantaneousCurvature(),
 //                                                  -maximalAbsoluteInstantaneousCurvature,
@@ -178,15 +178,15 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
 //  double maximalAbsoluteLinearSpeed= maximalWheelSpeed_*std::cos(wheelAngle)/
 //                                     (1 + std::abs(instantaneousCurvature)*track/(2*std::cos(beta)));
 
-//  double absoluteMaximalAngularSpeed = userConstraints.getMaximalAbsoluteAngularSpeedAroundZBodyAxis();
+//  double absoluteMaximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeedAroundZBodyAxis();
 //  if(absoluteMaximalAngularSpeed < std::abs(instantaneousCurvature)*maximalAbsoluteLinearSpeed)
 //    maximalAbsoluteLinearSpeed = absoluteMaximalAngularSpeed/std::abs(instantaneousCurvature);
 
 //  double minimalLinearSpeed = std::min(-maximalAbsoluteLinearSpeed,
-//                                       userConstraints.getMinimalLinearSpeedAlongXBodyAxis());
+//                                       userLimits.getMinimalLinearSpeedAlongXBodyAxis());
 
 //  double maximalLinearSpeed = std::min(maximalAbsoluteLinearSpeed,
-//                                       userConstraints.getMaximalLinearSpeedAlongXBodyAxis());
+//                                       userLimits.getMaximalLinearSpeedAlongXBodyAxis());
 
 
 //  double linearSpeed = romea::clamp(command.getLinearSpeedAlongXBodyAxis(),

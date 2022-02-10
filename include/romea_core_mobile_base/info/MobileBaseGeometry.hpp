@@ -14,14 +14,6 @@ struct Wheel
   double width;
 };
 
-//struct MecanumWheel : RubberWheel
-//{
-//  MecanumWheel();
-//  size_t numberOfRollers;
-//  double rollersRadius;
-//  double rollersLength;
-//};
-
 struct ContinuousTrack
 {
   ContinuousTrack();
@@ -29,30 +21,41 @@ struct ContinuousTrack
   //TODO finish
 };
 
-template<typename Wheel>
-struct OneAxleGeometry
+struct WheeledAxle
 {
-  OneAxleGeometry();
-  double wheelTrack;
+  WheeledAxle();
+  double wheelsDistance;
   Wheel wheels;
 };
 
-template<typename FrontWheel, typename RearWheel>
-struct TwoAxlesGeometry
+struct ContinuousTrackedAxle
 {
-  TwoAxlesGeometry();
-  double wheelbase;
-  OneAxleGeometry<FrontWheel> frontAxle;
-  OneAxleGeometry<RearWheel> rearAxle;
+  ContinuousTrackedAxle();
+  double tracksDistance;
+  ContinuousTrack tracks;
 };
 
-std::ostream& operator<<(std::ostream& os, const Wheel & wheel);
 
-template<typename Wheel>
-std::ostream& operator<<(std::ostream& os, const OneAxleGeometry<Wheel> & oneAxleGeometry);
+template<typename FrontAxle, typename RearAxle>
+struct TwoAxles
+{
+  TwoAxles();
+  double axlesDistance;
+  FrontAxle frontAxle;
+  RearAxle rearAxle;
+};
 
-template<typename FrontWheel,typename RearWheel>
-std::ostream& operator<<(std::ostream& os, const TwoAxlesGeometry<FrontWheel,RearWheel> & twoAxlesGeometry);
+using TwoWheeledAxles = TwoAxles<WheeledAxle,WheeledAxle>;
+using TwoContinousTrackedAxles =  TwoAxles<ContinuousTrack,ContinuousTrack>;
+
+
+//std::ostream& operator<<(std::ostream& os, const Wheel & wheel);
+
+//template<typename Wheel>
+//std::ostream& operator<<(std::ostream& os, const OneAxleGeometry<Wheel> & oneAxleGeometry);
+
+//template<typename FrontWheel,typename RearWheel>
+//std::ostream& operator<<(std::ostream& os, const TwoAxlesGeometry<FrontWheel,RearWheel> & twoAxlesGeometry);
 
 }
 

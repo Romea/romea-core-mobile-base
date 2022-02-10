@@ -1,29 +1,29 @@
-#include "romea_core_mobile_base/info/MobileBaseInfo2FWS2RWD.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInfo2FWS4WD.hpp"
 
 namespace romea {
 
 //-----------------------------------------------------------------------------
-MobileBaseInfo2FWS2RWD::MobileBaseInfo2FWS2RWD():
+MobileBaseInfo2FWS4WD::MobileBaseInfo2FWS4WD():
   geometry(),
   frontWheelsSteeringControl(),
-  rearWheelsSpeedControl(),
+  wheelsSpeedControl(),
   controlPoint(Eigen::Vector3d::Zero())
 {
 
 }
 
 ////-----------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS2RWD & baseInformation)
+//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS4WD & baseInformation)
 //{
 //  os << "Base information:" << std::endl;
 //  os << " type:" << std::endl;
-//  os << "  2FWS2RWD"<<std::endl;
+//  os << "  2FWS4WD"<<std::endl;
 //  os << " geometry:";
 //  os << baseInformation.geometry<< std::endl;
 //  os << " front wheels steering control:" <<std::endl;
 //  os << baseInformation.frontWheelsSteeringControl<< std::endl;
-//  os << " rear wheels speed control: " <<std::endl;
-//  os << baseInformation.rearWheelsSpeedControl<< std::endl;
+//  os << " wheels speed control: " <<std::endl;
+//  os << baseInformation.wheelsSpeedControl<< std::endl;
 //  os << " intertia:" << std::endl;
 //  os << baseInformation.inertia;
 //  os << " control point:" << std::endl;
@@ -32,12 +32,12 @@ MobileBaseInfo2FWS2RWD::MobileBaseInfo2FWS2RWD():
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo2FWS2RWD & baseInformation,
+void to_kinematic_parameters(const MobileBaseInfo2FWS4WD & baseInformation,
                              TwoWheelSteeringKinematic::Parameters & kinematicParameters )
 {
   const auto & geometry= baseInformation.geometry;
-  const auto & wheelsSpeedCommand = baseInformation.rearWheelsSpeedControl.command;
-  const auto & wheelsSpeedSensor = baseInformation.rearWheelsSpeedControl.sensor;
+  const auto & wheelsSpeedCommand = baseInformation.wheelsSpeedControl.command;
+  const auto & wheelsSpeedSensor = baseInformation.wheelsSpeedControl.sensor;
   const auto & wheelsSteeringCommand = baseInformation.frontWheelsSteeringControl.command;
   const auto & wheelsSteeringSensor = baseInformation.frontWheelsSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;

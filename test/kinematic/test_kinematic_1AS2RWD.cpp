@@ -12,7 +12,7 @@
 
 //-----------------------------------------------------------------------------
 inline void testInverseForward1FAS2RWD(const romea::OneAxleSteeringKinematic::Parameters & parameters,
-                                       const romea::OneAxleSteeringConstraints & userConstraints)
+                                       const romea::OneAxleSteeringCommandLimits & userLimits)
 {
 
   for(size_t i=0;i<21;i++)
@@ -27,10 +27,10 @@ inline void testInverseForward1FAS2RWD(const romea::OneAxleSteeringKinematic::Pa
       commandFrame.longitudinalSpeed=linearSpeed;
       commandFrame.steeringAngle = steeringAngle;
 
-      romea::OneAxleSteeringCommand clampedCommandFrame = romea::clamp(parameters,userConstraints,commandFrame);
-      ASSERT_LE(clampedCommandFrame.longitudinalSpeed,userConstraints.getMaximalLinearSpeed());
-      ASSERT_GE(clampedCommandFrame.longitudinalSpeed,userConstraints.getMinimalLinearSpeed());
-      ASSERT_LE(std::abs(clampedCommandFrame.steeringAngle),userConstraints.getMaximalAbsoluteSteeringAngle());
+      romea::OneAxleSteeringCommand clampedCommandFrame = romea::clamp(parameters,userLimits,commandFrame);
+      ASSERT_LE(clampedCommandFrame.longitudinalSpeed,userLimits.longitudinalSpeed.upper());
+      ASSERT_GE(clampedCommandFrame.longitudinalSpeed,userLimits.longitudinalSpeed.lower());
+      ASSERT_LE(std::abs(clampedCommandFrame.steeringAngle),userLimits.steeringAngle.upper());
 
       romea::OdometryFrame1FAS2RWD odometryFrame;
       romea::forwardKinematic(parameters,clampedCommandFrame,odometryFrame);
@@ -52,7 +52,7 @@ inline void testInverseForward1FAS2RWD(const romea::OneAxleSteeringKinematic::Pa
 
 TEST(testInverseForward1FAS2RWD,SameTrack)
 {
-  romea::OneAxleSteeringConstraints userConstraints;
+  romea::OneAxleSteeringCommandLimits userLimits;
 
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 0.7;
@@ -64,12 +64,12 @@ TEST(testInverseForward1FAS2RWD,SameTrack)
 
 
   testInverseForward1FAS2RWD(parameters,
-                             userConstraints);
+                             userLimits);
 }
 
 TEST(testInverseForward1FAS2RWD,DiffTrack)
 {
-  romea::OneAxleSteeringConstraints userConstraints;
+  romea::OneAxleSteeringCommandLimits userLimits;
 
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
@@ -81,7 +81,7 @@ TEST(testInverseForward1FAS2RWD,DiffTrack)
 
 
   testInverseForward1FAS2RWD(parameters,
-                             userConstraints);
+                             userLimits);
 }
 
 
@@ -90,7 +90,7 @@ TEST(testInverseForward1FAS2RWD,DiffTrack)
 TEST(testInverseForward1FAS2RWD,HubOffset)
 {
 
-  romea::OneAxleSteeringConstraints userConstraints;
+  romea::OneAxleSteeringCommandLimits userLimits;
 
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
@@ -105,14 +105,14 @@ TEST(testInverseForward1FAS2RWD,HubOffset)
 
 
   testInverseForward1FAS2RWD(parameters,
-                             userConstraints);
+                             userLimits);
 }
 
 
 
 TEST(testInverseForward1FAS2RWD, MecanicalLimits)
 {
-  romea::OneAxleSteeringConstraints userConstraints;
+  romea::OneAxleSteeringCommandLimits userLimits;
 
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
@@ -129,13 +129,13 @@ TEST(testInverseForward1FAS2RWD, MecanicalLimits)
 
 
   testInverseForward1FAS2RWD(parameters,
-                             userConstraints);
+                             userLimits);
 }
 
 TEST(testInverseForward1FAS2RWD, UserLimits)
 {
 
-  romea::OneAxleSteeringConstraints userConstraints(-0.4,0.9,0.25);
+  romea::OneAxleSteeringCommandLimits userLimits(-0.4,0.9,0.25);
 
   romea::OneAxleSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase= 1.25;
@@ -151,7 +151,7 @@ TEST(testInverseForward1FAS2RWD, UserLimits)
 
 
   testInverseForward1FAS2RWD(parameters,
-                             userConstraints);
+                             userLimits);
 }
 
 

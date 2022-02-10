@@ -2,7 +2,7 @@
 #define romea_OneAxleSteeringCommand_hpp
 
 //romea
-#include "OneAxleSteeringConstraints.hpp"
+#include "OneAxleSteeringCommandLimits.hpp"
 
 namespace romea {
 
@@ -11,13 +11,16 @@ struct OneAxleSteeringCommand
 
   OneAxleSteeringCommand();
 
+  OneAxleSteeringCommand(const double & longitudinalSpeed,
+                         const double & steeringAngle);
+
   double longitudinalSpeed;
   double steeringAngle;
 
 };
 
 OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
-                             const OneAxleSteeringConstraints & constraints);
+                             const OneAxleSteeringCommandLimits & limits);
 
 std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommand & command);
 

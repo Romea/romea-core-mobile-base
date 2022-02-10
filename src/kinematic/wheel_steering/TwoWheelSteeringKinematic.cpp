@@ -135,7 +135,7 @@ double TwoWheelSteeringKinematic::computeMaximalInstantaneousCurvature(const dou
 
 //--------------------------------------------------------------------------
 OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
-                             const OneAxleSteeringConstraints & userConstraints,
+                             const OneAxleSteeringCommandLimits & userLimits,
                              const OneAxleSteeringCommand & command)
 {
 
@@ -156,7 +156,7 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
                                            std::atan(maximalInstantaneousCurvature*wheelbase),
                                            parameters.frontMaximalWheelSpeed,
                                            parameters.rearMaximalWheelSpeed,
-                                           userConstraints,
+                                           userLimits,
                                            command);
 }
 
@@ -191,11 +191,11 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
 ////--------------------------------------------------------------------------
 //KinematicCommand clamp(const KinematicCommand & command,
 //                       const TwoWheelSteeringKinematic &kinematic,
-//                       const KinematicConstraints & userConstraints)
+//                       const KinematicConstraints & userLimits)
 //{
 //  //clamp curvature
 //  double maximalAbsoluteIntantaneousCurvature= std::min(kinematic.computeMaximalInstantaneousCurvature(),
-//                                                        userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                                        userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 //  double instantaneousCurvature =romea::clamp(command.instantaneousCurvature,
 //                                              -maximalAbsoluteIntantaneousCurvature,
@@ -208,8 +208,8 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
 //  double maximalAbsoluteLinearSpeed = std::numeric_limits<double>::max();
 
 //  maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,
-//                                        userConstraints.getMaximalAbsoluteAngularSpeed()/
-//                                        userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                        userLimits.getMaximalAbsoluteAngularSpeed()/
+//                                        userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 //  double maximalAbsoluteWheelAngle = std::atan(maximalAbsoluteIntantaneousCurvature*wheelBase);
 
@@ -217,10 +217,10 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
 //                                        kinematic.getMaximalWheelSpeed()*std::cos(maximalAbsoluteWheelAngle)/
 //                                        (1 + maximalAbsoluteWheelAngle*frontTrack/2));
 
-//  double minimalSpeed = std::max(userConstraints.getMinimalSpeed(),
+//  double minimalSpeed = std::max(userLimits.getMinimalSpeed(),
 //                                 -maximalAbsoluteLinearSpeed);
 
-//  double maximalSpeed = std::min(userConstraints.getMaximalSpeed(),
+//  double maximalSpeed = std::min(userLimits.getMaximalSpeed(),
 //                                 maximalAbsoluteLinearSpeed);
 
 //  double linearSpeed = romea::clamp(command.speed,

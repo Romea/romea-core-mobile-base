@@ -52,7 +52,7 @@ public:
 };
 
 OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
-                             const OneAxleSteeringConstraints & userConstraints,
+                             const OneAxleSteeringCommandLimits & userLimits,
                              const OneAxleSteeringCommand & command);
 
 OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,

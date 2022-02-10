@@ -6,21 +6,28 @@ namespace romea {
 
 //-----------------------------------------------------------------------------
 OneAxleSteeringCommand::OneAxleSteeringCommand():
-    longitudinalSpeed(0.),
-    steeringAngle(0.)
+  longitudinalSpeed(0.),
+  steeringAngle(0.)
 {
 }
 
 //-----------------------------------------------------------------------------
-OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
-                             const OneAxleSteeringConstraints & constraints)
+OneAxleSteeringCommand::OneAxleSteeringCommand(const double & longitudinalSpeed,
+                                               const double & steeringAngle):
+  longitudinalSpeed(longitudinalSpeed),
+  steeringAngle(steeringAngle)
 {
-    OneAxleSteeringCommand clamped_command = command;
-    clamped_command.longitudinalSpeed=std::max(clamped_command.longitudinalSpeed,constraints.getMinimalLinearSpeed());
-    clamped_command.longitudinalSpeed=std::min(clamped_command.longitudinalSpeed,constraints.getMaximalLinearSpeed());
-    clamped_command.steeringAngle=std::max(clamped_command.steeringAngle,-constraints.getMaximalAbsoluteSteeringAngle());
-    clamped_command.steeringAngle=std::min(clamped_command.steeringAngle, constraints.getMaximalAbsoluteSteeringAngle());
-    return clamped_command;
+
+}
+
+//-----------------------------------------------------------------------------
+OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
+                             const OneAxleSteeringCommandLimits & limits)
+{
+  OneAxleSteeringCommand clamped_command = command;
+  clamped_command.longitudinalSpeed=clamp(command.longitudinalSpeed,limits.longitudinalSpeed);
+  clamped_command.steeringAngle=clamp(command.steeringAngle,limits.steeringAngle);
+  return clamped_command;
 }
 
 ////-----------------------------------------------------------------------------
@@ -65,17 +72,17 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
 //-----------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommand & command)
 {
-    os<<" OneAxleSteeringCommand command   "<<std::endl;;
-    os<<" command longitudinal speed  " << command.longitudinalSpeed << std::endl;
-    os<<" command front steering angle " << command.steeringAngle << std::endl;
-    return os;
+  os<<" OneAxleSteeringCommand command   "<<std::endl;;
+  os<<" command longitudinal speed  " << command.longitudinalSpeed << std::endl;
+  os<<" command front steering angle " << command.steeringAngle << std::endl;
+  return os;
 }
 
 //-----------------------------------------------------------------------------
 bool isValid(const OneAxleSteeringCommand & command)
 {
-    return std::isfinite(command.longitudinalSpeed) &&
-            std::isfinite(command.steeringAngle);
+  return std::isfinite(command.longitudinalSpeed) &&
+      std::isfinite(command.steeringAngle);
 }
 
 

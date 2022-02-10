@@ -22,11 +22,11 @@ add_library(${PROJECT_NAME} SHARED
   src/odometry/OdometryFrame4WS4WD.cpp
   src/kinematic/axle_steering/OneAxleSteeringKinematic.cpp
   src/kinematic/axle_steering/OneAxleSteeringCommand.cpp
+  src/kinematic/axle_steering/OneAxleSteeringCommandLimits.cpp
   src/kinematic/axle_steering/OneAxleSteeringMeasure.cpp
-  src/kinematic/axle_steering/OneAxleSteeringConstraints.cpp
   src/kinematic/axle_steering/TwoAxleSteeringKinematic.cpp
   src/kinematic/axle_steering/TwoAxleSteeringCommand.cpp
-  src/kinematic/axle_steering/TwoAxleSteeringConstraints.cpp
+  src/kinematic/axle_steering/TwoAxleSteeringCommandLimits.cpp
   src/kinematic/axle_steering/TwoAxleSteeringMeasure.cpp
   src/kinematic/axle_steering/FowardOneAxleSteeringKinematic.cpp
   src/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.cpp
@@ -35,12 +35,12 @@ add_library(${PROJECT_NAME} SHARED
   src/kinematic/skid_steering/SkidSteeringKinematic.cpp
   src/kinematic/skid_steering/SkidSteeringCommand.cpp
   src/kinematic/skid_steering/SkidSteeringMeasure.cpp
-  src/kinematic/skid_steering/SkidSteeringConstraints.cpp
+  src/kinematic/skid_steering/SkidSteeringCommandLimits.cpp
   src/kinematic/skid_steering/ForwardSkidSteeringKinematic.cpp
   src/kinematic/skid_steering/InverseSkidSteeringKinematic.cpp
   src/kinematic/omni_steering/OmniSteeringCommand.cpp
   src/kinematic/omni_steering/OmniSteeringMeasure.cpp
-  src/kinematic/omni_steering/OmniSteeringConstraints.cpp
+  src/kinematic/omni_steering/OmniSteeringCommandLimits.cpp
   src/kinematic/omni_steering/MecanumWheelSteeringKinematic.cpp
   src/kinematic/omni_steering/ForwardMecanumWheelSteeringKinematic.cpp
   src/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.cpp
@@ -51,18 +51,21 @@ add_library(${PROJECT_NAME} SHARED
   src/kinematic/wheel_steering/FourWheelSteeringKinematic.cpp
   src/kinematic/wheel_steering/TwoWheelSteeringKinematic.cpp
   src/kinematic/KinematicMeasure.cpp
+  src/kinematic/CommandLimits.cpp
   src/info/MobileBaseControl.cpp
+  src/info/MobileBaseGeometry.cpp
+  src/info/MobileBaseInertia.cpp
   src/info/MobileBaseInfo1FAS2RWD.cpp
   src/info/MobileBaseInfo1FAS2FWD.cpp
   src/info/MobileBaseInfo1FWS2RWD.cpp
   src/info/MobileBaseInfo2AS4WD.cpp
   src/info/MobileBaseInfo2FWS2FWD.cpp
   src/info/MobileBaseInfo2FWS2RWD.cpp
+  src/info/MobileBaseInfo2FWS4WD.cpp
   src/info/MobileBaseInfo2TD.cpp
   src/info/MobileBaseInfo2WD.cpp
   src/info/MobileBaseInfo4WD.cpp
   src/info/MobileBaseInfo4WS4WD.cpp
-  src/info/MobileBaseGeometry.cpp
 
   )
 

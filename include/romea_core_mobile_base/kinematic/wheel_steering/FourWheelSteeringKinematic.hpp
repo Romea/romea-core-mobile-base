@@ -42,7 +42,7 @@ struct FourWheelSteeringKinematic
 };
 
 TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringConstraints & userConstraints,
+                             const TwoAxleSteeringCommandLimits & userLimits,
                              const TwoAxleSteeringCommand & command);
 
 TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,

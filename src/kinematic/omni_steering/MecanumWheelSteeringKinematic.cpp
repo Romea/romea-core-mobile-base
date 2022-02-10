@@ -97,7 +97,7 @@ double MecanumWheelSteeringKinematic::computeAngularSpeed(const double & frontLe
 
 //--------------------------------------------------------------------------
 OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,
-                          const OmniSteeringConstraints & userConstraints,
+                          const OmniSteeringCommandLimits & userLimits,
                           const OmniSteeringCommand & command)
 {
     double alpha = parameters.wheelTrack+parameters.wheelbase;
@@ -106,7 +106,7 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
     double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelSpeed/alpha;
 
     maximalAbsoluteAngularSpeed = std::min(maximalAbsoluteAngularSpeed,
-                                           userConstraints.getMaximalAbsoluteAngularSpeed());
+                                           userLimits.angularSpeed.upper());
 
     double angularSpeed = romea::clamp(command.angularSpeed,
                                        -maximalAbsoluteAngularSpeed,
@@ -115,7 +115,8 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
     //Clamp lateral speed
     double maximalAbsoluteSpeed= parameters.maximalWheelSpeed - std::abs(angularSpeed)*alpha/2.0;
 
-    double maximalAbsboluteLateralSpeed = std::min(maximalAbsoluteSpeed,userConstraints.getMaximalAbsoluteLateralSpeed());
+    double maximalAbsboluteLateralSpeed = std::min(maximalAbsoluteSpeed,
+                                                   userLimits.lateralSpeed.upper());
 
     double lateralSpeed = romea::clamp(command.lateralSpeed,
                                        -maximalAbsboluteLateralSpeed,
@@ -126,11 +127,11 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
 
     double maximalAbsoluteLongitudinalSpeed = maximalAbsoluteSpeed-std::abs(lateralSpeed);
 
-    double minimalLongitudinalSpeed = std::max(-maximalAbsoluteLongitudinalSpeed,userConstraints.getMinimalLongitudinalSpeed());
+    double minimalLongitudinalSpeed = std::max(-maximalAbsoluteLongitudinalSpeed,userLimits.longitudinalSpeed.lower());
 
     longitudinalSpeed = std::max(longitudinalSpeed,minimalLongitudinalSpeed);
 
-    double maximalLongitudinalSpeed = std::min( maximalAbsoluteLongitudinalSpeed,userConstraints.getMaximalLongitudinalSpeed());
+    double maximalLongitudinalSpeed = std::min( maximalAbsoluteLongitudinalSpeed,userLimits.longitudinalSpeed.upper());
 
     longitudinalSpeed = std::min(longitudinalSpeed,maximalLongitudinalSpeed);
 

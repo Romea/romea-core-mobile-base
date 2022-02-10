@@ -40,4 +40,8 @@ target_link_libraries(${PROJECT_NAME}_test_kinematic_2WD ${PROJECT_NAME} GTest::
 target_compile_options(${PROJECT_NAME}_test_kinematic_2WD PRIVATE -std=c++17)
 add_test(test_kinematic_ss ${PROJECT_NAME}_test_kinematic_2WD)
 
+add_executable(${PROJECT_NAME}_test_command_limits kinematic/test_command_limits.cpp )
+target_link_libraries(${PROJECT_NAME}_test_command_limits ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_command_limits PRIVATE -std=c++17)
+add_test(test_kinematic_ss ${PROJECT_NAME}_test_command_limits)
 

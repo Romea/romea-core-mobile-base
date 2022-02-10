@@ -16,14 +16,6 @@ Wheel::Wheel():
 
 }
 
-////-----------------------------------------------------------------------------
-//MecanumWheel::MecanumWheel():
-//  RubberWheel(),
-//  numberOfRollers(0)
-//{
-
-//}
-
 //-----------------------------------------------------------------------------
 ContinuousTrack::ContinuousTrack():
   width(std::numeric_limits<double>::quiet_NaN())
@@ -32,31 +24,52 @@ ContinuousTrack::ContinuousTrack():
 }
 
 //-----------------------------------------------------------------------------
-template<typename Wheel>
-OneAxleGeometry<Wheel>::OneAxleGeometry():
-  wheelTrack(std::numeric_limits<double>::quiet_NaN()),
+WheeledAxle::WheeledAxle():
+  wheelsDistance(std::numeric_limits<double>::quiet_NaN()),
   wheels()
 {
 };
 
 //-----------------------------------------------------------------------------
-template<typename FrontWheel, typename RearWheel>
-TwoAxlesGeometry<FrontWheel,RearWheel>::TwoAxlesGeometry():
-  wheelbase(std::numeric_limits<double>::quiet_NaN()),
+ContinuousTrackedAxle::ContinuousTrackedAxle():
+  tracksDistance(std::numeric_limits<double>::quiet_NaN()),
+  tracks()
+{
+};
+
+//-----------------------------------------------------------------------------
+template<typename FrontAxle, typename RearAxle>
+TwoAxles<FrontAxle,RearAxle>::TwoAxles():
+  axlesDistance(std::numeric_limits<double>::quiet_NaN()),
   frontAxle(),
   rearAxle()
 {
 };
 
-//std::ostream& operator<<(std::ostream& os, const RubberWheel & wheel);
-//std::ostream& operator<<(std::ostream& os, const OneAxleGeometry<RubberWheel> & oneAxleGeometry);
-//std::ostream& operator<<(std::ostream& os, const TwoAxleGeometry<RubberWheel> & twoAxlesGeometry);
+////-----------------------------------------------------------------------------
+//std::ostream& operator<<(std::ostream& os, const Wheel & wheel)
+//{
+//  os << " radius: " << wheel.radius <<"m"<< std::endl;
+//  os << " width: " << wheel.width <<"m"<< std::endl;
+//  os << " hub_carrier_offset: " << wheel.hubCarrierOffset <<"m"<<std::endl;
+//  return os;
+//}
 
 
-template struct OneAxleGeometry<Wheel>;
-template struct OneAxleGeometry<ContinuousTrack>;
-template struct TwoAxlesGeometry<Wheel,Wheel>;
-template struct TwoAxlesGeometry<Wheel,ContinuousTrack>;
-template struct TwoAxlesGeometry<ContinuousTrack,ContinuousTrack>;
+////-----------------------------------------------------------------------------
+//template<typename Wheel>
+//std::ostream& operator<<(std::ostream& os, const OneAxleGeometry<Wheel> & oneAxleGeometry)
+//{
+//  os << " wheel_track " << oneAxleGeometry.wheelTrack<<std::endl;
+//  os << " wheels : "<<std::endl;
+//  os << oneAxleGeometry.wheels;
+//}
+
+////std::ostream& operator<<(std::ostream& os, const TwoAxleGeometry<RubberWheel> & twoAxlesGeometry);
+
+
+template struct TwoAxles<WheeledAxle,WheeledAxle>;
+template struct TwoAxles<WheeledAxle,ContinuousTrackedAxle>;
+template struct TwoAxles<ContinuousTrackedAxle,ContinuousTrackedAxle>;
 
 }

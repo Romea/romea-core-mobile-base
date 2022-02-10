@@ -16,7 +16,7 @@
 
 //-----------------------------------------------------------------------------
 inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Parameters & parameters,
-                                     const romea::TwoAxleSteeringConstraints & userConstraints)
+                                     const romea::TwoAxleSteeringCommandLimits & userLimits)
 {
   for(size_t i=0;i<21;i++)
   {
@@ -35,11 +35,11 @@ inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Pa
         commandFrame.frontSteeringAngle = frontSteeringAngle;
         commandFrame.rearSteeringAngle = rearSteeringAngle;
 
-        romea::TwoAxleSteeringCommand clampedCommandFrame = romea::clamp(parameters,userConstraints,commandFrame);
-        ASSERT_LE(clampedCommandFrame.longitudinalSpeed,userConstraints.getMaximalLinearSpeed());
-        ASSERT_GE(clampedCommandFrame.longitudinalSpeed,userConstraints.getMinimalLinearSpeed());
-        ASSERT_LE(std::abs(clampedCommandFrame.frontSteeringAngle),userConstraints.getMaximalAbsoluteFrontSteeringAngle());
-        ASSERT_LE(std::abs(clampedCommandFrame.rearSteeringAngle),userConstraints.getMaximalAbsoluteRearSteeringAngle());
+        romea::TwoAxleSteeringCommand clampedCommandFrame = romea::clamp(parameters,userLimits,commandFrame);
+        ASSERT_LE(clampedCommandFrame.longitudinalSpeed,userLimits.longitudinalSpeed.upper());
+        ASSERT_GE(clampedCommandFrame.longitudinalSpeed,userLimits.longitudinalSpeed.lower());
+        ASSERT_LE(std::abs(clampedCommandFrame.frontSteeringAngle),userLimits.frontSteeringAngle.upper());
+        ASSERT_LE(std::abs(clampedCommandFrame.rearSteeringAngle),userLimits.frontSteeringAngle.upper());
 
 
         romea::OdometryFrame4WS4WD odometryFrame;
@@ -172,7 +172,7 @@ inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &
 TEST(testInverseForward4WS4WD,SameWheelbase)
 {
 
-  romea::TwoAxleSteeringConstraints userConstraints;
+  romea::TwoAxleSteeringCommandLimits userLimits;
 
   romea::FourWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 0.7;
@@ -184,14 +184,14 @@ TEST(testInverseForward4WS4WD,SameWheelbase)
 
 
   testInverseForward4WS4WD(parameters,
-                           userConstraints);
+                           userLimits);
 }
 
 
 TEST(testInverseForward4WS4WD,DiffWheelbase)
 {
 
-  romea::TwoAxleSteeringConstraints userConstraints;
+  romea::TwoAxleSteeringCommandLimits userLimits;
 
   romea::FourWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
@@ -203,13 +203,13 @@ TEST(testInverseForward4WS4WD,DiffWheelbase)
 
 
   testInverseForward4WS4WD(parameters,
-                           userConstraints);
+                           userLimits);
 }
 
 
 TEST(testInverseForward4WS4WD,HubOffset)
 {
-  romea::TwoAxleSteeringConstraints userConstraints;
+  romea::TwoAxleSteeringCommandLimits userLimits;
 
   romea::FourWheelSteeringKinematic::Parameters parameters;
   parameters.frontWheelBase = 1;
@@ -220,29 +220,24 @@ TEST(testInverseForward4WS4WD,HubOffset)
   parameters.wheelAngleVariance=0.02*0.02;
 
   testInverseForward4WS4WD(parameters,
-                           userConstraints);
+                           userLimits);
 }
 
 
 //TEST(testInverseForward4WS4WD,MechanicalLimits)
 //{
-//  const double wheelSpeedVariance=0.1*0.1;
-//  const double steeringAngleVariance =0.02*0.02;
-
-//  romea::TwoAxleSteeringConstraints userConstraints;
+//  romea::TwoAxleSteeringCommandLimits userLimits;
 
 //  romea::FourWheelSteeringKinematic::Parameters parameters;
 //  parameters.frontWheelBase = 1;
 //  parameters.rearWheelBase = 0.7;
-//  parameters.track = 1.2;
+//  parameters.wheelTrack = 1.2;
 //  parameters.hubCarrierOffset=0.1;
 //  parameters.maximalWheelAngle =0.3;
 //  parameters.maximalWheelSpeed =1.;
 
 //  testInverseForward4WS4WD(parameters,
-//                           userConstraints,
-//                           wheelSpeedVariance,
-//                           steeringAngleVariance);
+//                           userLimits);
 //}
 
 

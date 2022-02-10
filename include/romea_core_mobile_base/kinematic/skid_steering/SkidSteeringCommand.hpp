@@ -1,7 +1,7 @@
 #ifndef romea_SkidSteeringCommand_hpp
 #define romea_SkidSteeringCommand_hpp
 
-#include "SkidSteeringConstraints.hpp"
+#include "SkidSteeringCommandLimits.hpp"
 
 namespace romea {
 
@@ -21,7 +21,7 @@ struct SkidSteeringCommand
 std::ostream& operator<<(std::ostream& os, const SkidSteeringCommand & command);
 
 SkidSteeringCommand clamp(const SkidSteeringCommand & command,
-                          const SkidSteeringConstraints & constraints);
+                          const SkidSteeringCommandLimits & limits);
 
 
 bool isValid(const SkidSteeringCommand & command);

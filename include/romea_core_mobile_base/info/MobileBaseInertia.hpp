@@ -11,10 +11,10 @@ namespace romea
     MobileBaseInertia();
     double mass;
     Eigen::Vector3d center;
-    double zInertialMoment;
+    double zMoment;
   };
 
-  std::ostream& operator<<(std::ostream& os, const MobileBaseInertia & inertia);
+//  std::ostream& operator<<(std::ostream& os, const MobileBaseInertia & inertia);
 
 }
 

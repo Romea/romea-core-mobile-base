@@ -13,24 +13,24 @@ MobileBaseInfo4WS4WD::MobileBaseInfo4WS4WD():
 
 }
 
-//-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WS4WD & baseInformation)
-{
-  os << "Base information:" << std::endl;
-  os << " type:" << std::endl;
-  os << "  4WS4WD"<<std::endl;
-  os << " geometry:";
-  os << baseInformation.geometry<< std::endl;
-  os << " wheels steering control:" <<std::endl;
-  os << baseInformation.wheelsSteeringControl<< std::endl;
-  os << " wheels speed control: " <<std::endl;
-  os << baseInformation.wheelsSpeedControl<< std::endl;
-  os << " intertia:" << std::endl;
-  os << baseInformation.inertia;
-  os << " control point:" << std::endl;
-  os << "  " << baseInformation.controlPoint << std::endl;
-  return os;
-}
+////-----------------------------------------------------------------------------
+//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WS4WD & baseInformation)
+//{
+//  os << "Base information:" << std::endl;
+//  os << " type:" << std::endl;
+//  os << "  4WS4WD"<<std::endl;
+//  os << " geometry:";
+//  os << baseInformation.geometry<< std::endl;
+//  os << " wheels steering control:" <<std::endl;
+//  os << baseInformation.wheelsSteeringControl<< std::endl;
+//  os << " wheels speed control: " <<std::endl;
+//  os << baseInformation.wheelsSpeedControl<< std::endl;
+//  os << " intertia:" << std::endl;
+//  os << baseInformation.inertia;
+//  os << " control point:" << std::endl;
+//  os << "  " << baseInformation.controlPoint << std::endl;
+//  return os;
+//}
 
 //-----------------------------------------------------------------------------
 void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
@@ -43,12 +43,12 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
   const auto & wheelsSteeringSensor = baseInformation.wheelsSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
-  if(near(geometry.frontAxle.wheelTrack,
-          geometry.rearAxle.wheelTrack))
+  if(near(geometry.frontAxle.wheelsDistance,
+          geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to four wheel steering kinematic";
-    ss << "because wheel track of front and rear axles are not equals";
+    ss << "because distance between wheels of front and rear axles are not equals";
     throw std::runtime_error(ss.str());
   }
 
@@ -61,9 +61,9 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
     throw std::runtime_error(ss.str());
   }
 
-  kinematicParameters.frontWheelBase = geometry.wheelbase/2. - controlPoint.x();
-  kinematicParameters.rearWheelBase = geometry.wheelbase/2.+ controlPoint.x();
-  kinematicParameters.wheelTrack=geometry.rearAxle.wheelTrack;
+  kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
+  kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
+  kinematicParameters.wheelTrack=geometry.rearAxle.wheelsDistance;
   kinematicParameters.hubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.maximalWheelAngle = wheelsSteeringCommand.maximalAngle;
   kinematicParameters.maximalWheelAngularSpeed = wheelsSteeringCommand.maximalAngularSpeed;

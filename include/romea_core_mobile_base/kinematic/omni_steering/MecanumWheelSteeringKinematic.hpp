@@ -3,7 +3,7 @@
 
 //romea
 #include "OmniSteeringCommand.hpp"
-#include "OmniSteeringConstraints.hpp"
+#include "OmniSteeringCommandLimits.hpp"
 
 namespace romea
 {
@@ -69,7 +69,7 @@ struct MecanumWheelSteeringKinematic
 };
 
 OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,
-                          const OmniSteeringConstraints & userConstraints,
+                          const OmniSteeringCommandLimits & userLimits,
                           const OmniSteeringCommand & command);
 
 OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,

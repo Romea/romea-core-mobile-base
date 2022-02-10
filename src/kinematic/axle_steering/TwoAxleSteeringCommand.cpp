@@ -85,16 +85,24 @@ TwoAxleSteeringCommand::TwoAxleSteeringCommand():
 }
 
 //-----------------------------------------------------------------------------
+TwoAxleSteeringCommand::TwoAxleSteeringCommand(const double & longitudinalSpeed,
+                                               const double & frontSteeringAngle,
+                                               const double & rearSteeringAngle):
+  longitudinalSpeed(longitudinalSpeed),
+  frontSteeringAngle(frontSteeringAngle),
+  rearSteeringAngle(rearSteeringAngle)
+{
+}
+
+
+//-----------------------------------------------------------------------------
 TwoAxleSteeringCommand clamp(const TwoAxleSteeringCommand & command,
-                             const TwoAxleSteeringConstraints & constraints)
+                             const TwoAxleSteeringCommandLimits & limits)
 {
   TwoAxleSteeringCommand clamped_command = command;
-  clamped_command.longitudinalSpeed=std::max(clamped_command.longitudinalSpeed,constraints.getMinimalLinearSpeed());
-  clamped_command.longitudinalSpeed=std::min(clamped_command.longitudinalSpeed,constraints.getMaximalLinearSpeed());
-  clamped_command.frontSteeringAngle=std::max(clamped_command.frontSteeringAngle,-constraints.getMaximalAbsoluteFrontSteeringAngle());
-  clamped_command.frontSteeringAngle=std::min(clamped_command.frontSteeringAngle, constraints.getMaximalAbsoluteFrontSteeringAngle());
-  clamped_command.rearSteeringAngle=std::max(clamped_command.rearSteeringAngle,-constraints.getMaximalAbsoluteRearSteeringAngle());
-  clamped_command.rearSteeringAngle=std::min(clamped_command.rearSteeringAngle, constraints.getMaximalAbsoluteRearSteeringAngle());
+  clamped_command.longitudinalSpeed=clamp(command.longitudinalSpeed,limits.longitudinalSpeed);
+  clamped_command.frontSteeringAngle=clamp(command.frontSteeringAngle,limits.frontSteeringAngle);
+  clamped_command.rearSteeringAngle=clamp(command.rearSteeringAngle,limits.rearSteeringAngle);
   return clamped_command;
 }
 
@@ -111,9 +119,9 @@ std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & comman
 //-----------------------------------------------------------------------------
 bool isValid(const TwoAxleSteeringCommand & command)
 {
-    return std::isfinite(command.longitudinalSpeed) &&
-            std::isfinite(command.frontSteeringAngle) &&
-            std::isfinite(command.rearSteeringAngle);
+  return std::isfinite(command.longitudinalSpeed) &&
+      std::isfinite(command.frontSteeringAngle) &&
+      std::isfinite(command.rearSteeringAngle);
 }
 
 

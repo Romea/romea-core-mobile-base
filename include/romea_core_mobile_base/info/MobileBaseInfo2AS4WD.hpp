@@ -12,14 +12,14 @@ namespace romea {
 struct MobileBaseInfo2AS4WD
 {
   MobileBaseInfo2AS4WD();
-  TwoAxlesGeometry<Wheel,Wheel> geometry;
+  TwoAxles<WheeledAxle,WheeledAxle> geometry;
   SteeringAngleControl axlesSteeringControl;
   WheelSpeedControl wheelsSpeedControl;
   MobileBaseInertia inertia;
   Eigen::Vector3d controlPoint;
 };
 
-std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation);
+//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation);
 
 void to_kinematic_parameters(const MobileBaseInfo2AS4WD & baseInformation,
                              TwoAxleSteeringKinematic::Parameters & kinematicParameters );

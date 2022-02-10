@@ -102,11 +102,11 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(const double & wheelbase,
                                                        const double & maximalSteeringAngle,
                                                        const double & frontMaximalWheelSpeed,
                                                        const double & rearMaximalWheelSpeed,
-                                                       const OneAxleSteeringConstraints & userConstraints,
+                                                       const OneAxleSteeringCommandLimits & userLimits,
                                                        const OneAxleSteeringCommand & command)
 {
     //clamp steering angle
-    double maximalAbsoluteSteeringAngle = std::min(maximalSteeringAngle,userConstraints.getMaximalAbsoluteSteeringAngle());
+    double maximalAbsoluteSteeringAngle = std::min(maximalSteeringAngle,userLimits.steeringAngle.upper());
 
     double steeringAngle =romea::clamp(command.steeringAngle,
                                        -maximalAbsoluteSteeringAngle,
@@ -125,10 +125,10 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(const double & wheelbase,
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,frontMaximalWheelSpeed/frontRatio);
 
     double minimalLinearSpeed = std::max(-maximalAbsoluteLinearSpeed,
-                                         userConstraints.getMinimalLinearSpeed());
+                                         userLimits.longitudinalSpeed.lower());
 
     double maximalLinearSpeed = std::min(maximalAbsoluteLinearSpeed,
-                                         userConstraints.getMaximalLinearSpeed());
+                                         userLimits.longitudinalSpeed.upper());
 
     double linearSpeed = romea::clamp(command.longitudinalSpeed,
                                       minimalLinearSpeed,
@@ -187,7 +187,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(const double & wheelbase,
 
 //--------------------------------------------------------------------------
 OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parameters,
-                             const OneAxleSteeringConstraints & userConstraints,
+                             const OneAxleSteeringCommandLimits & userLimits,
                              const OneAxleSteeringCommand & command)
 {
     return OneAxleSteeringKinematic::clamp(parameters.rearWheelBase+parameters.frontWheelBase,
@@ -198,7 +198,7 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                                            parameters.maximalSteeringAngle,
                                            parameters.frontMaximalWheelSpeed,
                                            parameters.rearMaximalWheelSpeed,
-                                           userConstraints,
+                                           userLimits,
                                            command);
 }
 
@@ -280,10 +280,10 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
 
 ////--------------------------------------------------------------------------
 //double OneAxleSteeringKinematic::computeMaximalLinearSpeed(const double & instantaneousCurvature,
-//                                                           const KinematicConstraints &userConstraints)const
+//                                                           const KinematicConstraints &userLimits)const
 //{
 
-//  assert(userConstraints.isValidInstantaneousCurvature(instantaneousCurvature));
+//  assert(userLimits.isValidInstantaneousCurvature(instantaneousCurvature));
 
 //  double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
 //  if( absoluteInstantaneousCurvature < std::numeric_limits<float>::epsilon() )
@@ -310,7 +310,7 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
 //            b*absoluteInstantaneousCurvature +c);
 
 //  //saturation according maximal angular speed
-//  double maximalAngularSpeed = userConstraints.getMaximalAbsoluteAngularSpeed();
+//  double maximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeed();
 //  if(maximalAngularSpeed< absoluteInstantaneousCurvature * maximalLinearSpeed)
 //    maximalLinearSpeed = maximalAngularSpeed/absoluteInstantaneousCurvature;
 
@@ -319,7 +319,7 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
 
 ////--------------------------------------------------------------------------
 //double OneAxleSteeringKinematic::computeMaximalInstantaneousCurvature(const double & linearSpeed,
-//                                                                      const KinematicConstraints & userConstraints)const
+//                                                                      const KinematicConstraints & userLimits)const
 //{
 
 //  double absoluteLinearSpeed = std::abs(linearSpeed);
@@ -344,10 +344,10 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
 
 //  double maximalInstantaneousCurvature = (-b + std::sqrt(d))/(2*a);
 //  maximalInstantaneousCurvature = std::min(maximalInstantaneousCurvature,
-//                                           userConstraints.getMaximalAbsoluteInstantaneousCurvature());
+//                                           userLimits.getMaximalAbsoluteInstantaneousCurvature());
 
 //  //saturation according maximal angular speed
-//  double maximalAngularSpeed = userConstraints.getMaximalAbsoluteAngularSpeed();
+//  double maximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeed();
 //  if(maximalAngularSpeed< maximalInstantaneousCurvature * absoluteLinearSpeed)
 //    maximalInstantaneousCurvature = maximalAngularSpeed/absoluteLinearSpeed;
 

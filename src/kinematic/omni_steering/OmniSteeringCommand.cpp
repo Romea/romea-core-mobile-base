@@ -5,9 +5,20 @@ namespace romea {
 
 //-----------------------------------------------------------------------------
 OmniSteeringCommand::OmniSteeringCommand():
-    longitudinalSpeed(0.),
-    lateralSpeed(0.),
-    angularSpeed(0.)
+  longitudinalSpeed(0.),
+  lateralSpeed(0.),
+  angularSpeed(0.)
+{
+
+}
+
+//-----------------------------------------------------------------------------
+OmniSteeringCommand::OmniSteeringCommand(const double & longitudinalSpeed,
+                                         const double & lateralSpeed,
+                                         const double & angularSpeed):
+  longitudinalSpeed(longitudinalSpeed),
+  lateralSpeed(lateralSpeed),
+  angularSpeed(angularSpeed)
 {
 
 }
@@ -15,32 +26,32 @@ OmniSteeringCommand::OmniSteeringCommand():
 //-----------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& os, const OmniSteeringCommand & command)
 {
-    os<<" OmniSteering command   "<<std::endl;;
-    os<<" command longitudinal speed  " << command.longitudinalSpeed << std::endl;
-    os<<" command lateral speed  " << command.lateralSpeed << std::endl;
-    os<<" command angular speed " << command.angularSpeed << std::endl;
-    return os;
+  os<<" OmniSteering command   "<<std::endl;;
+  os<<" command longitudinal speed  " << command.longitudinalSpeed << std::endl;
+  os<<" command lateral speed  " << command.lateralSpeed << std::endl;
+  os<<" command angular speed " << command.angularSpeed << std::endl;
+  return os;
 }
 
 
 //-----------------------------------------------------------------------------
 OmniSteeringCommand clamp(const OmniSteeringCommand & command,
-                          const OmniSteeringConstraints & constraints)
+                          const OmniSteeringCommandLimits & limits)
 {
-    OmniSteeringCommand clampedCommand;
-    clampedCommand.longitudinalSpeed=clamp(command.longitudinalSpeed,constraints.getMinimalLongitudinalSpeed(),constraints.getMaximalLongitudinalSpeed());
-    clampedCommand.lateralSpeed=clamp(command.lateralSpeed,-constraints.getMaximalAbsoluteLateralSpeed(),constraints.getMaximalAbsoluteLateralSpeed());
-    clampedCommand.lateralSpeed=clamp(command.angularSpeed,-constraints.getMaximalAbsoluteAngularSpeed(),constraints.getMaximalAbsoluteAngularSpeed());
-    return clampedCommand;
+  OmniSteeringCommand clampedCommand;
+  clampedCommand.longitudinalSpeed= clamp(command.longitudinalSpeed,limits.longitudinalSpeed);
+  clampedCommand.lateralSpeed=clamp(command.lateralSpeed,limits.lateralSpeed);
+  clampedCommand.angularSpeed=clamp(command.angularSpeed,limits.angularSpeed);
+  return clampedCommand;
 
 }
 
 //-----------------------------------------------------------------------------
 bool isValid(const OmniSteeringCommand & command)
 {
-    return std::isfinite(command.longitudinalSpeed)&&
-            std::isfinite(command.lateralSpeed)&&
-            std::isfinite(command.angularSpeed);
+  return std::isfinite(command.longitudinalSpeed)&&
+      std::isfinite(command.lateralSpeed)&&
+      std::isfinite(command.angularSpeed);
 }
 
 

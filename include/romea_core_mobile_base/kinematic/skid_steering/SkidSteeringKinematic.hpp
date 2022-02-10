@@ -3,7 +3,7 @@
 
 //romea
 #include "SkidSteeringCommand.hpp"
-#include "SkidSteeringConstraints.hpp"
+#include "SkidSteeringCommandLimits.hpp"
 
 namespace romea
 {
@@ -46,7 +46,7 @@ struct SkidSteeringKinematic
 };
 
 SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
-                          const SkidSteeringConstraints & userConstraints,
+                          const SkidSteeringCommandLimits & userLimits,
                           const SkidSteeringCommand & command);
 
 SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
