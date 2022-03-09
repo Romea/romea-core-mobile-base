@@ -6,14 +6,14 @@
 
 namespace romea {
 
-//-----------------------------------------------------------------------------
-MobileBaseInfo2WD::MobileBaseInfo2WD():
-  geometry(),
-  wheelsSpeedControl(),
-  inertia(),
-  controlPoint(Eigen::Vector3d::Zero())
-{
-};
+////-----------------------------------------------------------------------------
+//MobileBaseInfo2WD::MobileBaseInfo2WD():
+//  geometry(),
+//  wheelsSpeedControl(),
+//  inertia(),
+//  controlPoint(Eigen::Vector3d::Zero())
+//{
+//};
 
 
 ////-----------------------------------------------------------------------------

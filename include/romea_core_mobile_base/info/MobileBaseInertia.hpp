@@ -8,7 +8,7 @@ namespace romea
 
   struct MobileBaseInertia
   {
-    MobileBaseInertia();
+//    MobileBaseInertia();
     double mass;
     Eigen::Vector3d center;
     double zMoment;

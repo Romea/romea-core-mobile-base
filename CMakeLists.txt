@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+ cmake_minimum_required(VERSION 3.5)
 
 project(
   "romea_core_mobile_base"
@@ -63,6 +63,7 @@ add_library(${PROJECT_NAME} SHARED
   src/info/MobileBaseInfo2FWS2RWD.cpp
   src/info/MobileBaseInfo2FWS4WD.cpp
   src/info/MobileBaseInfo2TD.cpp
+  src/info/MobileBaseInfo2THD.cpp
   src/info/MobileBaseInfo2WD.cpp
   src/info/MobileBaseInfo4WD.cpp
   src/info/MobileBaseInfo4WS4WD.cpp

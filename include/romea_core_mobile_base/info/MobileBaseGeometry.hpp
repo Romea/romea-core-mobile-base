@@ -8,45 +8,60 @@ namespace romea
 
 struct Wheel
 {
-  Wheel();
-  double hubCarrierOffset;
   double radius;
   double width;
+  double hubCarrierOffset;
 };
 
-struct ContinuousTrack
+struct TrackWheel
 {
-  ContinuousTrack();
+  double radius;
+  double x;
+};
+
+struct FlatContinuousTrack
+{
   double width;
-  //TODO finish
+  TrackWheel sprocket_wheel;
+  TrackWheel idler_wheel;
+};
+
+struct TriangularContinuousTrack
+{
+  double width;
+  TrackWheel high_sprocket_wheel;
+  TrackWheel front_idler_wheel;
+  TrackWheel rear_idler_wheel;
 };
 
 struct WheeledAxle
 {
-  WheeledAxle();
   double wheelsDistance;
   Wheel wheels;
 };
 
+
+template <typename ContinuousTrack>
 struct ContinuousTrackedAxle
 {
-  ContinuousTrackedAxle();
   double tracksDistance;
   ContinuousTrack tracks;
 };
 
-
 template<typename FrontAxle, typename RearAxle>
 struct TwoAxles
 {
-  TwoAxles();
   double axlesDistance;
   FrontAxle frontAxle;
   RearAxle rearAxle;
 };
 
+
 using TwoWheeledAxles = TwoAxles<WheeledAxle,WheeledAxle>;
-using TwoContinousTrackedAxles =  TwoAxles<ContinuousTrack,ContinuousTrack>;
+
+using FlatContinuousTrackedAxle = ContinuousTrackedAxle<FlatContinuousTrack>;
+using TriangularContinuousTrackedAxle = ContinuousTrackedAxle<TriangularContinuousTrack>;
+
 
 
 //std::ostream& operator<<(std::ostream& os, const Wheel & wheel);

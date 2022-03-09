@@ -2,15 +2,15 @@
 
 namespace romea {
 
-//-----------------------------------------------------------------------------
-MobileBaseInfo2AS4WD::MobileBaseInfo2AS4WD():
-  geometry(),
-  axlesSteeringControl(),
-  wheelsSpeedControl(),
-  controlPoint(Eigen::Vector3d::Zero())
-{
+////-----------------------------------------------------------------------------
+//MobileBaseInfo2AS4WD::MobileBaseInfo2AS4WD():
+//  geometry(),
+//  axlesSteeringControl(),
+//  wheelsSpeedControl(),
+//  controlPoint(Eigen::Vector3d::Zero())
+//{
 
-}
+//}
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation)

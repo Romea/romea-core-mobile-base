@@ -7,44 +7,15 @@
 namespace romea
 {
 
-//-----------------------------------------------------------------------------
-Wheel::Wheel():
-  hubCarrierOffset(std::numeric_limits<double>::quiet_NaN()),
-  radius(std::numeric_limits<double>::quiet_NaN()),
-  width(std::numeric_limits<double>::quiet_NaN())
-{
 
-}
-
-//-----------------------------------------------------------------------------
-ContinuousTrack::ContinuousTrack():
-  width(std::numeric_limits<double>::quiet_NaN())
-{
-
-}
-
-//-----------------------------------------------------------------------------
-WheeledAxle::WheeledAxle():
-  wheelsDistance(std::numeric_limits<double>::quiet_NaN()),
-  wheels()
-{
-};
-
-//-----------------------------------------------------------------------------
-ContinuousTrackedAxle::ContinuousTrackedAxle():
-  tracksDistance(std::numeric_limits<double>::quiet_NaN()),
-  tracks()
-{
-};
-
-//-----------------------------------------------------------------------------
-template<typename FrontAxle, typename RearAxle>
-TwoAxles<FrontAxle,RearAxle>::TwoAxles():
-  axlesDistance(std::numeric_limits<double>::quiet_NaN()),
-  frontAxle(),
-  rearAxle()
-{
-};
+////-----------------------------------------------------------------------------
+//template<typename FrontAxle, typename RearAxle>
+//TwoAxles<FrontAxle,RearAxle>::TwoAxles():
+//  axlesDistance(std::numeric_limits<double>::quiet_NaN()),
+//  frontAxle(),
+//  rearAxle()
+//{
+//};
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const Wheel & wheel)
@@ -68,8 +39,8 @@ TwoAxles<FrontAxle,RearAxle>::TwoAxles():
 ////std::ostream& operator<<(std::ostream& os, const TwoAxleGeometry<RubberWheel> & twoAxlesGeometry);
 
 
-template struct TwoAxles<WheeledAxle,WheeledAxle>;
-template struct TwoAxles<WheeledAxle,ContinuousTrackedAxle>;
-template struct TwoAxles<ContinuousTrackedAxle,ContinuousTrackedAxle>;
+//template struct TwoAxles<WheeledAxle,WheeledAxle>;
+//template struct TwoAxles<WheeledAxle,ContinuousTrackedAxle>;
+//template struct TwoAxles<ContinuousTrackedAxle,ContinuousTrackedAxle>;
 
 }

@@ -1,5 +1,5 @@
 //romea
-#include "romea_core_mobile_base/info/MobileBaseInfo2TD.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInfo2THD.hpp"
 
 //std
 #include <cmath>
@@ -34,7 +34,7 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo2TD &base_information,
+void to_kinematic_parameters(const MobileBaseInfo2THD &base_information,
                              SkidSteeringKinematic::Parameters & kinematic_parameters )
 {
  const auto & geometry = base_information.geometry;
