@@ -9,10 +9,10 @@
 
 namespace romea {
 
-struct MobileBaseInfo2THD
+struct MobileBaseInfo2TD
 {
 //  MobileBaseInfo2TD();
-  ContinuousTrackedAxle<TriangleContinuousTrack> geometry;
+  ContinuousTrackedAxle<ContinuousTrack> geometry;
   WheelSpeedControl tracksSpeedControl;
   MobileBaseInertia inertia;
   Eigen::Vector3d controlPoint;
@@ -21,7 +21,7 @@ struct MobileBaseInfo2THD
 
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2TD & base_information);
 
-void to_kinematic_parameters(const MobileBaseInfo2THD & base_information,
+void to_kinematic_parameters(const MobileBaseInfo2TD & base_information,
                              SkidSteeringKinematic::Parameters & kinematic_parameters );
 
 }

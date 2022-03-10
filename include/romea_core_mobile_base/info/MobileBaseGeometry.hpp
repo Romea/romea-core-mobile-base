@@ -2,6 +2,8 @@
 #define romea_MobileBaseGeometry_hpp
 
 #include <iostream>
+#include <vector>
+#include <array>
 
 namespace romea
 {
@@ -17,19 +19,33 @@ struct TrackWheel
 {
   double radius;
   double x;
+  double z;
 };
 
-struct FlatContinuousTrack
+struct TrackWheels
 {
-  double width;
+  double radius;
+  std::vector<double> x;
+  double z;
+};
+
+struct ContinuousTrackBase
+{
+ double width;
+ double thickness;
+ TrackWheels rollers;
+};
+
+
+struct ContinuousTrack : ContinuousTrackBase
+{
   TrackWheel sprocket_wheel;
   TrackWheel idler_wheel;
 };
 
-struct TriangularContinuousTrack
+struct TriangleContinuousTrack : ContinuousTrackBase
 {
-  double width;
-  TrackWheel high_sprocket_wheel;
+  TrackWheel sprocket_wheel;
   TrackWheel front_idler_wheel;
   TrackWheel rear_idler_wheel;
 };
@@ -40,13 +56,13 @@ struct WheeledAxle
   Wheel wheels;
 };
 
-
 template <typename ContinuousTrack>
 struct ContinuousTrackedAxle
 {
   double tracksDistance;
   ContinuousTrack tracks;
 };
+
 
 template<typename FrontAxle, typename RearAxle>
 struct TwoAxles
@@ -56,11 +72,8 @@ struct TwoAxles
   RearAxle rearAxle;
 };
 
-
 using TwoWheeledAxles = TwoAxles<WheeledAxle,WheeledAxle>;
 
-using FlatContinuousTrackedAxle = ContinuousTrackedAxle<FlatContinuousTrack>;
-using TriangularContinuousTrackedAxle = ContinuousTrackedAxle<TriangularContinuousTrack>;
 
 
 
