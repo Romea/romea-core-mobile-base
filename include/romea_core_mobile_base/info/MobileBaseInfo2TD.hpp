@@ -1,5 +1,5 @@
-#ifndef romea_MobileBaseDescription2T_hpp
-#define romea_MobileBaseDescription2T_hpp
+#ifndef romea_MobileBaseDescription2TD_hpp
+#define romea_MobileBaseDescription2TD_hpp
 
 #include "MobileBaseControl.hpp"
 #include "MobileBaseGeometry.hpp"
@@ -11,8 +11,7 @@ namespace romea {
 
 struct MobileBaseInfo2TD
 {
-//  MobileBaseInfo2TD();
-  ContinuousTrackedAxle<ContinuousTrack> geometry;
+  ContinuousTrackedAxle geometry;
   WheelSpeedControl tracksSpeedControl;
   MobileBaseInertia inertia;
   Eigen::Vector3d controlPoint;

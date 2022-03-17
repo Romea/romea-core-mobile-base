@@ -3,16 +3,6 @@
 namespace romea {
 
 ////-----------------------------------------------------------------------------
-//MobileBaseInfo2FWS2RWD::MobileBaseInfo2FWS2RWD():
-//  geometry(),
-//  frontWheelsSteeringControl(),
-//  rearWheelsSpeedControl(),
-//  controlPoint(Eigen::Vector3d::Zero())
-//{
-
-//}
-
-////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS2RWD & baseInformation)
 //{
 //  os << "Base information:" << std::endl;

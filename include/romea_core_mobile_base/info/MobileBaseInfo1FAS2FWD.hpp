@@ -11,7 +11,6 @@ namespace romea {
 
 struct MobileBaseInfo1FAS2FWD
 {
-//  MobileBaseInfo1FAS2FWD();
   TwoAxles<WheeledAxle,WheeledAxle> geometry;
   SteeringAngleControl frontAxleSteeringControl;
   WheelSpeedControl frontWheelsSpeedControl;

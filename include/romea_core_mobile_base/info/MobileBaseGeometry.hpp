@@ -22,32 +22,13 @@ struct TrackWheel
   double z;
 };
 
-struct TrackWheels
-{
-  double radius;
-  std::vector<double> x;
-  double z;
-};
-
-struct ContinuousTrackBase
+struct ContinuousTrack
 {
  double width;
  double thickness;
- TrackWheels rollers;
-};
-
-
-struct ContinuousTrack : ContinuousTrackBase
-{
-  TrackWheel sprocket_wheel;
-  TrackWheel idler_wheel;
-};
-
-struct TriangleContinuousTrack : ContinuousTrackBase
-{
-  TrackWheel sprocket_wheel;
-  TrackWheel front_idler_wheel;
-  TrackWheel rear_idler_wheel;
+ TrackWheel sprocketWheel;
+ std::vector<TrackWheel> idlerWheels;
+ std::vector<TrackWheel> rollerWheels;
 };
 
 struct WheeledAxle
@@ -56,7 +37,6 @@ struct WheeledAxle
   Wheel wheels;
 };
 
-template <typename ContinuousTrack>
 struct ContinuousTrackedAxle
 {
   double tracksDistance;
