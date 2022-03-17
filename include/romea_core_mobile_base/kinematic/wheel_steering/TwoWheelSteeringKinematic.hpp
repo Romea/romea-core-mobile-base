@@ -35,6 +35,17 @@ public:
                                               const double & rightInstantneousCurvature,
                                               const double & track);
 
+  static double computeInstantaneousCurvature(const double & leftWheelAngle,
+                                              const double & rightWheelAngle,
+                                              const double & wheelbase,
+                                              const double & track);
+
+  static double computeSteeringAngle(const double & leftWheelAngle,
+                                     const double & rightWheelAngle,
+                                     const double & wheelbase,
+                                     const double & track);
+
+
   static double computeMaximalInstantaneousCurvature(const double wheelbase,
                                                      const double halfTrack,
                                                      const double & maximalWheelAngle);
