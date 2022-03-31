@@ -7,42 +7,36 @@ namespace romea {
 
 struct WheelSpeedSensor
 {
-//  WheelSpeedSensor();
   double speedStd;
   double speedRange;
 };
 
 struct SteeringAngleSensor
 {
-//  SteeringAngleSensor();
   double angleStd;
   double angleRange;
 };
 
 struct WheelSpeedCommandLimits
 {
-//  WheelSpeedCommandLimits();
   double maximalSpeed;
   double maximalAcceleration;
 };
 
 struct SteeringAngleCommandLimits
 {
-//  SteeringAngleCommandLimits();
   double maximalAngle;
   double maximalAngularSpeed;
 };
 
 struct WheelSpeedControl
 {
-//  WheelSpeedControl();
   WheelSpeedSensor sensor;
   WheelSpeedCommandLimits command;
 };
 
 struct SteeringAngleControl
 {
-//  SteeringAngleControl();
   SteeringAngleSensor sensor;
   SteeringAngleCommandLimits command;
 };
