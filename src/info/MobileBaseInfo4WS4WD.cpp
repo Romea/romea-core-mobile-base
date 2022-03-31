@@ -33,7 +33,7 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
   const auto & wheelsSteeringSensor = baseInformation.wheelsSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
-  if(near(geometry.frontAxle.wheelsDistance,
+  if(!near(geometry.frontAxle.wheelsDistance,
           geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
@@ -42,7 +42,7 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
     throw std::runtime_error(ss.str());
   }
 
-  if(near(geometry.rearAxle.wheels.hubCarrierOffset,
+  if(!near(geometry.frontAxle.wheels.hubCarrierOffset,
           geometry.rearAxle.wheels.hubCarrierOffset))
   {
     std::stringstream ss;

@@ -31,7 +31,7 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
-  if(near(geometry.frontAxle.wheelsDistance,geometry.rearAxle.wheelsDistance))
+  if(!near(geometry.frontAxle.wheelsDistance,geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to skid steering kinematic";
