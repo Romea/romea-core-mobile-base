@@ -65,6 +65,13 @@ struct OneAxleSteeringKinematic
                                        const double & hubCarrierOffset,
                                        const double & halfTrack);
 
+  static double computeLinearSpeed(const double & leftWheelSpeed,
+                                   const double & rightWheelSpeed,
+                                   const double & tanSteeringAngle,
+                                   const double & instaneousCurvature,
+                                   const double & hubCarrierOffset,
+                                   const double & halfTrack);
+
   static OneAxleSteeringCommand clamp(const double & wheelbase,
                                       const double & frontHalfTrack,
                                       const double & rearHalfTrack,
