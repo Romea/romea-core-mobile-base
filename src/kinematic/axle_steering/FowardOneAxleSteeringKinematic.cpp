@@ -41,15 +41,6 @@ void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
 
 }
 
-////-----------------------------------------------------------------------------
-//OdometryFrame1FAS2FWD forwardKinematic1FAS2FWD(const std::string &emitterName,
-//                                               const OneAxleSteeringKinematic & kinematic,
-//                                               const KinematicCommand & commandFrame)
-//{
-//  double wheelBase= kinematic.getWheelBase("wheelbase").get();
-//  return forwardKinematic1FSA2FWD(emitterName,kinematic,toOneAxleSteeringCommand(commandFrame,wheelBase));
-//}
-
 //-----------------------------------------------------------------------------
 void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
                       const OneAxleSteeringCommand & commandFrame,
@@ -68,15 +59,6 @@ void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
   odometryCommandFrame.rearLeftWheelSpeed=rearLeftWheelSpeed;
   odometryCommandFrame.rearRightWheelSpeed=rearRightWheelSpeed;
 }
-
-////-----------------------------------------------------------------------------
-//OdometryFrame1FAS2RWD forwardKinematic1FAS2RWD(const std::string &emitterName,
-//                                               const OneAxleSteeringKinematic & kinematic,
-//                                               const KinematicCommand & commandFrame)
-//{
-//  double wheelBase= kinematic.getWheelBase("wheelbase").get();
-//  return forwardKinematic1FAS2RWD(emitterName,kinematic,toOneAxleSteeringCommand(commandFrame,wheelBase));
-//}
 
 }
 

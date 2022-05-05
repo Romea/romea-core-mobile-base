@@ -70,20 +70,4 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
 
 }
 
-////-----------------------------------------------------------------------------
-//OdometryFrame2AS4WD forwardKinematic2AS4WD(const std::string &emitterName,
-//                                           const TwoAxleSteeringKinematic & kinematic,
-//                                           const KinematicCommand & commandFrame)
-//{
-
-//  const double frontWheelBase = kinematic.getWheelBase("front_wheelbase").get();
-//  const double rearWheelBase = kinematic.getWheelBase("rear_wheelbase").get();
-
-//  return forwardKinematic2AS4WD(emitterName,
-//                                kinematic,
-//                                toTwoAxleSteeringCommand(commandFrame,
-//                                                         frontWheelBase,
-//                                                         rearWheelBase));
-//}
-
 }
