@@ -16,12 +16,12 @@ struct FourWheelSteeringKinematic
     double rearWheelBase;
     double wheelTrack;
     double hubCarrierOffset;
-    double maximalWheelSpeed;
-    double maximalWheelAcceleration;
-    double maximalWheelAngle;
-    double maximalWheelAngularSpeed;
-    double wheelSpeedVariance;
-    double wheelAngleVariance;
+    double maximalWheelLinearSpeed;
+    double maximalWheelLinearAcceleration;
+    double maximalWheelSteeringAngle;
+    double maximalWheelSteeringAngularSpeed;
+    double wheelLinearSpeedVariance;
+    double wheelSteeringAngleVariance;
   };
 
 

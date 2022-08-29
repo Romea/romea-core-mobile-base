@@ -10,7 +10,7 @@ namespace romea {
 //-----------------------------------------------------------------------------
 void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
                        const TwoAxleSteeringCommand & commandFrame,
-                       OdometryFrame4WS4WD & commandOdometryFrame)
+                       OdometryFrame4WS4WD &commandOdometryFrame)
 {
 
 
@@ -24,62 +24,62 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
   double tanFrontSteeringAngle= std::tan(commandFrame.frontSteeringAngle);
   double tanRearSteeringAngle= std::tan(commandFrame.rearSteeringAngle);
 
-  double orthogonalInstantaneousCurvature=
-      TwoAxleSteeringKinematic::computeInstantaneousCurvature(tanFrontSteeringAngle,
-                                                              tanRearSteeringAngle,
-                                                              frontWheelBase,
-                                                              rearWheelBase);
+  double orthogonalInstantaneousCurvature= TwoAxleSteeringKinematic::
+      computeInstantaneousCurvature(tanFrontSteeringAngle,
+                                    tanRearSteeringAngle,
+                                    frontWheelBase,
+                                    rearWheelBase);
 
-  double frontLeftWheelAngle  =
-      TwoWheelSteeringKinematic::computeLeftWheelAngle(tanFrontSteeringAngle,
-                                                       orthogonalInstantaneousCurvature,
-                                                       halfWheelTrack);
+  double frontLeftWheelAngle  = TwoWheelSteeringKinematic::
+      computeLeftWheelSteeringAngle(tanFrontSteeringAngle,
+                                    orthogonalInstantaneousCurvature,
+                                    halfWheelTrack);
 
-  double frontRightWheelAngle =
-      TwoWheelSteeringKinematic::computeRightWheelAngle(tanFrontSteeringAngle,
-                                                        orthogonalInstantaneousCurvature,
-                                                        halfWheelTrack);
+  double frontRightWheelAngle = TwoWheelSteeringKinematic::
+      computeRightWheelSteeringAngle(tanFrontSteeringAngle,
+                                     orthogonalInstantaneousCurvature,
+                                     halfWheelTrack);
 
-  double rearLeftWheelAngle  =
-      TwoWheelSteeringKinematic::computeLeftWheelAngle(tanRearSteeringAngle,
-                                                       orthogonalInstantaneousCurvature,
-                                                       halfWheelTrack);
+  double rearLeftWheelAngle  = TwoWheelSteeringKinematic::
+      computeLeftWheelSteeringAngle(tanRearSteeringAngle,
+                                    orthogonalInstantaneousCurvature,
+                                    halfWheelTrack);
 
-  double rearRightWheelAngle =
-      TwoWheelSteeringKinematic::computeRightWheelAngle(tanRearSteeringAngle,
-                                                        orthogonalInstantaneousCurvature,
-                                                        halfWheelTrack);
-
-
-
-  double frontLeftWheelSpeed =
-      OneAxleSteeringKinematic::computeLeftWheelSpeed(speed,
-                                                      tanFrontSteeringAngle,
-                                                      orthogonalInstantaneousCurvature,
-                                                      hubCarrierOffset,
-                                                      halfWheelTrack);
-
-  double frontRightWheelSpeed =
-      OneAxleSteeringKinematic::computeRightWheelSpeed(speed,
-                                                       tanFrontSteeringAngle,
-                                                       orthogonalInstantaneousCurvature,
-                                                       hubCarrierOffset,
-                                                       halfWheelTrack);
+  double rearRightWheelAngle = TwoWheelSteeringKinematic::
+      computeRightWheelSteeringAngle(tanRearSteeringAngle,
+                                     orthogonalInstantaneousCurvature,
+                                     halfWheelTrack);
 
 
-  double rearLeftWheelSpeed =
-      OneAxleSteeringKinematic::computeLeftWheelSpeed(speed,
-                                                      tanRearSteeringAngle,
-                                                      orthogonalInstantaneousCurvature,
-                                                      hubCarrierOffset,
-                                                      halfWheelTrack);
 
-  double rearRightWheelSpeed =
-      OneAxleSteeringKinematic::computeRightWheelSpeed(speed,
-                                                       tanRearSteeringAngle,
-                                                       orthogonalInstantaneousCurvature,
-                                                       hubCarrierOffset,
-                                                       halfWheelTrack);
+  double frontLeftWheelSpeed = OneAxleSteeringKinematic::
+      computeLeftWheelLinearSpeed(speed,
+                                  tanFrontSteeringAngle,
+                                  orthogonalInstantaneousCurvature,
+                                  hubCarrierOffset,
+                                  halfWheelTrack);
+
+  double frontRightWheelSpeed = OneAxleSteeringKinematic::
+      computeRightWheelLinearSpeed(speed,
+                                   tanFrontSteeringAngle,
+                                   orthogonalInstantaneousCurvature,
+                                   hubCarrierOffset,
+                                   halfWheelTrack);
+
+
+  double rearLeftWheelSpeed = OneAxleSteeringKinematic::
+      computeLeftWheelLinearSpeed(speed,
+                                  tanRearSteeringAngle,
+                                  orthogonalInstantaneousCurvature,
+                                  hubCarrierOffset,
+                                  halfWheelTrack);
+
+  double rearRightWheelSpeed = OneAxleSteeringKinematic::
+      computeRightWheelLinearSpeed(speed,
+                                   tanRearSteeringAngle,
+                                   orthogonalInstantaneousCurvature,
+                                   hubCarrierOffset,
+                                   halfWheelTrack);
 
   assert(std::abs(frontLeftWheelAngle)<=M_PI_2);
   assert(std::abs(frontRightWheelAngle)<=M_PI_2);
@@ -91,14 +91,14 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
   assert(sign(rearLeftWheelAngle)==sign(rearRightWheelAngle));
 
 
-  commandOdometryFrame.frontLeftWheelSpeed =frontLeftWheelSpeed;
-  commandOdometryFrame.frontLeftWheelAngle =frontLeftWheelAngle;
-  commandOdometryFrame.frontRightWheelSpeed =frontRightWheelSpeed;
-  commandOdometryFrame.frontRightWheelAngle =frontRightWheelAngle;
-  commandOdometryFrame.rearLeftWheelSpeed =rearLeftWheelSpeed;
-  commandOdometryFrame.rearLeftWheelAngle =rearLeftWheelAngle;
-  commandOdometryFrame.rearRightWheelSpeed =rearRightWheelSpeed;
-  commandOdometryFrame.rearRightWheelAngle =rearRightWheelAngle;
+  commandOdometryFrame.frontLeftWheelLinearSpeed =frontLeftWheelSpeed;
+  commandOdometryFrame.frontLeftWheelSteeringAngle =frontLeftWheelAngle;
+  commandOdometryFrame.frontRightWheelLinearSpeed =frontRightWheelSpeed;
+  commandOdometryFrame.frontRightWheelSteeringAngle =frontRightWheelAngle;
+  commandOdometryFrame.rearLeftWheelLinearSpeed =rearLeftWheelSpeed;
+  commandOdometryFrame.rearLeftWheelSteeringAngle =rearLeftWheelAngle;
+  commandOdometryFrame.rearRightWheelLinearSpeed =rearRightWheelSpeed;
+  commandOdometryFrame.rearRightWheelSteeringAngle =rearRightWheelAngle;
 }
 
 }

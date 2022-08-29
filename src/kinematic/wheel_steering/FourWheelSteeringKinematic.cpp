@@ -17,12 +17,12 @@ FourWheelSteeringKinematic::Parameters::Parameters():
   rearWheelBase(0),
   wheelTrack(0),
   hubCarrierOffset(0),
-  maximalWheelSpeed(std::numeric_limits<double>::max()),
-  maximalWheelAcceleration(std::numeric_limits<double>::max()),
-  maximalWheelAngle(M_PI_2),
-  maximalWheelAngularSpeed(std::numeric_limits<double>::max()),
-  wheelSpeedVariance(0),
-  wheelAngleVariance(0)
+  maximalWheelLinearSpeed(std::numeric_limits<double>::max()),
+  maximalWheelLinearAcceleration(std::numeric_limits<double>::max()),
+  maximalWheelSteeringAngle(M_PI_2),
+  maximalWheelSteeringAngularSpeed(std::numeric_limits<double>::max()),
+  wheelLinearSpeedVariance(0),
+  wheelSteeringAngleVariance(0)
 
 {
 
@@ -72,10 +72,10 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                                          parameters.wheelTrack/2.,
                                          parameters.hubCarrierOffset,
                                          parameters.hubCarrierOffset,
-                                         parameters.maximalWheelSpeed,
-                                         parameters.maximalWheelSpeed,
-                                         parameters.maximalWheelAngle,
-                                         parameters.maximalWheelAngle,
+                                         parameters.maximalWheelLinearSpeed,
+                                         parameters.maximalWheelLinearSpeed,
+                                         parameters.maximalWheelSteeringAngle,
+                                         parameters.maximalWheelSteeringAngle,
                                          userLimits,
                                          command);
 }
@@ -95,7 +95,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                                            parameters.wheelTrack/2.,
                                            parameters.hubCarrierOffset,
                                            parameters.hubCarrierOffset,
-                                           parameters.maximalWheelAcceleration,
+                                           parameters.maximalWheelLinearAcceleration,
                                            maximalSteeringAngularSpeed,
                                            previousCommand,
                                            curentCommand,

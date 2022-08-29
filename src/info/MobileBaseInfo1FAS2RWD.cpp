@@ -40,9 +40,9 @@ void to_kinematic_parameters(const MobileBaseInfo1FAS2RWD & baseInformation,
   kinematicParameters.rearHubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.maximalSteeringAngle = axleSteeringCommand.maximalAngle;
   kinematicParameters.maximalSteeringAngularSpeed = axleSteeringCommand.maximalAngularSpeed;
-  kinematicParameters.rearMaximalWheelSpeed = wheelsSpeedCommand.maximalSpeed;
-  kinematicParameters.maximalWheelAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
+  kinematicParameters.rearMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
+  kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
   kinematicParameters.steeringAngleVariance = std::pow(axleSteeringSensor.angleStd,2.0);
 }
 

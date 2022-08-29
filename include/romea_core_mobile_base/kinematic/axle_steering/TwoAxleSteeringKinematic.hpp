@@ -17,20 +17,28 @@ struct TwoAxleSteeringKinematic
   struct Parameters
   {
     Parameters();
+
+//    enum Geometry{
+//      ACKERMANN,
+//      FOUR_WHEEL_STEERING
+//    }
+
     double frontWheelBase;
     double rearWheelBase;
     double frontWheelTrack;
     double rearWheelTrack;
     double frontHubCarrierOffset;
     double rearHubCarrierOffset;
-    double frontMaximalWheelSpeed;
-    double rearMaximalWheelSpeed;
-    double maximalWheelAcceleration;
+    double frontMaximalWheelLinearSpeed;
+    double rearMaximalWheelLinearSpeed;
+    double maximalWheelLinearAcceleration;
     double frontMaximalSteeringAngle;
     double rearMaximalSteeringAngle;
     double maximalSteeringAngularSpeed;
-    double wheelSpeedVariance;
+    double wheelLinearSpeedVariance;
     double steeringAngleVariance;
+//    Geometry geometry;
+
   };
 
 

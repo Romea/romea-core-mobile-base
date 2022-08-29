@@ -45,3 +45,32 @@ target_link_libraries(${PROJECT_NAME}_test_command_limits ${PROJECT_NAME} GTest:
 target_compile_options(${PROJECT_NAME}_test_command_limits PRIVATE -std=c++17)
 add_test(test_kinematic_ss ${PROJECT_NAME}_test_command_limits)
 
+add_executable(${PROJECT_NAME}_test_simulation_1AS2FWD simulation/test_simulation_1AS2FWD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_1AS2FWD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_1AS2FWD PRIVATE -std=c++17)
+add_test(test_simulation_control_1AS2FWD ${PROJECT_NAME}_test_simulation_1AS2FWD)
+
+add_executable(${PROJECT_NAME}_test_simulation_1AS2RWD simulation/test_simulation_1AS2RWD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_1AS2RWD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_1AS2RWD PRIVATE -std=c++17)
+add_test(test_simulation_control_1AS2RWD ${PROJECT_NAME}_test_simulation_1AS2RWD)
+
+#add_executable(${PROJECT_NAME}_test_simulation_2AS4WD simulation/test_simulation_2AS4WD.cpp )
+#target_link_libraries(${PROJECT_NAME}_test_simulation_2AS4WD ${PROJECT_NAME} GTest::GTest GTest::Main)
+#target_compile_options(${PROJECT_NAME}_test_simulation_2AS4WD PRIVATE -std=c++17)
+#add_test(test_simulation_control_2AS4WD ${PROJECT_NAME}_test_simulation_2AS4WD)
+
+add_executable(${PROJECT_NAME}_test_simulation_2FWS2FWD simulation/test_simulation_2FWS2FWD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_2FWS2FWD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_2FWS2FWD PRIVATE -std=c++17)
+add_test(test_simulation_control_2FWS2FWD ${PROJECT_NAME}_test_simulation_1AS2RWD)
+
+add_executable(${PROJECT_NAME}_test_simulation_2FWS2RWD simulation/test_simulation_2FWS2RWD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_2FWS2RWD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_2FWS2RWD PRIVATE -std=c++17)
+add_test(test_simulation_control_2FWS2RWD ${PROJECT_NAME}_test_simulation_1AS2RWD)
+
+add_executable(${PROJECT_NAME}_test_simulation_2TD simulation/test_simulation_2TD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_2TD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_2TD PRIVATE -std=c++17)
+add_test(test_simulation_control_2TD ${PROJECT_NAME}_test_simulation_2TD)

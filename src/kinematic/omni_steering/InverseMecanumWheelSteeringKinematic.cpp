@@ -5,31 +5,32 @@ namespace romea
 {
 
 void inverseKinematic(const MecanumWheelSteeringKinematic::Parameters & parameters,
-                      const OdometryFrame4WD & odometryFrame,
+                      const OdometryFrame4WD &odometryFrame,
                       OmniSteeringMeasure & omniSteeringMeasure)
 {
   const double halfTrack = parameters.wheelTrack/2.;
   const double halfWheebase = parameters.wheelbase/2;
 
-  omniSteeringMeasure.longitudinalSpeed=
-      MecanumWheelSteeringKinematic::computeLongitudinalSpeed(odometryFrame.frontLeftWheelSpeed,
-                                                              odometryFrame.frontRightWheelSpeed,
-                                                              odometryFrame.rearLeftWheelSpeed,
-                                                              odometryFrame.rearRightWheelSpeed);
+  omniSteeringMeasure.longitudinalSpeed = MecanumWheelSteeringKinematic::
+      computeLongitudinalSpeed(odometryFrame.frontLeftWheelLinearSpeed,
+                               odometryFrame.frontRightWheelLinearSpeed,
+                               odometryFrame.rearLeftWheelLinearSpeed,
+                               odometryFrame.rearRightWheelLinearSpeed);
 
-  omniSteeringMeasure.lateralSpeed =
-      MecanumWheelSteeringKinematic::computeLateralSpeed(odometryFrame.frontRightWheelSpeed,
-                                                         odometryFrame.rearLeftWheelSpeed,
-                                                         odometryFrame.frontLeftWheelSpeed,
-                                                         odometryFrame.rearRightWheelSpeed);
+  omniSteeringMeasure.lateralSpeed = MecanumWheelSteeringKinematic::
+      computeLateralSpeed(odometryFrame.frontRightWheelLinearSpeed,
+                          odometryFrame.rearLeftWheelLinearSpeed,
+                          odometryFrame.frontLeftWheelLinearSpeed,
+                          odometryFrame.rearRightWheelLinearSpeed);
 
   omniSteeringMeasure.angularSpeed =
-      MecanumWheelSteeringKinematic::computeAngularSpeed(odometryFrame.frontRightWheelSpeed,
-                                                         odometryFrame.rearLeftWheelSpeed,
-                                                         odometryFrame.frontLeftWheelSpeed,
-                                                         odometryFrame.rearRightWheelSpeed,
-                                                         halfWheebase,
-                                                         halfTrack);
+      MecanumWheelSteeringKinematic::
+      computeAngularSpeed(odometryFrame.frontRightWheelLinearSpeed,
+                          odometryFrame.rearLeftWheelLinearSpeed,
+                          odometryFrame.frontLeftWheelLinearSpeed,
+                          odometryFrame.rearRightWheelLinearSpeed,
+                          halfWheebase,
+                          halfTrack);
 
 
   Eigen::MatrixXd J = Eigen::MatrixXd::Constant(3,4,1);

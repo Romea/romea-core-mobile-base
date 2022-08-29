@@ -21,13 +21,13 @@ TwoAxleSteeringKinematic::Parameters::Parameters():
     rearWheelTrack(0),
     frontHubCarrierOffset(0),
     rearHubCarrierOffset(0),
-    frontMaximalWheelSpeed(std::numeric_limits<double>::max()),
-    rearMaximalWheelSpeed(std::numeric_limits<double>::max()),
-    maximalWheelAcceleration(std::numeric_limits<double>::max()),
+    frontMaximalWheelLinearSpeed(std::numeric_limits<double>::max()),
+    rearMaximalWheelLinearSpeed(std::numeric_limits<double>::max()),
+    maximalWheelLinearAcceleration(std::numeric_limits<double>::max()),
     frontMaximalSteeringAngle(M_PI_2),
     rearMaximalSteeringAngle(M_PI_2),
     maximalSteeringAngularSpeed(std::numeric_limits<double>::max()),
-    wheelSpeedVariance(0),
+    wheelLinearSpeedVariance(0),
     steeringAngleVariance(0)
 {
 
@@ -115,14 +115,14 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
     double rearTanSteeringAngle = std::tan(rearSteeringAngle);
     double instantaneousCurvature = (frontTanSteeringAngle - rearTanSteeringAngle)/(frontWheelBase+rearWheelBase);
 
-    double frontLeftRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(-frontTanSteeringAngle,-instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
-    double frontRigthRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(frontTanSteeringAngle,instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
+    double frontLeftRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(-frontTanSteeringAngle,-instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
+    double frontRigthRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(frontTanSteeringAngle,instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
 
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,frontMaximalWheelSpeed/frontLeftRatio);
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,frontMaximalWheelSpeed/frontRigthRatio);
 
-    double rearLeftRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(-rearTanSteeringAngle,-instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
-    double rearRightRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(rearTanSteeringAngle,instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
+    double rearLeftRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(-rearTanSteeringAngle,-instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
+    double rearRightRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(rearTanSteeringAngle,instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
 
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,rearMaximalWheelSpeed/rearLeftRatio);
     maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,rearMaximalWheelSpeed/rearRightRatio);
@@ -181,14 +181,14 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(const double  & frontWhee
     double rearTanSteeringAngle = std::tan(previousCommand.rearSteeringAngle);
     double instantaneousCurvature = (frontTanSteeringAngle - rearTanSteeringAngle)/(frontWheelBase+rearWheelBase);
 
-    double frontLeftRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(-frontTanSteeringAngle,-instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
-    double frontRigthRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(frontTanSteeringAngle,instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
+    double frontLeftRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(-frontTanSteeringAngle,-instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
+    double frontRigthRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(frontTanSteeringAngle,instantaneousCurvature,frontHubCarrierOffset,frontHalfTrack);
 
     maximalLinearAcceleration = std::min(maximalLinearAcceleration,maximalWheelAcceleration/frontLeftRatio);
     maximalLinearAcceleration = std::min(maximalLinearAcceleration,maximalWheelAcceleration/frontRigthRatio);
 
-    double rearLeftRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(-rearTanSteeringAngle,-instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
-    double rearRightRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(rearTanSteeringAngle,instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
+    double rearLeftRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(-rearTanSteeringAngle,-instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
+    double rearRightRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(rearTanSteeringAngle,instantaneousCurvature,rearHubCarrierOffset,rearHalfTrack);
 
     maximalLinearAcceleration = std::min(maximalLinearAcceleration,maximalWheelAcceleration/rearLeftRatio);
     maximalLinearAcceleration = std::min(maximalLinearAcceleration,maximalWheelAcceleration/rearRightRatio);
@@ -215,8 +215,8 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
                                            parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
-                                           parameters.frontMaximalWheelSpeed,
-                                           parameters.rearMaximalWheelSpeed,
+                                           parameters.frontMaximalWheelLinearSpeed,
+                                           parameters.rearMaximalWheelLinearSpeed,
                                            parameters.frontMaximalSteeringAngle,
                                            parameters.rearMaximalSteeringAngle,
                                            userLimits,
@@ -235,7 +235,7 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
                                            parameters.rearWheelTrack/2.,
                                            parameters.frontHubCarrierOffset,
                                            parameters.rearHubCarrierOffset,
-                                           parameters.maximalWheelAcceleration,
+                                           parameters.maximalWheelLinearAcceleration,
                                            parameters.maximalSteeringAngularSpeed,
                                            previousCommand,
                                            currentCommand,

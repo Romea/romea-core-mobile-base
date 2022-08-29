@@ -12,21 +12,21 @@ void inverseKinematic(const TwoAxleSteeringKinematic::Parameters & parameters,
                       TwoAxleSteeringMeasure & twoAxleSteeringMeasure)
 {
 
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
   const double &steeringAngleVariance = parameters.steeringAngleVariance;
 
   const double frontWheelbase = parameters.frontWheelBase;
   const double frontHalfWheelTrack = parameters.frontWheelTrack/2;
   const double frontHubCarrierOffset = parameters.frontHubCarrierOffset;
-  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
-  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
+  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
+  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
   const double & frontSteeringAngle = odometryFrame.frontAxleSteeringAngle;
 
   const double rearWheelbase = parameters.rearWheelBase;
   const double rearHalfTrack = parameters.rearWheelTrack/2;
   const double rearHubCarrierOffset = parameters.rearHubCarrierOffset;
-  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
-  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
+  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
+  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
   const double & rearSteeringAngle = odometryFrame.rearAxleSteeringAngle;
 
   double tanFrontSteeringAngle = std::tan(frontSteeringAngle);

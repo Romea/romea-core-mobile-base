@@ -41,10 +41,10 @@ void to_kinematic_parameters(const MobileBaseInfo2AS4WD & baseInformation,
   kinematicParameters.frontMaximalSteeringAngle = axlesSteeringCommand.maximalAngle;
   kinematicParameters.rearMaximalSteeringAngle = axlesSteeringCommand.maximalAngle;
   kinematicParameters.maximalSteeringAngularSpeed = axlesSteeringCommand.maximalAngularSpeed;
-  kinematicParameters.frontMaximalWheelSpeed = wheelsSpeedCommand.maximalSpeed;
-  kinematicParameters.rearMaximalWheelSpeed = wheelsSpeedCommand.maximalSpeed;
-  kinematicParameters.maximalWheelAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
+  kinematicParameters.frontMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
+  kinematicParameters.rearMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
+  kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
   kinematicParameters.steeringAngleVariance = std::pow(axlesSteeringSensor.angleStd,2.0);
 }
 

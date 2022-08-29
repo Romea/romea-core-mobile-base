@@ -2,25 +2,31 @@
 #define romea_OdometryFrame4WD_hpp
 
 //stl
-#include <memory>
 #include <ostream>
 
 namespace romea {
 
 struct OdometryFrame4WD
 {
-
-  using Ptr =std::shared_ptr<OdometryFrame4WD> ;
-  using ConstPtr =std::shared_ptr<OdometryFrame4WD> ;
-
-  double frontLeftWheelSpeed;
-  double frontRightWheelSpeed;
-  double rearLeftWheelSpeed;
-  double rearRightWheelSpeed;
+  double frontLeftWheelLinearSpeed;
+  double frontRightWheelLinearSpeed;
+  double rearLeftWheelLinearSpeed;
+  double rearRightWheelLinearSpeed;
 
 };
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame4WD &frame);
+
+//struct OdometryFrame4WDa
+//{
+//  double frontLeftWheelAngularSpeed;
+//  double frontRightWheelAngularSpeed;
+//  double rearLeftWheelAngularSpeed;
+//  double rearRightWheelAngularSpeed;
+
+//};
+
+//std::ostream & operator<<(std::ostream &s, const OdometryFrame4WDa &frame);
 
 
 }//end romea

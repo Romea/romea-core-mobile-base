@@ -6,10 +6,10 @@ namespace romea {
 //--------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & s, const OdometryFrame2FWS2FWD &frame)
 {
-  s<< "frontLeftWheelSpeed : "<<frame.frontLeftWheelSpeed<<std::endl;
-  s<< "frontLeftWheelAngle : "<< frame.frontLeftWheelAngle<<std::endl;
-  s<< "frontRightWheelSpeed : "<< frame.frontRightWheelSpeed<<std::endl;
-  s<< "frontRightWheelAngle : "<<frame.frontRightWheelAngle<<std::endl;
+  s<< "frontLeftWheelLinearSpeed : "<<frame.frontLeftWheelLinearSpeed<<std::endl;
+  s<< "frontLeftWheelSteeringAngle : "<< frame.frontLeftWheelSteeringAngle<<std::endl;
+  s<< "frontRightWheelLinearSpeed : "<< frame.frontRightWheelLinearSpeed<<std::endl;
+  s<< "frontRightWheelSteeringAngle : "<<frame.frontRightWheelSteeringAngle<<std::endl;
   return s;
 }
 

@@ -3,11 +3,16 @@
 
 //romea
 #include "SkidSteeringKinematic.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame2TD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame2WD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame4WD.hpp"
 
 namespace romea
 {
+
+void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
+                      const SkidSteeringCommand &commandFrame,
+                      OdometryFrame2TD & odometryCommandFrame);
 
 
 void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,

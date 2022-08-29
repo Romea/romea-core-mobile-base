@@ -10,15 +10,15 @@ void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
 
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
   const double &steeringAngleVariance = parameters.steeringAngleVariance;
 
   const double halfWheelTrack = parameters.frontWheelTrack/2;
   const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
   const double hubCarrierOffset = parameters.rearHubCarrierOffset;
 
-  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
-  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
+  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
+  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
   const double & frontSteeringAngle = odometryFrame.frontAxleSteeringAngle;
 
   double tanFrontSteeringAngle = std::tan(frontSteeringAngle);
@@ -55,16 +55,16 @@ void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
 
 //-----------------------------------------------------------------------------
 void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
-                      const OdometryFrame1FAS2RWD & odometryFrame,
+                      const OdometryFrame1FAS2RWD &odometryFrame,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
   
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
   const double &steeringAngleVariance = parameters.steeringAngleVariance;
 
   const double & steeringAngle = odometryFrame.frontAxleSteeringAngle;
-  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
-  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
+  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
+  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
   
   oneAxleSteeringMeasure.steeringAngle= steeringAngle;
   oneAxleSteeringMeasure.longitudinalSpeed = 0.5*(rearLeftWheelSpeed+rearRightWheelSpeed);

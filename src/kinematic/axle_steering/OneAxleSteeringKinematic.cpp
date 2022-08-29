@@ -18,12 +18,12 @@ OneAxleSteeringKinematic::Parameters::Parameters():
   rearWheelTrack(0),
   frontHubCarrierOffset(0),
   rearHubCarrierOffset(0),
-  frontMaximalWheelSpeed(std::numeric_limits<double>::max()),
-  rearMaximalWheelSpeed(std::numeric_limits<double>::max()),
-  maximalWheelAcceleration(std::numeric_limits<double>::max()),
+  frontMaximalWheelLinearSpeed(std::numeric_limits<double>::max()),
+  rearMaximalWheelLinearSpeed(std::numeric_limits<double>::max()),
+  maximalWheelLinearAcceleration(std::numeric_limits<double>::max()),
   maximalSteeringAngle(M_PI_2),
   maximalSteeringAngularSpeed(std::numeric_limits<double>::max()),
-  wheelSpeedVariance(0),
+  wheelLinearSpeedVariance(0),
   steeringAngleVariance(0)
 
 {
@@ -62,32 +62,32 @@ double OneAxleSteeringKinematic::computeSteeringAngle(const double & instantaneo
 
 
 //--------------------------------------------------------------------------
-double OneAxleSteeringKinematic::computeWheelSpeedRatio(const double & tanSteeringAngle,
-                                                        const double & instaneousCurvature,
-                                                        const double & hubCarrierOffset,
-                                                        const double & halfTrack)
+double OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(const double & tanSteeringAngle,
+                                                              const double & instaneousCurvature,
+                                                              const double & hubCarrierOffset,
+                                                              const double & halfTrack)
 {
   return std::sqrt(std::pow(1+instaneousCurvature*halfTrack,2.)+tanSteeringAngle*tanSteeringAngle)+instaneousCurvature*hubCarrierOffset;
 }
 
 //--------------------------------------------------------------------------
-double OneAxleSteeringKinematic::computeLeftWheelSpeed(const double & linearSpeed,
-                                                       const double & tanSteeringAngle,
-                                                       const double & instaneousCurvature,
-                                                       const double & hubCarrierOffset,
-                                                       const double & halfTrack)
+double OneAxleSteeringKinematic::computeLeftWheelLinearSpeed(const double & linearSpeed,
+                                                             const double & tanSteeringAngle,
+                                                             const double & instaneousCurvature,
+                                                             const double & hubCarrierOffset,
+                                                             const double & halfTrack)
 {
-  return linearSpeed*computeWheelSpeedRatio(-tanSteeringAngle,-instaneousCurvature,hubCarrierOffset,halfTrack);
+  return linearSpeed*computeWheelLinearSpeedRatio(-tanSteeringAngle,-instaneousCurvature,hubCarrierOffset,halfTrack);
 }
 
 //--------------------------------------------------------------------------
-double OneAxleSteeringKinematic::computeRightWheelSpeed(const double & linearSpeed,
-                                                        const double & tanSteeringAngle,
-                                                        const double & instaneousCurvature,
-                                                        const double & hubCarrierOffset,
-                                                        const double & halfTrack)
+double OneAxleSteeringKinematic::computeRightWheelLinearSpeed(const double & linearSpeed,
+                                                              const double & tanSteeringAngle,
+                                                              const double & instaneousCurvature,
+                                                              const double & hubCarrierOffset,
+                                                              const double & halfTrack)
 {
-  return linearSpeed*computeWheelSpeedRatio(tanSteeringAngle,instaneousCurvature,hubCarrierOffset,halfTrack);
+  return linearSpeed*computeWheelLinearSpeedRatio(tanSteeringAngle,instaneousCurvature,hubCarrierOffset,halfTrack);
 }
 
 //--------------------------------------------------------------------------
@@ -98,15 +98,15 @@ double OneAxleSteeringKinematic::computeLinearSpeed(const double & leftWheelSpee
                                                     const double & hubCarrierOffset,
                                                     const double & halfTrack)
 {
-  double leftWheelSpeedRatio= computeWheelSpeedRatio(-tanSteeringAngle,
-                                                     -instantaneousCurvature,
-                                                     hubCarrierOffset,
-                                                     halfTrack);
+  double leftWheelSpeedRatio= computeWheelLinearSpeedRatio(-tanSteeringAngle,
+                                                           -instantaneousCurvature,
+                                                           hubCarrierOffset,
+                                                           halfTrack);
 
-  double rightWheelSpeedRatio= computeWheelSpeedRatio(tanSteeringAngle,
-                                                      instantaneousCurvature,
-                                                      hubCarrierOffset,
-                                                      halfTrack);
+  double rightWheelSpeedRatio= computeWheelLinearSpeedRatio(tanSteeringAngle,
+                                                            instantaneousCurvature,
+                                                            hubCarrierOffset,
+                                                            halfTrack);
 
 
   return (leftWheelSpeed/leftWheelSpeedRatio+
@@ -145,7 +145,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(const double & wheelbase,
   double rearRatio = (1+std::abs(tanSteeringAngle)*(rearHalfTrack+2*rearHubCarrierOffset)/wheelbase);
   maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,rearMaximalWheelSpeed/rearRatio);
 
-  double frontRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(std::abs(tanSteeringAngle),std::abs(instantaneousCurvature),frontHubCarrierOffset,frontHalfTrack);
+  double frontRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(std::abs(tanSteeringAngle),std::abs(instantaneousCurvature),frontHubCarrierOffset,frontHalfTrack);
   maximalAbsoluteLinearSpeed = std::min(maximalAbsoluteLinearSpeed,frontMaximalWheelSpeed/frontRatio);
 
   double minimalLinearSpeed = std::max(-maximalAbsoluteLinearSpeed,
@@ -192,7 +192,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(const double & wheelbase,
   double rearRatio = (1+std::abs(tanSteeringAngle)*(rearHalfTrack+2*rearHubCarrierOffset)/wheelbase);
   maximalAbsoluteLinearAcceleration = std::min(maximalAbsoluteLinearAcceleration,maximalWheelAcceleration/rearRatio);
 
-  double frontRatio = OneAxleSteeringKinematic::computeWheelSpeedRatio(std::abs(tanSteeringAngle),std::abs(instantaneousCurvature),frontHubCarrierOffset,frontHalfTrack);
+  double frontRatio = OneAxleSteeringKinematic::computeWheelLinearSpeedRatio(std::abs(tanSteeringAngle),std::abs(instantaneousCurvature),frontHubCarrierOffset,frontHalfTrack);
   maximalAbsoluteLinearAcceleration = std::min(maximalAbsoluteLinearAcceleration,maximalWheelAcceleration/frontRatio);
 
   double linearAcceleration = currentCommand.longitudinalSpeed-previousCommand.longitudinalSpeed;
@@ -220,8 +220,8 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                                          parameters.frontHubCarrierOffset,
                                          parameters.rearHubCarrierOffset,
                                          parameters.maximalSteeringAngle,
-                                         parameters.frontMaximalWheelSpeed,
-                                         parameters.rearMaximalWheelSpeed,
+                                         parameters.frontMaximalWheelLinearSpeed,
+                                         parameters.rearMaximalWheelLinearSpeed,
                                          userLimits,
                                          command);
 }
@@ -238,7 +238,7 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                                          parameters.frontHubCarrierOffset,
                                          parameters.rearHubCarrierOffset,
                                          parameters.maximalSteeringAngularSpeed,
-                                         parameters.maximalWheelAcceleration,
+                                         parameters.maximalWheelLinearAcceleration,
                                          previousCommand,
                                          currentCommand,
                                          dt);

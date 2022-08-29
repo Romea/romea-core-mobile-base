@@ -22,12 +22,12 @@ struct OneAxleSteeringKinematic
     double rearWheelTrack;
     double frontHubCarrierOffset;
     double rearHubCarrierOffset;
-    double frontMaximalWheelSpeed;
-    double rearMaximalWheelSpeed;
-    double maximalWheelAcceleration;
+    double frontMaximalWheelLinearSpeed;
+    double rearMaximalWheelLinearSpeed;
+    double maximalWheelLinearAcceleration;
     double maximalSteeringAngle;
     double maximalSteeringAngularSpeed;
-    double wheelSpeedVariance;
+    double wheelLinearSpeedVariance;
     double steeringAngleVariance;
   };
 
@@ -48,22 +48,22 @@ struct OneAxleSteeringKinematic
                                     const double & instantaneousCurvature);
 
 
-  static double computeWheelSpeedRatio(const double & tanSteeringAngle,
-                                       const double & instaneousCurvature,
-                                       const double & hubCarrierOffset,
-                                       const double & halfTrack);
+  static double computeWheelLinearSpeedRatio(const double & tanSteeringAngle,
+                                             const double & instaneousCurvature,
+                                             const double & hubCarrierOffset,
+                                             const double & halfTrack);
 
-  static double computeLeftWheelSpeed(const double & linearSpeed,
-                                      const double & tanSteeringAngle,
-                                      const double & instaneousCurvature,
-                                      const double & hubCarrierOffset,
-                                      const double & halfTrack);
+  static double computeLeftWheelLinearSpeed(const double & linearSpeed,
+                                            const double & tanSteeringAngle,
+                                            const double & instaneousCurvature,
+                                            const double & hubCarrierOffset,
+                                            const double & halfTrack);
 
-  static double computeRightWheelSpeed(const double & linearSpeed,
-                                       const double & tanSteeringAngle,
-                                       const double & instaneousCurvature,
-                                       const double & hubCarrierOffset,
-                                       const double & halfTrack);
+  static double computeRightWheelLinearSpeed(const double & linearSpeed,
+                                             const double & tanSteeringAngle,
+                                             const double & instaneousCurvature,
+                                             const double & hubCarrierOffset,
+                                             const double & halfTrack);
 
   static double computeLinearSpeed(const double & leftWheelSpeed,
                                    const double & rightWheelSpeed,

@@ -45,14 +45,14 @@ inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Pa
         romea::OdometryFrame4WS4WD odometryFrame;
         romea::forwardKinematic(parameters,clampedCommandFrame,odometryFrame);
 
-        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelSpeed),parameters.maximalWheelSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSpeed),parameters.maximalWheelSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelSpeed),parameters.maximalWheelSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSpeed),parameters.maximalWheelSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelAngle),parameters.maximalWheelAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelAngle),parameters.maximalWheelAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelAngle),parameters.maximalWheelAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelAngle),parameters.maximalWheelAngle+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelLinearSpeed),parameters.maximalWheelLinearSpeed+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),parameters.maximalWheelLinearSpeed+0.01);
+        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelLinearSpeed),parameters.maximalWheelLinearSpeed+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),parameters.maximalWheelLinearSpeed+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelSteeringAngle),parameters.maximalWheelSteeringAngle+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSteeringAngle),parameters.maximalWheelSteeringAngle+0.01);
+        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelSteeringAngle),parameters.maximalWheelSteeringAngle+0.01);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSteeringAngle),parameters.maximalWheelSteeringAngle+0.01);
 
 
         romea::TwoAxleSteeringMeasure kinematicMeasure;
@@ -125,16 +125,16 @@ inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &
     double y = 0.25*(yfl+yfr+yrl+yrr);
 
     //Wheel orientatons
-    double thetafl = theta + odometryFrame.frontLeftWheelAngle;
-    double thetafr = theta + odometryFrame.frontRightWheelAngle;
-    double thetarl = theta + odometryFrame.rearLeftWheelAngle;
-    double thetarr = theta + odometryFrame.rearRightWheelAngle;
+    double thetafl = theta + odometryFrame.frontLeftWheelSteeringAngle;
+    double thetafr = theta + odometryFrame.frontRightWheelSteeringAngle;
+    double thetarl = theta + odometryFrame.rearLeftWheelSteeringAngle;
+    double thetarr = theta + odometryFrame.rearRightWheelSteeringAngle;
 
     //Wheel speeds
-    double vfl =odometryFrame.frontLeftWheelSpeed;
-    double vfr =odometryFrame.frontRightWheelSpeed;
-    double vrl =odometryFrame.rearLeftWheelSpeed;
-    double vrr =odometryFrame.rearRightWheelSpeed;
+    double vfl =odometryFrame.frontLeftWheelLinearSpeed;
+    double vfr =odometryFrame.frontRightWheelLinearSpeed;
+    double vrl =odometryFrame.rearLeftWheelLinearSpeed;
+    double vrr =odometryFrame.rearRightWheelLinearSpeed;
 
     //New wheel positions
     xfl += std::cos(thetafl)*vfl*dt;
@@ -178,8 +178,8 @@ TEST(testInverseForward4WS4WD,SameWheelbase)
   parameters.frontWheelBase = 0.7;
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
 
@@ -197,8 +197,8 @@ TEST(testInverseForward4WS4WD,DiffWheelbase)
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
 
@@ -216,8 +216,8 @@ TEST(testInverseForward4WS4WD,HubOffset)
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
   parameters.hubCarrierOffset=0.1;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
   testInverseForward4WS4WD(parameters,
                            userLimits);

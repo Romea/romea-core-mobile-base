@@ -2,24 +2,25 @@
 #define romea_OdometryFrame2WD_hpp
 
 //stl
-#include <memory>
 #include <ostream>
 
 namespace romea {
 
 struct OdometryFrame2WD
 {
-
-public:
-
-  using Ptr = std::shared_ptr<OdometryFrame2WD> ;
-  using ConstPtr =std::shared_ptr<OdometryFrame2WD> ;
-
-  double leftWheelSpeed;
-  double rightWheelSpeed;
+  double leftWheelLinearSpeed;
+  double rightWheelLinearSpeed;
 };
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame2WD &frame);
+
+//struct OdometryFrame2WDa
+//{
+//  double leftWheelAngularSpeed;
+//  double rightWheelAngularSpeed;
+//};
+
+//std::ostream & operator<<(std::ostream &s, const OdometryFrame2WDa &frame);
 
 
 }//end romea

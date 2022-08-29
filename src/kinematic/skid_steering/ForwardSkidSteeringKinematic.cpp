@@ -3,9 +3,25 @@
 
 //std
 #include <cmath>
+#include <iostream>
 
 namespace romea {
 
+
+//--------------------------------------------------------------------------
+void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
+                      const SkidSteeringCommand &commandFrame,
+                      OdometryFrame2TD & odometryCommandFrame)
+{
+  OdometryFrame2WD odometryCommandFrame2WD;
+  forwardKinematic(parameters,commandFrame,odometryCommandFrame2WD);
+
+  odometryCommandFrame.leftTrackLinearSpeed=
+  odometryCommandFrame2WD.leftWheelLinearSpeed;
+  odometryCommandFrame.rightTrackLinearSpeed=
+  odometryCommandFrame2WD.rightWheelLinearSpeed;
+
+}
 
 //--------------------------------------------------------------------------
 void forwardKinematic(const SkidSteeringKinematic::Parameters &parameters,
@@ -17,27 +33,34 @@ void forwardKinematic(const SkidSteeringKinematic::Parameters &parameters,
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
 
-  odometryCommandFrame.leftWheelSpeed = SkidSteeringKinematic::computeLeftWheelSpeed(linearSpeed,angularSpeed,track);
-  odometryCommandFrame.rightWheelSpeed = SkidSteeringKinematic::computeRightWheelSpeed(linearSpeed,angularSpeed,track);
+  std::cout << parameters.wheelTrack << std::endl;
+  std::cout << commandFrame << std::endl;
+
+  odometryCommandFrame.leftWheelLinearSpeed = SkidSteeringKinematic::
+      computeLeftWheelLinearSpeed(linearSpeed,angularSpeed,track);
+  odometryCommandFrame.rightWheelLinearSpeed = SkidSteeringKinematic::
+      computeRightWheelLinearSpeed(linearSpeed,angularSpeed,track);
 
 }
 
 //--------------------------------------------------------------------------
 void forwardKinematic(const SkidSteeringKinematic::Parameters & parameters,
                       const SkidSteeringCommand & commandFrame,
-                      OdometryFrame4WD & odometryCommandFrame)
+                      OdometryFrame4WD &odometryCommandFrame)
 {
   const double track = parameters.wheelTrack;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
 
-  double leftWheelSpeed = SkidSteeringKinematic::computeLeftWheelSpeed(linearSpeed,angularSpeed,track);
-  double rightWheelSpeed = SkidSteeringKinematic::computeRightWheelSpeed(linearSpeed,angularSpeed,track);
+  double leftWheelSpeed = SkidSteeringKinematic::
+      computeLeftWheelLinearSpeed(linearSpeed,angularSpeed,track);
+  double rightWheelSpeed = SkidSteeringKinematic::
+      computeRightWheelLinearSpeed(linearSpeed,angularSpeed,track);
 
-  odometryCommandFrame.frontLeftWheelSpeed = leftWheelSpeed;
-  odometryCommandFrame.frontRightWheelSpeed = rightWheelSpeed;
-  odometryCommandFrame.rearLeftWheelSpeed = leftWheelSpeed;
-  odometryCommandFrame.rearRightWheelSpeed = rightWheelSpeed;
+  odometryCommandFrame.frontLeftWheelLinearSpeed = leftWheelSpeed;
+  odometryCommandFrame.frontRightWheelLinearSpeed = rightWheelSpeed;
+  odometryCommandFrame.rearLeftWheelLinearSpeed = leftWheelSpeed;
+  odometryCommandFrame.rearRightWheelLinearSpeed = rightWheelSpeed;
 }
 
 ////--------------------------------------------------------------------------

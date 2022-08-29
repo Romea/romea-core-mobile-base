@@ -36,10 +36,10 @@ inline void testInverseForward2FWS2RWD(const romea::TwoWheelSteeringKinematic::P
       romea::forwardKinematic(parameters,clampedCommandFrame,odometryFrame);
 
 
-      ASSERT_LE(std::abs(odometryFrame.rearLeftWheelSpeed),parameters.rearMaximalWheelSpeed);
-      ASSERT_LE(std::abs(odometryFrame.rearRightWheelSpeed),parameters.rearMaximalWheelSpeed);
-      ASSERT_LE(std::abs(odometryFrame.frontLeftWheelAngle),parameters.maximalWheelAngle);
-      ASSERT_LE(std::abs(odometryFrame.frontRightWheelAngle),parameters.maximalWheelAngle);
+      ASSERT_LE(std::abs(odometryFrame.rearLeftWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed);
+      ASSERT_LE(std::abs(odometryFrame.rearRightWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed);
+      ASSERT_LE(std::abs(odometryFrame.frontLeftWheelSteeringAngle),parameters.maximalWheelSteeringAngle);
+      ASSERT_LE(std::abs(odometryFrame.frontRightWheelSteeringAngle),parameters.maximalWheelSteeringAngle);
 
       if(userLimits.longitudinalSpeed.upper()>=std::numeric_limits<double>::max() &&
          userLimits.longitudinalSpeed.lower()<=std::numeric_limits<double>::min() &&
@@ -47,8 +47,8 @@ inline void testInverseForward2FWS2RWD(const romea::TwoWheelSteeringKinematic::P
       {
 //        std::cout << odometryFrame.rearLeftWheelSpeed <<" "<< parameters.rearMaximalWheelSpeed<< std::endl;
 //        std::cout << odometryFrame.rearRightWheelSpeed <<" "<< parameters.rearMaximalWheelSpeed<< std::endl;
-        ASSERT_EQ(romea::near(std::abs(odometryFrame.rearLeftWheelSpeed),parameters.rearMaximalWheelSpeed,0.001)||
-                  romea::near(std::abs(odometryFrame.rearRightWheelSpeed),parameters.rearMaximalWheelSpeed,0.001),true);
+        ASSERT_EQ(romea::near(std::abs(odometryFrame.rearLeftWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed,0.001)||
+                  romea::near(std::abs(odometryFrame.rearRightWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed,0.001),true);
       }
 
 
@@ -103,11 +103,11 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
   romea::OdometryFrame2FWS2RWD odometryFrame;
   romea::forwardKinematic(parameters,command,odometryFrame);
 
-  deltafl = odometryFrame.frontLeftWheelAngle;
-  deltafr = odometryFrame.frontRightWheelAngle;
+  deltafl = odometryFrame.frontLeftWheelSteeringAngle;
+  deltafr = odometryFrame.frontRightWheelSteeringAngle;
 
-  vrl =odometryFrame.rearLeftWheelSpeed;
-  vrr =odometryFrame.rearRightWheelSpeed;
+  vrl =odometryFrame.rearLeftWheelLinearSpeed;
+  vrr =odometryFrame.rearRightWheelLinearSpeed;
 
   double klf = std::tan(deltafl)/wheelBase;
   double alpha1 = (1 - klf*(rearWheelTrack-frontWheelTrack)/2.);
@@ -115,8 +115,8 @@ inline void testCircularMovement(romea::TwoWheelSteeringKinematic::Parameters & 
   double krf = std::tan(deltafr)/wheelBase;
   double alpha2 = (1 + krf*(rearWheelTrack-frontWheelTrack)/2.);
 
-  vfl =vrl/(cos(odometryFrame.frontLeftWheelAngle)*alpha1);
-  vfr =vrr/(cos(odometryFrame.frontRightWheelAngle)*alpha2);
+  vfl =vrl/(cos(odometryFrame.frontLeftWheelSteeringAngle)*alpha1);
+  vfr =vrr/(cos(odometryFrame.frontRightWheelSteeringAngle)*alpha2);
 
   double xfl =  wheelBase;
   double yfl =  frontWheelTrack/2.;
@@ -179,8 +179,8 @@ TEST(testInverseForward2FWS2RWD, SameTrack)
   parameters.rearWheelBase= 0.7;
   parameters.frontWheelTrack=1.2;
   parameters.rearWheelTrack=1.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
   testInverseForward2FWS2RWD(parameters,
@@ -196,8 +196,8 @@ TEST(testInverseForward2FWS2RWD,DiffTrack)
   parameters.rearWheelBase= 0.7;
   parameters.frontWheelTrack=1.6;
   parameters.rearWheelTrack=1.4;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
 
@@ -219,8 +219,8 @@ TEST(testInverseForward2FWS2RWD,HubOffset)
   parameters.rearWheelTrack=1.6;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
   testInverseForward2FWS2RWD(parameters,
                              userLimits);
@@ -238,10 +238,10 @@ TEST(testInverseForward2FWS2RWD, DISABLED_MecanicalLimits)
   parameters.rearWheelTrack=1.6;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.rearMaximalWheelSpeed=1;
-  parameters.maximalWheelAngle=0.3;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.rearMaximalWheelLinearSpeed=1;
+  parameters.maximalWheelSteeringAngle=0.3;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
   testInverseForward2FWS2RWD(parameters,
@@ -259,10 +259,10 @@ TEST(testInverseForward2FWS2RWD, UserLimits)
   parameters.rearWheelTrack=1.6;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.rearMaximalWheelSpeed=1;
-  parameters.maximalWheelAngle=0.3;
-  parameters.wheelSpeedVariance=0.1*0.1;
-  parameters.wheelAngleVariance=0.02*0.02;
+  parameters.rearMaximalWheelLinearSpeed=1;
+  parameters.maximalWheelSteeringAngle=0.3;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
+  parameters.wheelSteeringAngleVariance=0.02*0.02;
 
 
   testInverseForward2FWS2RWD(parameters,

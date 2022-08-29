@@ -12,22 +12,22 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
 
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
-  const double &wheelAngleVariance = parameters.wheelAngleVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double &wheelAngleVariance = parameters.wheelSteeringAngleVariance;
 
   const double halfTrack = parameters.frontWheelTrack/2;
   const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
   const double hubCarrierOffset = parameters.frontHubCarrierOffset;
 
-  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
-  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
+  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelSteeringAngle;
+  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
   double sinLeft = std::sin(frontLeftWheelAngle);
   double cosLeft = std::cos(frontLeftWheelAngle);
   double alphaLeft = cosLeft + sinLeft*halfTrack/wheelBase;
   double betaLeft = 1- hubCarrierOffset*sinLeft/wheelBase;
 
-  const double & frontRightWheelAngle = odometryFrame.frontRightWheelAngle;
-  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
+  const double & frontRightWheelAngle = odometryFrame.frontRightWheelSteeringAngle;
+  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
   double sinRight = std::sin(frontRightWheelAngle);
   double cosRight = std::cos(frontRightWheelAngle);
   double alphaRight = cosRight - sinRight*halfTrack/wheelBase;
@@ -61,24 +61,24 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters &parameters,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
 
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
-  const double &wheelAngleVariance = parameters.wheelAngleVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double &wheelAngleVariance = parameters.wheelSteeringAngleVariance;
 
   const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
   const double frontHalfTrack = parameters.frontWheelTrack/2;
   const double rearHalfTrack = parameters.rearWheelTrack/2 + parameters.rearHubCarrierOffset;
 
 
-  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
-  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
+  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelSteeringAngle;
+  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
   double sinLeft = std::sin(frontLeftWheelAngle);
   double cosLeft = std::cos(frontLeftWheelAngle);
   double alphaLeft = cosLeft + sinLeft*frontHalfTrack/wheelBase;
   double betaLeft = cosLeft + sinLeft*(frontHalfTrack-rearHalfTrack)/wheelBase;
   double deltaLeft = 1 + rearHalfTrack *sinLeft/betaLeft;
 
-  const double & frontRightWheelAngle = odometryFrame.frontRightWheelAngle;
-  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
+  const double & frontRightWheelAngle = odometryFrame.frontRightWheelSteeringAngle;
+  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
   double sinRight = std::sin(frontRightWheelAngle);
   double cosRight = std::cos(frontRightWheelAngle);
   double alphaRight = cosRight - sinRight*frontHalfTrack/wheelBase;
@@ -111,8 +111,8 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       const OdometryFrame2FWS4WD & odometryFrame,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
-    const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
-    const double &wheelAngleVariance = parameters.wheelAngleVariance;
+    const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+    const double &wheelAngleVariance = parameters.wheelSteeringAngleVariance;
 
     const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
     const double fronthubCarrierOffset = parameters.frontHubCarrierOffset;
@@ -120,9 +120,9 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
     const double frontHalfTrack = parameters.frontWheelTrack/2;
     const double rearHalfTrack = parameters.rearWheelTrack/2 +rearhubCarrierOffset;
 
-    const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
-    const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
-    const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
+    const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelSteeringAngle;
+    const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
+    const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
     double sinLeft = std::sin(frontLeftWheelAngle);
     double cosLeft = std::cos(frontLeftWheelAngle);
     double alphaLeft = cosLeft + sinLeft*frontHalfTrack/wheelBase;
@@ -130,9 +130,9 @@ void inverseKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
     double gammaLeft = 1 - fronthubCarrierOffset*sinLeft/wheelBase;
     double deltaLeft = 1 + rearHalfTrack *sinLeft/betaLeft;
 
-    const double & frontRightWheelAngle = odometryFrame.frontRightWheelAngle;
-    const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
-    const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
+    const double & frontRightWheelAngle = odometryFrame.frontRightWheelSteeringAngle;
+    const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
+    const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
     double sinRight = std::sin(frontRightWheelAngle);
     double cosRight = std::cos(frontRightWheelAngle);
     double alphaRight = cosRight - sinRight*frontHalfTrack/wheelBase;

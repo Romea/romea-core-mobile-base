@@ -30,9 +30,9 @@ void to_kinematic_parameters(const MobileBaseInfo2WD & baseInformation,
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
   kinematicParameters.wheelTrack = geometry.wheelsDistance;
-  kinematicParameters.maximalWheelSpeed = wheelsCommand.maximalSpeed;
-  kinematicParameters.wheelSpeedVariance = std::pow(wheelsSensor.speedStd,2);
-  kinematicParameters.maximalWheelAcceleration = wheelsCommand.maximalAcceleration;
+  kinematicParameters.maximalWheelLinearSpeed = wheelsCommand.maximalSpeed;
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd,2);
+  kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 
 }

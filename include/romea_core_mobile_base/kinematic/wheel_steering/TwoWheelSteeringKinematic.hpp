@@ -1,4 +1,4 @@
-#ifndef romea_TwoWheelSteeringKinematic_hpp
+﻿#ifndef romea_TwoWheelSteeringKinematic_hpp
 #define romea_TwoWheelSteeringKinematic_hpp
 
 //romea
@@ -21,13 +21,13 @@ public:
     double rearWheelTrack;
     double frontHubCarrierOffset;
     double rearHubCarrierOffset;
-    double frontMaximalWheelSpeed;
-    double rearMaximalWheelSpeed;
-    double maximalWheelAcceleration;
-    double maximalWheelAngle;
-    double maximalWheelAngularSpeed;
-    double wheelSpeedVariance;
-    double wheelAngleVariance;
+    double frontMaximalWheelLinearSpeed;
+    double rearMaximalWheelLinearSpeed;
+    double maximalWheelLinearAcceleration;
+    double maximalWheelSteeringAngle;
+    double maximalWheelSteeringAngularSpeed;
+    double wheelLinearSpeedVariance;
+    double wheelSteeringAngleVariance;
   };
 
 
@@ -35,29 +35,29 @@ public:
                                               const double & rightInstantneousCurvature,
                                               const double & track);
 
-  static double computeInstantaneousCurvature(const double & leftWheelAngle,
-                                              const double & rightWheelAngle,
+  static double computeInstantaneousCurvature(const double & leftWheelSteeringAngle,
+                                              const double & rightWheelSteeringAngle,
                                               const double & wheelbase,
                                               const double & track);
 
-  static double computeSteeringAngle(const double & leftWheelAngle,
-                                     const double & rightWheelAngle,
+  static double computeSteeringAngle(const double & leftWheelSteeringAngle,
+                                     const double & rightWheelSteeringAngle,
                                      const double & wheelbase,
                                      const double & track);
 
 
   static double computeMaximalInstantaneousCurvature(const double wheelbase,
                                                      const double halfTrack,
-                                                     const double & maximalWheelAngle);
+                                                     const double & maximalWheelSteeringAngle);
 
 
-  static double computeLeftWheelAngle(const double & tanSteeringAngle,
-                                      const double & instantaneousCurvature,
-                                      const double & halfTrack);
+  static double computeLeftWheelSteeringAngle(const double & tanSteeringAngle,
+                                              const double & instantaneousCurvature,
+                                              const double & halfTrack);
 
-  static double computeRightWheelAngle(const double & tanSteeringAngle,
-                                       const double & instantaneousCurvature,
-                                       const double & halfTrack);
+  static double computeRightWheelSteeringAngle(const double & tanSteeringAngle,
+                                               const double & instantaneousCurvature,
+                                               const double & halfTrack);
 
 
 };

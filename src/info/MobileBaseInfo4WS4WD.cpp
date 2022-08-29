@@ -55,12 +55,12 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
   kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
   kinematicParameters.wheelTrack=geometry.rearAxle.wheelsDistance;
   kinematicParameters.hubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
-  kinematicParameters.maximalWheelAngle = wheelsSteeringCommand.maximalAngle;
-  kinematicParameters.maximalWheelAngularSpeed = wheelsSteeringCommand.maximalAngularSpeed;
-  kinematicParameters.maximalWheelSpeed = wheelsSpeedCommand.maximalSpeed;
-  kinematicParameters.maximalWheelAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.wheelAngleVariance = std::pow(wheelsSteeringSensor.angleStd,2.0);
+  kinematicParameters.maximalWheelSteeringAngle = wheelsSteeringCommand.maximalAngle;
+  kinematicParameters.maximalWheelSteeringAngularSpeed = wheelsSteeringCommand.maximalAngularSpeed;
+  kinematicParameters.maximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
+  kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
+  kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd,2.0);
 }
 
 }

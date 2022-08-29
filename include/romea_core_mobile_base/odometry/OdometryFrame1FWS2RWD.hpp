@@ -3,19 +3,15 @@
 
 
 //stl
-#include <memory>
 #include <ostream>
 
 namespace romea {
 
 struct OdometryFrame1FWS2RWD
 {
-  using Ptr = std::shared_ptr<OdometryFrame1FWS2RWD> ;
-  using ConstPtr =std::shared_ptr<OdometryFrame1FWS2RWD> ;
-
-  double rearLeftWheelSpeed;
-  double rearRightWheelSpeed;
-  double frontWheelAngle;
+  double rearLeftWheelLinearSpeed;
+  double rearRightWheelLinearSpeed;
+  double frontWheelSteeringAngle;
 
 };
 

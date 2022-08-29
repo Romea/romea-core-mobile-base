@@ -10,12 +10,12 @@ namespace romea {
 
 //-----------------------------------------------------------------------------
 void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
-                      const OdometryFrame4WS4WD & odometryFrame,
+                      const OdometryFrame4WS4WD &odometryFrame,
                       TwoAxleSteeringMeasure & twoAxleSteeringMeasure)
 {
 
-  const double &wheelSpeedVariance = parameters.wheelSpeedVariance;
-  const double &wheelAngleVariance = parameters.wheelAngleVariance;
+  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double &wheelAngleVariance = parameters.wheelSteeringAngleVariance;
 
   const double halfWheelTrack = parameters.wheelTrack/2;
   const double hubCarrierOffset = parameters.hubCarrierOffset;
@@ -23,10 +23,10 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
   const double rearWheelBase = parameters.rearWheelBase;
   double wheelbase = frontWheelBase+ rearWheelBase;
 
-  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelAngle;
-  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelSpeed;
-  const double & rearLeftWheelAngle = odometryFrame.rearLeftWheelAngle;
-  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelSpeed;
+  const double & frontLeftWheelAngle = odometryFrame.frontLeftWheelSteeringAngle;
+  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
+  const double & rearLeftWheelAngle = odometryFrame.rearLeftWheelSteeringAngle;
+  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
   double frontTanLeft = std::tan(frontLeftWheelAngle);
   double frontCosLeft = std::cos(frontLeftWheelAngle);
   double frontSinLeft = std::cos(frontLeftWheelAngle);
@@ -40,10 +40,10 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
   double rearBetaLeft = 1-hubCarrierOffset*KLeft*rearCosLeft;
 
 
-  const double & frontRightWheelAngle = odometryFrame.frontRightWheelAngle;
-  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelSpeed;
-  const double & rearRightWheelAngle = odometryFrame.rearRightWheelAngle;
-  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelSpeed;
+  const double & frontRightWheelAngle = odometryFrame.frontRightWheelSteeringAngle;
+  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
+  const double & rearRightWheelAngle = odometryFrame.rearRightWheelSteeringAngle;
+  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
 
 
   double frontTanRight = std::tan(frontRightWheelAngle);

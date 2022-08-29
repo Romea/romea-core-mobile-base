@@ -42,18 +42,18 @@ inline void testInverseForward2AS24WD(const romea::TwoAxleSteeringKinematic::Par
         romea::OdometryFrame2AS4WD odometryFrame;
         romea::forwardKinematic(parameters,clampedCommandFrame,odometryFrame);
 
-        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelSpeed),parameters.frontMaximalWheelSpeed);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSpeed),parameters.frontMaximalWheelSpeed);
-        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelSpeed),parameters.rearMaximalWheelSpeed);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSpeed),parameters.rearMaximalWheelSpeed);
+        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelLinearSpeed),parameters.frontMaximalWheelLinearSpeed);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),parameters.frontMaximalWheelLinearSpeed);
+        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed);
+        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed);
 
 
         if(std::abs(clampedCommandFrame.frontSteeringAngle-clampedCommandFrame.rearSteeringAngle)<std::numeric_limits<double>::epsilon())
         {
-          ASSERT_NEAR(odometryFrame.frontLeftWheelSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.frontSteeringAngle),0.001);
-          ASSERT_NEAR(odometryFrame.frontRightWheelSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.frontSteeringAngle),0.001);
-          ASSERT_NEAR(odometryFrame.rearLeftWheelSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.rearSteeringAngle),0.001);
-          ASSERT_NEAR(odometryFrame.frontRightWheelSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.rearSteeringAngle),0.001);
+          ASSERT_NEAR(odometryFrame.frontLeftWheelLinearSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.frontSteeringAngle),0.001);
+          ASSERT_NEAR(odometryFrame.frontRightWheelLinearSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.frontSteeringAngle),0.001);
+          ASSERT_NEAR(odometryFrame.rearLeftWheelLinearSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.rearSteeringAngle),0.001);
+          ASSERT_NEAR(odometryFrame.frontRightWheelLinearSpeed,clampedCommandFrame.longitudinalSpeed/std::cos(clampedCommandFrame.rearSteeringAngle),0.001);
         }
 
         if(userLimits.longitudinalSpeed.upper()>=std::numeric_limits<double>::max() &&
@@ -61,10 +61,10 @@ inline void testInverseForward2AS24WD(const romea::TwoAxleSteeringKinematic::Par
            std::abs(commandFrame.longitudinalSpeed-clampedCommandFrame.longitudinalSpeed)>std::numeric_limits<double>::epsilon())
         {
 
-          ASSERT_EQ(romea::near(std::abs(odometryFrame.frontLeftWheelSpeed),parameters.frontMaximalWheelSpeed,0.001)||
-                    romea::near(std::abs(odometryFrame.frontRightWheelSpeed),parameters.frontMaximalWheelSpeed,0.001)||
-                    romea::near(std::abs(odometryFrame.rearLeftWheelSpeed),parameters.rearMaximalWheelSpeed,0.001)||
-                    romea::near(std::abs(odometryFrame.rearRightWheelSpeed),parameters.rearMaximalWheelSpeed,0.001),true);
+          ASSERT_EQ(romea::near(std::abs(odometryFrame.frontLeftWheelLinearSpeed),parameters.frontMaximalWheelLinearSpeed,0.001)||
+                    romea::near(std::abs(odometryFrame.frontRightWheelLinearSpeed),parameters.frontMaximalWheelLinearSpeed,0.001)||
+                    romea::near(std::abs(odometryFrame.rearLeftWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed,0.001)||
+                    romea::near(std::abs(odometryFrame.rearRightWheelLinearSpeed),parameters.rearMaximalWheelLinearSpeed,0.001),true);
         }
 
         ASSERT_LE(std::abs(odometryFrame.frontAxleSteeringAngle),parameters.frontMaximalSteeringAngle);
@@ -93,7 +93,7 @@ TEST(testInverseForward2AS4WD,SameTrackSameWheelbase)
   parameters.rearWheelBase = 0.7;
   parameters.frontWheelTrack = 1.2;
   parameters.rearWheelTrack = 1.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
 
@@ -111,7 +111,7 @@ TEST(testInverseForward2AS4WD,DiffTrackSameWheelbase)
   parameters.rearWheelBase = 0.7;
   parameters.frontWheelTrack = 1.2;
   parameters.rearWheelTrack = 1.4;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
 
@@ -130,7 +130,7 @@ TEST(testInverseForward2AS4WD,DiffTrackDiffWheelbase)
   parameters.rearWheelBase = 0.7;
   parameters.frontWheelTrack = 1.2;
   parameters.rearWheelTrack = 1.4;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
 
@@ -152,7 +152,7 @@ TEST(testInverseForward2AS24WD,HubOffset)
   parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
 
@@ -173,11 +173,11 @@ TEST(testInverseForward2AS24WD, MecanicalLimits)
   parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.frontMaximalWheelSpeed=1;
-  parameters.rearMaximalWheelSpeed=1;
+  parameters.frontMaximalWheelLinearSpeed=1;
+  parameters.rearMaximalWheelLinearSpeed=1;
   parameters.frontMaximalSteeringAngle=0.3;
   parameters.rearMaximalSteeringAngle=0.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
 
@@ -198,11 +198,11 @@ TEST(testInverseForward2AS24WD, UserLimits)
   parameters.rearWheelTrack = 1.4;
   parameters.frontHubCarrierOffset=0.1;
   parameters.rearHubCarrierOffset=0.1;
-  parameters.frontMaximalWheelSpeed=1;
-  parameters.rearMaximalWheelSpeed=1;
+  parameters.frontMaximalWheelLinearSpeed=1;
+  parameters.rearMaximalWheelLinearSpeed=1;
   parameters.frontMaximalSteeringAngle=0.3;
   parameters.rearMaximalSteeringAngle=0.2;
-  parameters.wheelSpeedVariance=0.1*0.1;
+  parameters.wheelLinearSpeedVariance=0.1*0.1;
   parameters.steeringAngleVariance =0.02*0.02;
 
   testInverseForward2AS24WD(parameters,

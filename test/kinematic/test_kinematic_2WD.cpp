@@ -34,16 +34,16 @@ inline void testInverseForward2WD(const romea::SkidSteeringKinematic::Parameters
       romea::OdometryFrame2WD odometryFrame;
       romea::forwardKinematic(parameters,clampedCommandFrame,odometryFrame);
 
-      ASSERT_LE(std::abs(odometryFrame.leftWheelSpeed),parameters.maximalWheelSpeed);
-      ASSERT_LE(std::abs(odometryFrame.rightWheelSpeed),parameters.maximalWheelSpeed);
+      ASSERT_LE(std::abs(odometryFrame.leftWheelLinearSpeed),parameters.maximalWheelLinearSpeed);
+      ASSERT_LE(std::abs(odometryFrame.rightWheelLinearSpeed),parameters.maximalWheelLinearSpeed);
 
       if(userLimits.longitudinalSpeed.upper()>=std::numeric_limits<double>::max() &&
          userLimits.longitudinalSpeed.lower()<=std::numeric_limits<double>::min() &&
          std::abs(commandFrame.longitudinalSpeed-clampedCommandFrame.longitudinalSpeed)>std::numeric_limits<double>::epsilon())
       {
 
-        ASSERT_EQ(romea::near(std::abs(odometryFrame.leftWheelSpeed),parameters.maximalWheelSpeed,0.001)||
-                  romea::near(std::abs(odometryFrame.rightWheelSpeed),parameters.maximalWheelSpeed,0.001),true);
+        ASSERT_EQ(romea::near(std::abs(odometryFrame.leftWheelLinearSpeed),parameters.maximalWheelLinearSpeed,0.001)||
+                  romea::near(std::abs(odometryFrame.rightWheelLinearSpeed),parameters.maximalWheelLinearSpeed,0.001),true);
       }
 
 
@@ -99,8 +99,8 @@ inline void testCinematicClamp(const romea::SkidSteeringKinematic::Parameters  &
           romea::OdometryFrame2WD secondOdometryFrame;
           romea::forwardKinematic(parameters,secondClampedCommandFrame,secondOdometryFrame);
 
-          ASSERT_LE(std::abs((secondOdometryFrame.leftWheelSpeed-firstOdometryFrame.leftWheelSpeed)),parameters.maximalWheelAcceleration*dt+0.000001);
-          ASSERT_LE(std::abs((secondOdometryFrame.rightWheelSpeed-firstOdometryFrame.rightWheelSpeed)),parameters.maximalWheelAcceleration*dt+0.000001);
+          ASSERT_LE(std::abs((secondOdometryFrame.leftWheelLinearSpeed-firstOdometryFrame.leftWheelLinearSpeed)),parameters.maximalWheelLinearAcceleration*dt+0.000001);
+          ASSERT_LE(std::abs((secondOdometryFrame.rightWheelLinearSpeed-firstOdometryFrame.rightWheelLinearSpeed)),parameters.maximalWheelLinearAcceleration*dt+0.000001);
 
         }
       }
@@ -113,7 +113,7 @@ TEST(testInverseForward2D, NoLimit)
 {
   romea::SkidSteeringKinematic::Parameters parameters;
   parameters.wheelTrack = 0.6;
-  parameters.wheelSpeedVariance = 0.1*0.1;
+  parameters.wheelLinearSpeedVariance = 0.1*0.1;
   testInverseForward2WD(parameters,romea::SkidSteeringCommandLimits());
 }
 
@@ -121,8 +121,8 @@ TEST(testInverseForward2D, MechanicalLimits)
 {
   romea::SkidSteeringKinematic::Parameters parameters;
   parameters.wheelTrack = 2.5;
-  parameters.maximalWheelSpeed = 1;
-  parameters.wheelSpeedVariance = 0.1*0.1;
+  parameters.maximalWheelLinearSpeed = 1;
+  parameters.wheelLinearSpeedVariance = 0.1*0.1;
   testInverseForward2WD(parameters,romea::SkidSteeringCommandLimits());
 }
 
@@ -130,8 +130,8 @@ TEST(testInverseForward2D, UserLimits)
 {
   romea::SkidSteeringKinematic::Parameters parameters;
   parameters.wheelTrack = 2.5;
-  parameters.maximalWheelSpeed=1;
-  parameters.wheelSpeedVariance = 0.1*0.1;
+  parameters.maximalWheelLinearSpeed=1;
+  parameters.wheelLinearSpeedVariance = 0.1*0.1;
   testInverseForward2WD(parameters,romea::SkidSteeringCommandLimits(-0.4,0.8,0.5));
 }
 
@@ -139,8 +139,8 @@ TEST(testCinematicClamp,MechanicalLimits)
 {
     romea::SkidSteeringKinematic::Parameters parameters;
     parameters.wheelTrack = 2.5;
-    parameters.maximalWheelSpeed = 1;
-    parameters.maximalWheelAcceleration = 1;
+    parameters.maximalWheelLinearSpeed = 1;
+    parameters.maximalWheelLinearAcceleration = 1;
     testCinematicClamp(parameters,romea::SkidSteeringCommandLimits());
 }
 
@@ -148,8 +148,8 @@ TEST(testCinematicClamp,UserLimits)
 {
     romea::SkidSteeringKinematic::Parameters parameters;
     parameters.wheelTrack = 2.5;
-    parameters.maximalWheelSpeed = 1;
-    parameters.maximalWheelAcceleration = 1;
+    parameters.maximalWheelLinearSpeed = 1;
+    parameters.maximalWheelLinearAcceleration = 1;
     testCinematicClamp(parameters,romea::SkidSteeringCommandLimits(-0.4,0.8,0.5));
 }
 

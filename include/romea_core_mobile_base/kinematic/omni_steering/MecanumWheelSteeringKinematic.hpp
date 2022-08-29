@@ -16,36 +16,36 @@ struct MecanumWheelSteeringKinematic
     Parameters();
     double wheelTrack;
     double wheelbase;
-    double maximalWheelSpeed;
-    double maximalWheelAcceleration;
-    double wheelSpeedVariance;
+    double maximalWheelLinearSpeed;
+    double maximalWheelLinearAcceleration;
+    double wheelLinearSpeedVariance;
   };
 
 
 
-  static double computeFrontLeftWheelSpeed(const double & longitidutinalSpeed,
-                                           const double & lateralSpeed,
-                                           const double & angularSpeed,
-                                           const double & halfWheelbase,
-                                           const double & halfTrack);
+  static double computeFrontLeftWheelLinearSpeed(const double & longitidutinalSpeed,
+                                                 const double & lateralSpeed,
+                                                 const double & angularSpeed,
+                                                 const double & halfWheelbase,
+                                                 const double & halfTrack);
 
-  static double computeFrontRightWheelSpeed(const double & longitidutinalSpeed,
-                                            const double & lateralSpeed,
-                                            const double & angularSpeed,
-                                            const double & halfWheelbase,
-                                            const double & halfTrack);
+  static double computeFrontRightWheelLinearSpeed(const double & longitidutinalSpeed,
+                                                  const double & lateralSpeed,
+                                                  const double & angularSpeed,
+                                                  const double & halfWheelbase,
+                                                  const double & halfTrack);
 
-  static double computeRearLeftWheelSpeed(const double & longitidutinalSpeed,
-                                          const double & lateralSpeed,
-                                          const double & angularSpeed,
-                                          const double & halfWheelbase,
-                                          const double & halfTrack);
+  static double computeRearLeftWheelLinearSpeed(const double & longitidutinalSpeed,
+                                                const double & lateralSpeed,
+                                                const double & angularSpeed,
+                                                const double & halfWheelbase,
+                                                const double & halfTrack);
 
-  static double computeRearRightWheelSpeed(const double & longitidutinalSpeed,
-                                           const double & lateralSpeed,
-                                           const double & angularSpeed,
-                                           const double & halfWheelbase,
-                                           const double & halfTrack);
+  static double computeRearRightWheelLinearSpeed(const double & longitidutinalSpeed,
+                                                 const double & lateralSpeed,
+                                                 const double & angularSpeed,
+                                                 const double & halfWheelbase,
+                                                 const double & halfTrack);
 
 
   static double computeLongitudinalSpeed(const double & frontLeftWheelSpeed,
