@@ -74,3 +74,8 @@ add_executable(${PROJECT_NAME}_test_simulation_2TD simulation/test_simulation_2T
 target_link_libraries(${PROJECT_NAME}_test_simulation_2TD ${PROJECT_NAME} GTest::GTest GTest::Main)
 target_compile_options(${PROJECT_NAME}_test_simulation_2TD PRIVATE -std=c++17)
 add_test(test_simulation_control_2TD ${PROJECT_NAME}_test_simulation_2TD)
+
+add_executable(${PROJECT_NAME}_test_simulation_2THD simulation/test_simulation_2THD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_2THD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_2THD PRIVATE -std=c++17)
+add_test(test_simulation_control_2TD ${PROJECT_NAME}_test_simulation_2THD)

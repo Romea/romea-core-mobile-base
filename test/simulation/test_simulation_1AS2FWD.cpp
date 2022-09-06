@@ -1,6 +1,5 @@
 // gtest
 #include <gtest/gtest.h>
-#include "test_utils.hpp"
 
 //romea
 #include "romea_core_mobile_base/simulation/SimulationControl1FAS2FWD.hpp"

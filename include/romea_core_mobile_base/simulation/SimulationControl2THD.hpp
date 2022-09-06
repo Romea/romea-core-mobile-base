@@ -31,10 +31,12 @@ struct SimulationState2THD
 
 SimulationCommand2THD toSimulationCommand2THD(const double & sprocketWheelRadius,
                                               const double & idlerWheelRadius,
+                                              const double &trackThickness,
                                               const HardwareCommand2TD &hardwareCommand);
 
 HardwareState2TD toHardwareState2TD(const double & sprocketWheelRadius,
                                     const double & idlerWheelRadius,
+                                    const double &trackThickness,
                                     const SimulationState2THD & simulationState);
 
 

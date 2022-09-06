@@ -5,12 +5,12 @@ namespace  {
 
 romea::RotationalMotionState toHardwareSprocketSpinMotion(const double & sprocketWheelRadius,
                                                           const double & idlerWheelRadius,
-                                                          const double & trackWidth,
+                                                          const double & trackThickness,
                                                           const romea::RotationalMotionState & sprocketWheelSpinMotion,
                                                           const romea::RotationalMotionState & idlerWheelSpinMotion)
 {
-  const double sprocketWheelVirtualRadius =sprocketWheelRadius+trackWidth;
-  const double idlerWheelVirtualRadius =idlerWheelRadius+trackWidth;
+  const double sprocketWheelVirtualRadius =sprocketWheelRadius+trackThickness;
+  const double idlerWheelVirtualRadius =idlerWheelRadius+trackThickness;
 
   const double ratio = idlerWheelVirtualRadius/sprocketWheelVirtualRadius;
   const double sprocketWheelLinearSpeed = sprocketWheelVirtualRadius*sprocketWheelSpinMotion.velocity;
@@ -46,11 +46,11 @@ namespace romea
 //-----------------------------------------------------------------------------
 SimulationCommand2TD toSimulationCommand2TD(const double & sprocketWheelRadius,
                                             const double & idlerWheelRadius,
-                                            const double & trackWidth,
+                                            const double & trackThickness,
                                             const HardwareCommand2TD & hardwareCommand)
 {
 
-  const double ratio = (sprocketWheelRadius+trackWidth)/(idlerWheelRadius+trackWidth);
+  const double ratio = (sprocketWheelRadius+trackThickness)/(idlerWheelRadius+trackThickness);
 
   return {hardwareCommand.leftSprocketWheelSetPoint,
         hardwareCommand.rightSprocketWheelSetPoint,
@@ -62,17 +62,17 @@ SimulationCommand2TD toSimulationCommand2TD(const double & sprocketWheelRadius,
 //-----------------------------------------------------------------------------
 HardwareState2TD toHardwareState2TD(const double & sprocketWheelRadius,
                                     const double & idlerWheelRadius,
-                                    const double & trackWidth,
+                                    const double & trackThickness,
                                     const SimulationState2TD & simulationState)
 {
   return {toHardwareSprocketSpinMotion(sprocketWheelRadius,
                                        idlerWheelRadius,
-                                       trackWidth,
+                                       trackThickness,
                                        simulationState.leftSprocketWheelSpinMotion,
                                        simulationState.leftIdlerWheelSpinMotion),
         toHardwareSprocketSpinMotion(sprocketWheelRadius,
                                      idlerWheelRadius,
-                                     trackWidth,
+                                     trackThickness,
                                      simulationState.rightSprocketWheelSpinMotion,
                                      simulationState.rightIdlerWheelSpinMotion)};
 }

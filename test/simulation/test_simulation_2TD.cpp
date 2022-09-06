@@ -1,6 +1,5 @@
 // gtest
 #include <gtest/gtest.h>
-#include "test_utils.hpp"
 
 //romea
 #include "romea_core_mobile_base/simulation/SimulationControl2TD.hpp"
@@ -26,19 +25,19 @@ romea::HardwareCommand2TD toHardwareCommand2TD(const double & sprocketWheelRadiu
 //        odometryFrame.rearRightWheelLinearSpeed/rearWheelRadius};
 //}
 
-class TestSimulation2FWS2RWD : public ::testing::Test
+class TestSimulation2TD : public ::testing::Test
 {
 
 public :
 
 
-  TestSimulation2FWS2RWD(){}
+  TestSimulation2TD(){}
 
   virtual void SetUp()override
   {
     sprocketWheelRadius = 0.8;
     idlerWheelRadius = 0.3;
-    trackWidth=0.1;
+    trackThickness=0.1;
     parameters.wheelTrack=1.5;
 
     command.longitudinalSpeed= 1.;
@@ -47,21 +46,21 @@ public :
     romea::OdometryFrame2TD odometryCommand;
     romea::forwardKinematic(parameters,command,odometryCommand);
     hardwareCommand2TD = toHardwareCommand2TD(sprocketWheelRadius,
-                                              trackWidth,
+                                              trackThickness,
                                               odometryCommand);
 
     std::cout << odometryCommand << std::endl;
 
     simulationCommand2TD = toSimulationCommand2TD(sprocketWheelRadius,
                                                   idlerWheelRadius,
-                                                  trackWidth,
+                                                  trackThickness,
                                                   hardwareCommand2TD);
 
   }
 
   double sprocketWheelRadius;
   double idlerWheelRadius;
-  double trackWidth;
+  double trackThickness;
   romea::SkidSteeringKinematic::Parameters parameters;
 
   romea::SkidSteeringCommand command;
@@ -71,7 +70,7 @@ public :
 };
 
 
-TEST_F(TestSimulation2FWS2RWD,toSimulation)
+TEST_F(TestSimulation2TD,toSimulation)
 {
   std::cout << " simulation command "<< std::endl;
   std::cout << simulationCommand2TD.leftSprocketWheelSetPoint <<std::endl;
@@ -94,7 +93,7 @@ TEST_F(TestSimulation2FWS2RWD,toSimulation)
 }
 
 
-TEST_F(TestSimulation2FWS2RWD,toHardware)
+TEST_F(TestSimulation2TD,toHardware)
 {
 
 
@@ -113,7 +112,7 @@ TEST_F(TestSimulation2FWS2RWD,toHardware)
 
   auto hardwareState2TD =romea::toHardwareState2TD(sprocketWheelRadius,
                                                    idlerWheelRadius,
-                                                   trackWidth,
+                                                   trackThickness,
                                                    simulationState);
 
   EXPECT_DOUBLE_EQ(hardwareState2TD.leftSprocketWheelSpinMotion.velocity,
