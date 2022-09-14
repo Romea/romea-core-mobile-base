@@ -5,9 +5,9 @@ namespace romea {
 //------------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream &os, const HardwareCommand2TD & command)
 {
-  os << " Hardware2WD command : " <<std::endl;
-  os << " left  sprocket wheel setpoint : " << command.leftSprocketWheelSetPoint << std::endl;
-  os << " right sprocket wheel setpoint : " << command.rightSprocketWheelSetPoint << std::endl;
+  os << " Hardware2WD command coucoun : " <<std::endl;
+  os << " left  sprocket wheel spinning setpoint : " << command.leftSprocketWheelSpinningSetPoint << std::endl;
+  os << " right sprocket wheel spinning setpoint : " << command.rightSprocketWheelSpinningSetPoint << std::endl;
   return os;
 }
 
@@ -15,8 +15,8 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand2TD & command)
 std::ostream & operator<<(std::ostream &os, const HardwareState2TD & state)
 {
   os << " Hardware2WD state : " << std::endl;
-  os << " left  sprocket wheel rotational motion : " << state.leftSprocketWheelSpinMotion << std::endl;
-  os << " right sprocket wheel rotational motion : " << state.rightSprocketWheelSpinMotion << std::endl;
+  os << " left  sprocket wheel rotational motion : " << state.leftSprocketWheelSpinningMotion << std::endl;
+  os << " right sprocket wheel rotational motion : " << state.rightSprocketWheelSpinningMotion << std::endl;
   return os;
 }
 

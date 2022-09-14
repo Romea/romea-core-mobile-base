@@ -14,10 +14,10 @@ struct SimulationCommand2ASxxx
   SteeringAngleCommand rearLeftWheelSteeringAngle;
   SteeringAngleCommand rearRightWheelSteeringAngle;
 
-  RotationalMotionCommand frontLeftWheelSetPoint;
-  RotationalMotionCommand frontRightWheelSetPoint;
-  RotationalMotionCommand rearLeftWheelSetPoint;
-  RotationalMotionCommand rearRightWheelSetPoint;
+  RotationalMotionCommand frontLeftWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightWheelSpinningSetPoint;
+  RotationalMotionCommand rearLeftWheelSpinningSetPoint;
+  RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
 struct SimulationState2ASxxx
@@ -29,10 +29,10 @@ struct SimulationState2ASxxx
   SteeringAngleState rearLeftWheelSteeringAngle;
   SteeringAngleState rearRightWheelSteeringAngle;
 
-  RotationalMotionState frontLeftWheelSpinMotion;
-  RotationalMotionState frontRightWheelSpinMotion;
-  RotationalMotionState rearLeftWheelSpinMotion;
-  RotationalMotionState rearRightWheelSpinMotion;
+  RotationalMotionState frontLeftWheelSpinningMotion;
+  RotationalMotionState frontRightWheelSpinningMotion;
+  RotationalMotionState rearLeftWheelSpinningMotion;
+  RotationalMotionState rearRightWheelSpinningMotion;
 };
 
 

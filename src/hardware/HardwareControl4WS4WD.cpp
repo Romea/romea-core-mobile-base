@@ -10,10 +10,10 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand4WS4WD & comman
   os << " front right wheel steering angle : " << command.frontRightWheelSteeringAngle << std::endl;
   os << " rear left wheel steering angle : " << command.rearLeftWheelSteeringAngle << std::endl;
   os << " rear right wheel steering angle : " << command.rearRightWheelSteeringAngle << std::endl;
-  os << " front left wheel setpoint : "<< command.frontLeftWheelSetPoint << std::endl;
-  os << " front right wheel setpoint : " << command.frontRightWheelSetPoint << std::endl;
-  os << " rear left wheel setpoint : " << command.rearLeftWheelSetPoint << std::endl;
-  os << " rear right wheel setpoint : " << command.rearRightWheelSetPoint ;
+  os << " front left wheel spinning setpoint : "<< command.frontLeftWheelSpinningSetPoint << std::endl;
+  os << " front right wheel spinning setpoint : " << command.frontRightWheelSpinningSetPoint << std::endl;
+  os << " rear left wheel spinning setpoint : " << command.rearLeftWheelSpinningSetPoint << std::endl;
+  os << " rear right wheel spinning setpoint : " << command.rearRightWheelSpinningSetPoint ;
   return os;
 }
 
@@ -25,10 +25,10 @@ std::ostream & operator<<(std::ostream &os, const HardwareState4WS4WD & state)
   os << " front right wheel steering angle : " << state.frontRightWheelSteeringAngle << std::endl;
   os << " rear left wheel steering angle : " << state.rearLeftWheelSteeringAngle << std::endl;
   os << " rear right wheel steering angle : " << state.rearRightWheelSteeringAngle << std::endl;
-  os << " front left wheel rotational motion : " << state.frontLeftWheelSpinMotion << std::endl;
-  os << " front right wheel rotational motion : " << state.frontRightWheelSpinMotion << std::endl;
-  os << " rear left wheel rotational motion : " << state.rearLeftWheelSpinMotion << std::endl;
-  os << " rear right wheel rotational motion : " << state.rearRightWheelSpinMotion ;
+  os << " front left wheel rotational motion : " << state.frontLeftWheelSpinningMotion << std::endl;
+  os << " front right wheel rotational motion : " << state.frontRightWheelSpinningMotion << std::endl;
+  os << " rear left wheel rotational motion : " << state.rearLeftWheelSpinningMotion << std::endl;
+  os << " rear right wheel rotational motion : " << state.rearRightWheelSpinningMotion ;
   return os;
 }
 

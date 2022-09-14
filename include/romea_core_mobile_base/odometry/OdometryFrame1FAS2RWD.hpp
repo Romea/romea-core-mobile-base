@@ -15,15 +15,6 @@ struct OdometryFrame1FAS2RWD
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame1FAS2RWD &frame);
 
-//struct OdometryFrame1FAS2RWDa
-//{
-//  double frontAxleSteeringAngle;
-//  double rearLeftWheelAngularSpeed;
-//  double rearRightWheelAngularSpeed;
-//};
-
-//std::ostream & operator<<(std::ostream &s, const OdometryFrame1FAS2RWDa &frame);
-
 
 }//end romea
 #endif

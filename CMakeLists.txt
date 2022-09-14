@@ -14,17 +14,21 @@ add_library(${PROJECT_NAME} SHARED
  src/hardware/HardwareControl1FAS2RWD.cpp
  src/hardware/HardwareControl1FAS2FWD.cpp
  src/hardware/HardwareControl1FAS4WD.cpp
+ src/hardware/HardwareControl2AS2FWD.cpp
+ src/hardware/HardwareControl2AS2RWD.cpp
  src/hardware/HardwareControl2AS4WD.cpp
  src/hardware/HardwareControl2TD.cpp
  src/hardware/HardwareControl2WD.cpp
  src/hardware/HardwareControl4WD.cpp
- src/hardware/HardwareControl1FWS2RWD.cpp
  src/hardware/HardwareControl2FWS2RWD.cpp
  src/hardware/HardwareControl2FWS2FWD.cpp
  src/hardware/HardwareControl2FWS4WD.cpp
  src/hardware/HardwareControl4WS4WD.cpp
  src/odometry/OdometryFrame1FAS2RWD.cpp
  src/odometry/OdometryFrame1FAS2FWD.cpp
+ src/odometry/OdometryFrame1FAS4WD.cpp
+ src/odometry/OdometryFrame2AS2FWD.cpp
+ src/odometry/OdometryFrame2AS2RWD.cpp
  src/odometry/OdometryFrame2AS4WD.cpp
  src/odometry/OdometryFrame2TD.cpp
  src/odometry/OdometryFrame2WD.cpp
@@ -71,8 +75,10 @@ add_library(${PROJECT_NAME} SHARED
  src/info/MobileBaseInertia.cpp
  src/info/MobileBaseInfo1FAS2RWD.cpp
  src/info/MobileBaseInfo1FAS2FWD.cpp
- src/info/MobileBaseInfo1FWS2RWD.cpp
+ src/info/MobileBaseInfo1FAS4WD.cpp
  src/info/MobileBaseInfo2AS4WD.cpp
+ src/info/MobileBaseInfo2AS2FWD.cpp
+ src/info/MobileBaseInfo2AS2RWD.cpp
  src/info/MobileBaseInfo2FWS2FWD.cpp
  src/info/MobileBaseInfo2FWS2RWD.cpp
  src/info/MobileBaseInfo2FWS4WD.cpp
@@ -82,13 +88,14 @@ add_library(${PROJECT_NAME} SHARED
  src/info/MobileBaseInfo4WS4WD.cpp
  src/simulation/SimulationControl1FAS2FWD.cpp
  src/simulation/SimulationControl1FAS2RWD.cpp
+ src/simulation/SimulationControl1FAS4WD.cpp
  src/simulation/SimulationControl1FASxxx.cpp
- src/simulation/SimulationControl1FWS2RWD.cpp
+ src/simulation/SimulationControl2AS2FWD.cpp
+ src/simulation/SimulationControl2AS2RWD.cpp
  src/simulation/SimulationControl2AS4WD.cpp
  src/simulation/SimulationControl2TD.cpp
  src/simulation/SimulationControl2THD.cpp
  src/simulation/SimulationControl2TTD.cpp
- src/simulation/SimulationControl1FWS2RWD.cpp
  src/simulation/SimulationControl2FWS2RWD.cpp
  src/simulation/SimulationControl2FWS2FWD.cpp
  )

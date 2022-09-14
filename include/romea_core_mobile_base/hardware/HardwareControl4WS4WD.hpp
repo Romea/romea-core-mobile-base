@@ -13,10 +13,10 @@ struct HardwareCommand4WS4WD
   SteeringAngleCommand rearLeftWheelSteeringAngle;
   SteeringAngleCommand rearRightWheelSteeringAngle;
 
-  RotationalMotionCommand frontLeftWheelSetPoint;
-  RotationalMotionCommand frontRightWheelSetPoint;
-  RotationalMotionCommand rearLeftWheelSetPoint;
-  RotationalMotionCommand rearRightWheelSetPoint;
+  RotationalMotionCommand frontLeftWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightWheelSpinningSetPoint;
+  RotationalMotionCommand rearLeftWheelSpinningSetPoint;
+  RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareCommand4WS4WD & command);
@@ -28,10 +28,10 @@ struct HardwareState4WS4WD
   SteeringAngleState rearLeftWheelSteeringAngle;
   SteeringAngleState rearRightWheelSteeringAngle;
 
-  RotationalMotionState frontLeftWheelSpinMotion;
-  RotationalMotionState frontRightWheelSpinMotion;
-  RotationalMotionState rearLeftWheelSpinMotion;
-  RotationalMotionState rearRightWheelSpinMotion;
+  RotationalMotionState frontLeftWheelSpinningMotion;
+  RotationalMotionState frontRightWheelSpinningMotion;
+  RotationalMotionState rearLeftWheelSpinningMotion;
+  RotationalMotionState rearRightWheelSpinningMotion;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareState4WS4WD & state);

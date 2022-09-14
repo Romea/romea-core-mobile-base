@@ -6,20 +6,19 @@ namespace  {
 romea::RotationalMotionState toHardwareSprocketSpinMotion(const double & sprocketWheelRadius,
                                                           const double & idlerWheelRadius,
                                                           const double & trackThickness,
-                                                          const romea::RotationalMotionState & sprocketWheelSpinMotion,
-                                                          const romea::RotationalMotionState & frontIdlerWheelSpinMotion,
-                                                          const romea::RotationalMotionState & rearIdlerWheelSpinMotion)
+                                                          const romea::RotationalMotionState & sprocketWheelSpinningMotion,
+                                                          const romea::RotationalMotionState & frontIdlerWheelSpinningMotion,
+                                                          const romea::RotationalMotionState & rearIdlerWheelSpinningMotion)
 {
   const double sprocketWheelVirtualRadius =sprocketWheelRadius+trackThickness;
   const double idlerWheelVirtualRadius =idlerWheelRadius+trackThickness;
 
   const double ratio = idlerWheelVirtualRadius/sprocketWheelVirtualRadius;
-  const double sprocketWheelLinearSpeed = sprocketWheelVirtualRadius*sprocketWheelSpinMotion.velocity;
-  const double frontIdlerWheelLinearSpeed = idlerWheelVirtualRadius*frontIdlerWheelSpinMotion.velocity;
-  const double rearIdlerWheelLinearSpeed = idlerWheelVirtualRadius*rearIdlerWheelSpinMotion.velocity;
+  const double frontIdlerWheelLinearSpeed = idlerWheelVirtualRadius*frontIdlerWheelSpinningMotion.velocity;
+  const double rearIdlerWheelLinearSpeed = idlerWheelVirtualRadius*rearIdlerWheelSpinningMotion.velocity;
 
   romea::RotationalMotionState output;
-  output.position= sprocketWheelSpinMotion.position;
+  output.position= sprocketWheelSpinningMotion.position;
 
   if(std::signbit(frontIdlerWheelLinearSpeed)!=std::signbit(rearIdlerWheelLinearSpeed))
   {
@@ -28,13 +27,13 @@ romea::RotationalMotionState toHardwareSprocketSpinMotion(const double & sprocke
   }
   else if(std::abs(frontIdlerWheelLinearSpeed)<std::abs(rearIdlerWheelLinearSpeed))
   {
-    output.velocity =frontIdlerWheelSpinMotion.velocity*ratio;
-    output.torque =frontIdlerWheelSpinMotion.torque*ratio;
+    output.velocity =frontIdlerWheelSpinningMotion.velocity*ratio;
+    output.torque =frontIdlerWheelSpinningMotion.torque*ratio;
   }
   else
   {
-    output.velocity = rearIdlerWheelSpinMotion.velocity*ratio;
-    output.torque = rearIdlerWheelSpinMotion.torque*ratio;
+    output.velocity = rearIdlerWheelSpinningMotion.velocity*ratio;
+    output.torque = rearIdlerWheelSpinningMotion.torque*ratio;
   }
   return output;
 }
@@ -46,6 +45,32 @@ namespace romea
 {
 
 //-----------------------------------------------------------------------------
+std::ostream & operator<<(std::ostream &os, const SimulationCommand2THD & command)
+{
+  os << " Simulation2THD command : "<< std::endl;
+  os << " left sprocket wheel spinning setpoint : " << command.leftSprocketWheelSpinningSetPoint << std::endl;
+  os << " right sprocket wheel spinning setpoint : " <<command.rightSprocketWheelSpinningSetPoint << std::endl;
+  os << " front left idler wheel spinning setpoint : " << command.frontLeftIdlerWheelSpinningSetPoint << std::endl;
+  os << " front right idler wheel spinning setpoint : " <<command.frontRightIdlerWheelSpinningSetPoint << std::endl;
+  os << " rear left idler wheel spinning setpoint : " << command.rearLeftIdlerWheelSpinningSetPoint << std::endl;
+  os << " rearright idler wheel spinning setpoint : " <<command.rearRightIdlerWheelSpinningSetPoint << std::endl;
+  return os;
+}
+
+//-----------------------------------------------------------------------------
+std::ostream & operator<<(std::ostream &os, const SimulationState2THD & state)
+{
+  os << " Simulation2THD state : "<< std::endl;
+  os << " left sprocket wheel spinning motion: " << state.leftSprocketWheelSpinningMotion << std::endl;
+  os << " right sprocket wheel spinning motion : " << state.rightSprocketWheelSpinningMotion << std::endl;
+  os << " front left idler wheel spinning motion: " << state.frontLeftIdlerWheelSpinningMotion << std::endl;
+  os << " frontright idler wheel spinning motion : " << state.frontRightIdlerWheelSpinningMotion << std::endl;
+  os << " rear left idler wheel spinning motion: " << state.rearLeftIdlerWheelSpinningMotion << std::endl;
+  os << " rear right idler wheel spinning motion : " << state.rearRightIdlerWheelSpinningMotion ;
+  return os;
+}
+
+//-----------------------------------------------------------------------------
 SimulationCommand2THD toSimulationCommand2THD(const double & sprocketWheelRadius,
                                               const double & idlerWheelRadius,
                                               const double & trackThickness,
@@ -54,12 +79,12 @@ SimulationCommand2THD toSimulationCommand2THD(const double & sprocketWheelRadius
 
   const double ratio = (sprocketWheelRadius+trackThickness)/(idlerWheelRadius+trackThickness);
 
-  return{hardwareCommand.leftSprocketWheelSetPoint,
-        hardwareCommand.rightSprocketWheelSetPoint,
-        hardwareCommand.leftSprocketWheelSetPoint*ratio,
-        hardwareCommand.rightSprocketWheelSetPoint*ratio,
-        hardwareCommand.leftSprocketWheelSetPoint*ratio,
-        hardwareCommand.rightSprocketWheelSetPoint*ratio};
+  return{hardwareCommand.leftSprocketWheelSpinningSetPoint,
+        hardwareCommand.rightSprocketWheelSpinningSetPoint,
+        hardwareCommand.leftSprocketWheelSpinningSetPoint*ratio,
+        hardwareCommand.rightSprocketWheelSpinningSetPoint*ratio,
+        hardwareCommand.leftSprocketWheelSpinningSetPoint*ratio,
+        hardwareCommand.rightSprocketWheelSpinningSetPoint*ratio};
 }
 
 //-----------------------------------------------------------------------------
@@ -71,15 +96,15 @@ HardwareState2TD toHardwareState2TD(const double &sprocketWheelRadius,
   return {toHardwareSprocketSpinMotion(sprocketWheelRadius,
                                        idlerWheelRadius,
                                        trackThickness,
-                                       simulationState.leftSprocketWheelSpinMotion,
-                                       simulationState.frontLeftIdlerWheelSpinMotion,
-                                       simulationState.rearLeftIdlerWheelSpinMotion),
+                                       simulationState.leftSprocketWheelSpinningMotion,
+                                       simulationState.frontLeftIdlerWheelSpinningMotion,
+                                       simulationState.rearLeftIdlerWheelSpinningMotion),
         toHardwareSprocketSpinMotion(sprocketWheelRadius,
                                      idlerWheelRadius,
                                      trackThickness,
-                                     simulationState.rightSprocketWheelSpinMotion,
-                                     simulationState.frontRightIdlerWheelSpinMotion,
-                                     simulationState.rearRightIdlerWheelSpinMotion)};
+                                     simulationState.rightSprocketWheelSpinningMotion,
+                                     simulationState.frontRightIdlerWheelSpinningMotion,
+                                     simulationState.rearRightIdlerWheelSpinningMotion)};
 }
 
 

@@ -2,13 +2,14 @@
 #include <gtest/gtest.h>
 
 //romea
-#include "romea_core_mobile_base/simulation/SimulationControl1FAS2RWD.hpp"
+#include "romea_core_mobile_base/simulation/SimulationControl1FAS4WD.hpp"
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS4WD.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardOneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
 
-romea::HardwareCommand1FAS2RWD toHardwareCommand1FAS2RWD(const double & rearWheelRadius,
-                                                         const romea::OdometryFrame1FAS2RWD & odometryFrame)
+romea::HardwareCommand1FAS4WD toHardwareCommand1FAS4WD(const double & frontWheelRadius,
+                                                       const double & rearWheelRadius,
+                                                       const romea::OdometryFrame1FAS2RWD & odometryFrame)
 {
   return {odometryFrame.frontAxleSteeringAngle,
         odometryFrame.rearLeftWheelLinearSpeed/rearWheelRadius,

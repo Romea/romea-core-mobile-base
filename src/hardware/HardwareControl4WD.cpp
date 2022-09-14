@@ -6,10 +6,10 @@ namespace romea {
 std::ostream & operator<<(std::ostream &os, const HardwareCommand4WD & command)
 {
   os << " Hardware4WD command : " <<std::endl;
-  os << " front left wheel setpoint : " << command.frontLeftWheelSetPoint << std::endl;
-  os << " front right wheel setpoint : " << command.frontRightWheelSetPoint  << std::endl;
-  os << " rear left wheel setpoint : " << command.rearLeftWheelSetPoint  << std::endl;
-  os << " rear right wheel setpoint : " << command.rearRightWheelSetPoint  ;
+  os << " front left wheel spinning setpoint : " << command.frontLeftWheelSpinningSetPoint << std::endl;
+  os << " front right wheel spinning setpoint : " << command.frontRightWheelSpinningSetPoint  << std::endl;
+  os << " rear left wheel spinning setpoint : " << command.rearLeftWheelSpinningSetPoint  << std::endl;
+  os << " rear right wheel spinning setpoint : " << command.rearRightWheelSpinningSetPoint  ;
   return os;
 }
 
@@ -17,10 +17,10 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand4WD & command)
 std::ostream & operator<<(std::ostream &os, const HardwareState4WD & state)
 {
   os << " Hardware4WD state : " << std::endl;
-  os << " front left wheel spin motion : " << state.frontLeftWheelSpinMotion << std::endl;
-  os << " front right wheel spin motion : " << state.frontRightWheelSpinMotion << std::endl;
-  os << " rear left wheel spin motion : " << state.rearLeftWheelSpinMotion << std::endl;
-  os << " rear right wheel spin motion : " << state.rearRightWheelSpinMotion ;
+  os << " front left wheel spinning motion : " << state.frontLeftWheelSpinningMotion << std::endl;
+  os << " front right wheel spinning motion : " << state.frontRightWheelSpinningMotion << std::endl;
+  os << " rear left wheel spinning motion : " << state.rearLeftWheelSpinningMotion << std::endl;
+  os << " rear right wheel spinning motion : " << state.rearRightWheelSpinningMotion ;
   return os;
 }
 

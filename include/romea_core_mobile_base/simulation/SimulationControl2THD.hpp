@@ -8,35 +8,39 @@ namespace romea {
 
 struct SimulationCommand2THD
 {
-  RotationalMotionCommand leftSprocketWheelSetPoint;
-  RotationalMotionCommand rightSprocketWheelSetPoint;
+  RotationalMotionCommand leftSprocketWheelSpinningSetPoint;
+  RotationalMotionCommand rightSprocketWheelSpinningSetPoint;
 
-  RotationalMotionCommand frontLeftIdlerWheelSetPoint;
-  RotationalMotionCommand frontRightIdlerWheelSetPoint;
-  RotationalMotionCommand rearLeftIdlerWheelSetPoint;
-  RotationalMotionCommand rearRightIdlerWheelSetPoint;
+  RotationalMotionCommand frontLeftIdlerWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightIdlerWheelSpinningSetPoint;
+  RotationalMotionCommand rearLeftIdlerWheelSpinningSetPoint;
+  RotationalMotionCommand rearRightIdlerWheelSpinningSetPoint;
 
 };
+
+std::ostream & operator<<(std::ostream &os, const SimulationCommand2THD & state);
 
 struct SimulationState2THD
 {
-  RotationalMotionState leftSprocketWheelSpinMotion;
-  RotationalMotionState rightSprocketWheelSpinMotion;
+  RotationalMotionState leftSprocketWheelSpinningMotion;
+  RotationalMotionState rightSprocketWheelSpinningMotion;
 
-  RotationalMotionState frontLeftIdlerWheelSpinMotion;
-  RotationalMotionState frontRightIdlerWheelSpinMotion;
-  RotationalMotionState rearLeftIdlerWheelSpinMotion;
-  RotationalMotionState rearRightIdlerWheelSpinMotion;
+  RotationalMotionState frontLeftIdlerWheelSpinningMotion;
+  RotationalMotionState frontRightIdlerWheelSpinningMotion;
+  RotationalMotionState rearLeftIdlerWheelSpinningMotion;
+  RotationalMotionState rearRightIdlerWheelSpinningMotion;
 };
+
+std::ostream & operator<<(std::ostream &os, const SimulationCommand2THD & state);
 
 SimulationCommand2THD toSimulationCommand2THD(const double & sprocketWheelRadius,
                                               const double & idlerWheelRadius,
-                                              const double &trackThickness,
+                                              const double & trackThickness,
                                               const HardwareCommand2TD &hardwareCommand);
 
 HardwareState2TD toHardwareState2TD(const double & sprocketWheelRadius,
                                     const double & idlerWheelRadius,
-                                    const double &trackThickness,
+                                    const double & trackThickness,
                                     const SimulationState2THD & simulationState);
 
 

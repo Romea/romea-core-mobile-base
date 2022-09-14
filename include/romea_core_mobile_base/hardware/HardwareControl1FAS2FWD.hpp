@@ -9,8 +9,8 @@ namespace romea {
 struct HardwareState1FAS2FWD
 {
   SteeringAngleState frontAxleSteeringAngle;
-  RotationalMotionState frontLeftWheelSpinMotion;
-  RotationalMotionState frontRightWheelSpinMotion;
+  RotationalMotionState frontLeftWheelSpinningMotion;
+  RotationalMotionState frontRightWheelSpinningMotion;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareState1FAS2FWD & state);
@@ -19,8 +19,8 @@ std::ostream & operator<<(std::ostream &os, const HardwareState1FAS2FWD & state)
 struct HardwareCommand1FAS2FWD
 {
   SteeringAngleCommand frontAxleSteeringAngle;
-  RotationalMotionCommand frontLeftWheelSetPoint;
-  RotationalMotionCommand frontRightWheelSetPoint;
+  RotationalMotionCommand frontLeftWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightWheelSpinningSetPoint;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareCommand1FAS2FWD & command);

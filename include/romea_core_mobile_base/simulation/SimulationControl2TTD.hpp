@@ -8,39 +8,45 @@ namespace romea {
 
 struct SimulationCommand2TTD
 {
-  RotationalMotionCommand leftSprocketWheelSetPoint;
-  RotationalMotionCommand rightSprocketWheelSetPoint;
+  RotationalMotionCommand leftSprocketWheelSpinningSetPoint;
+  RotationalMotionCommand rightSprocketWheelSpinningSetPoint;
 
-  RotationalMotionCommand leftIdlerWheelSetPoint;
-  RotationalMotionCommand rightIdlerWheelSetPoint;
+  RotationalMotionCommand leftIdlerWheelSpinningSetPoint;
+  RotationalMotionCommand rightIdlerWheelSpinningSetPoint;
 
-  RotationalMotionCommand frontLeftRollerWheelSetPoint;
-  RotationalMotionCommand frontRightRollerWheelSetPoint;
-  RotationalMotionCommand rearLeftRollerWheelSetPoint;
-  RotationalMotionCommand rearRightRollerWheelSetPoint;
+  RotationalMotionCommand frontLeftRollerWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightRollerWheelSpinningSetPoint;
+  RotationalMotionCommand rearLeftRollerWheelSpinningSetPoint;
+  RotationalMotionCommand rearRightRollerWheelSpinningSetPoint;
 };
+
+std::ostream & operator<<(std::ostream &os, const SimulationCommand2TTD & state);
 
 struct SimulationState2TTD
 {
-  RotationalMotionState leftSprocketWheelSpinMotion;
-  RotationalMotionState rightSprocketWheelSpinMotion;
+  RotationalMotionState leftSprocketWheelSpinningMotion;
+  RotationalMotionState rightSprocketWheelSpinningMotion;
 
-  RotationalMotionState leftIdlerWheelSpinMotion;
-  RotationalMotionState rightIdlerWheelSpinMotion;
+  RotationalMotionState leftIdlerWheelSpinningMotion;
+  RotationalMotionState rightIdlerWheelSpinningMotion;
 
-  RotationalMotionState frontLeftRollerWheelSpinMotion;
-  RotationalMotionState frontRightRollerWheelSpinMotion;
-  RotationalMotionState rearLeftRollerWheelSpinMotion;
-  RotationalMotionState rearRightRollerWheelSpinMotion;
+  RotationalMotionState frontLeftRollerWheelSpinningMotion;
+  RotationalMotionState frontRightRollerWheelSpinningMotion;
+  RotationalMotionState rearLeftRollerWheelSpinningMotion;
+  RotationalMotionState rearRightRollerWheelSpinningMotion;
 };
+
+std::ostream & operator<<(std::ostream &os, const SimulationState2TTD & state);
 
 SimulationCommand2TTD toSimulationCommand2TTD(const double & sprocketWheelRadius,
                                               const double & rollerWheelRadius,
                                               const double & idlerWheelRadius,
+                                              const double & trackThickness,
                                               const HardwareCommand2TD &hardwareCommand);
 
 HardwareState2TD toHardwareState2TTD(const double & sprocketWheelRadius,
                                      const double & rollerWheelRadius,
+                                     const double & trackThickness,
                                      const SimulationState2TTD & simulationState);
 
 

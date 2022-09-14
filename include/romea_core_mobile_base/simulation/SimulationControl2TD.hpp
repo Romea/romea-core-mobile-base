@@ -8,22 +8,25 @@ namespace romea {
 
 struct SimulationCommand2TD
 {
-  RotationalMotionCommand leftSprocketWheelSetPoint;
-  RotationalMotionCommand rightSprocketWheelSetPoint;
+  RotationalMotionCommand leftSprocketWheelSpinningSetPoint;
+  RotationalMotionCommand rightSprocketWheelSpinningSetPoint;
 
-  RotationalMotionCommand leftIdlerWheelSetPoint;
-  RotationalMotionCommand rightIdlerWheelSetPoint;
+  RotationalMotionCommand leftIdlerWheelSpinningSetPoint;
+  RotationalMotionCommand rightIdlerWheelSpinningSetPoint;
 };
+
+std::ostream & operator<<(std::ostream &os, const SimulationCommand2TD & state);
 
 struct SimulationState2TD
 {
-  RotationalMotionState leftSprocketWheelSpinMotion;
-  RotationalMotionState rightSprocketWheelSpinMotion;
+  RotationalMotionState leftSprocketWheelSpinningMotion;
+  RotationalMotionState rightSprocketWheelSpinningMotion;
 
-  RotationalMotionState leftIdlerWheelSpinMotion;
-  RotationalMotionState rightIdlerWheelSpinMotion;
+  RotationalMotionState leftIdlerWheelSpinningMotion;
+  RotationalMotionState rightIdlerWheelSpinningMotion;
 };
 
+std::ostream & operator<<(std::ostream &os, const SimulationState2TD & state);
 
 SimulationCommand2TD toSimulationCommand2TD(const double & sprocketWheelRadius,
                                             const double & idlerWheelRadius,

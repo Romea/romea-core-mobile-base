@@ -49,12 +49,14 @@ public :
                                               trackThickness,
                                               odometryCommand);
 
-    std::cout << odometryCommand << std::endl;
+    std::cout <<"hardwareCommand2TD "<< hardwareCommand2TD << std::endl;
 
     simulationCommand2TD = toSimulationCommand2TD(sprocketWheelRadius,
                                                   idlerWheelRadius,
                                                   trackThickness,
                                                   hardwareCommand2TD);
+
+    std::cout << "simulationCommand2TD " << simulationCommand2TD << std::endl;
 
   }
 
@@ -72,23 +74,17 @@ public :
 
 TEST_F(TestSimulation2TD,toSimulation)
 {
-  std::cout << " simulation command "<< std::endl;
-  std::cout << simulationCommand2TD.leftSprocketWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.rightSprocketWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.leftIdlerWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.rightIdlerWheelSetPoint <<std::endl;
+   EXPECT_DOUBLE_EQ(simulationCommand2TD.leftSprocketWheelSpinningSetPoint,
+                    hardwareCommand2TD.leftSprocketWheelSpinningSetPoint);
 
-   EXPECT_DOUBLE_EQ(simulationCommand2TD.leftSprocketWheelSetPoint,
-                    hardwareCommand2TD.leftSprocketWheelSetPoint);
+   EXPECT_DOUBLE_EQ(simulationCommand2TD.rightSprocketWheelSpinningSetPoint,
+                    hardwareCommand2TD.rightSprocketWheelSpinningSetPoint);
 
-   EXPECT_DOUBLE_EQ(simulationCommand2TD.rightSprocketWheelSetPoint,
-                    hardwareCommand2TD.rightSprocketWheelSetPoint);
+   EXPECT_GT(simulationCommand2TD.leftIdlerWheelSpinningSetPoint,
+             hardwareCommand2TD.leftSprocketWheelSpinningSetPoint);
 
-   EXPECT_GT(simulationCommand2TD.leftIdlerWheelSetPoint,
-             hardwareCommand2TD.leftSprocketWheelSetPoint);
-
-   EXPECT_GT(simulationCommand2TD.rightIdlerWheelSetPoint,
-             hardwareCommand2TD.rightSprocketWheelSetPoint);
+   EXPECT_GT(simulationCommand2TD.rightIdlerWheelSpinningSetPoint,
+             hardwareCommand2TD.rightSprocketWheelSpinningSetPoint);
 
 }
 
@@ -98,27 +94,27 @@ TEST_F(TestSimulation2TD,toHardware)
 
 
   romea::SimulationState2TD simulationState;
-  simulationState.leftSprocketWheelSpinMotion.velocity = simulationCommand2TD.leftSprocketWheelSetPoint;
-  simulationState.leftIdlerWheelSpinMotion.velocity = simulationCommand2TD.leftIdlerWheelSetPoint+0.1;
-  simulationState.rightSprocketWheelSpinMotion.velocity = simulationCommand2TD.rightSprocketWheelSetPoint+0.1;
-  simulationState.rightIdlerWheelSpinMotion.velocity = simulationCommand2TD.rightIdlerWheelSetPoint;
+  simulationState.leftSprocketWheelSpinningMotion.velocity = simulationCommand2TD.leftSprocketWheelSpinningSetPoint;
+  simulationState.leftIdlerWheelSpinningMotion.velocity = simulationCommand2TD.leftIdlerWheelSpinningSetPoint+0.1;
+  simulationState.rightSprocketWheelSpinningMotion.velocity = simulationCommand2TD.rightSprocketWheelSpinningSetPoint+0.1;
+  simulationState.rightIdlerWheelSpinningMotion.velocity = simulationCommand2TD.rightIdlerWheelSpinningSetPoint;
 
 
   std::cout << " simulation command "<< std::endl;
-  std::cout << simulationCommand2TD.leftSprocketWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.rightSprocketWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.leftIdlerWheelSetPoint <<std::endl;
-  std::cout << simulationCommand2TD.rightIdlerWheelSetPoint <<std::endl;
+  std::cout << simulationCommand2TD.leftSprocketWheelSpinningSetPoint <<std::endl;
+  std::cout << simulationCommand2TD.rightSprocketWheelSpinningSetPoint <<std::endl;
+  std::cout << simulationCommand2TD.leftIdlerWheelSpinningSetPoint <<std::endl;
+  std::cout << simulationCommand2TD.rightIdlerWheelSpinningSetPoint <<std::endl;
 
   auto hardwareState2TD =romea::toHardwareState2TD(sprocketWheelRadius,
                                                    idlerWheelRadius,
                                                    trackThickness,
                                                    simulationState);
 
-  EXPECT_DOUBLE_EQ(hardwareState2TD.leftSprocketWheelSpinMotion.velocity,
-                   hardwareCommand2TD.leftSprocketWheelSetPoint);
-  EXPECT_DOUBLE_EQ(hardwareState2TD.rightSprocketWheelSpinMotion.velocity,
-                   hardwareCommand2TD.rightSprocketWheelSetPoint);
+  EXPECT_DOUBLE_EQ(hardwareState2TD.leftSprocketWheelSpinningMotion.velocity,
+                   hardwareCommand2TD.leftSprocketWheelSpinningSetPoint);
+  EXPECT_DOUBLE_EQ(hardwareState2TD.rightSprocketWheelSpinningMotion.velocity,
+                   hardwareCommand2TD.rightSprocketWheelSpinningSetPoint);
 
 }
 

@@ -9,16 +9,16 @@ namespace romea
 SimulationCommand1FAS2RWD toSimulationCommand1FAS2RWD(const HardwareCommand1FAS2RWD & hardwareCommand,
                                                       const double & frontLeftWheelSteeringAngle,
                                                       const double & frontRightWheelSteeringAngle,
-                                                      const double & frontLeftWheelSetPoint,
-                                                      const double & frontRightWheelSetPoint)
+                                                      const double & frontLeftWheelSpinningSetPoint,
+                                                      const double & frontRightWheelSpinningSetPoint)
 {
   return {hardwareCommand.frontAxleSteeringAngle,
         frontLeftWheelSteeringAngle,
         frontRightWheelSteeringAngle,
-        frontLeftWheelSetPoint,
-        frontRightWheelSetPoint,
-        hardwareCommand.rearLeftWheelSetPoint,
-        hardwareCommand.rearRightWheelSetPoint};
+        frontLeftWheelSpinningSetPoint,
+        frontRightWheelSpinningSetPoint,
+        hardwareCommand.rearLeftWheelSpinningSetPoint,
+        hardwareCommand.rearRightWheelSpinningSetPoint};
 }
 
 //-----------------------------------------------------------------------------
@@ -30,10 +30,10 @@ SimulationCommand1FAS2RWD toSimulationCommand1FAS2RWD(const double & wheelbase,
                                                       const HardwareCommand1FAS2RWD & hardwareCommand)
 {
   const double & rearLeftWheelLinearSpeed =
-      hardwareCommand.rearLeftWheelSetPoint*rearWheelRadius;
+      hardwareCommand.rearLeftWheelSpinningSetPoint*rearWheelRadius;
 
   const double & rearRightWheelLinearSpeed =
-      hardwareCommand.rearRightWheelSetPoint*rearWheelRadius;
+      hardwareCommand.rearRightWheelSpinningSetPoint*rearWheelRadius;
 
   double  tanAxleSteeringAngle=
       std::tan(hardwareCommand.frontAxleSteeringAngle);
@@ -82,8 +82,8 @@ HardwareState1FAS2RWD toHardwareState1FAS2RWD(const SimulationState1FAS2RWD & si
                                               const double frontAxleSteeringAngle)
 {
   return { frontAxleSteeringAngle,
-        simulationState.rearLeftWheelSpinMotion,
-        simulationState.rearRightWheelSpinMotion};
+        simulationState.rearLeftWheelSpinningMotion,
+        simulationState.rearRightWheelSpinningMotion};
 
 }
 

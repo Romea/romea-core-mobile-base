@@ -16,10 +16,10 @@ SimulationCommand2AS4WD toSimulationCommand2AS4WD(const HardwareCommand2AS4WD & 
         hardwareCommand.rearAxleSteeringAngle,
         rearLeftWheelSteeringAngle,
         rearRightWheelSteeringAngle,
-        hardwareCommand.frontLeftWheelSetPoint,
-        hardwareCommand.frontRightWheelSetPoint,
-        hardwareCommand.rearLeftWheelSetPoint,
-        hardwareCommand.rearRightWheelSetPoint};
+        hardwareCommand.frontLeftWheelSpinningSetPoint,
+        hardwareCommand.frontRightWheelSpinningSetPoint,
+        hardwareCommand.rearLeftWheelSpinningSetPoint,
+        hardwareCommand.rearRightWheelSpinningSetPoint};
 }
 
 //-----------------------------------------------------------------------------
@@ -74,10 +74,10 @@ HardwareState2AS4WD toHardwareState2AS4WD(const SimulationState2AS4WD & simulati
 {
   return {frontAxleSteeringAngle,
         rearAxleSteeringAngle,
-        simulationState.frontLeftWheelSpinMotion,
-        simulationState.frontRightWheelSpinMotion,
-        simulationState.rearLeftWheelSpinMotion,
-        simulationState.rearRightWheelSpinMotion};
+        simulationState.frontLeftWheelSpinningMotion,
+        simulationState.frontRightWheelSpinningMotion,
+        simulationState.rearLeftWheelSpinningMotion,
+        simulationState.rearRightWheelSpinningMotion};
 }
 
 //-----------------------------------------------------------------------------
@@ -100,26 +100,6 @@ HardwareState2AS4WD toHardwareState2AS4WD(const double & wheelbase,
   return toHardwareState2AS4WD(simulationState,
                                frontAxleSteeringAngle,
                                rearAxleSteeringAngle);
-}
-
-//-----------------------------------------------------------------------------
-SimulationCommand2AS4WD toSimulationCommand2AS4WD(const OneAxleSteeringKinematic::Parameters &paramaters,
-                                                  const HardwareCommand2AS4WD & hardwareCommand)
-{
-  return toSimulationCommand2AS4WD(paramaters.rearWheelBase+paramaters.frontWheelBase,
-                                   paramaters.frontWheelTrack,
-                                   paramaters.rearWheelTrack,
-                                   hardwareCommand);
-}
-
-//-----------------------------------------------------------------------------
-HardwareState2AS4WD toHardwareState2AS4WD(const OneAxleSteeringKinematic::Parameters & parameters,
-                                          const SimulationState2AS4WD & simulationState)
-{
-  return toHardwareState2AS4WD(parameters.rearWheelBase+parameters.frontWheelBase,
-                               parameters.frontWheelTrack,
-                               parameters.rearWheelTrack,
-                               simulationState);
 }
 
 }

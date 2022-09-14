@@ -11,10 +11,10 @@ struct SimulationCommand1FASxxx
   SteeringAngleCommand frontLeftWheelSteeringAngle;
   SteeringAngleCommand frontRightWheelSteeringAngle;
 
-  RotationalMotionCommand frontLeftWheelSetPoint;
-  RotationalMotionCommand frontRightWheelSetPoint;
-  RotationalMotionCommand rearLeftWheelSetPoint;
-  RotationalMotionCommand rearRightWheelSetPoint;
+  RotationalMotionCommand frontLeftWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightWheelSpinningSetPoint;
+  RotationalMotionCommand rearLeftWheelSpinningSetPoint;
+  RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
 std::ostream & operator<<(std::ostream &os, const SimulationCommand1FASxxx & state);
@@ -25,10 +25,10 @@ struct SimulationState1FASxxx
   SteeringAngleState frontLeftWheelSteeringAngle;
   SteeringAngleState frontRightWheelSteeringAngle;
 
-  RotationalMotionState frontLeftWheelSpinMotion;
-  RotationalMotionState frontRightWheelSpinMotion;
-  RotationalMotionState rearLeftWheelSpinMotion;
-  RotationalMotionState rearRightWheelSpinMotion;
+  RotationalMotionState frontLeftWheelSpinningMotion;
+  RotationalMotionState frontRightWheelSpinningMotion;
+  RotationalMotionState rearLeftWheelSpinningMotion;
+  RotationalMotionState rearRightWheelSpinningMotion;
 };
 
 std::ostream & operator<<(std::ostream &os, const SimulationState1FASxxx & state);

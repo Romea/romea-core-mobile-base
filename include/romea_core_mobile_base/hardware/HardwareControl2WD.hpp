@@ -7,16 +7,16 @@ namespace romea {
 
 struct HardwareCommand2WD
 {
-  RotationalMotionCommand leftWheelSetPoint;
-  RotationalMotionCommand rightWheelSetPoint;
+  RotationalMotionCommand leftWheelSpinningSetPoint;
+  RotationalMotionCommand rightWheelSpinningSetPoint;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareCommand2WD & command);
 
 struct HardwareState2WD
 {
-  RotationalMotionState leftWheelSpinMotion;
-  RotationalMotionState rightWheelSpinMotion;
+  RotationalMotionState leftWheelSpinningMotion;
+  RotationalMotionState rightWheelSpinningMotion;
 };
 
 std::ostream & operator<<(std::ostream &os, const HardwareState2WD & state);

@@ -6,15 +6,15 @@ namespace romea
 
 //-----------------------------------------------------------------------------
 SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(const HardwareCommand2FWS2RWD & hardwareCommand,
-                                                      const double & frontLeftWheelSetPoint,
-                                                      const double & frontRightWheelSetPoint)
+                                                      const double & frontLeftWheelSpinningSetPoint,
+                                                      const double & frontRightWheelSpinningSetPoint)
 {
   return {hardwareCommand.frontLeftWheelSteeringAngle,
         hardwareCommand.frontRightWheelSteeringAngle,
-        frontLeftWheelSetPoint,
-        frontRightWheelSetPoint,
-        hardwareCommand.rearLeftWheelSetPoint,
-        hardwareCommand.rearRightWheelSetPoint};
+        frontLeftWheelSpinningSetPoint,
+        frontRightWheelSpinningSetPoint,
+        hardwareCommand.rearLeftWheelSpinningSetPoint,
+        hardwareCommand.rearRightWheelSpinningSetPoint};
 }
 
 //-----------------------------------------------------------------------------
@@ -27,10 +27,10 @@ SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(const double & wheelbase,
 {
 
   const double & rearLeftWheelLinearSpeed =
-      hardwareCommand.rearLeftWheelSetPoint*rearWheelRadius;
+      hardwareCommand.rearLeftWheelSpinningSetPoint*rearWheelRadius;
 
   const double & rearRightWheelLinearSpeed =
-      hardwareCommand.rearRightWheelSetPoint*rearWheelRadius;
+      hardwareCommand.rearRightWheelSpinningSetPoint*rearWheelRadius;
 
   const double & frontLeftWheelSteeringAngle =
       hardwareCommand.frontLeftWheelSteeringAngle;
@@ -70,8 +70,8 @@ HardwareState2FWS2RWD toHardwareState2FWS2RWD(const SimulationState2FWS2RWD & si
 {
   return {simulationState.frontLeftWheelSteeringAngle,
         simulationState.frontRightWheelSteeringAngle,
-        simulationState.rearLeftWheelSpinMotion,
-        simulationState.rearRightWheelSpinMotion};
+        simulationState.rearLeftWheelSpinningMotion,
+        simulationState.rearRightWheelSpinningMotion};
 }
 
 }

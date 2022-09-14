@@ -1,35 +1,31 @@
-#ifndef romea_HardwareControl2AS4WD_hpp
-#define romea_HardwareControl2AS4WD_hpp
+#ifndef romea_HardwareControl2AS2FWD_hpp
+#define romea_HardwareControl2AS2FWD_hpp
 
 #include "HardwareControlCommon.hpp"
 
 namespace romea {
 
-struct HardwareCommand2AS4WD
+struct HardwareCommand2AS2FWD
 {
   SteeringAngleCommand frontAxleSteeringAngle;
   SteeringAngleCommand rearAxleSteeringAngle;
 
-  RotationalMotionCommand frontLeftWheelSetPoint;
-  RotationalMotionCommand frontRightWheelSetPoint;
-  RotationalMotionCommand rearLeftWheelSetPoint;
-  RotationalMotionCommand rearRightWheelSetPoint;
+  RotationalMotionCommand frontLeftWheelSpinningSetPoint;
+  RotationalMotionCommand frontRightWheelSpinningSetPoint;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareCommand2AS4WD & command);
+std::ostream & operator<<(std::ostream &os, const HardwareCommand2AS2FWD & command);
 
-struct HardwareState2AS4WD
+struct HardwareState2AS2FWD
 {
   SteeringAngleState frontAxleSteeringAngle;
   SteeringAngleState rearAxleSteeringAngle;
 
-  RotationalMotionState frontLeftWheelSpinMotion;
-  RotationalMotionState frontRightWheelSpinMotion;
-  RotationalMotionState rearLeftWheelSpinMotion;
-  RotationalMotionState rearRightWheelSpinMotion;
+  RotationalMotionState frontLeftWheelSpinningMotion;
+  RotationalMotionState frontRightWheelSpinningMotion;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareState2AS4WD & state);
+std::ostream & operator<<(std::ostream &os, const HardwareState2AS2FWD & state);
 
 }//end romea
 #endif

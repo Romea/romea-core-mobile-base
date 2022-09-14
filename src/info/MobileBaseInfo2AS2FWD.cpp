@@ -1,19 +1,19 @@
-#include "romea_core_mobile_base/info/MobileBaseInfo1FWS2RWD.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInfo2AS2FWD.hpp"
 
 namespace romea {
 
 ////-----------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FWS2RWD & baseInformation)
+//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation)
 //{
 //  os << "Base information:" << std::endl;
 //  os << " type:" << std::endl;
-//  os << "  1FWS2RWD"<<std::endl;
+//  os << "  2AS4WD"<<std::endl;
 //  os << " geometry:";
 //  os << baseInformation.geometry<< std::endl;
-//  os << " front wheel steering control:" <<std::endl;
-//  os << baseInformation.frontWheelSteeringControl<< std::endl;
-//  os << " rear wheels speed control: " <<std::endl;
-//  os << baseInformation.rearWheelsSpeedControl<< std::endl;
+//  os << " axles steering control:" <<std::endl;
+//  os << baseInformation.axlesSteeringControl<< std::endl;
+//  os << " wheels speed control: " <<std::endl;
+//  os << baseInformation.wheelsSpeedControl<< std::endl;
 //  os << " intertia:" << std::endl;
 //  os << baseInformation.inertia;
 //  os << " control point:" << std::endl;
@@ -22,14 +22,14 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo1FWS2RWD & baseInformation,
-                             OneAxleSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(const MobileBaseInfo2AS2FWD & baseInformation,
+                             TwoAxleSteeringKinematic::Parameters & kinematicParameters )
 {
   const auto & geometry= baseInformation.geometry;
-  const auto & wheelsSpeedCommand = baseInformation.rearWheelsSpeedControl.command;
-  const auto & wheelsSpeedSensor = baseInformation.rearWheelsSpeedControl.sensor;
-  const auto & wheelSteeringCommand = baseInformation.frontWheelSteeringControl.command;
-  const auto & wheelSteeringSensor = baseInformation.frontWheelSteeringControl.sensor;
+  const auto & wheelsSpeedCommand = baseInformation.frontWheelsSpeedControl.command;
+  const auto & wheelsSpeedSensor = baseInformation.frontWheelsSpeedControl.sensor;
+  const auto & axlesSteeringCommand = baseInformation.axlesSteeringControl.command;
+  const auto & axlesSteeringSensor = baseInformation.axlesSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
   kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
@@ -38,12 +38,14 @@ void to_kinematic_parameters(const MobileBaseInfo1FWS2RWD & baseInformation,
   kinematicParameters.rearWheelTrack=geometry.rearAxle.wheelsDistance;
   kinematicParameters.frontHubCarrierOffset = geometry.frontAxle.wheels.hubCarrierOffset;
   kinematicParameters.rearHubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
-  kinematicParameters.maximalSteeringAngle = wheelSteeringCommand.maximalAngle;
-  kinematicParameters.maximalSteeringAngularSpeed = wheelSteeringCommand.maximalAngularSpeed;
+  kinematicParameters.frontMaximalSteeringAngle = axlesSteeringCommand.maximalAngle;
+  kinematicParameters.rearMaximalSteeringAngle = axlesSteeringCommand.maximalAngle;
+  kinematicParameters.maximalSteeringAngularSpeed = axlesSteeringCommand.maximalAngularSpeed;
+  kinematicParameters.frontMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.rearMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
   kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.steeringAngleVariance = std::pow(wheelSteeringSensor.angleStd,2.0);
+  kinematicParameters.steeringAngleVariance = std::pow(axlesSteeringSensor.angleStd,2.0);
 }
 
 }

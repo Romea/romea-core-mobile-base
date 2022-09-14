@@ -7,8 +7,8 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand1FAS2FWD & comm
 {
   os << " Hardware1FAS2RWD command : " << std::endl;
   os << " front axle steering angle : " << command.frontAxleSteeringAngle << std::endl;
-  os << " front left wheel setpoint : " << command.frontLeftWheelSetPoint << std::endl;
-  os << " front right wheel setpoint : " << command.frontRightWheelSetPoint;
+  os << " front left wheel spinning setpoint : " << command.frontLeftWheelSpinningSetPoint << std::endl;
+  os << " front right wheel spinning setpoint : " << command.frontRightWheelSpinningSetPoint;
   return os;
 }
 
@@ -17,8 +17,8 @@ std::ostream & operator<<(std::ostream &os, const HardwareState1FAS2FWD & state)
 {
   os << " Hardware1FAS2RWD state : "<< std::endl;
   os << " front axle steering angle : " << state.frontAxleSteeringAngle << std::endl;
-  os << " front left wheel spin motion: " << state.frontLeftWheelSpinMotion << std::endl;
-  os << " front right wheel spin motion : " << state.frontRightWheelSpinMotion ;
+  os << " front left wheel spinning motion: " << state.frontLeftWheelSpinningMotion << std::endl;
+  os << " front right wheel spinning motion : " << state.frontRightWheelSpinningMotion ;
   return os;
 }
 

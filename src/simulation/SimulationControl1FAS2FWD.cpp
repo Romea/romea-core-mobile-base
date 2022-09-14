@@ -16,8 +16,8 @@ SimulationCommand1FAS2FWD toSimulationCommand1FAS2FWD(const HardwareCommand1FAS2
   return {hardwareCommand.frontAxleSteeringAngle,
         frontLeftWheelSteeringAngleCommand,
         frontRightWheelSteeringAngleCommand,
-        hardwareCommand.frontLeftWheelSetPoint,
-        hardwareCommand.frontRightWheelSetPoint,
+        hardwareCommand.frontLeftWheelSpinningSetPoint,
+        hardwareCommand.frontRightWheelSpinningSetPoint,
         rearLeftWheelAngularSpeedCommand,
         rearRightWheelAngularSpeedCommand};
 }
@@ -35,10 +35,10 @@ SimulationCommand1FAS2FWD toSimulationCommand1FAS2FWD(const double & wheelbase,
   double fullRearTrack = rearTrack + 2*rearHubCarrierOffset;
 
   const double & frontLeftWheelLinearSpeed =
-      hardwareCommand.frontLeftWheelSetPoint*frontWheelRadius;
+      hardwareCommand.frontLeftWheelSpinningSetPoint*frontWheelRadius;
 
   const double & frontRightWheelLinearSpeed =
-      hardwareCommand.frontRightWheelSetPoint*frontWheelRadius;
+      hardwareCommand.frontRightWheelSpinningSetPoint*frontWheelRadius;
 
   const double & tanAxleSteeringAngle=
       std::tan(hardwareCommand.frontAxleSteeringAngle);
@@ -89,8 +89,8 @@ HardwareState1FAS2FWD toHardwareState1FAS2FWD(const SimulationState1FAS2FWD & si
                                               const double frontAxleSteeringAngle)
 {
   return {frontAxleSteeringAngle,
-        simulationState.frontLeftWheelSpinMotion,
-        simulationState.frontRightWheelSpinMotion};
+        simulationState.frontLeftWheelSpinningMotion,
+        simulationState.frontRightWheelSpinningMotion};
 
 }
 
