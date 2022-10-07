@@ -45,4 +45,28 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 
+void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
+                             MecanumWheelSteeringKinematic::Parameters & kinematicParameters )
+{
+
+  const auto & geometry = baseInformation.geometry;
+  const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
+  const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
+
+  if(!near(geometry.frontAxle.wheelsDistance,geometry.rearAxle.wheelsDistance))
+  {
+    std::stringstream ss;
+    ss << "Unable to convert base information to omni steering kinematic";
+    ss << "because distance between wheels of front and rear axles are not equals";
+    throw std::runtime_error(ss.str());
+  }
+
+  kinematicParameters.wheelbase = geometry.axlesDistance;
+  kinematicParameters.wheelTrack = geometry.frontAxle.wheelsDistance;
+  kinematicParameters.maximalWheelLinearSpeed = wheelsCommand.maximalSpeed;
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd,2);
+  kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
+
+}
+
 }

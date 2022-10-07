@@ -5,6 +5,7 @@
 #include "MobileBaseGeometry.hpp"
 #include "MobileBaseInertia.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
 
 namespace romea {
 
@@ -21,6 +22,9 @@ struct MobileBaseInfo4WD
 
 void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
                              SkidSteeringKinematic::Parameters & kinematicParameters );
+
+void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
+                             MecanumWheelSteeringKinematic::Parameters & kinematicParameters );
 
 }
 
