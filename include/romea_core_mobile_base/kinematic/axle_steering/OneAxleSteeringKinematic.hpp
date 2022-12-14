@@ -1,18 +1,18 @@
-#ifndef romea_OneAxleSteeringKinematic_hpp
-#define romea_OneAxleSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGKINEMATIC_HPP_
 
-//romea
-#include "OneAxleSteeringCommand.hpp"
-#include "OneAxleSteeringCommandLimits.hpp"
-
-//std
+// std
 #include <cmath>
+
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommandLimits.hpp"
+
 
 namespace romea {
 
 struct OneAxleSteeringKinematic
 {
-
   struct Parameters
   {
     Parameters();
@@ -41,7 +41,7 @@ struct OneAxleSteeringKinematic
 
 
   static double computeSteeringAngle(const double &instantaneousCurvature,
-                                     const double &wheelBase );
+                                     const double &wheelBase);
 
 
   static double computeAngularSpeed(const double & linearSpeed,
@@ -93,7 +93,6 @@ struct OneAxleSteeringKinematic
                                       const OneAxleSteeringCommand & previousCommand,
                                       const OneAxleSteeringCommand & currentCommand,
                                       const double & dt);
-
 };
 
 
@@ -106,5 +105,6 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringKinematic::Parameters & parame
                              const OneAxleSteeringCommand & currentCommand,
                              const double & dt);
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGKINEMATIC_HPP_

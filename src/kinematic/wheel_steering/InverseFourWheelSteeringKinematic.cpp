@@ -39,12 +39,10 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
   double frontBetaLeft = 1-hubCarrierOffset*KLeft*frontCosLeft;
   double rearBetaLeft = 1-hubCarrierOffset*KLeft*rearCosLeft;
 
-
   const double & frontRightWheelAngle = odometryFrame.frontRightWheelSteeringAngle;
   const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
   const double & rearRightWheelAngle = odometryFrame.rearRightWheelSteeringAngle;
   const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
-
 
   double frontTanRight = std::tan(frontRightWheelAngle);
   double frontCosRight = std::cos(frontRightWheelAngle);
@@ -59,25 +57,21 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
   double rearBetaRight =  1+hubCarrierOffset*KRight*rearCosRight;
 
 
-  Eigen::MatrixXd covariance = Eigen::MatrixXd::Zero(8,8);
-  covariance(0,0)=wheelSpeedVariance;
-  covariance(1,1)=wheelSpeedVariance;
-  covariance(2,2)=wheelSpeedVariance;
-  covariance(3,3)=wheelSpeedVariance;
-  covariance(4,4)=wheelAngleVariance;
-  covariance(5,5)=wheelAngleVariance;
-  covariance(6,6)=wheelAngleVariance;
-  covariance(7,7)=wheelAngleVariance;
+  Eigen::MatrixXd covariance = Eigen::MatrixXd::Zero(8, 8);
+  covariance(0, 0) = wheelSpeedVariance;
+  covariance(1, 1) = wheelSpeedVariance;
+  covariance(2, 2) = wheelSpeedVariance;
+  covariance(3, 3) = wheelSpeedVariance;
+  covariance(4, 4) = wheelAngleVariance;
+  covariance(5, 5) = wheelAngleVariance;
+  covariance(6, 6) = wheelAngleVariance;
+  covariance(7, 7) = wheelAngleVariance;
 
-//  std::cout <<"covariance"<< std::endl;
-//  std::cout <<covariance<< std::endl;
-
-
-  Eigen::MatrixXd J = Eigen::MatrixXd::Zero(3,8);
-  J(0,0) = 0.25*frontCosLeft*alphaLeft/frontBetaLeft;
-  J(0,1) = 0.25*rearCosLeft*alphaLeft/rearBetaLeft;
-  J(0,2) = 0.25*frontCosRight*alphaRight/frontBetaRight;
-  J(0,3) = 0.25*rearCosRight*alphaRight/rearBetaRight;
+  Eigen::MatrixXd J = Eigen::MatrixXd::Zero(3, 8);
+  J(0, 0) = 0.25*frontCosLeft*alphaLeft/frontBetaLeft;
+  J(0, 1) = 0.25*rearCosLeft*alphaLeft/rearBetaLeft;
+  J(0, 2) = 0.25*frontCosRight*alphaRight/frontBetaRight;
+  J(0, 3) = 0.25*rearCosRight*alphaRight/rearBetaRight;
 
 //  double frontGammaLeftFront = (frontCosLeft+frontSinLeft*rearTanLeft)/wheelbase;
 //  double rearGammaLeftFront =   rearCosLeft*(1+rearTanLeft*rearTanLeft)/wheelbase;
@@ -109,34 +103,59 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
 //  J(0,5)+=  rearGammaLeftRear / rearBetaLeft;
 
 
-  double tanFrontSteeringAngle=0.5*(frontTanLeft/alphaLeft + frontTanRight/alphaRight);
-  J(1,4) =  0.5*(1+frontTanLeft*frontTanLeft)  *(alphaLeft -frontTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
-  J(1,5) =  0.5*(1+rearTanLeft*rearTanLeft)    *(           frontTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
-  J(1,6) =  0.5*(1+frontTanRight*frontTanRight)*(alphaRight+frontTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
-  J(1,7) =  0.5*(1+rearTanRight*rearTanRight)  *(          -frontTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+  double tanFrontSteeringAngle = 0.5*(frontTanLeft/alphaLeft + frontTanRight/alphaRight);
+  J(1, 4) =  0.5*(1+frontTanLeft*frontTanLeft)*
+    (alphaLeft -frontTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
+  J(1, 5) =  0.5*(1+rearTanLeft*rearTanLeft)*
+    (frontTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
+  J(1, 6) =  0.5*(1+frontTanRight*frontTanRight)*
+    (alphaRight+frontTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+  J(1, 7) =  0.5*(1+rearTanRight*rearTanRight)  *
+    (-frontTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+
   J.row(1)*=1/(1+tanFrontSteeringAngle*tanFrontSteeringAngle);
 
 
-  double tanRearSteeringAngle=0.5*(rearTanLeft/alphaLeft + rearTanRight/alphaRight);
-  J(2,4) =  0.5*(1+frontTanLeft*frontTanLeft)  *(          -rearTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
-  J(2,5) =  0.5*(1+rearTanLeft*rearTanLeft)    *(alphaLeft +rearTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
-  J(2,6) =  0.5*(1+frontTanRight*frontTanRight)*(           rearTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
-  J(2,7) =  0.5*(1+rearTanRight*rearTanRight)  *(alphaRight-rearTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+  double tanRearSteeringAngle = 0.5*(rearTanLeft/alphaLeft + rearTanRight/alphaRight);
+  J(2, 4) =  0.5*(1+frontTanLeft*frontTanLeft)*
+    (-rearTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
+  J(2, 5) =  0.5*(1+rearTanLeft*rearTanLeft)*
+    (alphaLeft +rearTanLeft*halfWheelTrack/wheelbase)/(alphaLeft*alphaLeft);
+  J(2, 6) =  0.5*(1+frontTanRight*frontTanRight)*
+    (rearTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+  J(2, 7) =  0.5*(1+rearTanRight*rearTanRight)*
+    (alphaRight-rearTanRight*halfWheelTrack/wheelbase)/(alphaRight*alphaRight);
+
   J.row(2)*=1/(1+tanRearSteeringAngle*tanFrontSteeringAngle);
 
 //  std::cout << " intermediare" << std::endl;
-//  std::cout << frontLeftWheelSpeed <<" "<<frontLeftWheelSpeed*frontCosLeft <<" "<<alphaLeft <<" "<< frontBetaLeft<< std::endl;
-//  std::cout << rearLeftWheelSpeed <<" "<<rearLeftWheelSpeed*rearCosLeft <<" "<<alphaLeft <<" "<< frontBetaLeft<< std::endl;
-//  std::cout << frontRightWheelSpeed <<" "<<frontRightWheelSpeed*frontCosRight <<" "<<alphaRight <<" "<< frontBetaRight<< std::endl;
-//  std::cout << rearRightWheelSpeed <<" "<<rearRightWheelSpeed*rearCosRight <<" "<<alphaRight <<" "<< rearBetaRight<< std::endl;
+//  std::cout << frontLeftWheelSpeed <<" "
+//            << frontLeftWheelSpeed*frontCosLeft <<" "
+//            << alphaLeft <<" "
+//            << frontBetaLeft<< std::endl;
+//  std::cout << rearLeftWheelSpeed <<" "
+//            << rearLeftWheelSpeed*rearCosLeft <<" "
+//            << alphaLeft <<" "
+//            << frontBetaLeft << std::endl;
+//  std::cout << frontRightWheelSpeed <<" "
+//            << frontRightWheelSpeed*frontCosRight <<" "
+//            << alphaRight <<" "
+//            << frontBetaRight<< std::endl;
+//  std::cout << rearRightWheelSpeed <<" "
+//            << rearRightWheelSpeed*rearCosRight <<" "
+//            << alphaRight <<" "
+//            << rearBetaRight<< std::endl;
 
-  twoAxleSteeringMeasure.longitudinalSpeed = 0.25*(frontLeftWheelSpeed*frontCosLeft*alphaLeft/frontBetaLeft+
-                                                   rearLeftWheelSpeed*rearCosLeft*alphaLeft/rearBetaLeft+
-                                                   frontRightWheelSpeed*frontCosRight*alphaRight/frontBetaRight+
-                                                   rearRightWheelSpeed*rearCosRight*alphaRight/rearBetaRight);
+  twoAxleSteeringMeasure.longitudinalSpeed =
+    0.25*(frontLeftWheelSpeed*frontCosLeft*alphaLeft/frontBetaLeft+
+          rearLeftWheelSpeed*rearCosLeft*alphaLeft/rearBetaLeft+
+          frontRightWheelSpeed*frontCosRight*alphaRight/frontBetaRight+
+          rearRightWheelSpeed*rearCosRight*alphaRight/rearBetaRight);
 
-  twoAxleSteeringMeasure.frontSteeringAngle= std::atan(0.5*(frontTanLeft/alphaLeft + frontTanRight/alphaRight));
-  twoAxleSteeringMeasure.rearSteeringAngle= std::atan(0.5*(rearTanLeft/alphaLeft + rearTanRight/alphaRight));
+  twoAxleSteeringMeasure.frontSteeringAngle =
+    std::atan(0.5*(frontTanLeft/alphaLeft + frontTanRight/alphaRight));
+  twoAxleSteeringMeasure.rearSteeringAngle =
+    std::atan(0.5*(rearTanLeft/alphaLeft + rearTanRight/alphaRight));
 
 
 //  std::cout << " inverse kinematic" << std::endl;
@@ -145,7 +164,6 @@ void inverseKinematic(const FourWheelSteeringKinematic::Parameters & parameters,
 //             <<  twoAxleSteeringMeasure.rearSteeringAngle<< std::endl;
 
   twoAxleSteeringMeasure.covariance =  J*covariance*J.transpose();
-
 }
 
 }

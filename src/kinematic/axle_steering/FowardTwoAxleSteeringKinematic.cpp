@@ -1,21 +1,18 @@
-//romea
+// romea
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
-#include <iostream>
 
 namespace romea {
-
 
 //-----------------------------------------------------------------------------
 void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
                       const TwoAxleSteeringCommand & commandFrame,
                       OdometryFrame2AS4WD & odometryCommandFrame)
 {
-
   double wheelbase = parameters.frontWheelBase + parameters.rearWheelBase;
 
   const double & linearSpeed = commandFrame.longitudinalSpeed;
@@ -31,14 +28,14 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
 
   double instantaneousCurvature = (tanFrontSteeringAngle - tanRearSteeringAngle)/wheelbase;
 
-  double frontLeftWheelSpeed=OneAxleSteeringKinematic::
+  double frontLeftWheelSpeed = OneAxleSteeringKinematic::
       computeLeftWheelLinearSpeed(linearSpeed,
                                   tanFrontSteeringAngle,
                                   instantaneousCurvature,
                                   frontHubCarrierOffset,
                                   frontHalfWheelTrack);
 
-  double frontRightWheelSpeed=OneAxleSteeringKinematic::
+  double frontRightWheelSpeed = OneAxleSteeringKinematic::
       computeRightWheelLinearSpeed(linearSpeed,
                                    tanFrontSteeringAngle,
                                    instantaneousCurvature,
@@ -46,32 +43,31 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
                                    frontHalfWheelTrack);
 
 
-  double rearLeftWheelSpeed=OneAxleSteeringKinematic::
+  double rearLeftWheelSpeed = OneAxleSteeringKinematic::
       computeLeftWheelLinearSpeed(linearSpeed,
                                   tanRearSteeringAngle,
                                   instantaneousCurvature,
                                   rearHubCarrierOffset,
                                   rearHalfTrack);
 
-  double rearRightWheelSpeed=OneAxleSteeringKinematic::
+  double rearRightWheelSpeed = OneAxleSteeringKinematic::
       computeRightWheelLinearSpeed(linearSpeed,
                                    tanRearSteeringAngle,
                                    instantaneousCurvature,
                                    rearHubCarrierOffset,
-                                   rearHalfTrack );
+                                   rearHalfTrack);
 
-  assert(sign(frontLeftWheelSpeed)==sign(linearSpeed));
-  assert(sign(frontRightWheelSpeed)==sign(linearSpeed));
-  assert(sign(rearLeftWheelSpeed)==sign(linearSpeed));
-  assert(sign(rearRightWheelSpeed)==sign(linearSpeed));
+  assert(sign(frontLeftWheelSpeed) == sign(linearSpeed));
+  assert(sign(frontRightWheelSpeed) == sign(linearSpeed));
+  assert(sign(rearLeftWheelSpeed) == sign(linearSpeed));
+  assert(sign(rearRightWheelSpeed) == sign(linearSpeed));
 
-  odometryCommandFrame.frontAxleSteeringAngle=frontSteeringAngle;
-  odometryCommandFrame.frontLeftWheelLinearSpeed=frontLeftWheelSpeed;
-  odometryCommandFrame.frontRightWheelLinearSpeed=frontRightWheelSpeed;
-  odometryCommandFrame.rearAxleSteeringAngle=rearSteeringAngle;
-  odometryCommandFrame.rearLeftWheelLinearSpeed=rearLeftWheelSpeed;
-  odometryCommandFrame.rearRightWheelLinearSpeed=rearRightWheelSpeed;
-
+  odometryCommandFrame.frontAxleSteeringAngle = frontSteeringAngle;
+  odometryCommandFrame.frontLeftWheelLinearSpeed = frontLeftWheelSpeed;
+  odometryCommandFrame.frontRightWheelLinearSpeed = frontRightWheelSpeed;
+  odometryCommandFrame.rearAxleSteeringAngle = rearSteeringAngle;
+  odometryCommandFrame.rearLeftWheelLinearSpeed = rearLeftWheelSpeed;
+  odometryCommandFrame.rearRightWheelLinearSpeed = rearRightWheelSpeed;
 }
 
-}
+}  // namespace romea

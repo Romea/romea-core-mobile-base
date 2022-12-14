@@ -1,17 +1,15 @@
-﻿#ifndef romea_TwoWheelSteeringKinematic_hpp
-#define romea_TwoWheelSteeringKinematic_hpp
+﻿#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_TWOWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_TWOWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "../axle_steering/OneAxleSteeringKinematic.hpp"
-#include "../axle_steering/OneAxleSteeringCommand.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
 
 namespace romea {
 
 class TwoWheelSteeringKinematic : public OneAxleSteeringKinematic
 {
-
 public:
-
   struct Parameters
   {
     Parameters();
@@ -58,8 +56,6 @@ public:
   static double computeRightWheelSteeringAngle(const double & tanSteeringAngle,
                                                const double & instantaneousCurvature,
                                                const double & halfTrack);
-
-
 };
 
 OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
@@ -71,5 +67,6 @@ OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & param
                              const OneAxleSteeringCommand & currentCommand,
                              const double & dt);
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_TWOWHEELSTEERINGKINEMATIC_HPP_

@@ -1,7 +1,7 @@
-#ifndef romea_SkidSteeringCommandLimits_hpp
-#define romea_SkidSteeringCommandLimits_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMANDLIMITS_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMANDLIMITS_HPP_
 
-#include "../CommandLimits.hpp"
+#include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
 
 namespace romea {
 
@@ -19,5 +19,6 @@ struct SkidSteeringCommandLimits
 
 std::ostream& operator<<(std::ostream& os, const SkidSteeringCommandLimits & limits);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMANDLIMITS_HPP_

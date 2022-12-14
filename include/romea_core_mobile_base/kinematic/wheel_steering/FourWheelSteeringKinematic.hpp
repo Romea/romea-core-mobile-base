@@ -1,14 +1,13 @@
-#ifndef romea_FourWheelSteeringKinematic_hpp
-#define romea_FourWheelSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOURWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOURWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "../axle_steering/TwoAxleSteeringKinematic.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
 
 namespace romea {
 
 struct FourWheelSteeringKinematic
 {
-
   struct Parameters
   {
     Parameters();
@@ -24,7 +23,6 @@ struct FourWheelSteeringKinematic
     double wheelSteeringAngleVariance;
   };
 
-
   static double comptuteBeta(const double & linearSpeedXBodyAxis,
                              const double & linearSpeedYBodyAxis);
 
@@ -38,7 +36,6 @@ struct FourWheelSteeringKinematic
   static double computeRearSteeringAngle(const double & instantaneousCurvature,
                                          const double & rearWheelBase,
                                          const double & beta);
-
 };
 
 TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
@@ -50,5 +47,6 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                              const TwoAxleSteeringCommand &curentCommand,
                              const double & dt);
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOURWHEELSTEERINGKINEMATIC_HPP_

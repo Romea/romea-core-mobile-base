@@ -1,13 +1,12 @@
-#ifndef romea_OmniSteeringConstraints_hpp
-#define romea_OmniSteeringConstraints_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMANDLIMITS_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMANDLIMITS_HPP_
 
-#include "../CommandLimits.hpp"
+#include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
 
 namespace romea {
 
-
 struct OmniSteeringCommandLimits
-{  
+{
   OmniSteeringCommandLimits();
 
   OmniSteeringCommandLimits(const double & minimalLongitudinalSpeed,
@@ -22,6 +21,6 @@ struct OmniSteeringCommandLimits
 
 std::ostream& operator<<(std::ostream& os, const OmniSteeringCommandLimits & limits);
 
+}  // namespace romea
 
-}//end romea
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMANDLIMITS_HPP_

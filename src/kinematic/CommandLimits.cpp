@@ -1,4 +1,7 @@
-//romea
+// std
+#include <cmath>
+
+// romea
 #include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
@@ -8,13 +11,13 @@ namespace romea {
 //-----------------------------------------------------------------------------
 Interval1D<double> makeSymmetricCommandLimits(const double & maximalAbsoluteCommand)
 {
-   return Interval1D<double>(-maximalAbsoluteCommand,maximalAbsoluteCommand);
+   return Interval1D<double>(-maximalAbsoluteCommand, maximalAbsoluteCommand);
 }
 
 //-----------------------------------------------------------------------------
 Interval1D<double> makeSteeringAngleCommandLimits(const double & maximalAbsoluteSteeringAngle)
 {
-  if(maximalAbsoluteSteeringAngle< 0 || maximalAbsoluteSteeringAngle>M_PI_2)
+  if (maximalAbsoluteSteeringAngle < 0 || maximalAbsoluteSteeringAngle > M_PI_2)
   {
     std::stringstream ss;
     ss << " Steering angle limits:";
@@ -24,14 +27,15 @@ Interval1D<double> makeSteeringAngleCommandLimits(const double & maximalAbsolute
     throw std::runtime_error(ss.str());
   }
 
-  return Interval1D<double>(-maximalAbsoluteSteeringAngle,maximalAbsoluteSteeringAngle);
+  return Interval1D<double>(-maximalAbsoluteSteeringAngle, maximalAbsoluteSteeringAngle);
 }
 
 
 //-----------------------------------------------------------------------------
-Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBackwardSpeed,const double & maximalForwardSpeed)
+Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBackwardSpeed,
+                                                      const double & maximalForwardSpeed)
 {
-  if(maximalBackwardSpeed>0)
+  if (maximalBackwardSpeed > 0)
   {
     std::stringstream ss;
     ss << " Longitudinal speed limits : ";
@@ -41,7 +45,7 @@ Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBack
     throw std::runtime_error(ss.str());
   }
 
-  if(maximalForwardSpeed<0)
+  if (maximalForwardSpeed < 0)
   {
     std::stringstream ss;
     ss << " Longitudinal speed limits : ";
@@ -51,14 +55,14 @@ Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBack
     throw std::runtime_error(ss.str());
   }
 
-  return Interval1D<double>(maximalBackwardSpeed,maximalForwardSpeed);
+  return Interval1D<double>(maximalBackwardSpeed, maximalForwardSpeed);
 }
 
 //-----------------------------------------------------------------------------
 double clamp(const double & value, const Interval1D<double> &limits)
 {
-  return clamp(value,limits.lower(),limits.upper());
+  return clamp(value, limits.lower(), limits.upper());
 }
 
-}//end romea
+}  // namespace romea
 

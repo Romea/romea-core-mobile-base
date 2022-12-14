@@ -25,7 +25,7 @@ namespace romea {
 void to_kinematic_parameters(const MobileBaseInfo1FAS2RWD & baseInformation,
                              OneAxleSteeringKinematic::Parameters & kinematicParameters )
 {
-  const auto & geometry= baseInformation.geometry;
+  const auto & geometry = baseInformation.geometry;
   const auto & wheelsSpeedCommand = baseInformation.rearWheelsSpeedControl.command;
   const auto & wheelsSpeedSensor = baseInformation.rearWheelsSpeedControl.sensor;
   const auto & axleSteeringCommand = baseInformation.frontAxleSteeringControl.command;
@@ -34,16 +34,16 @@ void to_kinematic_parameters(const MobileBaseInfo1FAS2RWD & baseInformation,
 
   kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
   kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
-  kinematicParameters.frontWheelTrack=geometry.frontAxle.wheelsDistance;
-  kinematicParameters.rearWheelTrack=geometry.rearAxle.wheelsDistance;
+  kinematicParameters.frontWheelTrack = geometry.frontAxle.wheelsDistance;
+  kinematicParameters.rearWheelTrack = geometry.rearAxle.wheelsDistance;
   kinematicParameters.frontHubCarrierOffset = geometry.frontAxle.wheels.hubCarrierOffset;
   kinematicParameters.rearHubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.maximalSteeringAngle = axleSteeringCommand.maximalAngle;
   kinematicParameters.maximalSteeringAngularSpeed = axleSteeringCommand.maximalAngularSpeed;
   kinematicParameters.rearMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.steeringAngleVariance = std::pow(axleSteeringSensor.angleStd,2.0);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd, 2.0);
+  kinematicParameters.steeringAngleVariance = std::pow(axleSteeringSensor.angleStd, 2.0);
 }
 
-}
+}  // namespace romea

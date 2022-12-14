@@ -1,17 +1,16 @@
-#ifndef romea_MobileBaseDescription1FAS4WD_hpp
-#define romea_MobileBaseDescription1FAS4WD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO1FAS4WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO1FAS4WD_HPP_
 
-#include "MobileBaseControl.hpp"
-#include "MobileBaseGeometry.hpp"
-#include "MobileBaseInertia.hpp"
-
+#include "romea_core_mobile_base/info/MobileBaseControl.hpp"
+#include "romea_core_mobile_base/info/MobileBaseGeometry.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInertia.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 
 namespace romea {
 
 struct MobileBaseInfo1FAS4WD
 {
-  TwoAxles<WheeledAxle,WheeledAxle> geometry;
+  TwoAxles<WheeledAxle, WheeledAxle> geometry;
   SteeringAngleControl frontAxleSteeringControl;
   WheelSpeedControl wheelsSpeedControl;
   MobileBaseInertia inertia;
@@ -21,8 +20,8 @@ struct MobileBaseInfo1FAS4WD
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FAS2RWD & baseInformation);
 
 void to_kinematic_parameters(const MobileBaseInfo1FAS4WD & baseInformation,
-                             OneAxleSteeringKinematic::Parameters & kinematicParameters );
+                             OneAxleSteeringKinematic::Parameters & kinematicParameters);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO1FAS4WD_HPP_

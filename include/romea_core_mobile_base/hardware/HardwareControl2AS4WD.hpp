@@ -1,7 +1,7 @@
-#ifndef romea_HardwareControl2AS4WD_hpp
-#define romea_HardwareControl2AS4WD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_
 
-#include "HardwareControlCommon.hpp"
+#include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
 namespace romea {
 
@@ -31,5 +31,6 @@ struct HardwareState2AS4WD
 
 std::ostream & operator<<(std::ostream &os, const HardwareState2AS4WD & state);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_ 

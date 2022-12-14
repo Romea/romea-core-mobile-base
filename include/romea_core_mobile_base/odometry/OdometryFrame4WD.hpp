@@ -1,7 +1,7 @@
-#ifndef romea_OdometryFrame4WD_hpp
-#define romea_OdometryFrame4WD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME4WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME4WD_HPP_
 
-//stl
+// stl
 #include <ostream>
 
 namespace romea {
@@ -12,23 +12,10 @@ struct OdometryFrame4WD
   double frontRightWheelLinearSpeed;
   double rearLeftWheelLinearSpeed;
   double rearRightWheelLinearSpeed;
-
 };
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame4WD &frame);
 
-//struct OdometryFrame4WDa
-//{
-//  double frontLeftWheelAngularSpeed;
-//  double frontRightWheelAngularSpeed;
-//  double rearLeftWheelAngularSpeed;
-//  double rearRightWheelAngularSpeed;
+}  // namespace romea
 
-//};
-
-//std::ostream & operator<<(std::ostream &s, const OdometryFrame4WDa &frame);
-
-
-}//end romea
-
-#endif
+#endif  /: ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME4WD_HPP_

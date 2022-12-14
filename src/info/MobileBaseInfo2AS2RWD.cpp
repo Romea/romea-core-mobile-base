@@ -34,8 +34,8 @@ void to_kinematic_parameters(const MobileBaseInfo2AS2RWD & baseInformation,
 
   kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
   kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
-  kinematicParameters.frontWheelTrack=geometry.frontAxle.wheelsDistance;
-  kinematicParameters.rearWheelTrack=geometry.rearAxle.wheelsDistance;
+  kinematicParameters.frontWheelTrack = geometry.frontAxle.wheelsDistance;
+  kinematicParameters.rearWheelTrack = geometry.rearAxle.wheelsDistance;
   kinematicParameters.frontHubCarrierOffset = geometry.frontAxle.wheels.hubCarrierOffset;
   kinematicParameters.rearHubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.frontMaximalSteeringAngle = axlesSteeringCommand.maximalAngle;
@@ -44,8 +44,8 @@ void to_kinematic_parameters(const MobileBaseInfo2AS2RWD & baseInformation,
   kinematicParameters.frontMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.rearMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.steeringAngleVariance = std::pow(axlesSteeringSensor.angleStd,2.0);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd, 2.0);
+  kinematicParameters.steeringAngleVariance = std::pow(axlesSteeringSensor.angleStd, 2.0);
 }
 
-}
+}  // namespace romea

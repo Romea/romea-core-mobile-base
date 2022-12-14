@@ -1,12 +1,8 @@
-//romea
+// romea
 #include "romea_core_mobile_base/info/MobileBaseGeometry.hpp"
-
-//std
-#include <limits>
 
 namespace romea
 {
-
 
 ////-----------------------------------------------------------------------------
 //template<typename FrontAxle, typename RearAxle>
@@ -39,8 +35,4 @@ namespace romea
 ////std::ostream& operator<<(std::ostream& os, const TwoAxleGeometry<RubberWheel> & twoAxlesGeometry);
 
 
-//template struct TwoAxles<WheeledAxle,WheeledAxle>;
-//template struct TwoAxles<WheeledAxle,ContinuousTrackedAxle>;
-//template struct TwoAxles<ContinuousTrackedAxle,ContinuousTrackedAxle>;
-
-}
+}  // namespace romea

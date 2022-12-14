@@ -11,38 +11,34 @@ namespace romea {
 SkidSteeringMeasure::SkidSteeringMeasure():
   covariance(Eigen::Matrix2d::Zero())
 {
-
 }
 
 //-----------------------------------------------------------------------------
 KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & measure)
 {
   KinematicMeasure convertedMeasure;
-  convertedMeasure.longitudinalSpeed=measure.longitudinalSpeed;
+  convertedMeasure.longitudinalSpeed = measure.longitudinalSpeed;
   convertedMeasure.angularSpeed = measure.angularSpeed;
 
-  if(std::abs(measure.angularSpeed)<EPSILON)
+  if (std::abs(measure.angularSpeed) < EPSILON)
   {
-    convertedMeasure.instantaneousCurvature=0;
-  }
-  else if (std::abs(measure.longitudinalSpeed)>EPSILON)
-  {
-    convertedMeasure.instantaneousCurvature=measure.angularSpeed/measure.longitudinalSpeed;
-  }
-  else
-  {
-    convertedMeasure.instantaneousCurvature = romea::sign(measure.angularSpeed)*std::numeric_limits<double>::max();
+    convertedMeasure.instantaneousCurvature = 0;
+  } else if (std::abs(measure.longitudinalSpeed) > EPSILON) {
+    convertedMeasure.instantaneousCurvature = measure.angularSpeed/measure.longitudinalSpeed;
+  } else {
+    convertedMeasure.instantaneousCurvature =
+      romea::sign(measure.angularSpeed)*std::numeric_limits<double>::max();
   }
 
 
-  Eigen::MatrixXd J =  Eigen::MatrixXd::Zero(4,2);
-  J(0,0)=1;
-  J(2,1)=1;
-  J(3,1)=measure.angularSpeed;
+  Eigen::MatrixXd J =  Eigen::MatrixXd::Zero(4, 2);
+  J(0, 0) = 1;
+  J(2, 1) = 1;
+  J(3, 1) = measure.angularSpeed;
 
-  if(std::abs(measure.longitudinalSpeed)<EPSILON)
+  if (std::abs(measure.longitudinalSpeed) < EPSILON)
   {
-    J(3,0)=-measure.angularSpeed/(std::pow(romea::sign(measure.longitudinalSpeed)*EPSILON,2));
+    J(3, 0) = -measure.angularSpeed/(std::pow(romea::sign(measure.longitudinalSpeed)*EPSILON, 2));
   }
 
   convertedMeasure.covariance = J*measure.covariance*J.transpose();
@@ -56,6 +52,22 @@ KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & command,
   return toKinematicMeasure(command);
 }
 
+//-----------------------------------------------------------------------------
+std::ostream& operator<<(std::ostream& os, const SkidSteeringMeasure & measure)
+{
+  os <<" SkidSteering measure " << std::endl;;
+  os <<" measured linear speed " << measure.longitudinalSpeed << std::endl;
+  os <<" measured angular speed " << measure.angularSpeed << std::endl;
+  os <<" measured covariance matrix " << std::endl;
+  os << measure.covariance;
+
+  return os;
+}
+
+}  // namespace romea
+
+
+// old codes
 ////-----------------------------------------------------------------------------
 //SkidSteeringMeasure toSkidSteeringMeasure(const KinematicMeasure & measure)
 //{
@@ -75,18 +87,3 @@ KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & command,
 //{
 //  return toSkidSteeringMeasure(measure);
 //}
-
-//-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const SkidSteeringMeasure & measure)
-{
-  os<<" SkidSteering measure   "<<std::endl;;
-  os<<" measured linear speed  " << measure.longitudinalSpeed << std::endl;
-  os<<" measured angular speed " << measure.angularSpeed << std::endl;
-  os<<" measured covariance matrix " << std::endl;
-  os<< measure.covariance;
-
-  return os;
-}
-
-}//end romea
-

@@ -1,7 +1,7 @@
-#ifndef romea_OdometryFrame1FAS4WD_hpp
-#define romea_OdometryFrame1FAS4WD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FAS4WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FAS4WD_HPP_
 
-//stl
+// stl
 #include <ostream>
 
 namespace romea {
@@ -17,5 +17,6 @@ struct OdometryFrame1FAS4WD
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame1FAS4WD &frame);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FAS4WD_HPP_

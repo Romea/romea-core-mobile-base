@@ -1,13 +1,12 @@
-//romea
+// std
+#include <cmath>
+
+// romea
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
-
-//std
-#include <cmath>
-#include <iostream>
 
 namespace romea {
 
@@ -25,7 +24,6 @@ FourWheelSteeringKinematic::Parameters::Parameters():
   wheelSteeringAngleVariance(0)
 
 {
-
 }
 
 
@@ -33,7 +31,7 @@ FourWheelSteeringKinematic::Parameters::Parameters():
 double FourWheelSteeringKinematic::comptuteBeta(const double & linearSpeedXBodyAxis,
                                                 const double & linearSpeedYBodyAxis)
 {
-  return std::atan2(linearSpeedYBodyAxis,std::abs(linearSpeedXBodyAxis));
+  return std::atan2(linearSpeedYBodyAxis, std::abs(linearSpeedXBodyAxis));
 }
 
 
@@ -49,7 +47,7 @@ double FourWheelSteeringKinematic::computeFrontSteeringAngle(const double & inst
                                                              const double & frontWheelBase,
                                                              const double & beta)
 {
-  return std::atan2(instantaneousCurvature*frontWheelBase+std::sin(beta),std::cos(beta));
+  return std::atan2(instantaneousCurvature*frontWheelBase+std::sin(beta), std::cos(beta));
 }
 
 //--------------------------------------------------------------------------
@@ -57,7 +55,7 @@ double FourWheelSteeringKinematic::computeRearSteeringAngle(const double & insta
                                                             const double & rearWheelBase,
                                                             const double & beta)
 {
-  return std::atan2(-instantaneousCurvature*rearWheelBase+std::sin(beta),std::cos(beta));
+  return std::atan2(-instantaneousCurvature*rearWheelBase+std::sin(beta), std::cos(beta));
 }
 
 //--------------------------------------------------------------------------
@@ -65,7 +63,6 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                              const TwoAxleSteeringCommandLimits & userLimits,
                              const TwoAxleSteeringCommand & command)
 {
-
   return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
                                          parameters.rearWheelBase,
                                          parameters.wheelTrack/2.,
@@ -86,8 +83,7 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                              const TwoAxleSteeringCommand & curentCommand,
                              const double & dt)
 {
-
-    double  maximalSteeringAngularSpeed =0;
+    double  maximalSteeringAngularSpeed = 0;
 
     return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
                                            parameters.rearWheelBase,
@@ -100,10 +96,14 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
                                            previousCommand,
                                            curentCommand,
                                            dt);
-
 }
 
 
+
+}  // namespace romea
+
+
+// old codes
 ////--------------------------------------------------------------------------
 //double maximalPermissibleLinearSpeed(const FourWheelSteeringKinematic::Parameters & parameters,
 //                                     const double & instantaneousCurvature)
@@ -197,6 +197,3 @@ TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & para
 //  //make command
 //  return makeFourWheelSteeringCommand(command.getDuration(),linearSpeed,lateralSpeed,instantaneousCurvature);
 //}
-
-
-}//end romea

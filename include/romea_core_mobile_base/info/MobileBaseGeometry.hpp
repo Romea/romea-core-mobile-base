@@ -1,5 +1,5 @@
-#ifndef romea_MobileBaseGeometry_hpp
-#define romea_MobileBaseGeometry_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_
+#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_
 
 #include <iostream>
 #include <vector>
@@ -52,9 +52,7 @@ struct TwoAxles
   RearAxle rearAxle;
 };
 
-using TwoWheeledAxles = TwoAxles<WheeledAxle,WheeledAxle>;
-
-
+using TwoWheeledAxles = TwoAxles<WheeledAxle, WheeledAxle>;
 
 
 //std::ostream& operator<<(std::ostream& os, const Wheel & wheel);
@@ -67,4 +65,4 @@ using TwoWheeledAxles = TwoAxles<WheeledAxle,WheeledAxle>;
 
 }
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_ 

@@ -1,6 +1,5 @@
 #include "romea_core_mobile_base/info/MobileBaseInertia.hpp"
 
-
 namespace romea
 {
 
@@ -15,4 +14,4 @@ namespace romea
 
 //  std::ostream& operator<<(std::ostream& os, const MobileBaseInertia & inertia);
 
-}
+}  // namespace romea

@@ -26,15 +26,14 @@ namespace romea {
 void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
                              FourWheelSteeringKinematic::Parameters & kinematicParameters )
 {
-  const auto & geometry= baseInformation.geometry;
+  const auto & geometry = baseInformation.geometry;
   const auto & wheelsSpeedCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSpeedSensor = baseInformation.wheelsSpeedControl.sensor;
   const auto & wheelsSteeringCommand = baseInformation.wheelsSteeringControl.command;
   const auto & wheelsSteeringSensor = baseInformation.wheelsSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
-  if(!near(geometry.frontAxle.wheelsDistance,
-          geometry.rearAxle.wheelsDistance))
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to four wheel steering kinematic";
@@ -42,8 +41,7 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
     throw std::runtime_error(ss.str());
   }
 
-  if(!near(geometry.frontAxle.wheels.hubCarrierOffset,
-          geometry.rearAxle.wheels.hubCarrierOffset))
+  if (!near(geometry.frontAxle.wheels.hubCarrierOffset, geometry.rearAxle.wheels.hubCarrierOffset))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to four wheel steering kinematic";
@@ -53,14 +51,14 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
 
   kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
   kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
-  kinematicParameters.wheelTrack=geometry.rearAxle.wheelsDistance;
+  kinematicParameters.wheelTrack = geometry.rearAxle.wheelsDistance;
   kinematicParameters.hubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.maximalWheelSteeringAngle = wheelsSteeringCommand.maximalAngle;
   kinematicParameters.maximalWheelSteeringAngularSpeed = wheelsSteeringCommand.maximalAngularSpeed;
   kinematicParameters.maximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd,2.0);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd, 2.0);
+  kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd, 2.0);
 }
 
-}
+}  // namespace romea

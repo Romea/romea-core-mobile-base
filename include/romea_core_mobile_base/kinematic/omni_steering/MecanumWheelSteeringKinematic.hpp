@@ -1,16 +1,15 @@
-#ifndef romea_MecanumWheelSteeringKinematic_hpp
-#define romea_MecanumWheelSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_MECANUMWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_MECANUMWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "OmniSteeringCommand.hpp"
-#include "OmniSteeringCommandLimits.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommandLimits.hpp"
 
 namespace romea
 {
 
 struct MecanumWheelSteeringKinematic
 {
-
   struct Parameters
   {
     Parameters();
@@ -20,7 +19,6 @@ struct MecanumWheelSteeringKinematic
     double maximalWheelLinearAcceleration;
     double wheelLinearSpeedVariance;
   };
-
 
 
   static double computeFrontLeftWheelLinearSpeed(const double & longitidutinalSpeed,
@@ -65,7 +63,6 @@ struct MecanumWheelSteeringKinematic
                                     const double & rearRightWheelSpeed,
                                     const double & halfWheelbase,
                                     const double & halfTrack);
-
 };
 
 OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & parameters,
@@ -78,6 +75,6 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                           const double & dt);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_MECANUMWHEELSTEERINGKINEMATIC_HPP_

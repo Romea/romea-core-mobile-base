@@ -1,14 +1,13 @@
-#ifndef romea_OneAxleSteeringCommand_hpp
-#define romea_OneAxleSteeringCommand_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMAND_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMAND_HPP_
 
-//romea
-#include "OneAxleSteeringCommandLimits.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommandLimits.hpp"
 
 namespace romea {
 
 struct OneAxleSteeringCommand
 {
-
   OneAxleSteeringCommand();
 
   OneAxleSteeringCommand(const double & longitudinalSpeed,
@@ -16,7 +15,6 @@ struct OneAxleSteeringCommand
 
   double longitudinalSpeed;
   double steeringAngle;
-
 };
 
 OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
@@ -26,5 +24,6 @@ std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommand & comman
 
 bool isValid(const OneAxleSteeringCommand & command);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMAND_HPP_

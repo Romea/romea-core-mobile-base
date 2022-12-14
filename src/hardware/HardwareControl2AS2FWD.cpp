@@ -25,4 +25,4 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2AS2FWD & state)
   return os;
 }
 
-}//end romea
+}  // namespace romea

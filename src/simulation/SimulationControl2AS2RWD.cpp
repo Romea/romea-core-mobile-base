@@ -34,7 +34,6 @@ SimulationCommand2AS2RWD toSimulationCommand2AS2RWD(const double & wheelbase,
                                                     const double & rearHubCarrierOffset,
                                                     const HardwareCommand2AS2RWD & hardwareCommand)
 {
-
   //  const double & rearLeftWheelLinearSpeed =
   //      hardwareCommand.rearLeftWheelSpinningSetPoint*rearWheelRadius;
 
@@ -100,21 +99,19 @@ HardwareState2AS2RWD toHardwareState2AS2RWD(const double & wheelbase,
                                             const double & rearTrack,
                                             const SimulationState2AS2RWD & simulationState)
 {
-
   double frontAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.frontLeftWheelSteeringAngle,
                            simulationState.frontRightWheelSteeringAngle,
-                           wheelbase,frontTrack);
+                           wheelbase, frontTrack);
 
   double rearAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.rearLeftWheelSteeringAngle,
                            simulationState.rearRightWheelSteeringAngle,
-                           wheelbase,rearTrack);
+                           wheelbase, rearTrack);
 
   return toHardwareState2AS2RWD(simulationState,
                                 frontAxleSteeringAngle,
                                 rearAxleSteeringAngle);
 }
 
-
-}
+}  // namespace romea

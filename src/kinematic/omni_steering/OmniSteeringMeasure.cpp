@@ -14,11 +14,10 @@ OmniSteeringMeasure::OmniSteeringMeasure():
 //-----------------------------------------------------------------------------
 KinematicMeasure toKinematicMeasure(const OmniSteeringMeasure & measure)
 {
-
   KinematicMeasure convertedMeasure;
-  convertedMeasure.longitudinalSpeed=measure.longitudinalSpeed;
-  convertedMeasure.lateralSpeed=measure.lateralSpeed;
-  convertedMeasure.angularSpeed =measure.angularSpeed;
+  convertedMeasure.longitudinalSpeed = measure.longitudinalSpeed;
+  convertedMeasure.lateralSpeed = measure.lateralSpeed;
+  convertedMeasure.angularSpeed = measure.angularSpeed;
 
 //  if(instantaneousCurvature)
 //  {
@@ -30,7 +29,7 @@ KinematicMeasure toKinematicMeasure(const OmniSteeringMeasure & measure)
 //  }
 
 
-//  Eigen::MatrixXd J =  Eigen::MatrixXd::Identity(4,3);s
+//  Eigen::MatrixXd J =  Eigen::MatrixXd::Identity(4,3);
 //  J.row(0,0;
 //  J.row(1) << measure.beta/alpha,measure.speed/alpha,0;
 //  J.row(2) << 0 , 0 , 1 ;

@@ -1,22 +1,20 @@
-#ifndef romea_OneAxleSteeringMeasure_hpp
-#define romea_OneAxleSteeringMeasure_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGMEASURE_HPP_
 
-//romea
-#include "OneAxleSteeringCommand.hpp"
-#include "OneAxleSteeringKinematic.hpp"
-#include "../wheel_steering/TwoWheelSteeringKinematic.hpp"
-#include "../KinematicMeasure.hpp"
+// Eigen
+#include <Eigen/Core>
 
-//Eigen
-#include "Eigen/Core"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
+
 
 namespace romea {
 
-
-
 struct OneAxleSteeringMeasure : OneAxleSteeringCommand
 {
-
   OneAxleSteeringMeasure();
 
   Eigen::Matrix2d covariance;
@@ -35,5 +33,6 @@ KinematicMeasure toKinematicMeasure(const OneAxleSteeringMeasure & measure,
 KinematicMeasure toKinematicMeasure(const OneAxleSteeringMeasure & measure,
                                     const TwoWheelSteeringKinematic::Parameters & parameters);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGMEASURE_HPP_

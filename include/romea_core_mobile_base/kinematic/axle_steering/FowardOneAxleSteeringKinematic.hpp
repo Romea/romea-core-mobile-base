@@ -1,10 +1,10 @@
-#ifndef romea_ForwardOneAxleSteeringKinematic_hpp
-#define romea_ForwardOneAxleSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_FOWARDONEAXLESTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_FOWARDONEAXLESTEERINGKINEMATIC_HPP_
 
-//romea
-#include "OneAxleSteeringKinematic.hpp"
-#include "../../odometry/OdometryFrame1FAS2FWD.hpp"
-#include "../../odometry/OdometryFrame1FAS2RWD.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame1FAS2FWD.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame1FAS2RWD.hpp"
 
 namespace romea {
 
@@ -20,6 +20,6 @@ void forwardKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
 
 
 
-}
+}  // namespace romea
 
-#endif
+#endif   // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_FOWARDONEAXLESTEERINGKINEMATIC_HPP_

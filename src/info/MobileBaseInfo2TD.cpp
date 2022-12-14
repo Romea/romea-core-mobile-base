@@ -1,7 +1,7 @@
-//romea
+// romea
 #include "romea_core_mobile_base/info/MobileBaseInfo2TD.hpp"
 
-//std
+// std
 #include <cmath>
 
 namespace romea {
@@ -33,8 +33,8 @@ void to_kinematic_parameters(const MobileBaseInfo2TD &base_information,
 
  kinematic_parameters.wheelTrack = geometry.tracksDistance;
  kinematic_parameters.maximalWheelLinearSpeed = tracksCommand.maximalSpeed;
- kinematic_parameters.wheelLinearSpeedVariance = std::pow(tracksSensor.speedStd,2);
+ kinematic_parameters.wheelLinearSpeedVariance  = std::pow(tracksSensor.speedStd, 2);
  kinematic_parameters.maximalWheelLinearAcceleration = tracksCommand.maximalAcceleration;
 }
 
-}
+}  // namespace romea

@@ -1,9 +1,9 @@
-#ifndef romea_InverseOmniSteeringKinematic_hpp
-#define romea_InverseOmniSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_INVERSEMECANUMWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_INVERSEMECANUMWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "MecanumWheelSteeringKinematic.hpp"
-#include "OmniSteeringMeasure.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringMeasure.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame4WD.hpp"
 
 namespace romea
@@ -14,6 +14,6 @@ void inverseKinematic(const MecanumWheelSteeringKinematic::Parameters & paramete
                       OmniSteeringMeasure & measure);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_INVERSEMECANUMWHEELSTEERINGKINEMATIC_HPP_

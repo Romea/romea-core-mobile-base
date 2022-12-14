@@ -5,10 +5,59 @@
 
 namespace romea {
 
+//-----------------------------------------------------------------------------
+TwoAxleSteeringCommand::TwoAxleSteeringCommand():
+  longitudinalSpeed(0.),
+  frontSteeringAngle(0.),
+  rearSteeringAngle(0.)
+{
+}
+
+//-----------------------------------------------------------------------------
+TwoAxleSteeringCommand::TwoAxleSteeringCommand(const double & longitudinalSpeed,
+                                               const double & frontSteeringAngle,
+                                               const double & rearSteeringAngle):
+  longitudinalSpeed(longitudinalSpeed),
+  frontSteeringAngle(frontSteeringAngle),
+  rearSteeringAngle(rearSteeringAngle)
+{
+}
+
+//-----------------------------------------------------------------------------
+TwoAxleSteeringCommand clamp(const TwoAxleSteeringCommand & command,
+                             const TwoAxleSteeringCommandLimits & limits)
+{
+  TwoAxleSteeringCommand clamped_command = command;
+  clamped_command.longitudinalSpeed = clamp(command.longitudinalSpeed, limits.longitudinalSpeed);
+  clamped_command.frontSteeringAngle = clamp(command.frontSteeringAngle, limits.frontSteeringAngle);
+  clamped_command.rearSteeringAngle = clamp(command.rearSteeringAngle, limits.rearSteeringAngle);
+  return clamped_command;
+}
+
+//-----------------------------------------------------------------------------
+std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & command)
+{
+  os << " TwoAxleSteering Command " << std::endl;;
+  os << " command longitudinal speed  " << command.longitudinalSpeed << std::endl;
+  os << " command front steering angle " << command.frontSteeringAngle << std::endl;
+  os << " command rear steering angle " << command.rearSteeringAngle << std::endl;
+  return os;
+}
+
+//-----------------------------------------------------------------------------
+bool isValid(const TwoAxleSteeringCommand & command)
+{
+  return std::isfinite(command.longitudinalSpeed) &&
+      std::isfinite(command.frontSteeringAngle) &&
+      std::isfinite(command.rearSteeringAngle);
+}
+
+}  // namespace romea
 
 
+// old codes
 ////-----------------------------------------------------------------------------
-//KinematicCommand toKinematicCommand(const TwoAxleSteeringCommand & command,
+// KinematicCommand toKinematicCommand(const TwoAxleSteeringCommand & command,
 //                                    const double & frontWheelBase,
 //                                    const double & rearWheeBase)
 //{
@@ -36,7 +85,7 @@ namespace romea {
 
 
 ////-----------------------------------------------------------------------------
-//KinematicCommand toKinematicCommand(const TwoAxleSteeringCommand & command,
+// KinematicCommand toKinematicCommand(const TwoAxleSteeringCommand & command,
 //                                    const Kinematic & kinematic)
 //{
 //  return toKinematicCommand(command,
@@ -46,7 +95,7 @@ namespace romea {
 
 
 ////-----------------------------------------------------------------------------
-//TwoAxleSteeringCommand toTwoAxleSteeringCommand(const KinematicCommand & command,
+// TwoAxleSteeringCommand toTwoAxleSteeringCommand(const KinematicCommand & command,
 //                                                const double & frontWheelBase,
 //                                                const double & rearWheelBase)
 //{
@@ -68,63 +117,11 @@ namespace romea {
 //}
 
 ////-----------------------------------------------------------------------------
-//TwoAxleSteeringCommand toTwoAxleSteeringCommand(const KinematicCommand & command,
+// TwoAxleSteeringCommand toTwoAxleSteeringCommand(const KinematicCommand & command,
 //                                                const Kinematic & kinematic)
 //{
 //  return toTwoAxleSteeringCommand(command,
 //                                  kinematic.getWheelBase("front_wheelbase"),
 //                                  kinematic.getWheelBase("rear_wheelbase"));
 //}
-
-//-----------------------------------------------------------------------------
-TwoAxleSteeringCommand::TwoAxleSteeringCommand():
-  longitudinalSpeed(0.),
-  frontSteeringAngle(0.),
-  rearSteeringAngle(0.)
-{
-}
-
-//-----------------------------------------------------------------------------
-TwoAxleSteeringCommand::TwoAxleSteeringCommand(const double & longitudinalSpeed,
-                                               const double & frontSteeringAngle,
-                                               const double & rearSteeringAngle):
-  longitudinalSpeed(longitudinalSpeed),
-  frontSteeringAngle(frontSteeringAngle),
-  rearSteeringAngle(rearSteeringAngle)
-{
-}
-
-
-//-----------------------------------------------------------------------------
-TwoAxleSteeringCommand clamp(const TwoAxleSteeringCommand & command,
-                             const TwoAxleSteeringCommandLimits & limits)
-{
-  TwoAxleSteeringCommand clamped_command = command;
-  clamped_command.longitudinalSpeed=clamp(command.longitudinalSpeed,limits.longitudinalSpeed);
-  clamped_command.frontSteeringAngle=clamp(command.frontSteeringAngle,limits.frontSteeringAngle);
-  clamped_command.rearSteeringAngle=clamp(command.rearSteeringAngle,limits.rearSteeringAngle);
-  return clamped_command;
-}
-
-//-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommand & command)
-{
-  os<<" TwoAxleSteering Command   "<<std::endl;;
-  os<<" command longitudinal speed  " << command.longitudinalSpeed << std::endl;
-  os<<" command front steering angle " << command.frontSteeringAngle << std::endl;
-  os<<" command rear steering angle " << command.rearSteeringAngle << std::endl;
-  return os;
-}
-
-//-----------------------------------------------------------------------------
-bool isValid(const TwoAxleSteeringCommand & command)
-{
-  return std::isfinite(command.longitudinalSpeed) &&
-      std::isfinite(command.frontSteeringAngle) &&
-      std::isfinite(command.rearSteeringAngle);
-}
-
-
-
-}//end romea
 

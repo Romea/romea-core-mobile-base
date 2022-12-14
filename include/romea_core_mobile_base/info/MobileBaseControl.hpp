@@ -1,5 +1,5 @@
-#ifndef romea_MobileBaseControl_hpp
-#define romea_MobileBaseControl_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_
+#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_
 
 #include <iostream>
 
@@ -50,4 +50,5 @@ struct SteeringAngleControl
 //std::ostream& operator<<(std::ostream& os, const SteeringAngleControl & steringAngleControl);
 
 }
-#endif
+
+#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_ 

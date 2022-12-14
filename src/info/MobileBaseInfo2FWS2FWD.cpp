@@ -25,7 +25,7 @@ namespace romea {
 void to_kinematic_parameters(const MobileBaseInfo2FWS2FWD & baseInformation,
                              TwoWheelSteeringKinematic::Parameters & kinematicParameters )
 {
-  const auto & geometry= baseInformation.geometry;
+  const auto & geometry = baseInformation.geometry;
   const auto & wheelsSpeedCommand = baseInformation.frontWheelsSpeedControl.command;
   const auto & wheelsSpeedSensor = baseInformation.frontWheelsSpeedControl.sensor;
   const auto & wheelsSteeringCommand = baseInformation.frontWheelsSteeringControl.command;
@@ -42,8 +42,8 @@ void to_kinematic_parameters(const MobileBaseInfo2FWS2FWD & baseInformation,
   kinematicParameters.maximalWheelSteeringAngularSpeed = wheelsSteeringCommand.maximalAngularSpeed;
   kinematicParameters.frontMaximalWheelLinearSpeed = wheelsSpeedCommand.maximalSpeed;
   kinematicParameters.maximalWheelLinearAcceleration = wheelsSpeedCommand.maximalAcceleration;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd,2.0);
-  kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd,2.0);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSpeedSensor.speedStd, 2.0);
+  kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd, 2.0);
 }
 
-}
+}  // namespace romea

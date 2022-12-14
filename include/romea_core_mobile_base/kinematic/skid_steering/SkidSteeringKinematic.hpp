@@ -1,16 +1,15 @@
-#ifndef romea_SkidSteeringKinematic_hpp
-#define romea_SkidSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "SkidSteeringCommand.hpp"
-#include "SkidSteeringCommandLimits.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommandLimits.hpp"
 
 namespace romea
 {
 
 struct SkidSteeringKinematic
 {
-
   struct Parameters
   {
     Parameters();
@@ -20,7 +19,6 @@ struct SkidSteeringKinematic
     double wheelLinearSpeedVariance;
   };
 
-  
   static double computeLinearSpeed(const double &leftWheelLinearSpeed,
                                    const double &rightWheelLinearSpeed);
 
@@ -42,8 +40,6 @@ struct SkidSteeringKinematic
 
   static double minWheelLinearSpeed(const double &frontWheelLinearSpeed,
                                     const double & rearWheelLinearSpeed);
-
-
 };
 
 SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
@@ -55,6 +51,6 @@ SkidSteeringCommand clamp(const SkidSteeringKinematic::Parameters & parameters,
                           const SkidSteeringCommand & currentCommand,
                           const double & dt);
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGKINEMATIC_HPP_

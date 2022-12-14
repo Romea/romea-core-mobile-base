@@ -1,7 +1,7 @@
-#ifndef romea_SimulationHardwareControl2FWS2FWD_hpp
-#define romea_SimulationHardwareControl2FWS2FWD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2FWS2FWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2FWS2FWD_HPP_
 
-#include "SimulationControl2FWSxxx.hpp"
+#include "romea_core_mobile_base/simulation/SimulationControl2FWSxxx.hpp"
 #include "romea_core_mobile_base/hardware/HardwareControl2FWS2FWD.hpp"
 
 namespace romea {
@@ -18,9 +18,9 @@ SimulationCommand2FWS2FWD  toSimulationCommand2FWS2FWD(const double & wheelbase,
                                                        const double & rearHubCarrierOffset,
                                                        const HardwareCommand2FWS2FWD & hardwareCommand);
 
-HardwareState2FWS2FWD toHardwareState2FWS2FWD (const SimulationState2FWS2FWD & simulationState);
+HardwareState2FWS2FWD toHardwareState2FWS2FWD(const SimulationState2FWS2FWD & simulationState);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2FWS2FWD_HPP_

@@ -1,9 +1,9 @@
-#ifndef romea_ForwardMecanumWheelSteeringKinematic_hpp
-#define romea_ForwardMecanumWheelSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_FORWARDMECANUMWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_FORWARDMECANUMWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "OmniSteeringCommand.hpp"
-#include "MecanumWheelSteeringKinematic.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame2WD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame4WD.hpp"
 
@@ -15,6 +15,6 @@ void forwardKinematic(const MecanumWheelSteeringKinematic::Parameters & paramete
                       OdometryFrame4WD & odometryFrame);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_FORWARDMECANUMWHEELSTEERINGKINEMATIC_HPP_

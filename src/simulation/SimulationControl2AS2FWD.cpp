@@ -1,5 +1,6 @@
 #include "romea_core_mobile_base/simulation/SimulationControl2AS2FWD.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+
 namespace romea
 {
 
@@ -124,20 +125,19 @@ HardwareState2AS2FWD toHardwareState2AS2FWD(const double & wheelbase,
                                             const double & rearTrack,
                                             const SimulationState2AS2FWD & simulationState)
 {
-
   double frontAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.frontLeftWheelSteeringAngle,
                            simulationState.frontRightWheelSteeringAngle,
-                           wheelbase,frontTrack);
+                           wheelbase, frontTrack);
 
   double rearAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.rearLeftWheelSteeringAngle,
                            simulationState.rearRightWheelSteeringAngle,
-                           wheelbase,rearTrack);
+                           wheelbase, rearTrack);
 
   return toHardwareState2AS2FWD(simulationState,
                                 frontAxleSteeringAngle,
                                 rearAxleSteeringAngle);
 }
 
-}
+}  // namespace romea

@@ -1,7 +1,5 @@
 #include "romea_core_mobile_base/info/MobileBaseControl.hpp"
 
-#include <limits>
-
 namespace romea {
 
 //std::ostream& operator<<(std::ostream& os, const WheelSpeedSensor & wheelSpeedSensor)
@@ -19,4 +17,4 @@ namespace romea {
 //std::ostream& operator<<(std::ostream& os, const WheelSpeedControl & wheelSpeedControl);
 //std::ostream& operator<<(std::ostream& os, const SteeringAngleControl & steringAngleControl);
 
-}
+}  // namespace romea

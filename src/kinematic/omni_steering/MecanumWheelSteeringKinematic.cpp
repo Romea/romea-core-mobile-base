@@ -1,11 +1,12 @@
-//romea
-#include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
-
-//std
+// std
 #include <cmath>
 #include <limits>
 #include <algorithm>
+
+// romea
+#include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
+#include <romea_core_common/math/Algorithm.hpp>
+
 
 namespace romea {
 
@@ -18,7 +19,6 @@ MecanumWheelSteeringKinematic::Parameters::Parameters():
   maximalWheelLinearAcceleration(std::numeric_limits<double>::max()),
   wheelLinearSpeedVariance(0)
 {
-
 }
 
 //--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
 {
   double alpha = parameters.wheelTrack+parameters.wheelbase;
 
-  //Clamp angular speed
+  // Clamp angular speed
   double maximalAbsoluteAngularSpeed = 2*parameters.maximalWheelLinearSpeed/alpha;
 
   maximalAbsoluteAngularSpeed = std::min(maximalAbsoluteAngularSpeed,
@@ -112,36 +112,37 @@ OmniSteeringCommand clamp(const MecanumWheelSteeringKinematic::Parameters & para
                                      -maximalAbsoluteAngularSpeed,
                                      maximalAbsoluteAngularSpeed);
 
-  //Clamp lateral speed
-  double maximalAbsoluteSpeed= parameters.maximalWheelLinearSpeed - std::abs(angularSpeed)*alpha/2.0;
+  // Clamp lateral speed
+  double maximalAbsoluteSpeed = parameters.maximalWheelLinearSpeed -
+    std::abs(angularSpeed)*alpha/2.0;
 
-  double maximalAbsboluteLateralSpeed = std::min(maximalAbsoluteSpeed,
-                                                 userLimits.lateralSpeed.upper());
+  double maximalAbsboluteLateralSpeed =
+    std::min(maximalAbsoluteSpeed, userLimits.lateralSpeed.upper());
 
   double lateralSpeed = romea::clamp(command.lateralSpeed,
                                      -maximalAbsboluteLateralSpeed,
                                      maximalAbsboluteLateralSpeed);
 
-  //Clamp longitudinal speed
+  // Clamp longitudinal speed
   double longitudinalSpeed = command.longitudinalSpeed;
 
   double maximalAbsoluteLongitudinalSpeed = maximalAbsoluteSpeed-std::abs(lateralSpeed);
 
-  double minimalLongitudinalSpeed = std::max(-maximalAbsoluteLongitudinalSpeed,userLimits.longitudinalSpeed.lower());
+  double minimalLongitudinalSpeed =
+    std::max(-maximalAbsoluteLongitudinalSpeed, userLimits.longitudinalSpeed.lower());
 
-  longitudinalSpeed = std::max(longitudinalSpeed,minimalLongitudinalSpeed);
+  longitudinalSpeed = std::max(longitudinalSpeed, minimalLongitudinalSpeed);
 
-  double maximalLongitudinalSpeed = std::min( maximalAbsoluteLongitudinalSpeed,userLimits.longitudinalSpeed.upper());
+  double maximalLongitudinalSpeed =
+    std::min(maximalAbsoluteLongitudinalSpeed, userLimits.longitudinalSpeed.upper());
 
-  longitudinalSpeed = std::min(longitudinalSpeed,maximalLongitudinalSpeed);
-
+  longitudinalSpeed = std::min(longitudinalSpeed, maximalLongitudinalSpeed);
 
   OmniSteeringCommand clampedCommand;
-  clampedCommand.longitudinalSpeed=longitudinalSpeed;
-  clampedCommand.lateralSpeed=lateralSpeed;
-  clampedCommand.angularSpeed=angularSpeed;
+  clampedCommand.longitudinalSpeed = longitudinalSpeed;
+  clampedCommand.lateralSpeed = lateralSpeed;
+  clampedCommand.angularSpeed = angularSpeed;
   return clampedCommand;
-
 }
 
 

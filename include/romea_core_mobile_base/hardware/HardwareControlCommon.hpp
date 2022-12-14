@@ -1,11 +1,12 @@
-#ifndef romea_HardwareControlCommon_hpp
-#define romea_HardwareControlCommon_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_
+#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_
 
 #include <iostream>
+#include <string>
 
 namespace romea {
 
-using SteeringAngleCommand =double;
+using SteeringAngleCommand = double;
 using SteeringAngleState = double;
 
 
@@ -46,13 +47,6 @@ enum class LinearMotionControlType
 std::ostream & operator<<(std::ostream &s, const RotationalMotionState & state);
 std::ostream & operator<<(std::ostream &s, const LinearMotionState & state);
 
-//template <typename HardwareCommandType>
-//struct HardwareCommand
-//{
-//  RotationalMotionCommandType wheelsSetPointType
-//  HardwareCommandType command;
-//}
+}  // namespace romea
 
-
-}//end romea
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_

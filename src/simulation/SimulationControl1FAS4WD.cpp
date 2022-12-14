@@ -24,13 +24,10 @@ SimulationCommand1FAS4WD toSimulationCommand1FAS2RWD(const double & wheelbase,
                                                      const double & frontTrack,
                                                      const HardwareCommand1FAS4WD & hardwareCommand)
 {
+  double  tanAxleSteeringAngle = std::tan(hardwareCommand.frontAxleSteeringAngle);
 
-  double  tanAxleSteeringAngle=
-      std::tan(hardwareCommand.frontAxleSteeringAngle);
-
-  double intantaneousCurvature= OneAxleSteeringKinematic::
-      computeInstantaneousCurvature(tanAxleSteeringAngle,wheelbase);
-
+  double intantaneousCurvature = OneAxleSteeringKinematic::
+      computeInstantaneousCurvature(tanAxleSteeringAngle, wheelbase);
 
   double frontLeftWheelSteeringAngle = TwoWheelSteeringKinematic::
       computeLeftWheelSteeringAngle(tanAxleSteeringAngle,
@@ -56,7 +53,6 @@ HardwareState1FAS4WD toHardwareState1FAS4WD(const SimulationState1FAS4WD & simul
         simulationState.frontRightWheelSpinningMotion,
         simulationState.rearLeftWheelSpinningMotion,
         simulationState.rearRightWheelSpinningMotion};
-
 }
 
 //-----------------------------------------------------------------------------
@@ -64,14 +60,12 @@ HardwareState1FAS4WD toHardwareState1FAS4WD(const double & wheelbase,
                                             const double & frontTrack,
                                             const SimulationState1FAS4WD & simulationState)
 {
-
   double frontAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.frontLeftWheelSteeringAngle,
                            simulationState.frontRightWheelSteeringAngle,
-                           wheelbase,frontTrack);
+                           wheelbase, frontTrack);
 
-  return toHardwareState1FAS4WD(simulationState,
-                                frontAxleSteeringAngle);
+  return toHardwareState1FAS4WD(simulationState, frontAxleSteeringAngle);
 }
 
-}
+}  // namespace romea

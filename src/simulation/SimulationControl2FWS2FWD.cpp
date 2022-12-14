@@ -1,6 +1,7 @@
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS2FWD.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+
 namespace romea
 {
 
@@ -27,8 +28,6 @@ SimulationCommand2FWS2FWD toSimulationCommand2FWS2FWD(const double & wheelbase,
                                                       const double & rearHubCarrierOffset,
                                                       const HardwareCommand2FWS2FWD & hardwareCommand)
 {
-
-
   double fullRearTrack = rearTrack + 2*rearHubCarrierOffset;
 
   const double & frontLeftWheelLinearSpeed =
@@ -43,7 +42,7 @@ SimulationCommand2FWS2FWD toSimulationCommand2FWS2FWD(const double & wheelbase,
   double instantaneousCurvature =  TwoWheelSteeringKinematic::
       computeInstantaneousCurvature(frontLeftWheelSteeringAngle,
                                     frontRightWheelSteeringAngle,
-                                    wheelbase,frontTrack);
+                                    wheelbase, frontTrack);
 
   double linearSpeed = 0.5 * (frontLeftWheelLinearSpeed / TwoWheelSteeringKinematic::
                               computeWheelLinearSpeedRatio(-instantaneousCurvature*wheelbase,
@@ -59,10 +58,10 @@ SimulationCommand2FWS2FWD toSimulationCommand2FWS2FWD(const double & wheelbase,
   double angularSpeed = instantaneousCurvature*linearSpeed;
 
   double rearLeftWheelLinearSpeed = SkidSteeringKinematic::
-      computeLeftWheelLinearSpeed(linearSpeed,angularSpeed,fullRearTrack);
+      computeLeftWheelLinearSpeed(linearSpeed, angularSpeed, fullRearTrack);
 
   double rearRightWheelLinearSpeed = SkidSteeringKinematic::
-      computeRightWheelLinearSpeed(linearSpeed,angularSpeed,fullRearTrack);
+      computeRightWheelLinearSpeed(linearSpeed, angularSpeed, fullRearTrack);
 
   return toSimulationCommand2FWS2FWD(hardwareCommand,
                                      rearLeftWheelLinearSpeed/rearWheelRadius,
@@ -74,11 +73,10 @@ SimulationCommand2FWS2FWD toSimulationCommand2FWS2FWD(const double & wheelbase,
 //-----------------------------------------------------------------------------
 HardwareState2FWS2FWD toHardwareState2FWS2FWD(const SimulationState2FWS2FWD & simulationState)
 {
-
   return {simulationState.frontLeftWheelSteeringAngle,
         simulationState.frontRightWheelSteeringAngle,
         simulationState.frontLeftWheelSpinningMotion,
         simulationState.frontRightWheelSpinningMotion};
 }
 
-}
+}  // namespace romea

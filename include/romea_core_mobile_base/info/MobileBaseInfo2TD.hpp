@@ -1,10 +1,9 @@
-#ifndef romea_MobileBaseDescription2TD_hpp
-#define romea_MobileBaseDescription2TD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2TD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2TD_HPP_
 
-#include "MobileBaseControl.hpp"
-#include "MobileBaseGeometry.hpp"
-#include "MobileBaseInertia.hpp"
-
+#include "romea_core_mobile_base/info/MobileBaseControl.hpp"
+#include "romea_core_mobile_base/info/MobileBaseGeometry.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInertia.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
 
 namespace romea {
@@ -17,12 +16,11 @@ struct MobileBaseInfo2TD
   Eigen::Vector3d controlPoint;
 };
 
-
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2TD & base_information);
 
 void to_kinematic_parameters(const MobileBaseInfo2TD & base_information,
-                             SkidSteeringKinematic::Parameters & kinematic_parameters );
+                             SkidSteeringKinematic::Parameters & kinematic_parameters);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2TD_HPP_

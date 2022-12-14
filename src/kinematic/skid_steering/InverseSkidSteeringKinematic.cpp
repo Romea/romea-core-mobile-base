@@ -1,4 +1,4 @@
-//romea
+// romea
 #include "romea_core_mobile_base/kinematic/skid_steering/InverseSkidSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
@@ -11,17 +11,18 @@ void inverseKinematicImpl(const double & wheelTrack,
                           const double & wheelSpeedVariance,
                           romea::SkidSteeringMeasure & skidSteeringMeasure)
 {
-  skidSteeringMeasure.longitudinalSpeed = romea::SkidSteeringKinematic::computeLinearSpeed(leftWheelSpeed,rightWheelSpeed);
-  skidSteeringMeasure.angularSpeed = romea::SkidSteeringKinematic::computeAngularSpeed(leftWheelSpeed,rightWheelSpeed,wheelTrack);
+  skidSteeringMeasure.longitudinalSpeed = romea::SkidSteeringKinematic::
+    computeLinearSpeed(leftWheelSpeed, rightWheelSpeed);
+  skidSteeringMeasure.angularSpeed = romea::SkidSteeringKinematic::
+    computeAngularSpeed(leftWheelSpeed, rightWheelSpeed, wheelTrack);
+
   skidSteeringMeasure.covariance << 0.5, 1/wheelTrack, 1/wheelTrack, 1/(wheelTrack*wheelTrack);
   skidSteeringMeasure.covariance*= wheelSpeedVariance;
 }
 
-
-}
+}  // namespace
 
 namespace romea {
-
 
 //-----------------------------------------------------------------------------
 void inverseKinematic(const SkidSteeringKinematic::Parameters & parameters,
@@ -33,7 +34,6 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters & parameters,
                        odometryFrame.rightTrackLinearSpeed,
                        parameters.wheelLinearSpeedVariance,
                        skidSteeringMeasure);
-
 }
 
 //-----------------------------------------------------------------------------
@@ -46,7 +46,6 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters &parameters,
                        odometryFrame.rightWheelLinearSpeed,
                        parameters.wheelLinearSpeedVariance,
                        skidSteeringMeasure);
-
 }
 
 
@@ -59,10 +58,9 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters &parameters,
       minWheelLinearSpeed(odometryFrame.frontLeftWheelLinearSpeed,
                           odometryFrame.rearLeftWheelLinearSpeed);
 
-  double rightWheelSpeed =SkidSteeringKinematic::
+  double rightWheelSpeed = SkidSteeringKinematic::
       minWheelLinearSpeed(odometryFrame.frontRightWheelLinearSpeed,
                           odometryFrame.rearRightWheelLinearSpeed);
-
 
   inverseKinematicImpl(parameters.wheelTrack,
                        leftWheelSpeed,
@@ -71,4 +69,4 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters &parameters,
                        skidSteeringMeasure);
 }
 
-}//end romea
+}  // namespace romea

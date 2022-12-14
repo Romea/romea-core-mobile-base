@@ -1,9 +1,11 @@
-//romea
+// std
+#include <cassert>
+
+// romea
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
-#include <iostream>
 
 namespace romea {
 
@@ -21,10 +23,10 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
 
   double speed = commandFrame.longitudinalSpeed;
 
-  double tanFrontSteeringAngle= std::tan(commandFrame.frontSteeringAngle);
-  double tanRearSteeringAngle= std::tan(commandFrame.rearSteeringAngle);
+  double tanFrontSteeringAngle = std::tan(commandFrame.frontSteeringAngle);
+  double tanRearSteeringAngle = std::tan(commandFrame.rearSteeringAngle);
 
-  double orthogonalInstantaneousCurvature= TwoAxleSteeringKinematic::
+  double orthogonalInstantaneousCurvature = TwoAxleSteeringKinematic::
       computeInstantaneousCurvature(tanFrontSteeringAngle,
                                     tanRearSteeringAngle,
                                     frontWheelBase,
@@ -49,8 +51,6 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
       computeRightWheelSteeringAngle(tanRearSteeringAngle,
                                      orthogonalInstantaneousCurvature,
                                      halfWheelTrack);
-
-
 
   double frontLeftWheelSpeed = OneAxleSteeringKinematic::
       computeLeftWheelLinearSpeed(speed,
@@ -81,24 +81,24 @@ void  forwardKinematic(const FourWheelSteeringKinematic::Parameters & parameters
                                    hubCarrierOffset,
                                    halfWheelTrack);
 
-  assert(std::abs(frontLeftWheelAngle)<=M_PI_2);
-  assert(std::abs(frontRightWheelAngle)<=M_PI_2);
-  assert(sign(frontLeftWheelSpeed)==sign(speed));
-  assert(sign(frontRightWheelSpeed)==sign(speed));
-  assert(sign(rearLeftWheelSpeed)==sign(speed));
-  assert(sign(rearRightWheelSpeed)==sign(speed));
-  assert(sign(frontLeftWheelAngle)==sign(frontRightWheelAngle));
-  assert(sign(rearLeftWheelAngle)==sign(rearRightWheelAngle));
+  assert(std::abs(frontLeftWheelAngle) <= M_PI_2);
+  assert(std::abs(frontRightWheelAngle) <= M_PI_2);
+  assert(sign(frontLeftWheelSpeed) == sign(speed));
+  assert(sign(frontRightWheelSpeed) == sign(speed));
+  assert(sign(rearLeftWheelSpeed) == sign(speed));
+  assert(sign(rearRightWheelSpeed) == sign(speed));
+  assert(sign(frontLeftWheelAngle) == sign(frontRightWheelAngle));
+  assert(sign(rearLeftWheelAngle) == sign(rearRightWheelAngle));
 
 
-  commandOdometryFrame.frontLeftWheelLinearSpeed =frontLeftWheelSpeed;
-  commandOdometryFrame.frontLeftWheelSteeringAngle =frontLeftWheelAngle;
-  commandOdometryFrame.frontRightWheelLinearSpeed =frontRightWheelSpeed;
-  commandOdometryFrame.frontRightWheelSteeringAngle =frontRightWheelAngle;
-  commandOdometryFrame.rearLeftWheelLinearSpeed =rearLeftWheelSpeed;
-  commandOdometryFrame.rearLeftWheelSteeringAngle =rearLeftWheelAngle;
-  commandOdometryFrame.rearRightWheelLinearSpeed =rearRightWheelSpeed;
-  commandOdometryFrame.rearRightWheelSteeringAngle =rearRightWheelAngle;
+  commandOdometryFrame.frontLeftWheelLinearSpeed  = frontLeftWheelSpeed;
+  commandOdometryFrame.frontLeftWheelSteeringAngle  = frontLeftWheelAngle;
+  commandOdometryFrame.frontRightWheelLinearSpeed  = frontRightWheelSpeed;
+  commandOdometryFrame.frontRightWheelSteeringAngle = frontRightWheelAngle;
+  commandOdometryFrame.rearLeftWheelLinearSpeed  = rearLeftWheelSpeed;
+  commandOdometryFrame.rearLeftWheelSteeringAngle = rearLeftWheelAngle;
+  commandOdometryFrame.rearRightWheelLinearSpeed = rearRightWheelSpeed;
+  commandOdometryFrame.rearRightWheelSteeringAngle = rearRightWheelAngle;
 }
 
-}
+}  // namespace romea

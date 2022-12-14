@@ -1,7 +1,7 @@
-#ifndef romea_OmniSteeringMeasure_hpp
-#define romea_OmniSteeringMeasure_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGMEASURE_HPP_
 
-//romea
+// romea
 #include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
 #include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommand.hpp"
 #include "romea_core_mobile_base/kinematic/omni_steering/MecanumWheelSteeringKinematic.hpp"
@@ -21,5 +21,6 @@ KinematicMeasure toKinematicMeasure(const OmniSteeringMeasure & measure,
                                     const MecanumWheelSteeringKinematic::Parameters & parameters);
 
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGMEASURE_HPP_

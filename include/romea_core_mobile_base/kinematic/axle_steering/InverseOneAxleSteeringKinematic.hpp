@@ -1,12 +1,11 @@
-#ifndef romea_InverseOneAxleSteeringKinematic_hpp
-#define romea_InverseOneAxleSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_INVERSEONEAXLESTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_INVERSEONEAXLESTEERINGKINEMATIC_HPP_
 
-//romea
-#include "OneAxleSteeringMeasure.hpp"
-#include "OneAxleSteeringKinematic.hpp"
-#include "OneAxleSteeringMeasure.hpp"
-#include "../../odometry/OdometryFrame1FAS2FWD.hpp"
-#include "../../odometry/OdometryFrame1FAS2RWD.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringMeasure.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame1FAS2FWD.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame1FAS2RWD.hpp"
 
 namespace romea {
 
@@ -18,6 +17,6 @@ void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
                       const OdometryFrame1FAS2RWD & odometryFrame,
                       OneAxleSteeringMeasure & oneAxleSteeringMeasure);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_INVERSEONEAXLESTEERINGKINEMATIC_HPP_

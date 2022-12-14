@@ -1,5 +1,5 @@
-#ifndef romea_SimulationHardwareControl2TTD_hpp
-#define romea_SimulationHardwareControl2TTD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2TTD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2TTD_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControl2TD.hpp"
 
@@ -50,5 +50,6 @@ HardwareState2TD toHardwareState2TTD(const double & sprocketWheelRadius,
                                      const SimulationState2TTD & simulationState);
 
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2TTD_HPP_

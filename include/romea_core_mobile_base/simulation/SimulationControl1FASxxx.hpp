@@ -1,5 +1,5 @@
-#ifndef romea_SimulationHardwareControl1FASxxx_hpp
-#define romea_SimulationHardwareControl1FASxxx_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_
+#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
@@ -33,6 +33,6 @@ struct SimulationState1FASxxx
 
 std::ostream & operator<<(std::ostream &os, const SimulationState1FASxxx & state);
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_

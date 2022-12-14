@@ -1,7 +1,7 @@
-#ifndef romea_OdometryFrame2AS2FWD_hpp
-#define romea_OdometryFrame2AS2FWD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2AS2FWD_HPP_ 
+#define ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2AS2FWD_HPP_ 
 
-//stl
+// stl
 #include <ostream>
 
 namespace romea {
@@ -18,5 +18,6 @@ struct OdometryFrame2AS2FWD
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame2AS2FWD &frame);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2AS2FWD_HPP_ 

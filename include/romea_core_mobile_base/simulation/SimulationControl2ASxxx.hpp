@@ -1,5 +1,5 @@
-#ifndef romea_SimulationHardwareControl2ASxxx_hpp
-#define romea_SimulationHardwareControl2ASxxx_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2ASXXX_HPP_
+#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2ASXXX_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControl2AS4WD.hpp"
 
@@ -36,6 +36,6 @@ struct SimulationState2ASxxx
 };
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2ASXXX_HPP_

@@ -1,14 +1,15 @@
-#ifndef romea_TwoAxleSteeringMeasure_hpp
-#define romea_TwoAxleSteeringMeasure_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_
 
-//romea
-#include "TwoAxleSteeringCommand.hpp"
-#include "TwoAxleSteeringKinematic.hpp"
-#include "../wheel_steering/FourWheelSteeringKinematic.hpp"
-#include "../KinematicMeasure.hpp"
-
-//Eigen
+// Eigen
 #include <Eigen/Core>
+
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
+
 
 namespace romea {
 
@@ -33,5 +34,6 @@ KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
 std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringMeasure & command);
 
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_

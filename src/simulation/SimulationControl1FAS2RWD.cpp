@@ -35,11 +35,11 @@ SimulationCommand1FAS2RWD toSimulationCommand1FAS2RWD(const double & wheelbase,
   const double & rearRightWheelLinearSpeed =
       hardwareCommand.rearRightWheelSpinningSetPoint*rearWheelRadius;
 
-  double  tanAxleSteeringAngle=
+  double  tanAxleSteeringAngle =
       std::tan(hardwareCommand.frontAxleSteeringAngle);
 
-  double intantaneousCurvature= OneAxleSteeringKinematic::
-      computeInstantaneousCurvature(tanAxleSteeringAngle,wheelbase);
+  double intantaneousCurvature = OneAxleSteeringKinematic::
+      computeInstantaneousCurvature(tanAxleSteeringAngle, wheelbase);
 
 
   double frontLeftWheelSteeringAngle = TwoWheelSteeringKinematic::
@@ -82,9 +82,8 @@ HardwareState1FAS2RWD toHardwareState1FAS2RWD(const SimulationState1FAS2RWD & si
                                               const double frontAxleSteeringAngle)
 {
   return { frontAxleSteeringAngle,
-        simulationState.rearLeftWheelSpinningMotion,
-        simulationState.rearRightWheelSpinningMotion};
-
+           simulationState.rearLeftWheelSpinningMotion,
+           simulationState.rearRightWheelSpinningMotion};
 }
 
 //-----------------------------------------------------------------------------
@@ -92,14 +91,12 @@ HardwareState1FAS2RWD toHardwareState1FAS2RWD(const double & wheelbase,
                                               const double & frontTrack,
                                               const SimulationState1FAS2RWD & simulationState)
 {
-
   double frontAxleSteeringAngle = TwoWheelSteeringKinematic::
       computeSteeringAngle(simulationState.frontLeftWheelSteeringAngle,
                            simulationState.frontRightWheelSteeringAngle,
-                           wheelbase,frontTrack);
+                           wheelbase, frontTrack);
 
-  return toHardwareState1FAS2RWD(simulationState,
-                                 frontAxleSteeringAngle);
+  return toHardwareState1FAS2RWD(simulationState, frontAxleSteeringAngle);
 }
 
-}
+}  // namespace romea

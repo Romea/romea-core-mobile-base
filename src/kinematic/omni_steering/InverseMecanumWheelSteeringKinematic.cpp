@@ -1,5 +1,4 @@
 #include "romea_core_mobile_base/kinematic/omni_steering/InverseMecanumWheelSteeringKinematic.hpp"
-#include <iostream>
 
 namespace romea
 {
@@ -33,13 +32,10 @@ void inverseKinematic(const MecanumWheelSteeringKinematic::Parameters & paramete
                           halfTrack);
 
 
-  Eigen::MatrixXd J = Eigen::MatrixXd::Constant(3,4,1);
-  J(1,0)=J(1,3)=J(2,1)=J(2,2)=-1;
+  Eigen::MatrixXd J = Eigen::MatrixXd::Constant(3, 4, 1);
+  J(1, 0) = J(1, 3) = J(2, 1)= J(2, 2) = -1;
   J.row(2)/=(halfTrack+halfWheebase);
-  omniSteeringMeasure.covariance=J*J.transpose();
-
+  omniSteeringMeasure.covariance = J*J.transpose();
 }
 
-
-
-}//end romea
+}  // namespace romea

@@ -1,7 +1,7 @@
-#ifndef romea_OneAxleSteeringCommandLimits_hpp
-#define romea_OneAxleSteeringCommandLimits_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMANDLIMITS_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMANDLIMITS_HPP_
 
-#include "../CommandLimits.hpp"
+#include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
 
 namespace romea {
 
@@ -21,5 +21,6 @@ struct OneAxleSteeringCommandLimits
 std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommandLimits & limits);
 
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_ONEAXLESTEERINGCOMMANDLIMITS_HPP_

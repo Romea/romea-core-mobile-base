@@ -1,7 +1,7 @@
-#ifndef romea_HardwareControl2FWS2FWD_hpp
-#define romea_HardwareControl2FWS2FWD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2FWS2FWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2FWS2FWD_HPP_
 
-#include "HardwareControlCommon.hpp"
+#include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
 namespace romea {
 
@@ -27,5 +27,6 @@ struct HardwareState2FWS2FWD
 
 std::ostream & operator<<(std::ostream &s, const HardwareState2FWS2FWD &frame);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2FWS2FWD_HPP_ 

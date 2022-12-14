@@ -1,8 +1,8 @@
-//romea
+// romea
 #include "romea_core_mobile_base/info/MobileBaseInfo4WD.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
-//std
+// std
 #include <cmath>
 #include <sstream>
 
@@ -31,7 +31,7 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
-  if(!near(geometry.frontAxle.wheelsDistance,geometry.rearAxle.wheelsDistance))
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to skid steering kinematic";
@@ -41,19 +41,18 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
 
   kinematicParameters.wheelTrack = geometry.frontAxle.wheelsDistance;
   kinematicParameters.maximalWheelLinearSpeed = wheelsCommand.maximalSpeed;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd,2);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd, 2);
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 
 void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
                              MecanumWheelSteeringKinematic::Parameters & kinematicParameters )
 {
-
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
-  if(!near(geometry.frontAxle.wheelsDistance,geometry.rearAxle.wheelsDistance))
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to omni steering kinematic";
@@ -64,9 +63,8 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
   kinematicParameters.wheelbase = geometry.axlesDistance;
   kinematicParameters.wheelTrack = geometry.frontAxle.wheelsDistance;
   kinematicParameters.maximalWheelLinearSpeed = wheelsCommand.maximalSpeed;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd,2);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd, 2);
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
-
 }
 
-}
+}  // namespace romea

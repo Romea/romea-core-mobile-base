@@ -1,8 +1,8 @@
-#ifndef romea_OmniSteeringCommand_hpp
-#define romea_OmniSteeringCommand_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMAND_HPP
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMAND_HPP
 
-//romea
-#include "OmniSteeringCommandLimits.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringCommandLimits.hpp"
 
 namespace romea {
 
@@ -17,7 +17,6 @@ struct OmniSteeringCommand
   double longitudinalSpeed;
   double lateralSpeed;
   double angularSpeed;
-
 };
 
 std::ostream& operator<<(std::ostream& os, const OmniSteeringCommand & command);
@@ -27,5 +26,6 @@ OmniSteeringCommand clamp(const OmniSteeringCommand & command,
 
 bool isValid(const OmniSteeringCommand & commaand);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_OMNI_STEERING_OMNISTEERINGCOMMAND_HPP

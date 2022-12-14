@@ -5,7 +5,6 @@ namespace romea {
 //------------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream &os, const HardwareCommand2FWS4WD & command)
 {
-
   os << " Hardware2FWS4WD command : " <<std::endl;
   os << " front left wheel steering angle : "   << command.frontLeftWheelSteeringAngle << std::endl;
   os << " front right wheel steering angle : " << command.frontRightWheelSteeringAngle << std::endl;
@@ -29,4 +28,4 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2FWS4WD & state)
   return os;
 }
 
-}//end romea
+}  // namespace romea

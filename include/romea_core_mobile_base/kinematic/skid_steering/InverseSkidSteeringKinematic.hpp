@@ -1,9 +1,9 @@
-#ifndef romea_InverseSkidSteeringKinematic_hpp
-#define romea_InverseSkidSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_INVERSESKIDSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_INVERSESKIDSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "SkidSteeringKinematic.hpp"
-#include "SkidSteeringMeasure.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringMeasure.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame2TD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame2WD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame4WD.hpp"
@@ -24,6 +24,6 @@ void inverseKinematic(const SkidSteeringKinematic::Parameters & parameters,
                       SkidSteeringMeasure & skidSteeringMeasure);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_INVERSESKIDSTEERINGKINEMATIC_HPP_

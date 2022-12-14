@@ -1,11 +1,11 @@
-#ifndef romea_ForwardTwoWheelSteeringKinematic_hpp
-#define romea_ForwardTwoWheelSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOWARDTWOWHEELSTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOWARDTWOWHEELSTEERINGKINEMATIC_HPP_
 
-//romea
-#include "TwoWheelSteeringKinematic.hpp"
-#include "../../odometry/OdometryFrame2FWS2FWD.hpp"
-#include "../../odometry/OdometryFrame2FWS2RWD.hpp"
-#include "../../odometry/OdometryFrame2FWS4WD.hpp"
+// romea
+#include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame2FWS2FWD.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame2FWS2RWD.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame2FWS4WD.hpp"
 
 namespace romea {
 
@@ -21,7 +21,6 @@ void forwardKinematic(const TwoWheelSteeringKinematic::Parameters & parameters,
                       const OneAxleSteeringCommand & commandFrame,
                       OdometryFrame2FWS4WD & commandOdometryFrame);
 
+}  // namespace romea
 
-}
-
-#endif
+#endif ROMEA_CORE_MOBILE_BASE_KINEMATIC_WHEEL_STEERING_FOWARDTWOWHEELSTEERINGKINEMATIC_HPP_

@@ -1,7 +1,7 @@
-#ifndef romea_OdometryFrame2TD_hpp
-#define romea_OdometryFrame2TD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2TD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2TD_HPP_
 
-//stl
+// stl
 #include <ostream>
 
 namespace romea {
@@ -14,14 +14,6 @@ struct OdometryFrame2TD
 
 std::ostream & operator<<(std::ostream &s, const OdometryFrame2TD &frame);
 
-//struct OdometryFrame2TDa
-//{
-//  double leftTrackAngularSpeed;
-//  double rightTrackAngularSpeed;
-//};
+}  // namespace romea
 
-//std::ostream & operator<<(std::ostream &s, const OdometryFrame2TDa &frame);
-
-
-}//end romea
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME2TD_HPP_

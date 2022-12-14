@@ -1,13 +1,12 @@
-#ifndef romea_SkidSteeringCommand_hpp
-#define romea_SkidSteeringCommand_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMAND_HPP
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMAND_HPP
 
-#include "SkidSteeringCommandLimits.hpp"
+#include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommandLimits.hpp"
 
 namespace romea {
 
 struct SkidSteeringCommand
 {
-
   SkidSteeringCommand();
 
   SkidSteeringCommand(const double &longitudinalSpeed,
@@ -15,7 +14,6 @@ struct SkidSteeringCommand
 
   double longitudinalSpeed;
   double angularSpeed;
-
 };
 
 std::ostream& operator<<(std::ostream& os, const SkidSteeringCommand & command);
@@ -26,5 +24,6 @@ SkidSteeringCommand clamp(const SkidSteeringCommand & command,
 
 bool isValid(const SkidSteeringCommand & command);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGCOMMAND_HPP

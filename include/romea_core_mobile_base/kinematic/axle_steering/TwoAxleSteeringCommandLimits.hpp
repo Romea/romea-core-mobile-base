@@ -1,14 +1,13 @@
-#ifndef romea_TwoAxleSteeringCommandLimits_hpp
-#define romea_TwoAxleSteeringCommandLimits_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGCOMMANDLIMITS_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGCOMMANDLIMITS_HPP_
 
-#include "../CommandLimits.hpp"
+#include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
 
 namespace romea {
 
 
 struct TwoAxleSteeringCommandLimits
 {
-
   TwoAxleSteeringCommandLimits();
 
   TwoAxleSteeringCommandLimits(const double & minimalLongitudinalSpeed,
@@ -24,5 +23,6 @@ struct TwoAxleSteeringCommandLimits
 
 std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringCommandLimits & limits);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGCOMMANDLIMITS_HPP_

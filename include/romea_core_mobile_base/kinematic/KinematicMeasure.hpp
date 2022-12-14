@@ -1,11 +1,10 @@
-#ifndef romea_KinematicMeasure_hpp
-#define romea_KinematicMeasure_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_KINEMATICMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_KINEMATICMEASURE_HPP_
 
-//eigen
+// eigen
 #include <Eigen/Core>
 
 namespace romea {
-
 
 struct KinematicMeasure
 {
@@ -21,5 +20,6 @@ struct KinematicMeasure
 
 std::ostream& operator<<(std::ostream& os, const KinematicMeasure & measure);
 
-}//end romea
-#endif
+}  // namespace romea
+
+#endif // ROMEA_CORE_MOBILE_BASE_KINEMATIC_KINEMATICMEASURE_HPP_

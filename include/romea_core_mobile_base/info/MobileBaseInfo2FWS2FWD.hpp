@@ -1,17 +1,16 @@
-#ifndef romea_MobileBaseDescription2FWS2FWD_hpp
-#define romea_MobileBaseDescription2FWS2FWD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2FWS2FWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2FWS2FWD_HPP_
 
-#include "MobileBaseControl.hpp"
-#include "MobileBaseGeometry.hpp"
-#include "MobileBaseInertia.hpp"
-
+#include "romea_core_mobile_base/info/MobileBaseControl.hpp"
+#include "romea_core_mobile_base/info/MobileBaseGeometry.hpp"
+#include "romea_core_mobile_base/info/MobileBaseInertia.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 
 namespace romea {
 
 struct MobileBaseInfo2FWS2FWD
 {
-  TwoAxles<WheeledAxle,WheeledAxle> geometry;
+  TwoAxles<WheeledAxle, WheeledAxle> geometry;
   SteeringAngleControl frontWheelsSteeringControl;
   WheelSpeedControl frontWheelsSpeedControl;
   MobileBaseInertia inertia;
@@ -21,8 +20,8 @@ struct MobileBaseInfo2FWS2FWD
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS2FWD & baseInformation);
 
 void to_kinematic_parameters(const MobileBaseInfo2FWS2FWD & baseInformation,
-                             TwoWheelSteeringKinematic::Parameters & kinematicParameters );
+                             TwoWheelSteeringKinematic::Parameters & kinematicParameters);
 
-}
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEINFO2FWS2FWD_HPP_

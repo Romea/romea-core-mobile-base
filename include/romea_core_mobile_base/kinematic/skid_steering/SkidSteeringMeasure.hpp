@@ -1,10 +1,10 @@
-#ifndef romea_SkidSteeringMeasure_hpp
-#define romea_SkidSteeringMeasure_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGMEASURE_HPP_
 
-//romea
+// romea
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommand.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
-#include "../KinematicMeasure.hpp"
+#include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
 
 namespace romea {
 
@@ -22,6 +22,6 @@ KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & measure);
 KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & measure,
                                     const SkidSteeringKinematic::Parameters & parameters);
 
+}  // namespace romea
 
-}//end romea
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_SKID_STEERING_SKIDSTEERINGMEASURE_HPP_

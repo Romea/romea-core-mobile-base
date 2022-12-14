@@ -1,7 +1,7 @@
 // gtest
 #include <gtest/gtest.h>
 
-//romea
+// romea
 #include "romea_core_mobile_base/simulation/SimulationControl1FAS4WD.hpp"
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS4WD.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardOneAxleSteeringKinematic.hpp"
@@ -36,22 +36,22 @@ public :
 
   TestSimulation1AS2RWD(){}
 
-  virtual void SetUp()override
+  void SetUp()override
   {
     frontWheelRadius = 0.3;
     rearWheelRadius = 0.7;
-    parameters.frontWheelBase= 0.9;
-    parameters.rearWheelBase= 0.4;
-    parameters.frontWheelTrack=0.8;
-    parameters.rearWheelTrack=1.1;
-    parameters.frontHubCarrierOffset=0.08;
-    parameters.rearHubCarrierOffset=0.12;
+    parameters.frontWheelBase = 0.9;
+    parameters.rearWheelBase = 0.4;
+    parameters.frontWheelTrack = 0.8;
+    parameters.rearWheelTrack = 1.1;
+    parameters.frontHubCarrierOffset = 0.08;
+    parameters.rearHubCarrierOffset = 0.12;
 
-    command.longitudinalSpeed= -1.;
+    command.longitudinalSpeed = -1.;
     command.steeringAngle = -0.5;
 
     romea::OdometryFrame1FAS2RWD odometryCommand;
-    romea::forwardKinematic(parameters,command,odometryCommand);
+    romea::forwardKinematic(parameters, command, odometryCommand);
     hardwareCommand1FAS2RWD = toHardwareCommand1FAS2RWD(rearWheelRadius,
                                                         odometryCommand);
 
@@ -115,22 +115,28 @@ TEST_F(TestSimulation1AS2RWD,toSimulation)
 }
 
 
-TEST_F(TestSimulation1AS2RWD,toHardware)
+TEST_F(TestSimulation1AS2RWD, toHardware)
 {
-
   romea::SimulationState1FASxxx simulationState;
-  simulationState.frontAxleSteeringAngle = command.steeringAngle;
-  simulationState.frontLeftWheelSteeringAngle = simulationCommand1FAS2RWD.frontLeftWheelSteeringAngle;
-  simulationState.frontRightWheelSteeringAngle = simulationCommand1FAS2RWD.frontRightWheelSteeringAngle;
-  simulationState.frontLeftWheelSpinningMotion.velocity = simulationCommand1FAS2RWD.frontLeftWheelSpinningSetPoint;
-  simulationState.frontRightWheelSpinningMotion.velocity = simulationCommand1FAS2RWD.frontRightWheelSpinningSetPoint;
-  simulationState.rearLeftWheelSpinningMotion.velocity = simulationCommand1FAS2RWD.rearLeftWheelSpinningSetPoint;
-  simulationState.rearRightWheelSpinningMotion.velocity = simulationCommand1FAS2RWD.rearRightWheelSpinningSetPoint;
+  simulationState.frontAxleSteeringAngle =
+    command.steeringAngle;
+  simulationState.frontLeftWheelSteeringAngle =
+    simulationCommand1FAS2RWD.frontLeftWheelSteeringAngle;
+  simulationState.frontRightWheelSteeringAngle =
+    simulationCommand1FAS2RWD.frontRightWheelSteeringAngle;
+  simulationState.frontLeftWheelSpinningMotion.velocity =
+    simulationCommand1FAS2RWD.frontLeftWheelSpinningSetPoint;
+  simulationState.frontRightWheelSpinningMotion.velocity =
+    simulationCommand1FAS2RWD.frontRightWheelSpinningSetPoint;
+  simulationState.rearLeftWheelSpinningMotion.velocity =
+    simulationCommand1FAS2RWD.rearLeftWheelSpinningSetPoint;
+  simulationState.rearRightWheelSpinningMotion.velocity =
+    simulationCommand1FAS2RWD.rearRightWheelSpinningSetPoint;
 
-  auto hardwareState1FAS2RWD =romea::toHardwareState1FAS2RWD(parameters.rearWheelBase+
-                                                             parameters.frontWheelBase,
-                                                             parameters.frontWheelTrack,
-                                                             simulationState);
+  auto hardwareState1FAS2RWD = romea::toHardwareState1FAS2RWD(parameters.rearWheelBase+
+                                                              parameters.frontWheelBase,
+                                                              parameters.frontWheelTrack,
+                                                              simulationState);
 
   EXPECT_DOUBLE_EQ(hardwareState1FAS2RWD.frontAxleSteeringAngle,
                    hardwareCommand1FAS2RWD.frontAxleSteeringAngle);
@@ -138,7 +144,6 @@ TEST_F(TestSimulation1AS2RWD,toHardware)
                    hardwareCommand1FAS2RWD.rearLeftWheelSpinningSetPoint);
   EXPECT_DOUBLE_EQ(hardwareState1FAS2RWD.rearRightWheelSpinningMotion.velocity,
                    hardwareCommand1FAS2RWD.rearRightWheelSpinningSetPoint);
-
 }
 
 //-----------------------------------------------------------------------------

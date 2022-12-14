@@ -37,29 +37,28 @@ romea::HardwareCommand4WS4WD toHardwareCommand4WS4WD(const double & frontWheelRa
 
 class TestSimulation2AS4WD : public ::testing::Test
 {
-
 public :
 
 
   TestSimulation2AS4WD(){}
 
-  virtual void SetUp()override
+  void SetUp()override
   {
     frontWheelRadius = 0.4;
     rearWheelRadius = 0.6;
-    parameters.frontWheelBase= 0.9;
-    parameters.rearWheelBase= 0.4;
-    parameters.frontWheelTrack=1.2;
-    parameters.rearWheelTrack=1.2;
-    parameters.frontHubCarrierOffset=0.1;
-    parameters.rearHubCarrierOffset=0.1;
+    parameters.frontWheelBase = 0.9;
+    parameters.rearWheelBase = 0.4;
+    parameters.frontWheelTrack = 1.2;
+    parameters.rearWheelTrack = 1.2;
+    parameters.frontHubCarrierOffset = 0.1;
+    parameters.rearHubCarrierOffset = 0.1;
 
-    command.longitudinalSpeed= 1.;
+    command.longitudinalSpeed = 1.;
     command.frontSteeringAngle = 0.6;
     command.frontSteeringAngle = -0.6;
 
     romea::OdometryFrame2AS4WD odometryCommand;
-    romea::forwardKinematic(parameters,command,odometryCommand);
+    romea::forwardKinematic(parameters, command, odometryCommand);
     hardwareCommand = toHardwareCommand2AS4WD(frontWheelRadius,
                                               rearWheelRadius,
                                               odometryCommand);
@@ -72,7 +71,6 @@ public :
                                                          hardwareCommand);
 
     std::cout << " simulationCommand " << simulationCommand << std::endl;
-
   }
 
 
@@ -87,16 +85,16 @@ public :
 };
 
 
-TEST_F(TestSimulation2AS4WD,toSimulation)
+TEST_F(TestSimulation2AS4WD, toSimulation)
 {
   romea::FourWheelSteeringKinematic::Parameters parameters2;
-  parameters2.frontWheelBase=parameters.frontWheelBase;
-  parameters2.rearWheelBase=parameters.rearWheelBase;
-  parameters2.wheelTrack=parameters.frontWheelTrack;
-  parameters2.hubCarrierOffset=parameters.frontHubCarrierOffset;
+  parameters2.frontWheelBase = parameters.frontWheelBase;
+  parameters2.rearWheelBase = parameters.rearWheelBase;
+  parameters2.wheelTrack = parameters.frontWheelTrack;
+  parameters2.hubCarrierOffset = parameters.frontHubCarrierOffset;
 
   romea::OdometryFrame4WS4WD odometryCommand2;
-  romea::forwardKinematic(parameters2,command,odometryCommand2);
+  romea::forwardKinematic(parameters2, command, odometryCommand2);
   auto hardwareCommand2 = toHardwareCommand4WS4WD(frontWheelRadius,
                                                   rearWheelRadius,
                                                   odometryCommand2);
@@ -126,7 +124,7 @@ TEST_F(TestSimulation2AS4WD,toSimulation)
 }
 
 
-TEST_F(TestSimulation2AS4WD,toHardware)
+TEST_F(TestSimulation2AS4WD, toHardware)
 {
 
   //  romea::SimulationState1FASxxx simulationState;

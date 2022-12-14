@@ -1,19 +1,17 @@
-#ifndef romea_TwoAxleSteeringKinematic_hpp
-#define romea_TwoAxleSteeringKinematic_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGKINEMATIC_HPP_
+#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGKINEMATIC_HPP_
 
-//romea
-#include "TwoAxleSteeringCommand.hpp"
-#include "TwoAxleSteeringCommandLimits.hpp"
-
-//std
+// std
 #include <cmath>
+
+// romea
+#include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringCommand.hpp"
+#include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringCommandLimits.hpp"
 
 namespace romea {
 
 struct TwoAxleSteeringKinematic
 {
-
-
   struct Parameters
   {
     Parameters();
@@ -38,7 +36,6 @@ struct TwoAxleSteeringKinematic
     double wheelLinearSpeedVariance;
     double steeringAngleVariance;
 //    Geometry geometry;
-
   };
 
 
@@ -95,5 +92,6 @@ TwoAxleSteeringCommand clamp(const TwoAxleSteeringKinematic::Parameters & parame
                              const double & dt);
 
 
-}
-#endif
+}  // namespace romea
+
+#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGKINEMATIC_HPP_

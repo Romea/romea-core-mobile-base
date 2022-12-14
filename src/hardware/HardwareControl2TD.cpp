@@ -20,4 +20,4 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2TD & state)
   return os;
 }
 
-}//end romea
+}  // namespace romea

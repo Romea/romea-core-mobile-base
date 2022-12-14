@@ -25,7 +25,6 @@ SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(const double & wheelbase,
                                                       const double & rearWheelRadius,
                                                       const HardwareCommand2FWS2RWD & hardwareCommand)
 {
-
   const double & rearLeftWheelLinearSpeed =
       hardwareCommand.rearLeftWheelSpinningSetPoint*rearWheelRadius;
 
@@ -43,7 +42,7 @@ SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(const double & wheelbase,
   double instantaneousCurvature = TwoWheelSteeringKinematic::
       computeInstantaneousCurvature(frontLeftWheelSteeringAngle,
                                     frontRightWheelSteeringAngle,
-                                    wheelbase,frontTrack);
+                                    wheelbase, frontTrack);
 
   double frontFeftWheelLinearSpeed = TwoWheelSteeringKinematic::
       computeLeftWheelLinearSpeed(linearSpeed,
@@ -52,13 +51,12 @@ SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(const double & wheelbase,
                                   frontHubCarrierOffset,
                                   frontTrack/2.0);
 
-  double frontRightWheelLinearSpeed= TwoWheelSteeringKinematic::
+  double frontRightWheelLinearSpeed = TwoWheelSteeringKinematic::
       computeRightWheelLinearSpeed(linearSpeed,
                                    instantaneousCurvature*wheelbase,
                                    instantaneousCurvature,
                                    frontHubCarrierOffset,
                                    frontTrack/2.0);
-
 
   return toSimulationCommand2FWS2RWD(hardwareCommand,
                                      frontFeftWheelLinearSpeed/frontWheelRadius,
@@ -74,4 +72,4 @@ HardwareState2FWS2RWD toHardwareState2FWS2RWD(const SimulationState2FWS2RWD & si
         simulationState.rearRightWheelSpinningMotion};
 }
 
-}
+}  // namespace romea

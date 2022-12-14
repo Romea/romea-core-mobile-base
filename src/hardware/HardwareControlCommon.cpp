@@ -8,7 +8,7 @@ namespace romea {
 //-----------------------------------------------------------------------------
 std::string toCommandType(RotationalMotionControlType type)
 {
-  switch(type)
+  switch (type)
   {
   case RotationalMotionControlType::VELOCITY :
     return "angular velocity";
@@ -29,7 +29,7 @@ RotationalMotionState::RotationalMotionState():
 //-----------------------------------------------------------------------------
 std::string toCommandType(LinearMotionControlType type)
 {
-  switch(type)
+  switch (type)
   {
   case LinearMotionControlType::VELOCITY :
     return "linear velocity";
@@ -71,4 +71,4 @@ std::ostream & operator<<(std::ostream & os, const LinearMotionState & state)
 }
 
 
-}//end romea
+}  // namespace romea

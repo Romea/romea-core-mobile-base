@@ -1,7 +1,7 @@
-#ifndef romea_SimulationControl1FAS2RWD_hpp
-#define romea_SimulationControl1FAS2RWD_hpp
+#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FAS2RWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FAS2RWD_HPP_
 
-#include "SimulationControl1FASxxx.hpp"
+#include "romea_core_mobile_base/simulation/SimulationControl1FASxxx.hpp"
 #include "romea_core_mobile_base/hardware/HardwareControl1FAS2RWD.hpp"
 
 namespace romea {
@@ -21,6 +21,6 @@ HardwareState1FAS2RWD toHardwareState1FAS2RWD(const double & wheelbase,
                                               const SimulationState1FAS2RWD & simulationState);
 
 
-}//end romea
+}  // namespace romea
 
-#endif
+#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FAS2RWD_HPP_
