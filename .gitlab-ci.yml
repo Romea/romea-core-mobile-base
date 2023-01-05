@@ -30,7 +30,7 @@ melodic:
   script:
     - (cd /usr/src/gtest; cmake . && make && cp *.a /usr/lib/)
     - catkin build romea_mobile_base --cmake-args -DBUILD_TESTS=ON
-    - cd build/romea_mobile_base
+    - cd build/romea_core_mobile_base
     - GTEST_COLOR=1 ctest --output-on-failure
 
 # noetic
@@ -39,5 +39,5 @@ noetic_catkin_build:
   stage: build
   script:
     - catkin build romea_mobile_base --cmake-args -DBUILD_TESTS=ON
-    - cd build/romea_mobile_base
+    - cd build/romea_core_mobile_base
     - GTEST_COLOR=1 ctest --output-on-failure
