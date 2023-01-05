@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
 #include "romea_core_mobile_base/info/MobileBaseInfo4WD.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
@@ -6,7 +9,8 @@
 #include <cmath>
 #include <sstream>
 
-namespace romea {
+namespace romea
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WD & baseInformation)
@@ -24,15 +28,15 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
-                             SkidSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo4WD & baseInformation,
+  SkidSteeringKinematic::Parameters & kinematicParameters)
 {
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
-  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
-  {
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance)) {
     std::stringstream ss;
     ss << "Unable to convert base information to skid steering kinematic";
     ss << "because distance between wheels of front and rear axles are not equals";
@@ -45,15 +49,15 @@ void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 
-void to_kinematic_parameters(const MobileBaseInfo4WD & baseInformation,
-                             MecanumWheelSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo4WD & baseInformation,
+  MecanumWheelSteeringKinematic::Parameters & kinematicParameters)
 {
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
   const auto & wheelsSensor = baseInformation.wheelsSpeedControl.sensor;
 
-  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
-  {
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance)) {
     std::stringstream ss;
     ss << "Unable to convert base information to omni steering kinematic";
     ss << "because distance between wheels of front and rear axles are not equals";

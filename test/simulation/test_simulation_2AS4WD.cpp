@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // gtest
 #include <gtest/gtest.h>
 #include "test_utils.hpp"
@@ -9,38 +12,38 @@
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
 
-romea::HardwareCommand2AS4WD toHardwareCommand2AS4WD(const double & frontWheelRadius,
-                                                     const double & rearWheelRadius,
-                                                     const romea::OdometryFrame2AS4WD & odometryFrame)
+romea::HardwareCommand2AS4WD toHardwareCommand2AS4WD(
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const romea::OdometryFrame2AS4WD & odometryFrame)
 {
   return {odometryFrame.frontAxleSteeringAngle,
-        odometryFrame.rearAxleSteeringAngle,
-        odometryFrame.frontLeftWheelLinearSpeed/frontWheelRadius,
-        odometryFrame.frontRightWheelLinearSpeed/frontWheelRadius,
-        odometryFrame.rearLeftWheelLinearSpeed/rearWheelRadius,
-        odometryFrame.rearRightWheelLinearSpeed/rearWheelRadius};
+    odometryFrame.rearAxleSteeringAngle,
+    odometryFrame.frontLeftWheelLinearSpeed / frontWheelRadius,
+    odometryFrame.frontRightWheelLinearSpeed / frontWheelRadius,
+    odometryFrame.rearLeftWheelLinearSpeed / rearWheelRadius,
+    odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
 }
 
-romea::HardwareCommand4WS4WD toHardwareCommand4WS4WD(const double & frontWheelRadius,
-                                                     const double & rearWheelRadius,
-                                                     const romea::OdometryFrame4WS4WD & odometryFrame)
+romea::HardwareCommand4WS4WD toHardwareCommand4WS4WD(
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const romea::OdometryFrame4WS4WD & odometryFrame)
 {
   return {odometryFrame.frontLeftWheelSteeringAngle,
-        odometryFrame.frontRightWheelSteeringAngle,
-        odometryFrame.rearLeftWheelSteeringAngle,
-        odometryFrame.rearRightWheelSteeringAngle,
-        odometryFrame.frontLeftWheelLinearSpeed/frontWheelRadius,
-        odometryFrame.frontRightWheelLinearSpeed/frontWheelRadius,
-        odometryFrame.rearLeftWheelLinearSpeed/rearWheelRadius,
-        odometryFrame.rearRightWheelLinearSpeed/rearWheelRadius};
+    odometryFrame.frontRightWheelSteeringAngle,
+    odometryFrame.rearLeftWheelSteeringAngle,
+    odometryFrame.rearRightWheelSteeringAngle,
+    odometryFrame.frontLeftWheelLinearSpeed / frontWheelRadius,
+    odometryFrame.frontRightWheelLinearSpeed / frontWheelRadius,
+    odometryFrame.rearLeftWheelLinearSpeed / rearWheelRadius,
+    odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
 }
 
 class TestSimulation2AS4WD : public ::testing::Test
 {
-public :
-
-
-  TestSimulation2AS4WD(){}
+public:
+  TestSimulation2AS4WD() {}
 
   void SetUp()override
   {
@@ -59,16 +62,18 @@ public :
 
     romea::OdometryFrame2AS4WD odometryCommand;
     romea::forwardKinematic(parameters, command, odometryCommand);
-    hardwareCommand = toHardwareCommand2AS4WD(frontWheelRadius,
-                                              rearWheelRadius,
-                                              odometryCommand);
+    hardwareCommand = toHardwareCommand2AS4WD(
+      frontWheelRadius,
+      rearWheelRadius,
+      odometryCommand);
 
     std::cout << " hardwareCommand " << hardwareCommand << std::endl;
-    simulationCommand = romea::toSimulationCommand2AS4WD(parameters.frontWheelBase+
-                                                         parameters.rearWheelBase,
-                                                         parameters.frontWheelTrack,
-                                                         parameters.rearWheelTrack,
-                                                         hardwareCommand);
+    simulationCommand = romea::toSimulationCommand2AS4WD(
+      parameters.frontWheelBase +
+      parameters.rearWheelBase,
+      parameters.frontWheelTrack,
+      parameters.rearWheelTrack,
+      hardwareCommand);
 
     std::cout << " simulationCommand " << simulationCommand << std::endl;
   }
@@ -81,7 +86,6 @@ public :
   romea::TwoAxleSteeringCommand command;
   romea::HardwareCommand2AS4WD hardwareCommand;
   romea::SimulationCommand2AS4WD simulationCommand;
-
 };
 
 
@@ -95,16 +99,20 @@ TEST_F(TestSimulation2AS4WD, toSimulation)
 
   romea::OdometryFrame4WS4WD odometryCommand2;
   romea::forwardKinematic(parameters2, command, odometryCommand2);
-  auto hardwareCommand2 = toHardwareCommand4WS4WD(frontWheelRadius,
-                                                  rearWheelRadius,
-                                                  odometryCommand2);
+  auto hardwareCommand2 = toHardwareCommand4WS4WD(
+    frontWheelRadius,
+    rearWheelRadius,
+    odometryCommand2);
 
-  EXPECT_DOUBLE_EQ(simulationCommand.frontAxleSteeringAngle,
-                   command.frontSteeringAngle);
-  EXPECT_DOUBLE_EQ(simulationCommand.frontLeftWheelSteeringAngle,
-                   hardwareCommand2.frontLeftWheelSteeringAngle);
-  EXPECT_DOUBLE_EQ(simulationCommand.frontRightWheelSteeringAngle,
-                   hardwareCommand2.frontRightWheelSteeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand.frontAxleSteeringAngle,
+    command.frontSteeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand.frontLeftWheelSteeringAngle,
+    hardwareCommand2.frontLeftWheelSteeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand.frontRightWheelSteeringAngle,
+    hardwareCommand2.frontRightWheelSteeringAngle);
 
   //    EXPECT_DOUBLE_EQ(simulationCommand.rearAxleSteeringAngle,
   //                     command.rearSteeringAngle);
@@ -151,7 +159,8 @@ TEST_F(TestSimulation2AS4WD, toHardware)
 }
 
 //-----------------------------------------------------------------------------
-int main(int argc, char **argv){
+int main(int argc, char ** argv)
+{
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

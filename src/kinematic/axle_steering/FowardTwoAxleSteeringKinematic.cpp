@@ -1,17 +1,22 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
+#include <romea_core_common/math/Algorithm.hpp>
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardTwoAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
 
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
-                      const TwoAxleSteeringCommand & commandFrame,
-                      OdometryFrame2AS4WD & odometryCommandFrame)
+void forwardKinematic(
+  const TwoAxleSteeringKinematic::Parameters & parameters,
+  const TwoAxleSteeringCommand & commandFrame,
+  OdometryFrame2AS4WD & odometryCommandFrame)
 {
   double wheelbase = parameters.frontWheelBase + parameters.rearWheelBase;
 
@@ -19,43 +24,47 @@ void forwardKinematic(const TwoAxleSteeringKinematic::Parameters &parameters,
   double frontSteeringAngle = commandFrame.frontSteeringAngle;
   double tanFrontSteeringAngle = std::tan(frontSteeringAngle);
   const double frontHubCarrierOffset = parameters.frontHubCarrierOffset;
-  const double frontHalfWheelTrack = parameters.frontWheelTrack/2;
+  const double frontHalfWheelTrack = parameters.frontWheelTrack / 2;
 
   double rearSteeringAngle = commandFrame.rearSteeringAngle;
   double tanRearSteeringAngle = std::tan(rearSteeringAngle);
   const double rearHubCarrierOffset = parameters.rearHubCarrierOffset;
-  const double rearHalfTrack = parameters.rearWheelTrack/2;
+  const double rearHalfTrack = parameters.rearWheelTrack / 2;
 
-  double instantaneousCurvature = (tanFrontSteeringAngle - tanRearSteeringAngle)/wheelbase;
+  double instantaneousCurvature = (tanFrontSteeringAngle - tanRearSteeringAngle) / wheelbase;
 
   double frontLeftWheelSpeed = OneAxleSteeringKinematic::
-      computeLeftWheelLinearSpeed(linearSpeed,
-                                  tanFrontSteeringAngle,
-                                  instantaneousCurvature,
-                                  frontHubCarrierOffset,
-                                  frontHalfWheelTrack);
+    computeLeftWheelLinearSpeed(
+    linearSpeed,
+    tanFrontSteeringAngle,
+    instantaneousCurvature,
+    frontHubCarrierOffset,
+    frontHalfWheelTrack);
 
   double frontRightWheelSpeed = OneAxleSteeringKinematic::
-      computeRightWheelLinearSpeed(linearSpeed,
-                                   tanFrontSteeringAngle,
-                                   instantaneousCurvature,
-                                   frontHubCarrierOffset,
-                                   frontHalfWheelTrack);
+    computeRightWheelLinearSpeed(
+    linearSpeed,
+    tanFrontSteeringAngle,
+    instantaneousCurvature,
+    frontHubCarrierOffset,
+    frontHalfWheelTrack);
 
 
   double rearLeftWheelSpeed = OneAxleSteeringKinematic::
-      computeLeftWheelLinearSpeed(linearSpeed,
-                                  tanRearSteeringAngle,
-                                  instantaneousCurvature,
-                                  rearHubCarrierOffset,
-                                  rearHalfTrack);
+    computeLeftWheelLinearSpeed(
+    linearSpeed,
+    tanRearSteeringAngle,
+    instantaneousCurvature,
+    rearHubCarrierOffset,
+    rearHalfTrack);
 
   double rearRightWheelSpeed = OneAxleSteeringKinematic::
-      computeRightWheelLinearSpeed(linearSpeed,
-                                   tanRearSteeringAngle,
-                                   instantaneousCurvature,
-                                   rearHubCarrierOffset,
-                                   rearHalfTrack);
+    computeRightWheelLinearSpeed(
+    linearSpeed,
+    tanRearSteeringAngle,
+    instantaneousCurvature,
+    rearHubCarrierOffset,
+    rearHalfTrack);
 
   assert(sign(frontLeftWheelSpeed) == sign(linearSpeed));
   assert(sign(frontRightWheelSpeed) == sign(linearSpeed));

@@ -1,18 +1,25 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// romea core
+#include <romea_core_common/math/Algorithm.hpp>
+
 // std
 #include <cmath>
+#include <limits>
 
-// romea
+// local
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
 
-namespace romea {
+namespace romea
+{
 
 //--------------------------------------------------------------------------
-FourWheelSteeringKinematic::Parameters::Parameters():
-  frontWheelBase(0),
+FourWheelSteeringKinematic::Parameters::Parameters()
+: frontWheelBase(0),
   rearWheelBase(0),
   wheelTrack(0),
   hubCarrierOffset(0),
@@ -22,82 +29,88 @@ FourWheelSteeringKinematic::Parameters::Parameters():
   maximalWheelSteeringAngularSpeed(std::numeric_limits<double>::max()),
   wheelLinearSpeedVariance(0),
   wheelSteeringAngleVariance(0)
-
 {
 }
 
 
 //--------------------------------------------------------------------------
-double FourWheelSteeringKinematic::comptuteBeta(const double & linearSpeedXBodyAxis,
-                                                const double & linearSpeedYBodyAxis)
+double FourWheelSteeringKinematic::comptuteBeta(
+  const double & linearSpeedXBodyAxis,
+  const double & linearSpeedYBodyAxis)
 {
   return std::atan2(linearSpeedYBodyAxis, std::abs(linearSpeedXBodyAxis));
 }
 
 
 //--------------------------------------------------------------------------
-double FourWheelSteeringKinematic::comptuteOrthogonalInstantaneousCurvature(const double & instantaneousCurvature,
-                                                                            const double & beta)
+double FourWheelSteeringKinematic::comptuteOrthogonalInstantaneousCurvature(
+  const double & instantaneousCurvature,
+  const double & beta)
 {
-  return instantaneousCurvature/std::cos(beta);
+  return instantaneousCurvature / std::cos(beta);
 }
 
 //--------------------------------------------------------------------------
-double FourWheelSteeringKinematic::computeFrontSteeringAngle(const double & instantaneousCurvature,
-                                                             const double & frontWheelBase,
-                                                             const double & beta)
+double FourWheelSteeringKinematic::computeFrontSteeringAngle(
+  const double & instantaneousCurvature,
+  const double & frontWheelBase,
+  const double & beta)
 {
-  return std::atan2(instantaneousCurvature*frontWheelBase+std::sin(beta), std::cos(beta));
+  return std::atan2(instantaneousCurvature * frontWheelBase + std::sin(beta), std::cos(beta));
 }
 
 //--------------------------------------------------------------------------
-double FourWheelSteeringKinematic::computeRearSteeringAngle(const double & instantaneousCurvature,
-                                                            const double & rearWheelBase,
-                                                            const double & beta)
+double FourWheelSteeringKinematic::computeRearSteeringAngle(
+  const double & instantaneousCurvature,
+  const double & rearWheelBase,
+  const double & beta)
 {
-  return std::atan2(-instantaneousCurvature*rearWheelBase+std::sin(beta), std::cos(beta));
+  return std::atan2(-instantaneousCurvature * rearWheelBase + std::sin(beta), std::cos(beta));
 }
 
 //--------------------------------------------------------------------------
-TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringCommandLimits & userLimits,
-                             const TwoAxleSteeringCommand & command)
+TwoAxleSteeringCommand clamp(
+  const FourWheelSteeringKinematic::Parameters & parameters,
+  const TwoAxleSteeringCommandLimits & userLimits,
+  const TwoAxleSteeringCommand & command)
 {
-  return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
-                                         parameters.rearWheelBase,
-                                         parameters.wheelTrack/2.,
-                                         parameters.wheelTrack/2.,
-                                         parameters.hubCarrierOffset,
-                                         parameters.hubCarrierOffset,
-                                         parameters.maximalWheelLinearSpeed,
-                                         parameters.maximalWheelLinearSpeed,
-                                         parameters.maximalWheelSteeringAngle,
-                                         parameters.maximalWheelSteeringAngle,
-                                         userLimits,
-                                         command);
+  return TwoAxleSteeringKinematic::clamp(
+    parameters.frontWheelBase,
+    parameters.rearWheelBase,
+    parameters.wheelTrack / 2.,
+    parameters.wheelTrack / 2.,
+    parameters.hubCarrierOffset,
+    parameters.hubCarrierOffset,
+    parameters.maximalWheelLinearSpeed,
+    parameters.maximalWheelLinearSpeed,
+    parameters.maximalWheelSteeringAngle,
+    parameters.maximalWheelSteeringAngle,
+    userLimits,
+    command);
 }
 
 //--------------------------------------------------------------------------
-TwoAxleSteeringCommand clamp(const FourWheelSteeringKinematic::Parameters & parameters,
-                             const TwoAxleSteeringCommand & previousCommand,
-                             const TwoAxleSteeringCommand & curentCommand,
-                             const double & dt)
+TwoAxleSteeringCommand clamp(
+  const FourWheelSteeringKinematic::Parameters & parameters,
+  const TwoAxleSteeringCommand & previousCommand,
+  const TwoAxleSteeringCommand & curentCommand,
+  const double & dt)
 {
-    double  maximalSteeringAngularSpeed = 0;
+  double maximalSteeringAngularSpeed = 0;
 
-    return TwoAxleSteeringKinematic::clamp(parameters.frontWheelBase,
-                                           parameters.rearWheelBase,
-                                           parameters.wheelTrack/2.,
-                                           parameters.wheelTrack/2.,
-                                           parameters.hubCarrierOffset,
-                                           parameters.hubCarrierOffset,
-                                           parameters.maximalWheelLinearAcceleration,
-                                           maximalSteeringAngularSpeed,
-                                           previousCommand,
-                                           curentCommand,
-                                           dt);
+  return TwoAxleSteeringKinematic::clamp(
+    parameters.frontWheelBase,
+    parameters.rearWheelBase,
+    parameters.wheelTrack / 2.,
+    parameters.wheelTrack / 2.,
+    parameters.hubCarrierOffset,
+    parameters.hubCarrierOffset,
+    parameters.maximalWheelLinearAcceleration,
+    maximalSteeringAngularSpeed,
+    previousCommand,
+    curentCommand,
+    dt);
 }
-
 
 
 }  // namespace romea

@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_mobile_base/simulation/SimulationControl2AS2FWD.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 
@@ -5,35 +8,37 @@ namespace romea
 {
 
 //-----------------------------------------------------------------------------
-SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(const HardwareCommand2AS2FWD & hardwareCommand,
-                                                    const double & frontLeftWheelSteeringAngle,
-                                                    const double & frontRightWheelSteeringAngle,
-                                                    const double & rearLeftWheelSteeringAngle,
-                                                    const double & rearRightWheelSteeringAngle,
-                                                    const double & rearLeftWheelSpinningSetPoint,
-                                                    const double & rearRightWheelSpinningSetPoint)
+SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
+  const HardwareCommand2AS2FWD & hardwareCommand,
+  const double & frontLeftWheelSteeringAngle,
+  const double & frontRightWheelSteeringAngle,
+  const double & rearLeftWheelSteeringAngle,
+  const double & rearRightWheelSteeringAngle,
+  const double & rearLeftWheelSpinningSetPoint,
+  const double & rearRightWheelSpinningSetPoint)
 {
   return {hardwareCommand.frontAxleSteeringAngle,
-        frontLeftWheelSteeringAngle,
-        frontRightWheelSteeringAngle,
-        hardwareCommand.rearAxleSteeringAngle,
-        rearLeftWheelSteeringAngle,
-        rearRightWheelSteeringAngle,
-        hardwareCommand.frontLeftWheelSpinningSetPoint,
-        hardwareCommand.frontRightWheelSpinningSetPoint,
-        rearLeftWheelSpinningSetPoint,
-        rearRightWheelSpinningSetPoint};
+    frontLeftWheelSteeringAngle,
+    frontRightWheelSteeringAngle,
+    hardwareCommand.rearAxleSteeringAngle,
+    rearLeftWheelSteeringAngle,
+    rearRightWheelSteeringAngle,
+    hardwareCommand.frontLeftWheelSpinningSetPoint,
+    hardwareCommand.frontRightWheelSpinningSetPoint,
+    rearLeftWheelSpinningSetPoint,
+    rearRightWheelSpinningSetPoint};
 }
 
 //-----------------------------------------------------------------------------
-SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(const double & wheelbase,
-                                                    const double & frontTrack,
-                                                    const double & frontWheelRadius,
-                                                    const double & frontHubCarrierOffset,
-                                                    const double & rearTrack,
-                                                    const double & rearWheelRadius,
-                                                    const double & rearHubCarrierOffset,
-                                                    const HardwareCommand2AS2FWD & hardwareCommand)
+SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & frontWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearTrack,
+  const double & rearWheelRadius,
+  const double & rearHubCarrierOffset,
+  const HardwareCommand2AS2FWD & hardwareCommand)
 {
 //  double  tanFrontAxleSteeringAngle=
 //      std::tan(hardwareCommand.frontAxleSteeringAngle);
@@ -109,35 +114,40 @@ SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(const double & wheelbase,
 }
 
 //-----------------------------------------------------------------------------
-HardwareState2AS2FWD toHardwareState2AS2FWD(const SimulationState2AS2FWD & simulationState,
-                                            const double frontAxleSteeringAngle,
-                                            const double rearAxleSteeringAngle)
+HardwareState2AS2FWD toHardwareState2AS2FWD(
+  const SimulationState2AS2FWD & simulationState,
+  const double frontAxleSteeringAngle,
+  const double rearAxleSteeringAngle)
 {
   return {frontAxleSteeringAngle,
-        rearAxleSteeringAngle,
-        simulationState.frontLeftWheelSpinningMotion,
-        simulationState.frontRightWheelSpinningMotion};
+    rearAxleSteeringAngle,
+    simulationState.frontLeftWheelSpinningMotion,
+    simulationState.frontRightWheelSpinningMotion};
 }
 
 //-----------------------------------------------------------------------------
-HardwareState2AS2FWD toHardwareState2AS2FWD(const double & wheelbase,
-                                            const double & frontTrack,
-                                            const double & rearTrack,
-                                            const SimulationState2AS2FWD & simulationState)
+HardwareState2AS2FWD toHardwareState2AS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const SimulationState2AS2FWD & simulationState)
 {
   double frontAxleSteeringAngle = TwoWheelSteeringKinematic::
-      computeSteeringAngle(simulationState.frontLeftWheelSteeringAngle,
-                           simulationState.frontRightWheelSteeringAngle,
-                           wheelbase, frontTrack);
+    computeSteeringAngle(
+    simulationState.frontLeftWheelSteeringAngle,
+    simulationState.frontRightWheelSteeringAngle,
+    wheelbase, frontTrack);
 
   double rearAxleSteeringAngle = TwoWheelSteeringKinematic::
-      computeSteeringAngle(simulationState.rearLeftWheelSteeringAngle,
-                           simulationState.rearRightWheelSteeringAngle,
-                           wheelbase, rearTrack);
+    computeSteeringAngle(
+    simulationState.rearLeftWheelSteeringAngle,
+    simulationState.rearRightWheelSteeringAngle,
+    wheelbase, rearTrack);
 
-  return toHardwareState2AS2FWD(simulationState,
-                                frontAxleSteeringAngle,
-                                rearAxleSteeringAngle);
+  return toHardwareState2AS2FWD(
+    simulationState,
+    frontAxleSteeringAngle,
+    rearAxleSteeringAngle);
 }
 
 }  // namespace romea

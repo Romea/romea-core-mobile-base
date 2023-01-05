@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_
-#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEGEOMETRY_HPP_
+#define ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEGEOMETRY_HPP_
 
 #include <iostream>
 #include <vector>
@@ -63,6 +66,6 @@ using TwoWheeledAxles = TwoAxles<WheeledAxle, WheeledAxle>;
 //template<typename FrontWheel,typename RearWheel>
 //std::ostream& operator<<(std::ostream& os, const TwoAxlesGeometry<FrontWheel,RearWheel> & twoAxlesGeometry);
 
-}
+}  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASEGEOMETRY_HPP_ 
+#endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEGEOMETRY_HPP_

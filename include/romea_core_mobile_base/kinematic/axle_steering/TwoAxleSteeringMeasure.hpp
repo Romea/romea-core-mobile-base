@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_
-#define ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__TWOAXLESTEERINGMEASURE_HPP_
+#define ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__TWOAXLESTEERINGMEASURE_HPP_
 
 // Eigen
 #include <Eigen/Core>
@@ -11,7 +14,8 @@
 #include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 
 struct TwoAxleSteeringMeasure : public TwoAxleSteeringCommand
@@ -21,19 +25,22 @@ struct TwoAxleSteeringMeasure : public TwoAxleSteeringCommand
 };
 
 
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const double & frontWheelBase,
-                                    const double & rearWheelBase);
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const double & frontWheelBase,
+  const double & rearWheelBase);
 
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const TwoAxleSteeringKinematic::Parameters & parameters);
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const TwoAxleSteeringKinematic::Parameters & parameters);
 
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const FourWheelSteeringKinematic::Parameters & parameters);
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const FourWheelSteeringKinematic::Parameters & parameters);
 
-std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringMeasure & command);
+std::ostream & operator<<(std::ostream & os, const TwoAxleSteeringMeasure & command);
 
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_KINEMATIC_AXLE_STEERING_TWOAXLESTEERINGMEASURE_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__TWOAXLESTEERINGMEASURE_HPP_

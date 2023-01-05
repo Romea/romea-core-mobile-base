@@ -1,3 +1,6 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // std
 #include <cmath>
 
@@ -5,46 +8,52 @@
 #include "romea_core_mobile_base/kinematic/omni_steering/ForwardMecanumWheelSteeringKinematic.hpp"
 
 
-namespace romea {
+namespace romea
+{
 
 //--------------------------------------------------------------------------
-void forwardKinematic(const MecanumWheelSteeringKinematic::Parameters & parameters,
-                      const OmniSteeringCommand & commandFrame,
-                      OdometryFrame4WD &odometryFrame)
+void forwardKinematic(
+  const MecanumWheelSteeringKinematic::Parameters & parameters,
+  const OmniSteeringCommand & commandFrame,
+  OdometryFrame4WD & odometryFrame)
 {
-  const double & longitudinalSpeed  = commandFrame.longitudinalSpeed;
-  const double & lateralSpeed  = commandFrame.longitudinalSpeed;
+  const double & longitudinalSpeed = commandFrame.longitudinalSpeed;
+  const double & lateralSpeed = commandFrame.longitudinalSpeed;
   const double & angularSpeed = commandFrame.angularSpeed;
-  const double halfWheebase = parameters.wheelbase/2.;
-  const double halfTrack = parameters.wheelTrack/2.;
+  const double halfWheebase = parameters.wheelbase / 2.;
+  const double halfTrack = parameters.wheelTrack / 2.;
 
   odometryFrame.frontLeftWheelLinearSpeed = MecanumWheelSteeringKinematic::
-      computeFrontLeftWheelLinearSpeed(longitudinalSpeed,
-                                 lateralSpeed,
-                                 angularSpeed,
-                                 halfWheebase,
-                                 halfTrack);
+    computeFrontLeftWheelLinearSpeed(
+    longitudinalSpeed,
+    lateralSpeed,
+    angularSpeed,
+    halfWheebase,
+    halfTrack);
 
   odometryFrame.frontRightWheelLinearSpeed = MecanumWheelSteeringKinematic::
-      computeFrontRightWheelLinearSpeed(longitudinalSpeed,
-                                        lateralSpeed,
-                                        angularSpeed,
-                                        halfWheebase,
-                                        halfTrack);
+    computeFrontRightWheelLinearSpeed(
+    longitudinalSpeed,
+    lateralSpeed,
+    angularSpeed,
+    halfWheebase,
+    halfTrack);
 
   odometryFrame.rearLeftWheelLinearSpeed = MecanumWheelSteeringKinematic::
-      computeRearLeftWheelLinearSpeed(longitudinalSpeed,
-                                      lateralSpeed,
-                                      angularSpeed,
-                                      halfWheebase,
-                                      halfTrack);
+    computeRearLeftWheelLinearSpeed(
+    longitudinalSpeed,
+    lateralSpeed,
+    angularSpeed,
+    halfWheebase,
+    halfTrack);
 
   odometryFrame.rearRightWheelLinearSpeed = MecanumWheelSteeringKinematic::
-      computeRearRightWheelLinearSpeed(longitudinalSpeed,
-                                       lateralSpeed,
-                                       angularSpeed,
-                                       halfWheebase,
-                                       halfTrack);
+    computeRearRightWheelLinearSpeed(
+    longitudinalSpeed,
+    lateralSpeed,
+    angularSpeed,
+    halfWheebase,
+    halfTrack);
 }
 
 }  // namespace romea

@@ -1,28 +1,33 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#include <romea_core_common/math/Algorithm.hpp>
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringCommand.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-OneAxleSteeringCommand::OneAxleSteeringCommand():
-  longitudinalSpeed(0.),
+OneAxleSteeringCommand::OneAxleSteeringCommand()
+: longitudinalSpeed(0.),
   steeringAngle(0.)
 {
 }
 
 //-----------------------------------------------------------------------------
-OneAxleSteeringCommand::OneAxleSteeringCommand(const double & longitudinalSpeed,
-                                               const double & steeringAngle):
-  longitudinalSpeed(longitudinalSpeed),
+OneAxleSteeringCommand::OneAxleSteeringCommand(
+  const double & longitudinalSpeed,
+  const double & steeringAngle)
+: longitudinalSpeed(longitudinalSpeed),
   steeringAngle(steeringAngle)
 {
-
 }
 
 //-----------------------------------------------------------------------------
-OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
-                             const OneAxleSteeringCommandLimits & limits)
+OneAxleSteeringCommand clamp(
+  const OneAxleSteeringCommand & command,
+  const OneAxleSteeringCommandLimits & limits)
 {
   OneAxleSteeringCommand clamped_command = command;
   clamped_command.longitudinalSpeed = clamp(command.longitudinalSpeed, limits.longitudinalSpeed);
@@ -31,9 +36,9 @@ OneAxleSteeringCommand clamp(const OneAxleSteeringCommand & command,
 }
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommand & command)
+std::ostream & operator<<(std::ostream & os, const OneAxleSteeringCommand & command)
 {
-  os << " OneAxleSteeringCommand command" << std::endl;;
+  os << " OneAxleSteeringCommand command" << std::endl;
   os << " command longitudinal speed  " << command.longitudinalSpeed << std::endl;
   os << " command front steering angle " << command.steeringAngle << std::endl;
   return os;
@@ -43,12 +48,11 @@ std::ostream& operator<<(std::ostream& os, const OneAxleSteeringCommand & comman
 bool isValid(const OneAxleSteeringCommand & command)
 {
   return std::isfinite(command.longitudinalSpeed) &&
-      std::isfinite(command.steeringAngle);
+         std::isfinite(command.steeringAngle);
 }
 
 
 }  // namespace romea
-
 
 
 // old codes

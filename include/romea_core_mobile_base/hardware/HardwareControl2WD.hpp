@@ -1,5 +1,8 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2WD_HPP_
-#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2WD_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2WD_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
@@ -23,4 +26,4 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2WD & state);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2WD_HPP_ 
+#endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2WD_HPP_

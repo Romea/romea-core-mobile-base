@@ -1,13 +1,17 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // std
 #include <ostream>
 
 // romea
 #include "romea_core_mobile_base/odometry/OdometryFrame1FAS2RWD.hpp"
 
-namespace romea {
+namespace romea
+{
 
 //--------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream & s, const OdometryFrame1FAS2RWD &frame)
+std::ostream & operator<<(std::ostream & s, const OdometryFrame1FAS2RWD & frame)
 {
   s << "rearLeftWheelLinearSpeed : " << frame.rearLeftWheelLinearSpeed << std::endl;
   s << "rearRightWheelLinearSpeed : " << frame.rearRightWheelLinearSpeed << std::endl;

@@ -1,10 +1,14 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FWS2RWD_HPP_
-#define ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FWS2RWD_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME1FWS2RWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME1FWS2RWD_HPP_
 
 // stl
 #include <ostream>
 
-namespace romea {
+namespace romea
+{
 
 struct OdometryFrame1FWS2RWD
 {
@@ -13,8 +17,8 @@ struct OdometryFrame1FWS2RWD
   double frontWheelSteeringAngle;
 };
 
-std::ostream & operator<<(std::ostream &s, const OdometryFrame1FWS2RWD &frame);
+std::ostream & operator<<(std::ostream & s, const OdometryFrame1FWS2RWD & frame);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME1FWS2RWD_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME1FWS2RWD_HPP_

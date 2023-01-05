@@ -1,53 +1,62 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringCommand.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-SkidSteeringCommand::SkidSteeringCommand():
-  SkidSteeringCommand(0, 0)
+SkidSteeringCommand::SkidSteeringCommand()
+: SkidSteeringCommand(0, 0)
 {
 }
 
 //-----------------------------------------------------------------------------
-SkidSteeringCommand::SkidSteeringCommand(const double &longitudinalSpeed,
-                                         const double &angularSpeed):
-  longitudinalSpeed(longitudinalSpeed),
+SkidSteeringCommand::SkidSteeringCommand(
+  const double & longitudinalSpeed,
+  const double & angularSpeed)
+: longitudinalSpeed(longitudinalSpeed),
   angularSpeed(angularSpeed)
 {
 }
 
 //-----------------------------------------------------------------------------
-SkidSteeringCommand clamp(const SkidSteeringCommand & command,
-                          const SkidSteeringCommand & lowerBound,
-                          const SkidSteeringCommand & upperBound)
+SkidSteeringCommand clamp(
+  const SkidSteeringCommand & command,
+  const SkidSteeringCommand & lowerBound,
+  const SkidSteeringCommand & upperBound)
 {
   SkidSteeringCommand clamped_command = command;
 
-  clamped_command.longitudinalSpeed = clamp(clamped_command.longitudinalSpeed,
-                                            lowerBound.longitudinalSpeed,
-                                            upperBound.longitudinalSpeed);
+  clamped_command.longitudinalSpeed = clamp(
+    clamped_command.longitudinalSpeed,
+    lowerBound.longitudinalSpeed,
+    upperBound.longitudinalSpeed);
 
-  clamped_command.angularSpeed = clamp(clamped_command.angularSpeed,
-                                       lowerBound.angularSpeed,
-                                       upperBound.angularSpeed);
+  clamped_command.angularSpeed = clamp(
+    clamped_command.angularSpeed,
+    lowerBound.angularSpeed,
+    upperBound.angularSpeed);
 
   return clamped_command;
 }
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const SkidSteeringCommand & command)
+std::ostream & operator<<(std::ostream & os, const SkidSteeringCommand & command)
 {
-  os << " SkidSteering command " << std::endl;;
+  os << " SkidSteering command " << std::endl;
   os << " command longitudinal speed  " << command.longitudinalSpeed << std::endl;
   os << " command angular speed " << command.angularSpeed << std::endl;
   return os;
 }
 
 //-----------------------------------------------------------------------------
-SkidSteeringCommand clamp(const SkidSteeringCommand & command,
-                          const SkidSteeringCommandLimits & limits)
+SkidSteeringCommand clamp(
+  const SkidSteeringCommand & command,
+  const SkidSteeringCommandLimits & limits)
 {
   SkidSteeringCommand clamped_command = command;
   clamped_command.longitudinalSpeed = clamp(command.longitudinalSpeed, limits.longitudinalSpeed);
@@ -58,8 +67,8 @@ SkidSteeringCommand clamp(const SkidSteeringCommand & command,
 //-----------------------------------------------------------------------------
 bool isValid(const SkidSteeringCommand & command)
 {
-    return std::isfinite(command.longitudinalSpeed) &&
-            std::isfinite(command.angularSpeed);
+  return std::isfinite(command.longitudinalSpeed) &&
+         std::isfinite(command.angularSpeed);
 }
 
 
@@ -67,7 +76,7 @@ bool isValid(const SkidSteeringCommand & command)
 
 // old codes
 ////-----------------------------------------------------------------------------
-//KinematicCommand toKinematicCommand(const SkidSteeringCommand & command)
+// KinematicCommand toKinematicCommand(const SkidSteeringCommand & command)
 //{
 
 //  auto instantaneousCurvature = safe_divide(command.angularSpeed,

@@ -1,9 +1,13 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_
-#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL1FASXXX_HPP_
+#define ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL1FASXXX_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
-namespace romea {
+namespace romea
+{
 
 struct SimulationCommand1FASxxx
 {
@@ -17,7 +21,7 @@ struct SimulationCommand1FASxxx
   RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
-std::ostream & operator<<(std::ostream &os, const SimulationCommand1FASxxx & state);
+std::ostream & operator<<(std::ostream & os, const SimulationCommand1FASxxx & state);
 
 struct SimulationState1FASxxx
 {
@@ -31,8 +35,8 @@ struct SimulationState1FASxxx
   RotationalMotionState rearRightWheelSpinningMotion;
 };
 
-std::ostream & operator<<(std::ostream &os, const SimulationState1FASxxx & state);
+std::ostream & operator<<(std::ostream & os, const SimulationState1FASxxx & state);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL1FASXXX_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL1FASXXX_HPP_

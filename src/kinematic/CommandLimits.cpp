@@ -1,28 +1,33 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// romea core
+#include <romea_core_common/math/Algorithm.hpp>
+
 // std
 #include <cmath>
 
 // romea
 #include "romea_core_mobile_base/kinematic/CommandLimits.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
 
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
 Interval1D<double> makeSymmetricCommandLimits(const double & maximalAbsoluteCommand)
 {
-   return Interval1D<double>(-maximalAbsoluteCommand, maximalAbsoluteCommand);
+  return Interval1D<double>(-maximalAbsoluteCommand, maximalAbsoluteCommand);
 }
 
 //-----------------------------------------------------------------------------
 Interval1D<double> makeSteeringAngleCommandLimits(const double & maximalAbsoluteSteeringAngle)
 {
-  if (maximalAbsoluteSteeringAngle < 0 || maximalAbsoluteSteeringAngle > M_PI_2)
-  {
+  if (maximalAbsoluteSteeringAngle < 0 || maximalAbsoluteSteeringAngle > M_PI_2) {
     std::stringstream ss;
     ss << " Steering angle limits:";
     ss << " Unable to set upper angle to ";
-    ss << maximalAbsoluteSteeringAngle ;
+    ss << maximalAbsoluteSteeringAngle;
     ss << " because this value is not in range [0 pi/2]";
     throw std::runtime_error(ss.str());
   }
@@ -32,25 +37,24 @@ Interval1D<double> makeSteeringAngleCommandLimits(const double & maximalAbsolute
 
 
 //-----------------------------------------------------------------------------
-Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBackwardSpeed,
-                                                      const double & maximalForwardSpeed)
+Interval1D<double> makeLongitudinalSpeedCommandLimits(
+  const double & maximalBackwardSpeed,
+  const double & maximalForwardSpeed)
 {
-  if (maximalBackwardSpeed > 0)
-  {
+  if (maximalBackwardSpeed > 0) {
     std::stringstream ss;
     ss << " Longitudinal speed limits : ";
     ss << " Unable to set lower speed to ";
-    ss << maximalBackwardSpeed ;
+    ss << maximalBackwardSpeed;
     ss << " because its a positive value";
     throw std::runtime_error(ss.str());
   }
 
-  if (maximalForwardSpeed < 0)
-  {
+  if (maximalForwardSpeed < 0) {
     std::stringstream ss;
     ss << " Longitudinal speed limits : ";
     ss << " Unable to set upper speed to ";
-    ss << maximalForwardSpeed ;
+    ss << maximalForwardSpeed;
     ss << " because it's a negative value";
     throw std::runtime_error(ss.str());
   }
@@ -59,10 +63,9 @@ Interval1D<double> makeLongitudinalSpeedCommandLimits(const double & maximalBack
 }
 
 //-----------------------------------------------------------------------------
-double clamp(const double & value, const Interval1D<double> &limits)
+double clamp(const double & value, const Interval1D<double> & limits)
 {
   return clamp(value, limits.lower(), limits.upper());
 }
 
 }  // namespace romea
-

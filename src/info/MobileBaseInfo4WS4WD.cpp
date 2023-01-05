@@ -1,7 +1,11 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_mobile_base/info/MobileBaseInfo4WS4WD.hpp"
 #include <romea_core_common/math/Algorithm.hpp>
 
-namespace romea {
+namespace romea
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WS4WD & baseInformation)
@@ -23,8 +27,9 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
-                             FourWheelSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo4WS4WD & baseInformation,
+  FourWheelSteeringKinematic::Parameters & kinematicParameters)
 {
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsSpeedCommand = baseInformation.wheelsSpeedControl.command;
@@ -33,15 +38,16 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
   const auto & wheelsSteeringSensor = baseInformation.wheelsSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
-  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance))
-  {
+  if (!near(geometry.frontAxle.wheelsDistance, geometry.rearAxle.wheelsDistance)) {
     std::stringstream ss;
     ss << "Unable to convert base information to four wheel steering kinematic";
     ss << "because distance between wheels of front and rear axles are not equals";
     throw std::runtime_error(ss.str());
   }
 
-  if (!near(geometry.frontAxle.wheels.hubCarrierOffset, geometry.rearAxle.wheels.hubCarrierOffset))
+  if (!near(
+      geometry.frontAxle.wheels.hubCarrierOffset,
+      geometry.rearAxle.wheels.hubCarrierOffset))
   {
     std::stringstream ss;
     ss << "Unable to convert base information to four wheel steering kinematic";
@@ -49,8 +55,8 @@ void to_kinematic_parameters(const MobileBaseInfo4WS4WD & baseInformation,
     throw std::runtime_error(ss.str());
   }
 
-  kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
-  kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
+  kinematicParameters.frontWheelBase = geometry.axlesDistance / 2. - controlPoint.x();
+  kinematicParameters.rearWheelBase = geometry.axlesDistance / 2. + controlPoint.x();
   kinematicParameters.wheelTrack = geometry.rearAxle.wheelsDistance;
   kinematicParameters.hubCarrierOffset = geometry.rearAxle.wheels.hubCarrierOffset;
   kinematicParameters.maximalWheelSteeringAngle = wheelsSteeringCommand.maximalAngle;

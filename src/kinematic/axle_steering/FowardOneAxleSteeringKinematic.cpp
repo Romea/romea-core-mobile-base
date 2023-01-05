@@ -1,37 +1,44 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardOneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
-                      const OneAxleSteeringCommand & commandFrame,
-                      OdometryFrame1FAS2FWD &odometryCommandFrame)
+void forwardKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OneAxleSteeringCommand & commandFrame,
+  OdometryFrame1FAS2FWD & odometryCommandFrame)
 {
-  const double halfWheelTrack = parameters.frontWheelTrack/2.;
-  const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
+  const double halfWheelTrack = parameters.frontWheelTrack / 2.;
+  const double wheelBase = parameters.frontWheelBase + parameters.rearWheelBase;
   const double hubCarrierOffset = parameters.frontHubCarrierOffset;
 
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & steeringAngle = commandFrame.steeringAngle;
   double tanSteeringAngle = std::tan(steeringAngle);
-  double instantaneousCurvature = tanSteeringAngle/wheelBase;
+  double instantaneousCurvature = tanSteeringAngle / wheelBase;
 
   double frontLeftWheelSpeed = OneAxleSteeringKinematic::
-      computeLeftWheelLinearSpeed(linearSpeed,
-                                  tanSteeringAngle,
-                                  instantaneousCurvature,
-                                  hubCarrierOffset,
-                                  halfWheelTrack);
+    computeLeftWheelLinearSpeed(
+    linearSpeed,
+    tanSteeringAngle,
+    instantaneousCurvature,
+    hubCarrierOffset,
+    halfWheelTrack);
 
   double frontRightWheelSpeed = OneAxleSteeringKinematic::
-      computeRightWheelLinearSpeed(linearSpeed,
-                                   tanSteeringAngle,
-                                   instantaneousCurvature,
-                                   hubCarrierOffset,
-                                   halfWheelTrack);
+    computeRightWheelLinearSpeed(
+    linearSpeed,
+    tanSteeringAngle,
+    instantaneousCurvature,
+    hubCarrierOffset,
+    halfWheelTrack);
 
   odometryCommandFrame.frontAxleSteeringAngle = steeringAngle;
   odometryCommandFrame.frontLeftWheelLinearSpeed = frontLeftWheelSpeed;
@@ -39,20 +46,21 @@ void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
 }
 
 //-----------------------------------------------------------------------------
-void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
-                      const OneAxleSteeringCommand & commandFrame,
-                      OdometryFrame1FAS2RWD &odometryCommandFrame)
+void forwardKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OneAxleSteeringCommand & commandFrame,
+  OdometryFrame1FAS2RWD & odometryCommandFrame)
 {
-  const double & wheelTrack = parameters.rearWheelTrack + 2*parameters.rearHubCarrierOffset;
+  const double & wheelTrack = parameters.rearWheelTrack + 2 * parameters.rearHubCarrierOffset;
   const double & wheelBase = parameters.frontWheelBase + parameters.rearWheelBase;
   const double & linearSpeed = commandFrame.longitudinalSpeed;
   const double & steeringAngle = commandFrame.steeringAngle;
 
-  double instantaneousCurvature = std::tan(steeringAngle)/wheelBase;
-  double rearLeftWheelSpeed  = SkidSteeringKinematic::computeLeftWheelLinearSpeed(
-        linearSpeed, instantaneousCurvature*linearSpeed, wheelTrack);
-  double rearRightWheelSpeed =  SkidSteeringKinematic::computeRightWheelLinearSpeed(
-        linearSpeed, instantaneousCurvature*linearSpeed, wheelTrack);
+  double instantaneousCurvature = std::tan(steeringAngle) / wheelBase;
+  double rearLeftWheelSpeed = SkidSteeringKinematic::computeLeftWheelLinearSpeed(
+    linearSpeed, instantaneousCurvature * linearSpeed, wheelTrack);
+  double rearRightWheelSpeed = SkidSteeringKinematic::computeRightWheelLinearSpeed(
+    linearSpeed, instantaneousCurvature * linearSpeed, wheelTrack);
 
   odometryCommandFrame.frontAxleSteeringAngle = steeringAngle;
   odometryCommandFrame.rearLeftWheelLinearSpeed = rearLeftWheelSpeed;
@@ -60,4 +68,3 @@ void forwardKinematic(const OneAxleSteeringKinematic::Parameters &parameters,
 }
 
 }  // namespace romea
-

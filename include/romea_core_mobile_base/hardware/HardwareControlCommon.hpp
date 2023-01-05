@@ -1,10 +1,14 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_
-#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_
+#define ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_
 
 #include <iostream>
 #include <string>
 
-namespace romea {
+namespace romea
+{
 
 using SteeringAngleCommand = double;
 using SteeringAngleState = double;
@@ -44,9 +48,9 @@ enum class LinearMotionControlType
   FORCE
 };
 
-std::ostream & operator<<(std::ostream &s, const RotationalMotionState & state);
-std::ostream & operator<<(std::ostream &s, const LinearMotionState & state);
+std::ostream & operator<<(std::ostream & s, const RotationalMotionState & state);
+std::ostream & operator<<(std::ostream & s, const LinearMotionState & state);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROLCOMMON_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_

@@ -1,10 +1,15 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+
 // romea
 #include "romea_core_mobile_base/info/MobileBaseInfo2TD.hpp"
 
 // std
 #include <cmath>
 
-namespace romea {
+namespace romea
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2TD & baseInformation)
@@ -24,17 +29,18 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo2TD &base_information,
-                             SkidSteeringKinematic::Parameters & kinematic_parameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo2TD & base_information,
+  SkidSteeringKinematic::Parameters & kinematic_parameters)
 {
- const auto & geometry = base_information.geometry;
- const auto & tracksCommand = base_information.tracksSpeedControl.command;
- const auto & tracksSensor = base_information.tracksSpeedControl.sensor;
+  const auto & geometry = base_information.geometry;
+  const auto & tracksCommand = base_information.tracksSpeedControl.command;
+  const auto & tracksSensor = base_information.tracksSpeedControl.sensor;
 
- kinematic_parameters.wheelTrack = geometry.tracksDistance;
- kinematic_parameters.maximalWheelLinearSpeed = tracksCommand.maximalSpeed;
- kinematic_parameters.wheelLinearSpeedVariance  = std::pow(tracksSensor.speedStd, 2);
- kinematic_parameters.maximalWheelLinearAcceleration = tracksCommand.maximalAcceleration;
+  kinematic_parameters.wheelTrack = geometry.tracksDistance;
+  kinematic_parameters.maximalWheelLinearSpeed = tracksCommand.maximalSpeed;
+  kinematic_parameters.wheelLinearSpeedVariance = std::pow(tracksSensor.speedStd, 2);
+  kinematic_parameters.maximalWheelLinearAcceleration = tracksCommand.maximalAcceleration;
 }
 
 }  // namespace romea

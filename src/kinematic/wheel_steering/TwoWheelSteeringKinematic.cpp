@@ -1,18 +1,24 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+// romea core
+#include <romea_core_common/math/Algorithm.hpp>
+
 // std
 #include <cmath>
 #include <limits>
 
-// romea
+// local
 #include "romea_core_mobile_base/kinematic/wheel_steering/TwoWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/SkidSteeringKinematic.hpp"
-#include <romea_core_common/math/Algorithm.hpp>
 
-namespace romea {
+namespace romea
+{
 
 //--------------------------------------------------------------------------
-TwoWheelSteeringKinematic::Parameters::Parameters():
-  frontWheelBase(0),
+TwoWheelSteeringKinematic::Parameters::Parameters()
+: frontWheelBase(0),
   rearWheelBase(0),
   frontWheelTrack(0),
   rearWheelTrack(0),
@@ -30,125 +36,138 @@ TwoWheelSteeringKinematic::Parameters::Parameters():
 
 
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeInstantaneousCurvature(const double & leftInstantaneousCurvature,
-                                                                const double & rightInstantaneousCurvature,
-                                                                const double & track)
+double TwoWheelSteeringKinematic::computeInstantaneousCurvature(
+  const double & leftInstantaneousCurvature,
+  const double & rightInstantaneousCurvature,
+  const double & track)
 {
-  return 0.5*(leftInstantaneousCurvature/(1+leftInstantaneousCurvature*track/2)+
-              rightInstantaneousCurvature/(1-rightInstantaneousCurvature*track/2));
+  return 0.5 * (leftInstantaneousCurvature / (1 + leftInstantaneousCurvature * track / 2) +
+         rightInstantaneousCurvature / (1 - rightInstantaneousCurvature * track / 2));
 }
 
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeInstantaneousCurvature(const double & leftWheelSteeringAngle,
-                                                                const double & rightWheelSteeringAngle,
-                                                                const double & wheelbase,
-                                                                const double & track)
+double TwoWheelSteeringKinematic::computeInstantaneousCurvature(
+  const double & leftWheelSteeringAngle,
+  const double & rightWheelSteeringAngle,
+  const double & wheelbase,
+  const double & track)
 {
   double leftInstantaneousCurvature = OneAxleSteeringKinematic::
-      computeInstantaneousCurvature(std::tan(leftWheelSteeringAngle), wheelbase);
+    computeInstantaneousCurvature(std::tan(leftWheelSteeringAngle), wheelbase);
   double rightInstantaneousCurvature = OneAxleSteeringKinematic::
-      computeInstantaneousCurvature(std::tan(rightWheelSteeringAngle), wheelbase);
+    computeInstantaneousCurvature(std::tan(rightWheelSteeringAngle), wheelbase);
 
-  return computeInstantaneousCurvature(leftInstantaneousCurvature,
-                                       rightInstantaneousCurvature,
-                                       track);
+  return computeInstantaneousCurvature(
+    leftInstantaneousCurvature,
+    rightInstantaneousCurvature,
+    track);
 }
 
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeSteeringAngle(const double & leftWheelSteeringAngle,
-                                                       const double & rightWheelSteeringAngle,
-                                                       const double & wheelbase,
-                                                       const double & track)
+double TwoWheelSteeringKinematic::computeSteeringAngle(
+  const double & leftWheelSteeringAngle,
+  const double & rightWheelSteeringAngle,
+  const double & wheelbase,
+  const double & track)
 {
-  double instantaneousCurvature = computeInstantaneousCurvature(leftWheelSteeringAngle,
-                                                                rightWheelSteeringAngle,
-                                                                wheelbase,
-                                                                track);
+  double instantaneousCurvature = computeInstantaneousCurvature(
+    leftWheelSteeringAngle,
+    rightWheelSteeringAngle,
+    wheelbase,
+    track);
 
-  return OneAxleSteeringKinematic::computeSteeringAngle(instantaneousCurvature,
-                                                        wheelbase);
+  return OneAxleSteeringKinematic::computeSteeringAngle(
+    instantaneousCurvature,
+    wheelbase);
 }
 
 
-
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeLeftWheelSteeringAngle(const double & tanSteeringAngle,
-                                                                const double & instantaneousCurvature,
-                                                                const double & halfTrack)
+double TwoWheelSteeringKinematic::computeLeftWheelSteeringAngle(
+  const double & tanSteeringAngle,
+  const double & instantaneousCurvature,
+  const double & halfTrack)
 {
-  return std::atan(tanSteeringAngle/(1-instantaneousCurvature*halfTrack));
+  return std::atan(tanSteeringAngle / (1 - instantaneousCurvature * halfTrack));
 }
 
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeRightWheelSteeringAngle(const double & tanSteeringAngle,
-                                                                 const double & instantaneousCurvature,
-                                                                 const double & halfTrack)
+double TwoWheelSteeringKinematic::computeRightWheelSteeringAngle(
+  const double & tanSteeringAngle,
+  const double & instantaneousCurvature,
+  const double & halfTrack)
 {
-  return std::atan(tanSteeringAngle/(1+instantaneousCurvature*halfTrack));
+  return std::atan(tanSteeringAngle / (1 + instantaneousCurvature * halfTrack));
 }
 
 //--------------------------------------------------------------------------
-double TwoWheelSteeringKinematic::computeMaximalInstantaneousCurvature(const double wheelbase,
-                                                                       const double halfTrack,
-                                                                       const double & maximalWheelSteeringAngle)
+double TwoWheelSteeringKinematic::computeMaximalInstantaneousCurvature(
+  const double wheelbase,
+  const double halfTrack,
+  const double & maximalWheelSteeringAngle)
 {
   double maximalAbsoluteIntantaneousCurvature = OneAxleSteeringKinematic::
-      computeInstantaneousCurvature(std::tan(maximalWheelSteeringAngle), wheelbase);
+    computeInstantaneousCurvature(std::tan(maximalWheelSteeringAngle), wheelbase);
 
-  return maximalAbsoluteIntantaneousCurvature = maximalAbsoluteIntantaneousCurvature
-      /(1+maximalAbsoluteIntantaneousCurvature*halfTrack);
+  return maximalAbsoluteIntantaneousCurvature = maximalAbsoluteIntantaneousCurvature /
+           (1 + maximalAbsoluteIntantaneousCurvature * halfTrack);
 }
 
 
 //--------------------------------------------------------------------------
-OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
-                             const OneAxleSteeringCommandLimits & userLimits,
-                             const OneAxleSteeringCommand & command)
+OneAxleSteeringCommand clamp(
+  const TwoWheelSteeringKinematic::Parameters & parameters,
+  const OneAxleSteeringCommandLimits & userLimits,
+  const OneAxleSteeringCommand & command)
 {
-  double wheelbase = parameters.rearWheelBase+parameters.frontWheelBase;
+  double wheelbase = parameters.rearWheelBase + parameters.frontWheelBase;
 
   double maximalInstantaneousCurvature = TwoWheelSteeringKinematic::
-    computeMaximalInstantaneousCurvature(wheelbase,
-                                         parameters.frontWheelTrack/2.,
-                                         parameters.maximalWheelSteeringAngle);
+    computeMaximalInstantaneousCurvature(
+    wheelbase,
+    parameters.frontWheelTrack / 2.,
+    parameters.maximalWheelSteeringAngle);
 
-  return OneAxleSteeringKinematic::clamp(wheelbase,
-                                         parameters.frontWheelTrack/2.,
-                                         parameters.rearWheelTrack/2.,
-                                         parameters.frontHubCarrierOffset,
-                                         parameters.rearHubCarrierOffset,
-                                         std::atan(maximalInstantaneousCurvature*wheelbase),
-                                         parameters.frontMaximalWheelLinearSpeed,
-                                         parameters.rearMaximalWheelLinearSpeed,
-                                         userLimits,
-                                         command);
+  return OneAxleSteeringKinematic::clamp(
+    wheelbase,
+    parameters.frontWheelTrack / 2.,
+    parameters.rearWheelTrack / 2.,
+    parameters.frontHubCarrierOffset,
+    parameters.rearHubCarrierOffset,
+    std::atan(maximalInstantaneousCurvature * wheelbase),
+    parameters.frontMaximalWheelLinearSpeed,
+    parameters.rearMaximalWheelLinearSpeed,
+    userLimits,
+    command);
 }
 
 //--------------------------------------------------------------------------
-OneAxleSteeringCommand clamp(const TwoWheelSteeringKinematic::Parameters & parameters,
-                             const OneAxleSteeringCommand & previousCommand,
-                             const OneAxleSteeringCommand & currentCommand,
-                             const double & dt)
+OneAxleSteeringCommand clamp(
+  const TwoWheelSteeringKinematic::Parameters & parameters,
+  const OneAxleSteeringCommand & previousCommand,
+  const OneAxleSteeringCommand & currentCommand,
+  const double & dt)
 {
-  double wheelbase = parameters.rearWheelBase+parameters.frontWheelBase;
+  double wheelbase = parameters.rearWheelBase + parameters.frontWheelBase;
 
   double tanSteeringAngle = std::tan(previousCommand.steeringAngle);
-  double alpha = tanSteeringAngle *tanSteeringAngle;
-  double beta = 1+tanSteeringAngle*parameters.frontWheelTrack/(2*wheelbase);
+  double alpha = tanSteeringAngle * tanSteeringAngle;
+  double beta = 1 + tanSteeringAngle * parameters.frontWheelTrack / (2 * wheelbase);
 
   double maximalSteeringAngularSpeed =
-    parameters.maximalWheelSteeringAngularSpeed*(alpha + std::pow(beta, 2.))/(1+alpha);
+    parameters.maximalWheelSteeringAngularSpeed * (alpha + std::pow(beta, 2.)) / (1 + alpha);
 
-  return OneAxleSteeringKinematic::clamp(wheelbase,
-                                         parameters.frontWheelTrack/2.,
-                                         parameters.rearWheelTrack/2.,
-                                         parameters.frontHubCarrierOffset,
-                                         parameters.rearHubCarrierOffset,
-                                         maximalSteeringAngularSpeed,
-                                         parameters.maximalWheelLinearAcceleration,
-                                         previousCommand,
-                                         currentCommand,
-                                         dt);
+  return OneAxleSteeringKinematic::clamp(
+    wheelbase,
+    parameters.frontWheelTrack / 2.,
+    parameters.rearWheelTrack / 2.,
+    parameters.frontHubCarrierOffset,
+    parameters.rearHubCarrierOffset,
+    maximalSteeringAngularSpeed,
+    parameters.maximalWheelLinearAcceleration,
+    previousCommand,
+    currentCommand,
+    dt);
 }
 
 }  // namespace romea

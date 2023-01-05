@@ -1,13 +1,15 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_mobile_base/kinematic/omni_steering/OmniSteeringMeasure.hpp"
-//#include <math/Algorithm.hpp>
 
-namespace romea {
-
-//-----------------------------------------------------------------------------
-OmniSteeringMeasure::OmniSteeringMeasure():
-  covariance(Eigen::Matrix3d::Zero())
+namespace romea
 {
 
+//-----------------------------------------------------------------------------
+OmniSteeringMeasure::OmniSteeringMeasure()
+: covariance(Eigen::Matrix3d::Zero())
+{
 }
 
 
@@ -42,24 +44,25 @@ KinematicMeasure toKinematicMeasure(const OmniSteeringMeasure & measure)
 }
 
 //-----------------------------------------------------------------------------
-KinematicMeasure toKinematicMeasure(const OmniSteeringMeasure & measure, const  MecanumWheelSteeringKinematic::Parameters & /*parameters*/)
+KinematicMeasure toKinematicMeasure(
+  const OmniSteeringMeasure & measure,
+  const MecanumWheelSteeringKinematic::Parameters & /*parameters*/)
 {
   return toKinematicMeasure(measure);
 }
 
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const OmniSteeringMeasure & measure)
+std::ostream & operator<<(std::ostream & os, const OmniSteeringMeasure & measure)
 {
-  os<<" OmniSteering measure   "<<std::endl;;
-  os<<" measured longitudinal speed  " << measure.longitudinalSpeed<< std::endl;
-  os<<" measured latreal speed  " << measure.lateralSpeed << std::endl;
-  os<<" measured angular speed " << measure.angularSpeed << std::endl;
-  os<<" measured covariance matrix " << std::endl;
-  os<< measure.covariance;
+  os << " OmniSteering measure   " << std::endl;
+  os << " measured longitudinal speed  " << measure.longitudinalSpeed << std::endl;
+  os << " measured latreal speed  " << measure.lateralSpeed << std::endl;
+  os << " measured angular speed " << measure.angularSpeed << std::endl;
+  os << " measured covariance matrix " << std::endl;
+  os << measure.covariance;
 
   return os;
 }
 
-}//end romea
-
+}  // namespace romea

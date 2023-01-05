@@ -1,9 +1,13 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_
-#define ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASECONTROL_HPP_
+#define ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASECONTROL_HPP_
 
 #include <iostream>
 
-namespace romea {
+namespace romea
+{
 
 struct WheelSpeedSensor
 {
@@ -51,4 +55,4 @@ struct SteeringAngleControl
 
 }
 
-#endif  // ROMEA_CORE_MOBILE_BASE_INFO_MOBILEBASECONTROL_HPP_ 
+#endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASECONTROL_HPP_

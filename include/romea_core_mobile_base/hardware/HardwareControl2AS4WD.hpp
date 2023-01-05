@@ -1,9 +1,13 @@
-#ifndef ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_
-#define ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
+#ifndef ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2AS4WD_HPP_
+#define ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2AS4WD_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
-namespace romea {
+namespace romea
+{
 
 struct HardwareCommand2AS4WD
 {
@@ -16,7 +20,7 @@ struct HardwareCommand2AS4WD
   RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareCommand2AS4WD & command);
+std::ostream & operator<<(std::ostream & os, const HardwareCommand2AS4WD & command);
 
 struct HardwareState2AS4WD
 {
@@ -29,8 +33,8 @@ struct HardwareState2AS4WD
   RotationalMotionState rearRightWheelSpinningMotion;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareState2AS4WD & state);
+std::ostream & operator<<(std::ostream & os, const HardwareState2AS4WD & state);
 
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_HARDWARE_HARDWARECONTROL2AS4WD_HPP_ 
+#endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2AS4WD_HPP_

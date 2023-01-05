@@ -1,10 +1,14 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
 #include "romea_core_mobile_base/info/MobileBaseInfo2WD.hpp"
 
 // std
 #include <cmath>
 
-namespace romea {
+namespace romea
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2WD & baseInformation)
@@ -22,8 +26,9 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo2WD & baseInformation,
-                             SkidSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo2WD & baseInformation,
+  SkidSteeringKinematic::Parameters & kinematicParameters)
 {
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsCommand = baseInformation.wheelsSpeedControl.command;
@@ -31,7 +36,7 @@ void to_kinematic_parameters(const MobileBaseInfo2WD & baseInformation,
 
   kinematicParameters.wheelTrack = geometry.wheelsDistance;
   kinematicParameters.maximalWheelLinearSpeed = wheelsCommand.maximalSpeed;
-  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd,2);
+  kinematicParameters.wheelLinearSpeedVariance = std::pow(wheelsSensor.speedStd, 2);
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 

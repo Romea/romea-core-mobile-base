@@ -1,10 +1,12 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // gtest
 #include <gtest/gtest.h>
 
+
 // local
 #include "test_utils.hpp"
-
-//romea
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardFourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/InverseFourWheelSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/InverseTwoWheelSteeringKinematic.hpp"
@@ -15,21 +17,18 @@
 #include "romea_core_common/math/Matrix.hpp"
 
 
-
 //-----------------------------------------------------------------------------
-inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Parameters & parameters,
-                                     const romea::TwoAxleSteeringCommandLimits & userLimits)
+inline void testInverseForward4WS4WD(
+  const romea::FourWheelSteeringKinematic::Parameters & parameters,
+  const romea::TwoAxleSteeringCommandLimits & userLimits)
 {
-  for (size_t i=0; i < 21; i++)
-  {
-    double linearSpeed = -1+i*0.1;
-    for (size_t j=0;j < 21; j++)
-    {
-      double frontSteeringAngle = -0.5+j*0.05;
+  for (size_t i = 0; i < 21; i++) {
+    double linearSpeed = -1 + i * 0.1;
+    for (size_t j = 0; j < 21; j++) {
+      double frontSteeringAngle = -0.5 + j * 0.05;
 
-      for (size_t k=0; k < 21;k++)
-      {
-        double rearSteeringAngle = -0.5+k*0.05;
+      for (size_t k = 0; k < 21; k++) {
+        double rearSteeringAngle = -0.5 + k * 0.05;
 
 
         romea::TwoAxleSteeringCommand commandFrame;
@@ -40,46 +39,61 @@ inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Pa
         romea::TwoAxleSteeringCommand clampedCommandFrame =
           romea::clamp(parameters, userLimits, commandFrame);
 
-        ASSERT_LE(clampedCommandFrame.longitudinalSpeed,
-                  userLimits.longitudinalSpeed.upper());
-        ASSERT_GE(clampedCommandFrame.longitudinalSpeed,
-                  userLimits.longitudinalSpeed.lower());
-        ASSERT_LE(std::abs(clampedCommandFrame.frontSteeringAngle),
-                  userLimits.frontSteeringAngle.upper());
-        ASSERT_LE(std::abs(clampedCommandFrame.rearSteeringAngle),
-                  userLimits.frontSteeringAngle.upper());
+        ASSERT_LE(
+          clampedCommandFrame.longitudinalSpeed,
+          userLimits.longitudinalSpeed.upper());
+        ASSERT_GE(
+          clampedCommandFrame.longitudinalSpeed,
+          userLimits.longitudinalSpeed.lower());
+        ASSERT_LE(
+          std::abs(clampedCommandFrame.frontSteeringAngle),
+          userLimits.frontSteeringAngle.upper());
+        ASSERT_LE(
+          std::abs(clampedCommandFrame.rearSteeringAngle),
+          userLimits.frontSteeringAngle.upper());
 
 
         romea::OdometryFrame4WS4WD odometryFrame;
         romea::forwardKinematic(parameters, clampedCommandFrame, odometryFrame);
 
-        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelLinearSpeed),
-                  parameters.maximalWheelLinearSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),
-                  parameters.maximalWheelLinearSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelLinearSpeed),
-                  parameters.maximalWheelLinearSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelLinearSpeed),
-                  parameters.maximalWheelLinearSpeed+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontLeftWheelSteeringAngle),
-                  parameters.maximalWheelSteeringAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSteeringAngle),
-                  parameters.maximalWheelSteeringAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.rearLeftWheelSteeringAngle),
-                  parameters.maximalWheelSteeringAngle+0.01);
-        ASSERT_LE(std::abs(odometryFrame.frontRightWheelSteeringAngle),
-                  parameters.maximalWheelSteeringAngle+0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontLeftWheelLinearSpeed),
+          parameters.maximalWheelLinearSpeed + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontRightWheelLinearSpeed),
+          parameters.maximalWheelLinearSpeed + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.rearLeftWheelLinearSpeed),
+          parameters.maximalWheelLinearSpeed + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontRightWheelLinearSpeed),
+          parameters.maximalWheelLinearSpeed + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontLeftWheelSteeringAngle),
+          parameters.maximalWheelSteeringAngle + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontRightWheelSteeringAngle),
+          parameters.maximalWheelSteeringAngle + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.rearLeftWheelSteeringAngle),
+          parameters.maximalWheelSteeringAngle + 0.01);
+        ASSERT_LE(
+          std::abs(odometryFrame.frontRightWheelSteeringAngle),
+          parameters.maximalWheelSteeringAngle + 0.01);
 
 
         romea::TwoAxleSteeringMeasure kinematicMeasure;
         romea::inverseKinematic(parameters, odometryFrame, kinematicMeasure);
 
-        ASSERT_NEAR(clampedCommandFrame.longitudinalSpeed,
-                    kinematicMeasure.longitudinalSpeed, 0.001);
-        ASSERT_NEAR(clampedCommandFrame.frontSteeringAngle,
-                    kinematicMeasure.frontSteeringAngle, 0.001);
-        ASSERT_NEAR(clampedCommandFrame.rearSteeringAngle,
-                    kinematicMeasure.rearSteeringAngle, 0.001);
+        ASSERT_NEAR(
+          clampedCommandFrame.longitudinalSpeed,
+          kinematicMeasure.longitudinalSpeed, 0.001);
+        ASSERT_NEAR(
+          clampedCommandFrame.frontSteeringAngle,
+          kinematicMeasure.frontSteeringAngle, 0.001);
+        ASSERT_NEAR(
+          clampedCommandFrame.rearSteeringAngle,
+          kinematicMeasure.rearSteeringAngle, 0.001);
       }
     }
   }
@@ -88,25 +102,26 @@ inline void testInverseForward4WS4WD(const romea::FourWheelSteeringKinematic::Pa
 //-----------------------------------------------------------------------------
 inline double radius(double x, double y, double theta, double xw, double yw, double thetaw)
 {
-  double vx1 = cos(theta+M_PI/2);
-  double vy1 = sin(theta+M_PI/2);
-  double vx2 = cos(thetaw+M_PI/2);
-  double vy2 = sin(thetaw+M_PI/2);
-  double vx21 = (xw-x);
-  double vy21 = (yw-y);
+  double vx1 = cos(theta + M_PI / 2);
+  double vy1 = sin(theta + M_PI / 2);
+  double vx2 = cos(thetaw + M_PI / 2);
+  double vy2 = sin(thetaw + M_PI / 2);
+  double vx21 = (xw - x);
+  double vy21 = (yw - y);
 
-  return (vx21*vy2 - vy21*vx2)/(vx1*vy2-vy1*vx2);
+  return (vx21 * vy2 - vy21 * vx2) / (vx1 * vy2 - vy1 * vx2);
 }
 
 //-----------------------------------------------------------------------------
-inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &parameters,
-                                 const double & v,
-                                 const double & R)
+inline void testCircularMovement(
+  romea::FourWheelSteeringKinematic::Parameters & parameters,
+  const double & v,
+  const double & R)
 {
   double dt = 0.0001;
-  double K = 1/R;
+  double K = 1 / R;
 
-  size_t n = 2*M_PI*std::abs(R) / (v*dt);
+  size_t n = 2 * M_PI * std::abs(R) / (v * dt);
 
   const double frontWheelTrack = parameters.wheelTrack;
   const double rearWheelTrack = parameters.wheelTrack;
@@ -115,28 +130,28 @@ inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &
 
   romea::TwoAxleSteeringCommand command;
   command.longitudinalSpeed = v;
-  command.frontSteeringAngle = std::atan(K*frontWheelBase);
-  command.rearSteeringAngle = -std::atan(K*rearWheelBase);
+  command.frontSteeringAngle = std::atan(K * frontWheelBase);
+  command.rearSteeringAngle = -std::atan(K * rearWheelBase);
 
   romea::OdometryFrame4WS4WD odometryFrame;
   romea::forwardKinematic(parameters, command, odometryFrame);
 
-  double xfl =  frontWheelBase;
-  double yfl =  frontWheelTrack/2.;
-  double xfr =  frontWheelBase;
-  double yfr = -frontWheelTrack/2.;
+  double xfl = frontWheelBase;
+  double yfl = frontWheelTrack / 2.;
+  double xfr = frontWheelBase;
+  double yfr = -frontWheelTrack / 2.;
   double xrl = -rearWheelBase;
-  double yrl =  rearWheelTrack/2.;
+  double yrl = rearWheelTrack / 2.;
   double xrr = -rearWheelBase;
-  double yrr = -rearWheelTrack/2.;
+  double yrr = -rearWheelTrack / 2.;
 
-  for (size_t i = 1; i < n; i++)
-  {
+  for (size_t i = 1; i < n; i++) {
     // Vehicle orientation and center
-    double theta = std::atan2(0.5*(yfl+yfr) - 0.5*(yrl+yrr),
-                              0.5*(xfl+xfr) - 0.5*(xrl+xrr));
-    double x = 0.25*(xfl+xfr+xrl+xrr);
-    double y = 0.25*(yfl+yfr+yrl+yrr);
+    double theta = std::atan2(
+      0.5 * (yfl + yfr) - 0.5 * (yrl + yrr),
+      0.5 * (xfl + xfr) - 0.5 * (xrl + xrr));
+    double x = 0.25 * (xfl + xfr + xrl + xrr);
+    double y = 0.25 * (yfl + yfr + yrl + yrr);
 
     // Wheel orientatons
     double thetafl = theta + odometryFrame.frontLeftWheelSteeringAngle;
@@ -151,14 +166,14 @@ inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &
     double vrr = odometryFrame.rearRightWheelLinearSpeed;
 
     // New wheel positions
-    xfl += std::cos(thetafl)*vfl*dt;
-    yfl += std::sin(thetafl)*vfl*dt;
-    xfr += std::cos(thetafr)*vfr*dt;
-    yfr += std::sin(thetafr)*vfr*dt;
-    xrl += std::cos(thetarl)*vrl*dt;
-    yrl += std::sin(thetarl)*vrl*dt;
-    xrr += std::cos(thetarr)*vrr*dt;
-    yrr += std::sin(thetarr)*vrr*dt;
+    xfl += std::cos(thetafl) * vfl * dt;
+    yfl += std::sin(thetafl) * vfl * dt;
+    xfr += std::cos(thetafr) * vfr * dt;
+    yfr += std::sin(thetafr) * vfr * dt;
+    xrl += std::cos(thetarl) * vrl * dt;
+    yrl += std::sin(thetarl) * vrl * dt;
+    xrr += std::cos(thetarr) * vrr * dt;
+    yrr += std::sin(thetarr) * vrr * dt;
 
     // Compute radius of curvature
     double rfl = radius(x, y, theta, xfl, yfl, thetafl);
@@ -172,14 +187,14 @@ inline void testCircularMovement(romea::FourWheelSteeringKinematic::Parameters &
     ASSERT_NEAR(rrr, R, 0.1);
   }
 
-  ASSERT_NEAR(xfl, frontWheelBase , 0.01);
-  ASSERT_NEAR(yfl, frontWheelTrack/2., 0.01);
-  ASSERT_NEAR(xfr, frontWheelBase , 0.01);
-  ASSERT_NEAR(yfr, -frontWheelTrack/2., 0.01);
+  ASSERT_NEAR(xfl, frontWheelBase, 0.01);
+  ASSERT_NEAR(yfl, frontWheelTrack / 2., 0.01);
+  ASSERT_NEAR(xfr, frontWheelBase, 0.01);
+  ASSERT_NEAR(yfr, -frontWheelTrack / 2., 0.01);
   ASSERT_NEAR(xrl, -rearWheelBase, 0.01);
-  ASSERT_NEAR(yrl, rearWheelTrack/2., 0.01);
-  ASSERT_NEAR(xrr, -rearWheelBase , 0.01);
-  ASSERT_NEAR(yrr, -rearWheelTrack/2., 0.01);
+  ASSERT_NEAR(yrl, rearWheelTrack / 2., 0.01);
+  ASSERT_NEAR(xrr, -rearWheelBase, 0.01);
+  ASSERT_NEAR(yrr, -rearWheelTrack / 2., 0.01);
 }
 
 TEST(testInverseForward4WS4WD, SameWheelbase)
@@ -190,8 +205,8 @@ TEST(testInverseForward4WS4WD, SameWheelbase)
   parameters.frontWheelBase = 0.7;
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
-  parameters.wheelLinearSpeedVariance = 0.1*0.1;
-  parameters.wheelSteeringAngleVariance = 0.02*0.02;
+  parameters.wheelLinearSpeedVariance = 0.1 * 0.1;
+  parameters.wheelSteeringAngleVariance = 0.02 * 0.02;
 
   testInverseForward4WS4WD(parameters, userLimits);
 }
@@ -205,8 +220,8 @@ TEST(testInverseForward4WS4WD, DiffWheelbase)
   parameters.frontWheelBase = 1;
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
-  parameters.wheelLinearSpeedVariance = 0.1*0.1;
-  parameters.wheelSteeringAngleVariance = 0.02*0.02;
+  parameters.wheelLinearSpeedVariance = 0.1 * 0.1;
+  parameters.wheelSteeringAngleVariance = 0.02 * 0.02;
 
   testInverseForward4WS4WD(parameters, userLimits);
 }
@@ -220,8 +235,8 @@ TEST(testInverseForward4WS4WD, HubOffset)
   parameters.rearWheelBase = 0.7;
   parameters.wheelTrack = 1.2;
   parameters.hubCarrierOffset = 0.1;
-  parameters.wheelLinearSpeedVariance = 0.1*0.1;
-  parameters.wheelSteeringAngleVariance = 0.02*0.02;
+  parameters.wheelLinearSpeedVariance = 0.1 * 0.1;
+  parameters.wheelSteeringAngleVariance = 0.02 * 0.02;
 
   testInverseForward4WS4WD(parameters, userLimits);
 }
@@ -401,9 +416,9 @@ TEST(Test4WS, testCircularMovement)
 //}
 
 
-
 //-----------------------------------------------------------------------------
-int main(int argc, char **argv){
+int main(int argc, char ** argv)
+{
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }

@@ -1,78 +1,87 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_mobile_base/kinematic/axle_steering/TwoAxleSteeringMeasure.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FourWheelSteeringKinematic.hpp"
 
-namespace romea {
+namespace romea
+{
 
 //-----------------------------------------------------------------------------
-TwoAxleSteeringMeasure::TwoAxleSteeringMeasure():
-  covariance(Eigen::Matrix3d::Zero())
+TwoAxleSteeringMeasure::TwoAxleSteeringMeasure()
+: covariance(Eigen::Matrix3d::Zero())
 {
 }
 
 //-----------------------------------------------------------------------------
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const double & frontWheelBase,
-                                    const double & rearWheelBase)
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const double & frontWheelBase,
+  const double & rearWheelBase)
 {
-  double wheelbase = frontWheelBase+rearWheelBase;
+  double wheelbase = frontWheelBase + rearWheelBase;
   double tanFrontSteeringAngle = std::tan(measure.frontSteeringAngle);
   double tanRearSteeringAngle = std::tan(measure.rearSteeringAngle);
-  double instantaneousCurvature = (tanFrontSteeringAngle-tanRearSteeringAngle)/wheelbase;
-  double tanBeta = (tanFrontSteeringAngle*rearWheelBase +
-    tanRearSteeringAngle*frontWheelBase)/wheelbase;
+  double instantaneousCurvature = (tanFrontSteeringAngle - tanRearSteeringAngle) / wheelbase;
+  double tanBeta = (tanFrontSteeringAngle * rearWheelBase +
+    tanRearSteeringAngle * frontWheelBase) / wheelbase;
 
-  double frontAlpha = (1 + tanFrontSteeringAngle*tanFrontSteeringAngle)/wheelbase;
-  double rearAlpha = (1 + tanRearSteeringAngle*tanRearSteeringAngle)/wheelbase;
-  double squareGamma = (1 + tanBeta* tanBeta);
+  double frontAlpha = (1 + tanFrontSteeringAngle * tanFrontSteeringAngle) / wheelbase;
+  double rearAlpha = (1 + tanRearSteeringAngle * tanRearSteeringAngle) / wheelbase;
+  double squareGamma = (1 + tanBeta * tanBeta);
   double gamma = std::sqrt(squareGamma);
 
   Eigen::MatrixXd J = Eigen::MatrixXd::Zero(4, 3);
   J(0, 0) = 1;
   J(1, 0) = tanBeta;
-  J(1, 1) = measure.longitudinalSpeed*frontAlpha*rearWheelBase;
-  J(1, 2) = measure.longitudinalSpeed*rearAlpha*frontWheelBase;
-  J(2, 0) = instantaneousCurvature ;
-  J(2, 1) = measure.longitudinalSpeed*frontAlpha;
-  J(2, 1) = measure.longitudinalSpeed*rearAlpha;
-  J(3, 1) = frontAlpha/squareGamma*(gamma-instantaneousCurvature*rearWheelBase/gamma);
-  J(3, 2) = rearAlpha/squareGamma*(gamma-instantaneousCurvature*frontWheelBase/gamma);
+  J(1, 1) = measure.longitudinalSpeed * frontAlpha * rearWheelBase;
+  J(1, 2) = measure.longitudinalSpeed * rearAlpha * frontWheelBase;
+  J(2, 0) = instantaneousCurvature;
+  J(2, 1) = measure.longitudinalSpeed * frontAlpha;
+  J(2, 1) = measure.longitudinalSpeed * rearAlpha;
+  J(3, 1) = frontAlpha / squareGamma * (gamma - instantaneousCurvature * rearWheelBase / gamma);
+  J(3, 2) = rearAlpha / squareGamma * (gamma - instantaneousCurvature * frontWheelBase / gamma);
 
   KinematicMeasure convertedMeasure;
   convertedMeasure.longitudinalSpeed = measure.longitudinalSpeed;
-  convertedMeasure.lateralSpeed = measure.longitudinalSpeed*tanBeta;
-  convertedMeasure.angularSpeed  = instantaneousCurvature*measure.longitudinalSpeed;
-  convertedMeasure.instantaneousCurvature = instantaneousCurvature/gamma;
-  convertedMeasure.covariance = J*measure.covariance *J.transpose();
+  convertedMeasure.lateralSpeed = measure.longitudinalSpeed * tanBeta;
+  convertedMeasure.angularSpeed = instantaneousCurvature * measure.longitudinalSpeed;
+  convertedMeasure.instantaneousCurvature = instantaneousCurvature / gamma;
+  convertedMeasure.covariance = J * measure.covariance * J.transpose();
   return convertedMeasure;
 }
 
 
 //-----------------------------------------------------------------------------
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const TwoAxleSteeringKinematic::Parameters & parameters)
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const TwoAxleSteeringKinematic::Parameters & parameters)
 {
-  return toKinematicMeasure(measure,
-                            parameters.frontWheelBase,
-                            parameters.rearWheelBase);
+  return toKinematicMeasure(
+    measure,
+    parameters.frontWheelBase,
+    parameters.rearWheelBase);
 }
 
 //-----------------------------------------------------------------------------
-KinematicMeasure toKinematicMeasure(const TwoAxleSteeringMeasure & measure,
-                                    const FourWheelSteeringKinematic::Parameters & parameters)
+KinematicMeasure toKinematicMeasure(
+  const TwoAxleSteeringMeasure & measure,
+  const FourWheelSteeringKinematic::Parameters & parameters)
 {
-  return toKinematicMeasure(measure,
-                            parameters.frontWheelBase,
-                            parameters.rearWheelBase);
+  return toKinematicMeasure(
+    measure,
+    parameters.frontWheelBase,
+    parameters.rearWheelBase);
 }
 
 //-----------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringMeasure & measure)
+std::ostream & operator<<(std::ostream & os, const TwoAxleSteeringMeasure & measure)
 {
-  os << " TwoAxleSteering Measure   "<< std::endl;;
+  os << " TwoAxleSteering Measure   " << std::endl;
   os << " measured linear speed  " << measure.longitudinalSpeed << std::endl;
   os << " measured front steering angle " << measure.frontSteeringAngle << std::endl;
   os << " measured rear steering angle " << measure.rearSteeringAngle << std::endl;
-  os << " covariance matrix" <<std::endl;
+  os << " covariance matrix" << std::endl;
   os << measure.covariance << std::endl;
   return os;
 }
@@ -127,5 +136,3 @@ std::ostream& operator<<(std::ostream& os, const TwoAxleSteeringMeasure & measur
 //                                  kinematic.getWheelBase("front_wheelbase"),
 //                                  kinematic.getWheelBase("rear_wheelbase"));
 //}
-
-

@@ -1,6 +1,10 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 #include "romea_core_mobile_base/info/MobileBaseInfo1FAS4WD.hpp"
 
-namespace romea {
+namespace romea
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FAS2RWD & baseInformation)
@@ -22,8 +26,9 @@ namespace romea {
 //}
 
 //-----------------------------------------------------------------------------
-void to_kinematic_parameters(const MobileBaseInfo1FAS4WD & baseInformation,
-                             OneAxleSteeringKinematic::Parameters & kinematicParameters )
+void to_kinematic_parameters(
+  const MobileBaseInfo1FAS4WD & baseInformation,
+  OneAxleSteeringKinematic::Parameters & kinematicParameters)
 {
   const auto & geometry = baseInformation.geometry;
   const auto & wheelsSpeedCommand = baseInformation.wheelsSpeedControl.command;
@@ -32,8 +37,8 @@ void to_kinematic_parameters(const MobileBaseInfo1FAS4WD & baseInformation,
   const auto & axleSteeringSensor = baseInformation.frontAxleSteeringControl.sensor;
   const auto & controlPoint = baseInformation.controlPoint;
 
-  kinematicParameters.frontWheelBase = geometry.axlesDistance/2. - controlPoint.x();
-  kinematicParameters.rearWheelBase = geometry.axlesDistance/2.+ controlPoint.x();
+  kinematicParameters.frontWheelBase = geometry.axlesDistance / 2. - controlPoint.x();
+  kinematicParameters.rearWheelBase = geometry.axlesDistance / 2. + controlPoint.x();
   kinematicParameters.frontWheelTrack = geometry.frontAxle.wheelsDistance;
   kinematicParameters.rearWheelTrack = geometry.rearAxle.wheelsDistance;
   kinematicParameters.frontHubCarrierOffset = geometry.frontAxle.wheels.hubCarrierOffset;

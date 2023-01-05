@@ -1,20 +1,24 @@
+// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Add license
+
 // romea
 #include "romea_core_mobile_base/kinematic/axle_steering/InverseOneAxleSteeringKinematic.hpp"
 
-namespace romea {
+namespace romea
+{
 
 
 //-----------------------------------------------------------------------------
-void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
-                      const OdometryFrame1FAS2FWD & odometryFrame,
-                      OneAxleSteeringMeasure & oneAxleSteeringMeasure)
+void inverseKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OdometryFrame1FAS2FWD & odometryFrame,
+  OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
+  const double & wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double & steeringAngleVariance = parameters.steeringAngleVariance;
 
-  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
-  const double &steeringAngleVariance = parameters.steeringAngleVariance;
-
-  const double halfWheelTrack = parameters.frontWheelTrack/2;
-  const double wheelBase = parameters.frontWheelBase+parameters.rearWheelBase;
+  const double halfWheelTrack = parameters.frontWheelTrack / 2;
+  const double wheelBase = parameters.frontWheelBase + parameters.rearWheelBase;
   const double hubCarrierOffset = parameters.rearHubCarrierOffset;
 
   const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
@@ -22,16 +26,16 @@ void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
   const double & frontSteeringAngle = odometryFrame.frontAxleSteeringAngle;
 
   double tanFrontSteeringAngle = std::tan(frontSteeringAngle);
-  double instantaneousCurvature = tanFrontSteeringAngle/wheelBase;
-  double instantaneousCurvatureHalfTrack_ = instantaneousCurvature*halfWheelTrack;
+  double instantaneousCurvature = tanFrontSteeringAngle / wheelBase;
+  double instantaneousCurvatureHalfTrack_ = instantaneousCurvature * halfWheelTrack;
 
   double alphaLeft = 1 - instantaneousCurvatureHalfTrack_;
   double alphaRight = 1 + instantaneousCurvatureHalfTrack_;
-  double squareTanFrontSteeringAngle = tanFrontSteeringAngle*tanFrontSteeringAngle;
-  double betaLeft =  std::sqrt(alphaLeft*alphaLeft+squareTanFrontSteeringAngle);
-  double betaRight = std::sqrt(alphaRight*alphaRight+squareTanFrontSteeringAngle);
-  double gammaLeft = betaLeft - tanFrontSteeringAngle*hubCarrierOffset/wheelBase;
-  double gammaRight = betaRight + tanFrontSteeringAngle*hubCarrierOffset/wheelBase;
+  double squareTanFrontSteeringAngle = tanFrontSteeringAngle * tanFrontSteeringAngle;
+  double betaLeft = std::sqrt(alphaLeft * alphaLeft + squareTanFrontSteeringAngle);
+  double betaRight = std::sqrt(alphaRight * alphaRight + squareTanFrontSteeringAngle);
+  double gammaLeft = betaLeft - tanFrontSteeringAngle * hubCarrierOffset / wheelBase;
+  double gammaRight = betaRight + tanFrontSteeringAngle * hubCarrierOffset / wheelBase;
 
 
   Eigen::Matrix3d covariance = Eigen::Matrix3d::Zero();
@@ -40,35 +44,46 @@ void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
   covariance(2, 2) = steeringAngleVariance;
 
   Eigen::MatrixXd J = Eigen::MatrixXd::Zero(2, 3);
-  J(0, 0) = 0.5/gammaLeft;
-  J(0, 1) = 0.5/gammaRight;
-  J(0, 2) += (2*(alphaLeft*halfWheelTrack/wheelBase+tanFrontSteeringAngle)/betaLeft - hubCarrierOffset/wheelBase)/(gammaLeft*gammaLeft);
-  J(0, 2) += (2*(alphaRight*halfWheelTrack/wheelBase+tanFrontSteeringAngle)/betaRight - hubCarrierOffset/wheelBase)/(gammaRight*gammaRight);
-  J(0, 2) *= 0.5*(1+tanFrontSteeringAngle*tanFrontSteeringAngle);
+  J(0, 0) = 0.5 / gammaLeft;
+  J(0, 1) = 0.5 / gammaRight;
+  J(
+    0,
+    2) +=
+    (2 * (alphaLeft * halfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaLeft -
+    hubCarrierOffset /
+    wheelBase) / (gammaLeft * gammaLeft);
+  J(
+    0,
+    2) +=
+    (2 * (alphaRight * halfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaRight -
+    hubCarrierOffset /
+    wheelBase) / (gammaRight * gammaRight);
+  J(0, 2) *= 0.5 * (1 + tanFrontSteeringAngle * tanFrontSteeringAngle);
   J(1, 2) = 1;
 
   oneAxleSteeringMeasure.steeringAngle = frontSteeringAngle;
-  oneAxleSteeringMeasure.longitudinalSpeed = 0.5*(frontLeftWheelSpeed/gammaLeft + frontRightWheelSpeed/gammaRight);
-  oneAxleSteeringMeasure.covariance =  J*covariance*J.transpose();
+  oneAxleSteeringMeasure.longitudinalSpeed = 0.5 *
+    (frontLeftWheelSpeed / gammaLeft + frontRightWheelSpeed / gammaRight);
+  oneAxleSteeringMeasure.covariance = J * covariance * J.transpose();
 }
 
 //-----------------------------------------------------------------------------
-void inverseKinematic(const OneAxleSteeringKinematic::Parameters & parameters,
-                      const OdometryFrame1FAS2RWD &odometryFrame,
-                      OneAxleSteeringMeasure & oneAxleSteeringMeasure)
+void inverseKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OdometryFrame1FAS2RWD & odometryFrame,
+  OneAxleSteeringMeasure & oneAxleSteeringMeasure)
 {
-  const double &wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
-  const double &steeringAngleVariance = parameters.steeringAngleVariance;
-  
+  const double & wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double & steeringAngleVariance = parameters.steeringAngleVariance;
+
   const double & steeringAngle = odometryFrame.frontAxleSteeringAngle;
   const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
   const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
 
   oneAxleSteeringMeasure.steeringAngle = steeringAngle;
-  oneAxleSteeringMeasure.longitudinalSpeed = 0.5*(rearLeftWheelSpeed+rearRightWheelSpeed);
-  oneAxleSteeringMeasure.covariance(0, 0) =  0.5*wheelSpeedVariance;
-  oneAxleSteeringMeasure.covariance(1, 1) =  steeringAngleVariance;
+  oneAxleSteeringMeasure.longitudinalSpeed = 0.5 * (rearLeftWheelSpeed + rearRightWheelSpeed);
+  oneAxleSteeringMeasure.covariance(0, 0) = 0.5 * wheelSpeedVariance;
+  oneAxleSteeringMeasure.covariance(1, 1) = steeringAngleVariance;
 }
 
-}
-
+}  // namespace romea
