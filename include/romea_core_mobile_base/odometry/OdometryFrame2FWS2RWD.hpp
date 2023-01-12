@@ -16,11 +16,10 @@ struct OdometryFrame2FWS2RWD
   double frontLeftWheelSteeringAngle;
   double rearRightWheelLinearSpeed;
   double frontRightWheelSteeringAngle;
-
 };
 
 std::ostream & operator<<(std::ostream & s, const OdometryFrame2FWS2RWD & frame);
 
 }  // namespace romea
 
-#endif / ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME2FWS2RWD_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME2FWS2RWD_HPP_
