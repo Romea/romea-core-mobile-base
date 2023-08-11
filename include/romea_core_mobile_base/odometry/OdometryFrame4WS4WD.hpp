@@ -37,6 +37,9 @@ struct OdometryFrame4WS4WD
   double rearRightWheelSteeringAngle;
 };
 
+std::ostream & operator<<(std::ostream & s, const OdometryFrame4WS4WD & frame);
+
+
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME4WS4WD_HPP_
