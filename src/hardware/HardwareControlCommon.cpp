@@ -33,6 +33,8 @@ std::string toCommandType(RotationalMotionControlType type)
       return "angular velocity";
     case RotationalMotionControlType::TORQUE:
       return "torque";
+    default:
+      throw std::runtime_error("Unable to convert rotational motion control type to string");
   }
 }
 
@@ -53,6 +55,8 @@ std::string toCommandType(LinearMotionControlType type)
       return "linear velocity";
     case LinearMotionControlType::FORCE:
       return "force";
+    default:
+      throw std::runtime_error("Unable to convert linear motion control type to string");
   }
 }
 
