@@ -49,10 +49,10 @@ void inverseKinematic(
   const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
   double frontTanLeft = std::tan(frontLeftWheelAngle);
   double frontCosLeft = std::cos(frontLeftWheelAngle);
-  double frontSinLeft = std::cos(frontLeftWheelAngle);
+  // double frontSinLeft = std::cos(frontLeftWheelAngle);
   double rearTanLeft = std::tan(rearLeftWheelAngle);
   double rearCosLeft = std::cos(rearLeftWheelAngle);
-  double rearSinLeft = std::sin(rearLeftWheelAngle);
+  // double rearSinLeft = std::sin(rearLeftWheelAngle);
 
   double KLeft = (frontTanLeft - rearTanLeft) / wheelbase;
   double alphaLeft = 1 + KLeft * halfWheelTrack;
@@ -66,10 +66,10 @@ void inverseKinematic(
 
   double frontTanRight = std::tan(frontRightWheelAngle);
   double frontCosRight = std::cos(frontRightWheelAngle);
-  double frontSinRight = std::cos(frontRightWheelAngle);
+  // double frontSinRight = std::cos(frontRightWheelAngle);
   double rearTanRight = std::tan(rearRightWheelAngle);
   double rearCosRight = std::cos(rearRightWheelAngle);
-  double rearSinRight = std::cos(rearRightWheelAngle);
+  // double rearSinRight = std::cos(rearRightWheelAngle);
 
   double KRight = (frontTanRight - rearTanRight) / wheelbase;
   double alphaRight = 1 - KRight * halfWheelTrack;

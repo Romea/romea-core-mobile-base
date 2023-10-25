@@ -43,14 +43,14 @@ SimulationCommand2AS2RWD toSimulationCommand2AS2RWD(
 
 //-----------------------------------------------------------------------------
 SimulationCommand2AS2RWD toSimulationCommand2AS2RWD(
-  const double & wheelbase,
-  const double & frontTrack,
-  const double & frontWheelRadius,
-  const double & frontHubCarrierOffset,
-  const double & rearTrack,
-  const double & rearWheelRadius,
-  const double & rearHubCarrierOffset,
-  const HardwareCommand2AS2RWD & hardwareCommand)
+  const double & /* wheelbase */,
+  const double & /* frontTrack */,
+  const double & /* frontWheelRadius */,
+  const double & /* frontHubCarrierOffset */,
+  const double & /* rearTrack */,
+  const double & /* rearWheelRadius */,
+  const double & /* rearHubCarrierOffset */,
+  const HardwareCommand2AS2RWD & /* hardwareCommand */)
 {
   //  const double & rearLeftWheelLinearSpeed =
   //      hardwareCommand.rearLeftWheelSpinningSetPoint*rearWheelRadius;
@@ -96,6 +96,8 @@ SimulationCommand2AS2RWD toSimulationCommand2AS2RWD(
   //                                    frontRightWheelSteeringAngle,
   //                                    rearLeftWheelSteeringAngle,
   //                                    rearRightWheelSteeringAngle);
+
+  return {};
 }
 
 //-----------------------------------------------------------------------------

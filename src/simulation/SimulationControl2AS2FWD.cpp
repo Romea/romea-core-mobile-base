@@ -43,14 +43,14 @@ SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
 
 //-----------------------------------------------------------------------------
 SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
-  const double & wheelbase,
-  const double & frontTrack,
-  const double & frontWheelRadius,
-  const double & frontHubCarrierOffset,
-  const double & rearTrack,
-  const double & rearWheelRadius,
-  const double & rearHubCarrierOffset,
-  const HardwareCommand2AS2FWD & hardwareCommand)
+  const double & /* wheelbase */,
+  const double & /* frontTrack */,
+  const double & /* frontWheelRadius */,
+  const double & /* frontHubCarrierOffset */,
+  const double & /* rearTrack */,
+  const double & /* rearWheelRadius */,
+  const double & /* rearHubCarrierOffset */,
+  const HardwareCommand2AS2FWD & /* hardwareCommand */)
 {
 //  double  tanFrontAxleSteeringAngle=
 //      std::tan(hardwareCommand.frontAxleSteeringAngle);
@@ -123,6 +123,8 @@ SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
   //                                   rearRightWheelAngle,
   //                                   frontLeftWheelLinearSpeed,
   //                                   frontRightWheelLinearSpeed);
+
+  return {};
 }
 
 //-----------------------------------------------------------------------------
