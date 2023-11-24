@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 OneAxleSteeringMeasure::OneAxleSteeringMeasure()
@@ -84,4 +86,5 @@ std::ostream & operator<<(std::ostream & os, const OneAxleSteeringMeasure & meas
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

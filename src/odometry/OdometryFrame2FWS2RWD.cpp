@@ -19,10 +19,13 @@
 // romea
 #include "romea_core_mobile_base/odometry/OdometryFrame2FWS2RWD.hpp"
 
-namespace romea {
+namespace romea
+{
+namespace core
+{
 
 //--------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream & s, const OdometryFrame2FWS2RWD &frame)
+std::ostream & operator<<(std::ostream & s, const OdometryFrame2FWS2RWD & frame)
 {
   s << "frontLeftWheelSteeringAngle : " << frame.frontLeftWheelSteeringAngle << std::endl;
   s << "frontRightWheelSteeringAngle : " << frame.frontRightWheelSteeringAngle << std::endl;
@@ -31,4 +34,5 @@ std::ostream & operator<<(std::ostream & s, const OdometryFrame2FWS2RWD &frame)
   return s;
 }
 
+}  // namespace core
 }  // namespace romea

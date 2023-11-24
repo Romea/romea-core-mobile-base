@@ -15,12 +15,15 @@
 
 #include "romea_core_mobile_base/hardware/HardwareControl2TD.hpp"
 
-namespace romea {
+namespace romea
+{
+namespace core
+{
 
 //------------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream &os, const HardwareCommand2TD & command)
+std::ostream & operator<<(std::ostream & os, const HardwareCommand2TD & command)
 {
-  os << " Hardware2WD command coucoun : " <<std::endl;
+  os << " Hardware2WD command coucoun : " << std::endl;
   os << " left  sprocket wheel spinning setpoint : ";
   os << command.leftSprocketWheelSpinningSetPoint << std::endl;
   os << " right sprocket wheel spinning setpoint : ";
@@ -29,7 +32,7 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand2TD & command)
 }
 
 //------------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream &os, const HardwareState2TD & state)
+std::ostream & operator<<(std::ostream & os, const HardwareState2TD & state)
 {
   os << " Hardware2WD state : " << std::endl;
   os << " left  sprocket wheel rotational motion : ";
@@ -39,4 +42,5 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2TD & state)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

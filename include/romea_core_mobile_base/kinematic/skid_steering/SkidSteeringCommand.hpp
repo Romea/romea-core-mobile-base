@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct SkidSteeringCommand
 {
@@ -42,6 +44,7 @@ SkidSteeringCommand clamp(
 
 bool isValid(const SkidSteeringCommand & command);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__SKID_STEERING__SKIDSTEERINGCOMMAND_HPP

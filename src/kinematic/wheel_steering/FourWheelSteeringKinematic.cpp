@@ -28,6 +28,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 FourWheelSteeringKinematic::Parameters::Parameters()
@@ -125,6 +127,7 @@ TwoAxleSteeringCommand clamp(
 }
 
 
+}  // namespace core
 }  // namespace romea
 
 

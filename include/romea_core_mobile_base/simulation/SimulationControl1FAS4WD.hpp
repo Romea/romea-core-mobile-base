@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 using SimulationCommand1FAS4WD = SimulationCommand1FASxxx;
 using SimulationState1FAS4WD = SimulationState1FASxxx;
@@ -37,7 +39,7 @@ void fromSimulation(
   const SimulationState1FAS4WD & simulationState,
   HardwareState1FAS4WD & hardwareState);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL1FAS4WD_HPP_

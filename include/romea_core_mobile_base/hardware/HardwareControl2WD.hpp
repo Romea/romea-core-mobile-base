@@ -18,7 +18,10 @@
 
 #include "romea_core_mobile_base/hardware/HardwareControlCommon.hpp"
 
-namespace romea {
+namespace romea
+{
+namespace core
+{
 
 struct HardwareCommand2WD
 {
@@ -26,7 +29,7 @@ struct HardwareCommand2WD
   RotationalMotionCommand rightWheelSpinningSetPoint;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareCommand2WD & command);
+std::ostream & operator<<(std::ostream & os, const HardwareCommand2WD & command);
 
 struct HardwareState2WD
 {
@@ -34,8 +37,9 @@ struct HardwareState2WD
   RotationalMotionState rightWheelSpinningMotion;
 };
 
-std::ostream & operator<<(std::ostream &os, const HardwareState2WD & state);
+std::ostream & operator<<(std::ostream & os, const HardwareState2WD & state);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL2WD_HPP_

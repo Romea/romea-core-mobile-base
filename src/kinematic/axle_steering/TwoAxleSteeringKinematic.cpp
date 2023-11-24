@@ -31,6 +31,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //--------------------------------------------------------------------------
@@ -120,7 +122,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(
     userLimits.frontSteeringAngle.upper());
 
 
-  double frontSteeringAngle = romea::clamp(
+  double frontSteeringAngle = romea::core::clamp(
     command.frontSteeringAngle,
     -maximalAbsoluteFrontSteeringAngle,
     maximalAbsoluteFrontSteeringAngle);
@@ -129,7 +131,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(
     rearMaximalSteeringAngle,
     userLimits.rearSteeringAngle.upper());
 
-  double rearSteeringAngle = romea::clamp(
+  double rearSteeringAngle = romea::core::clamp(
     command.rearSteeringAngle,
     -maximalAbsoluteRearSteeringAngle,
     maximalAbsoluteRearSteeringAngle);
@@ -188,7 +190,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(
     maximalAbsoluteLinearSpeed,
     userLimits.longitudinalSpeed.upper());
 
-  double linearSpeed = romea::clamp(
+  double linearSpeed = romea::core::clamp(
     command.longitudinalSpeed,
     minimalLinearSpeed,
     maximalLinearSpeed);
@@ -220,7 +222,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(
   double frontSteeringAngularSpeed = currentCommand.frontSteeringAngle -
     previousCommand.frontSteeringAngle;
 
-  frontSteeringAngularSpeed = romea::clamp(
+  frontSteeringAngularSpeed = romea::core::clamp(
     frontSteeringAngularSpeed,
     -maximalSteeringAngularSpeed,
     maximalSteeringAngularSpeed);
@@ -228,7 +230,7 @@ TwoAxleSteeringCommand TwoAxleSteeringKinematic::clamp(
   double rearSteeringAngularSpeed = currentCommand.rearSteeringAngle -
     previousCommand.rearSteeringAngle;
 
-  rearSteeringAngularSpeed = romea::clamp(
+  rearSteeringAngularSpeed = romea::core::clamp(
     rearSteeringAngularSpeed,
     -maximalSteeringAngularSpeed,
     maximalSteeringAngularSpeed);
@@ -520,4 +522,5 @@ TwoAxleSteeringCommand clamp(
 ////  return std::min(frontMaximalInstantaneousCurvature,rearMaximalInstantaneousCurvature);
 //}
 
+}  // namespace core
 }  // namespace romea

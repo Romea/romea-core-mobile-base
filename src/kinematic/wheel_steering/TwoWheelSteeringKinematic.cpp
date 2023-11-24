@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 TwoWheelSteeringKinematic::Parameters::Parameters()
@@ -182,6 +184,7 @@ OneAxleSteeringCommand clamp(
     dt);
 }
 
+}  // namespace core
 }  // namespace romea
 
 // old codes

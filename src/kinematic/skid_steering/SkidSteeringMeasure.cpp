@@ -30,6 +30,8 @@ const double EPSILON = 0.0000001;
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 SkidSteeringMeasure::SkidSteeringMeasure()
@@ -50,7 +52,7 @@ KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & measure)
     convertedMeasure.instantaneousCurvature = measure.angularSpeed / measure.longitudinalSpeed;
   } else {
     convertedMeasure.instantaneousCurvature =
-      romea::sign(measure.angularSpeed) * std::numeric_limits<double>::max();
+      sign(measure.angularSpeed) * std::numeric_limits<double>::max();
   }
 
 
@@ -63,7 +65,7 @@ KinematicMeasure toKinematicMeasure(const SkidSteeringMeasure & measure)
     J(
       3,
       0) = -measure.angularSpeed /
-      (std::pow(romea::sign(measure.longitudinalSpeed) * EPSILON, 2));
+      (std::pow(sign(measure.longitudinalSpeed) * EPSILON, 2));
   }
 
   convertedMeasure.covariance = J * measure.covariance * J.transpose();
@@ -90,6 +92,7 @@ std::ostream & operator<<(std::ostream & os, const SkidSteeringMeasure & measure
   return os;
 }
 
+}  // namespace core
 }  // namespace romea
 
 

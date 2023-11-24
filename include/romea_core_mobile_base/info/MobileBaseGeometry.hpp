@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct Wheel
 {
@@ -39,11 +41,11 @@ struct TrackWheel
 
 struct ContinuousTrack
 {
- double width;
- double thickness;
- TrackWheel sprocketWheel;
- std::vector<TrackWheel> idlerWheels;
- std::vector<TrackWheel> rollerWheels;
+  double width;
+  double thickness;
+  TrackWheel sprocketWheel;
+  std::vector<TrackWheel> idlerWheels;
+  std::vector<TrackWheel> rollerWheels;
 };
 
 struct WheeledAxle
@@ -78,6 +80,7 @@ using TwoWheeledAxles = TwoAxles<WheeledAxle, WheeledAxle>;
 //template<typename FrontWheel,typename RearWheel>
 //std::ostream& operator<<(std::ostream& os, const TwoAxlesGeometry<FrontWheel,RearWheel> & twoAxlesGeometry);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEGEOMETRY_HPP_

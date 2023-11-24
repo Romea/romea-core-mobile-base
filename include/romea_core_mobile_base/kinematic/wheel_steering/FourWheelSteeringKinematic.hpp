@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct FourWheelSteeringKinematic
 {
@@ -69,6 +71,7 @@ TwoAxleSteeringCommand clamp(
   const TwoAxleSteeringCommand & curentCommand,
   const double & dt);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__WHEEL_STEERING__FOURWHEELSTEERINGKINEMATIC_HPP_

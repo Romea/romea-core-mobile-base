@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 using  SimulationCommand2FWS2RWD = SimulationCommand2FWSxxx;
 using  SimulationState2FWS2RWD = SimulationState2FWSxxx;
@@ -35,7 +37,7 @@ SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(
 
 HardwareState2FWS2RWD toHardwareState2FWS2RWD(const SimulationState2FWS2RWD & simulationState);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2FWS2RWD_HPP_

@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 struct HardwareCommand4WS4WD
@@ -52,6 +54,7 @@ struct HardwareState4WS4WD
 
 std::ostream & operator<<(std::ostream & os, const HardwareState4WS4WD & state);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL4WS4WD_HPP_

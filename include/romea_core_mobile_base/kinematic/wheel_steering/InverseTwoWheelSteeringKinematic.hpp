@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 void inverseKinematic(
   const TwoWheelSteeringKinematic::Parameters & parameters,
@@ -42,7 +44,7 @@ void inverseKinematic(
   const OdometryFrame2FWS4WD & odometryFrame,
   OneAxleSteeringMeasure & oneAxleSteeringMeasure);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__WHEEL_STEERING__INVERSETWOWHEELSTEERINGKINEMATIC_HPP_

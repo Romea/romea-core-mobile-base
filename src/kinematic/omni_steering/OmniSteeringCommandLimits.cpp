@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //--------------------------------------------------------------------------
@@ -62,4 +64,5 @@ std::ostream & operator<<(std::ostream & os, const OmniSteeringCommandLimits & l
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

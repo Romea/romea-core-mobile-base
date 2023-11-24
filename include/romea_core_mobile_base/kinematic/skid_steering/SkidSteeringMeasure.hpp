@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct SkidSteeringMeasure : public SkidSteeringCommand
 {
@@ -39,6 +41,7 @@ KinematicMeasure toKinematicMeasure(
   const SkidSteeringMeasure & measure,
   const SkidSteeringKinematic::Parameters & parameters);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__SKID_STEERING__SKIDSTEERINGMEASURE_HPP_

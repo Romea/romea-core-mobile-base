@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 class TwoWheelSteeringKinematic : public OneAxleSteeringKinematic
 {
@@ -91,6 +93,7 @@ OneAxleSteeringCommand clamp(
   const OneAxleSteeringCommand & currentCommand,
   const double & dt);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__WHEEL_STEERING__TWOWHEELSTEERINGKINEMATIC_HPP_

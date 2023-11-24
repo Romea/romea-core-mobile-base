@@ -23,7 +23,8 @@
 
 namespace romea
 {
-
+namespace core
+{
 
 void forwardKinematic(
   const OneAxleSteeringKinematic::Parameters & parameters,
@@ -35,7 +36,7 @@ void forwardKinematic(
   const OneAxleSteeringCommand & commandFrame,
   OdometryFrame1FAS2RWD & odometryCommandFrame);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif   // ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__FOWARDONEAXLESTEERINGKINEMATIC_HPP_

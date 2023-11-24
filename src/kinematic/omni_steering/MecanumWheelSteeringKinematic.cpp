@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //--------------------------------------------------------------------------
@@ -133,7 +135,7 @@ OmniSteeringCommand clamp(
     maximalAbsoluteAngularSpeed,
     userLimits.angularSpeed.upper());
 
-  double angularSpeed = romea::clamp(
+  double angularSpeed = romea::core::clamp(
     command.angularSpeed,
     -maximalAbsoluteAngularSpeed,
     maximalAbsoluteAngularSpeed);
@@ -145,7 +147,7 @@ OmniSteeringCommand clamp(
   double maximalAbsboluteLateralSpeed =
     std::min(maximalAbsoluteSpeed, userLimits.lateralSpeed.upper());
 
-  double lateralSpeed = romea::clamp(
+  double lateralSpeed = clamp(
     command.lateralSpeed,
     -maximalAbsboluteLateralSpeed,
     maximalAbsboluteLateralSpeed);
@@ -187,7 +189,7 @@ OmniSteeringCommand clamp(
 
   double angularAcceleration = currentCommand.angularSpeed - previousCommand.angularSpeed;
 
-  angularAcceleration = romea::clamp(
+  angularAcceleration = romea::core::clamp(
     angularAcceleration,
     -maximalAbsoluteAngularSpeed,
     maximalAbsoluteAngularSpeed);
@@ -198,7 +200,7 @@ OmniSteeringCommand clamp(
 
   double lateralAcceleration = currentCommand.lateralSpeed - previousCommand.lateralSpeed;
 
-  lateralAcceleration = romea::clamp(
+  lateralAcceleration = romea::core::clamp(
     lateralAcceleration,
     -maximalAbsoluteLateralAcceleration,
     maximalAbsoluteLateralAcceleration);
@@ -211,7 +213,7 @@ OmniSteeringCommand clamp(
   double longitudinalAcceleration = currentCommand.longitudinalSpeed -
     previousCommand.longitudinalSpeed;
 
-  longitudinalAcceleration = romea::clamp(
+  longitudinalAcceleration = romea::core::clamp(
     longitudinalAcceleration,
     -maximalAbsoluteLongitudinalAcceleration,
     maximalAbsoluteLongitudinalAcceleration);
@@ -226,4 +228,5 @@ OmniSteeringCommand clamp(
   return clampedCommand;
 }
 
+}  // namespace core
 }  // namespace romea

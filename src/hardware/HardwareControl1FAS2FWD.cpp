@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //------------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & os, const HardwareCommand1FAS2FWD & command)
@@ -25,7 +27,7 @@ std::ostream & operator<<(std::ostream & os, const HardwareCommand1FAS2FWD & com
   os << " front axle steering angle : ";
   os << command.frontAxleSteeringAngle << std::endl;
   os << " front left wheel spinning setpoint : ";
-  os << command.frontLeftWheelSpinningSetPoint <<std::endl;
+  os << command.frontLeftWheelSpinningSetPoint << std::endl;
   os << " front right wheel spinning setpoint : ";
   os << command.frontRightWheelSpinningSetPoint;
   return os;
@@ -44,4 +46,5 @@ std::ostream & operator<<(std::ostream & os, const HardwareState1FAS2FWD & state
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 struct HardwareState1FAS2FWD
@@ -42,6 +44,7 @@ struct HardwareCommand1FAS2FWD
 std::ostream & operator<<(std::ostream & os, const HardwareCommand1FAS2FWD & command);
 
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROL1FAS2FWD_HPP_

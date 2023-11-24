@@ -23,13 +23,15 @@
 
 namespace romea
 {
+namespace core
+{
 
 void inverseKinematic(
   const MecanumWheelSteeringKinematic::Parameters & parameters,
   const OdometryFrame4WD & odometryFrame,
   OmniSteeringMeasure & measure);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__OMNI_STEERING__INVERSEMECANUMWHEELSTEERINGKINEMATIC_HPP_

@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 using SteeringAngleCommand = double;
 using SteeringAngleState = double;
@@ -63,6 +65,7 @@ enum class LinearMotionControlType
 std::ostream & operator<<(std::ostream & s, const RotationalMotionState & state);
 std::ostream & operator<<(std::ostream & s, const LinearMotionState & state);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_

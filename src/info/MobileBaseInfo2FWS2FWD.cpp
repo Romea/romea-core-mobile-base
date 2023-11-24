@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS2FWD & baseInformation)
@@ -63,4 +65,5 @@ void to_kinematic_parameters(
   kinematicParameters.wheelSteeringAngleVariance = std::pow(wheelsSteeringSensor.angleStd, 2.0);
 }
 
+}  // namespace core
 }  // namespace romea

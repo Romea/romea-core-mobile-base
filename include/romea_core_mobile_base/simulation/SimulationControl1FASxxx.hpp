@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct SimulationCommand1FASxxx
 {
@@ -49,6 +51,7 @@ struct SimulationState1FASxxx
 
 std::ostream & operator<<(std::ostream & os, const SimulationState1FASxxx & state);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL1FASXXX_HPP_

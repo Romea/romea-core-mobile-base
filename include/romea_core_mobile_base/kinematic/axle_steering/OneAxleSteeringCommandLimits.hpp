@@ -20,7 +20,8 @@
 
 namespace romea
 {
-
+namespace core
+{
 
 struct OneAxleSteeringCommandLimits
 {
@@ -37,7 +38,7 @@ struct OneAxleSteeringCommandLimits
 
 std::ostream & operator<<(std::ostream & os, const OneAxleSteeringCommandLimits & limits);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__ONEAXLESTEERINGCOMMANDLIMITS_HPP_

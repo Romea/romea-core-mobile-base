@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 OneAxleSteeringCommandLimits::OneAxleSteeringCommandLimits()
@@ -55,4 +57,5 @@ std::ostream & operator<<(std::ostream & os, const OneAxleSteeringCommandLimits 
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -19,6 +19,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 SkidSteeringCommandLimits::SkidSteeringCommandLimits()
@@ -51,4 +53,5 @@ std::ostream & operator<<(std::ostream & os, const SkidSteeringCommandLimits & l
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //-----------------------------------------------------------------------------
@@ -186,4 +188,5 @@ void inverseKinematic(
   twoAxleSteeringMeasure.covariance = J * covariance * J.transpose();
 }
 
+}  // namespace core
 }  // namespace romea

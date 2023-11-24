@@ -19,6 +19,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 SkidSteeringCommand::SkidSteeringCommand()
@@ -84,6 +86,7 @@ bool isValid(const SkidSteeringCommand & command)
 }
 
 
+}  // namespace core
 }  // namespace romea
 
 // old codes

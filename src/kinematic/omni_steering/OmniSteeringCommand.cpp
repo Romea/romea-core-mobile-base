@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 OmniSteeringCommand::OmniSteeringCommand()
@@ -68,4 +70,5 @@ bool isValid(const OmniSteeringCommand & command)
          std::isfinite(command.angularSpeed);
 }
 
+}  // namespace core
 }  // namespace romea

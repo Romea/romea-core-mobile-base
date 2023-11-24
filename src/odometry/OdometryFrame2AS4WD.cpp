@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & s, const OdometryFrame2AS4WD & frame)
@@ -34,4 +36,5 @@ std::ostream & operator<<(std::ostream & s, const OdometryFrame2AS4WD & frame)
   return s;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -19,6 +19,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 SimulationCommand1FAS2RWD toSimulationCommand1FAS2RWD(
@@ -123,4 +125,5 @@ HardwareState1FAS2RWD toHardwareState1FAS2RWD(
   return toHardwareState1FAS2RWD(simulationState, frontAxleSteeringAngle);
 }
 
+}  // namespace core
 }  // namespace romea

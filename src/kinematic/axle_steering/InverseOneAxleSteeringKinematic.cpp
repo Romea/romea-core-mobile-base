@@ -18,7 +18,8 @@
 
 namespace romea
 {
-
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 void inverseKinematic(
@@ -98,4 +99,5 @@ void inverseKinematic(
   oneAxleSteeringMeasure.covariance(1, 1) = steeringAngleVariance;
 }
 
+}  // namespace core
 }  // namespace romea

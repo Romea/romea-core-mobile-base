@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //  MobileBaseInertia::MobileBaseInertia():
 //    mass(std::numeric_limits<double>::quiet_NaN()),
@@ -29,4 +31,5 @@ namespace romea
 
 //  std::ostream& operator<<(std::ostream& os, const MobileBaseInertia & inertia);
 
+}  // namespace core
 }  // namespace romea

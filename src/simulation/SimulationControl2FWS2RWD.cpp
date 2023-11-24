@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 SimulationCommand2FWS2RWD toSimulationCommand2FWS2RWD(
@@ -93,4 +95,5 @@ HardwareState2FWS2RWD toHardwareState2FWS2RWD(const SimulationState2FWS2RWD & si
     simulationState.rearRightWheelSpinningMotion};
 }
 
+}  // namespace core
 }  // namespace romea

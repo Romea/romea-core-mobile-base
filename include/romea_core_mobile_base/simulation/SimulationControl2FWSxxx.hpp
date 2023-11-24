@@ -20,10 +20,13 @@
 
 namespace romea
 {
+namespace core
+{
 
 using  SimulationCommand2FWSxxx = HardwareCommand2FWS4WD;
 using  SimulationState2FWSxxx = HardwareState2FWS4WD;
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2FWSXXX_HPP_

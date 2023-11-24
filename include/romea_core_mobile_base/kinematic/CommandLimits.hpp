@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 Interval1D<double> makeSymmetricCommandLimits(const double & maximalAbsoluteCommand);
 
@@ -31,6 +33,7 @@ Interval1D<double> makeLongitudinalSpeedCommandLimits(
 
 double clamp(const double & value, const Interval1D<double> & limits);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__COMMANDLIMITS_HPP_

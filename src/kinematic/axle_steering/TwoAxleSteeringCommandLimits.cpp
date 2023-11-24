@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 TwoAxleSteeringCommandLimits::TwoAxleSteeringCommandLimits()
@@ -60,4 +62,5 @@ std::ostream & operator<<(std::ostream & os, const TwoAxleSteeringCommandLimits 
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

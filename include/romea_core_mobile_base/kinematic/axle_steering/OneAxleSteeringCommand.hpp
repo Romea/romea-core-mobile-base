@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct OneAxleSteeringCommand
 {
@@ -42,6 +44,7 @@ std::ostream & operator<<(std::ostream & os, const OneAxleSteeringCommand & comm
 
 bool isValid(const OneAxleSteeringCommand & command);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__ONEAXLESTEERINGCOMMAND_HPP_

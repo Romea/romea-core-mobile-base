@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2FWS2RWD & baseInformation)
@@ -100,4 +102,5 @@ void to_kinematic_parameters(
 
 //}
 
+}  // namespace core
 }  // namespace romea

@@ -15,13 +15,16 @@
 
 #include "romea_core_mobile_base/hardware/HardwareControl2FWS2FWD.hpp"
 
-namespace romea {
+namespace romea
+{
+namespace core
+{
 
 
 //------------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream &os, const HardwareCommand2FWS2FWD & command)
+std::ostream & operator<<(std::ostream & os, const HardwareCommand2FWS2FWD & command)
 {
-  os << " Hardware2FWS2FWD command : " <<std::endl;
+  os << " Hardware2FWS2FWD command : " << std::endl;
   os << " front left wheel steering angle : ";
   os << command.frontLeftWheelSteeringAngle << std::endl;
   os << " front right wheel steering angle : ";
@@ -34,7 +37,7 @@ std::ostream & operator<<(std::ostream &os, const HardwareCommand2FWS2FWD & comm
 }
 
 //------------------------------------------------------------------------------
-std::ostream & operator<<(std::ostream &os, const HardwareState2FWS2FWD & state)
+std::ostream & operator<<(std::ostream & os, const HardwareState2FWS2FWD & state)
 {
   os << " Hardware2FWS2FWD state : " << std::endl;
   os << " front left wheel steering angle : ";
@@ -48,4 +51,5 @@ std::ostream & operator<<(std::ostream &os, const HardwareState2FWS2FWD & state)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

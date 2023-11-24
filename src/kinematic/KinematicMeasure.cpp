@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 KinematicMeasure::KinematicMeasure()
@@ -42,5 +44,5 @@ std::ostream & operator<<(std::ostream & os, const KinematicMeasure & measure)
   return os;
 }
 
-
+}  // namespace core
 }  // namespace romea

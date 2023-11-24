@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 SimulationCommand2AS4WD toSimulationCommand2AS4WD(
@@ -126,4 +128,5 @@ HardwareState2AS4WD toHardwareState2AS4WD(
     rearAxleSteeringAngle);
 }
 
+}  // namespace core
 }  // namespace romea

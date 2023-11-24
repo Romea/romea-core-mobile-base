@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct OdometryFrame2WD
 {
@@ -30,6 +32,7 @@ struct OdometryFrame2WD
 
 std::ostream & operator<<(std::ostream & s, const OdometryFrame2WD & frame);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME2WD_HPP_

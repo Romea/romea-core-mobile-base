@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 SkidSteeringKinematic::Parameters::Parameters()
@@ -120,7 +122,7 @@ SkidSteeringCommand clamp(
   maximalAbsoluteAngularSpeed =
     std::min(maximalAbsoluteAngularSpeed, userLimits.angularSpeed.upper());
 
-  double angularSpeed = romea::clamp(
+  double angularSpeed = romea::core::clamp(
     command.angularSpeed,
     -maximalAbsoluteAngularSpeed,
     maximalAbsoluteAngularSpeed);
@@ -135,7 +137,7 @@ SkidSteeringCommand clamp(
   double maximalLinearSpeed =
     std::min(maximalAbsoluteLinearSpeed, userLimits.longitudinalSpeed.upper());
 
-  double linearSpeed = romea::clamp(
+  double linearSpeed = romea::core::clamp(
     command.longitudinalSpeed,
     minimalLinearSpeed,
     maximalLinearSpeed);
@@ -160,7 +162,7 @@ SkidSteeringCommand clamp(
 
   double angularAccelaration = currentCommand.angularSpeed - previousCommand.angularSpeed;
 
-  angularAccelaration = romea::clamp(
+  angularAccelaration = romea::core::clamp(
     angularAccelaration,
     -maximalAbsoluteAngularAcceleration,
     maximalAbsoluteAngularAcceleration);
@@ -172,7 +174,7 @@ SkidSteeringCommand clamp(
 
   double linearAcceleration = currentCommand.longitudinalSpeed - previousCommand.longitudinalSpeed;
 
-  linearAcceleration = romea::clamp(
+  linearAcceleration = romea::core::clamp(
     linearAcceleration,
     -maximalAbsoluteLinearAcceleration,
     maximalAbsoluteLinearAcceleration);
@@ -184,6 +186,7 @@ SkidSteeringCommand clamp(
   return clampedCommand;
 }
 
+}  // namespace core
 }  // namespace romea
 
 

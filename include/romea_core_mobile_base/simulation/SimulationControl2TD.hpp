@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 struct SimulationCommand2TD
@@ -56,7 +58,7 @@ HardwareState2TD toHardwareState2TD(
   const double & trackThickness,
   const SimulationState2TD & simulationState);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2TD_HPP_

@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct WheelSpeedSensor
 {
@@ -65,6 +67,7 @@ struct SteeringAngleControl
 //std::ostream& operator<<(std::ostream& os, const WheelSpeedControl & wheelSpeedControl);
 //std::ostream& operator<<(std::ostream& os, const SteeringAngleControl & steringAngleControl);
 
-}
+}  // namespace core
+}  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASECONTROL_HPP_

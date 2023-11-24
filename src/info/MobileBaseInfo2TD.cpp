@@ -13,7 +13,6 @@
 // limitations under the License.
 
 
-
 // romea
 #include "romea_core_mobile_base/info/MobileBaseInfo2TD.hpp"
 
@@ -21,6 +20,8 @@
 #include <cmath>
 
 namespace romea
+{
+namespace core
 {
 
 ////-----------------------------------------------------------------------------
@@ -55,4 +56,5 @@ void to_kinematic_parameters(
   kinematic_parameters.maximalWheelLinearAcceleration = tracksCommand.maximalAcceleration;
 }
 
+}  // namespace core
 }  // namespace romea

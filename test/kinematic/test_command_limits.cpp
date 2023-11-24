@@ -26,7 +26,7 @@
 
 TEST(TestCommandLimits, SymmetricLimits)
 {
-  romea::Interval1D<double> limits = romea::makeSymmetricCommandLimits(1.);
+  romea::core::Interval1D<double> limits = romea::core::makeSymmetricCommandLimits(1.);
   EXPECT_TRUE(limits.inside(-0.5));
   EXPECT_FALSE(limits.inside(-1.1));
   EXPECT_FALSE(limits.inside(1.1));
@@ -34,10 +34,10 @@ TEST(TestCommandLimits, SymmetricLimits)
 
 TEST(TestCommandLimits, LongitudinalSpeedLimits)
 {
-  EXPECT_THROW(romea::makeLongitudinalSpeedCommandLimits(-1, -1), std::runtime_error);
-  EXPECT_THROW(romea::makeLongitudinalSpeedCommandLimits(1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::makeLongitudinalSpeedCommandLimits(-1, -1), std::runtime_error);
+  EXPECT_THROW(romea::core::makeLongitudinalSpeedCommandLimits(1, 1), std::runtime_error);
 
-  romea::Interval1D<double> limits = romea::makeLongitudinalSpeedCommandLimits(-0.5, 1);
+  romea::core::Interval1D<double> limits = romea::core::makeLongitudinalSpeedCommandLimits(-0.5, 1);
   EXPECT_TRUE(limits.inside(-0.2));
   EXPECT_TRUE(limits.inside(0.7));
   EXPECT_FALSE(limits.inside(-0.6));
@@ -46,10 +46,10 @@ TEST(TestCommandLimits, LongitudinalSpeedLimits)
 
 TEST(TestCommandLimits, SteeringAngleSpeedLimits)
 {
-  EXPECT_THROW(romea::makeSteeringAngleCommandLimits(M_PI), std::runtime_error);
-  EXPECT_THROW(romea::makeSteeringAngleCommandLimits(-M_PI), std::runtime_error);
+  EXPECT_THROW(romea::core::makeSteeringAngleCommandLimits(M_PI), std::runtime_error);
+  EXPECT_THROW(romea::core::makeSteeringAngleCommandLimits(-M_PI), std::runtime_error);
 
-  romea::Interval1D<double> limits = romea::makeSteeringAngleCommandLimits(0.7);
+  romea::core::Interval1D<double> limits = romea::core::makeSteeringAngleCommandLimits(0.7);
   EXPECT_TRUE(limits.inside(-0.1));
   EXPECT_TRUE(limits.inside(0.4));
   EXPECT_FALSE(limits.inside(-0.8));
@@ -58,39 +58,39 @@ TEST(TestCommandLimits, SteeringAngleSpeedLimits)
 
 TEST(TestCommandLimits, OneAxleSteeringLimits)
 {
-  EXPECT_THROW(romea::OneAxleSteeringCommandLimits(1, 1, 1), std::runtime_error);
-  EXPECT_THROW(romea::OneAxleSteeringCommandLimits(-1, -1, 1), std::runtime_error);
-  EXPECT_THROW(romea::OneAxleSteeringCommandLimits(-1, 1, M_PI), std::runtime_error);
-  EXPECT_THROW(romea::OneAxleSteeringCommandLimits(-1, 1, -M_PI), std::runtime_error);
-  EXPECT_FALSE(romea::OneAxleSteeringCommandLimits().steeringAngle.inside(M_PI));
+  EXPECT_THROW(romea::core::OneAxleSteeringCommandLimits(1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::OneAxleSteeringCommandLimits(-1, -1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::OneAxleSteeringCommandLimits(-1, 1, M_PI), std::runtime_error);
+  EXPECT_THROW(romea::core::OneAxleSteeringCommandLimits(-1, 1, -M_PI), std::runtime_error);
+  EXPECT_FALSE(romea::core::OneAxleSteeringCommandLimits().steeringAngle.inside(M_PI));
 }
 
 TEST(TestCommandLimits, ClampOneAxleSteeringCommand)
 {
-  romea::OneAxleSteeringCommandLimits limits(-1, 1, 0.5);
-  romea::OneAxleSteeringCommand command(-2, 1.5);
-  romea::OneAxleSteeringCommand clamped_command = clamp(command, limits);
+  romea::core::OneAxleSteeringCommandLimits limits(-1, 1, 0.5);
+  romea::core::OneAxleSteeringCommand command(-2, 1.5);
+  romea::core::OneAxleSteeringCommand clamped_command = clamp(command, limits);
   EXPECT_DOUBLE_EQ(clamped_command.longitudinalSpeed, limits.longitudinalSpeed.lower());
   EXPECT_DOUBLE_EQ(clamped_command.steeringAngle, limits.steeringAngle.upper());
 }
 
 TEST(TestCommandLimits, TwoAxleSteeringLimits)
 {
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(1, 1, 1, 1), std::runtime_error);
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(-1, -1, 1, 1), std::runtime_error);
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(-1, 1, M_PI, 1), std::runtime_error);
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(-1, 1, -M_PI, 1), std::runtime_error);
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(-1, 1, 1, M_PI), std::runtime_error);
-  EXPECT_THROW(romea::TwoAxleSteeringCommandLimits(-1, 1, -1, -M_PI), std::runtime_error);
-  EXPECT_FALSE(romea::TwoAxleSteeringCommandLimits().frontSteeringAngle.inside(M_PI));
-  EXPECT_FALSE(romea::TwoAxleSteeringCommandLimits().rearSteeringAngle.inside(M_PI));
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(1, 1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(-1, -1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(-1, 1, M_PI, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(-1, 1, -M_PI, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(-1, 1, 1, M_PI), std::runtime_error);
+  EXPECT_THROW(romea::core::TwoAxleSteeringCommandLimits(-1, 1, -1, -M_PI), std::runtime_error);
+  EXPECT_FALSE(romea::core::TwoAxleSteeringCommandLimits().frontSteeringAngle.inside(M_PI));
+  EXPECT_FALSE(romea::core::TwoAxleSteeringCommandLimits().rearSteeringAngle.inside(M_PI));
 }
 
 TEST(TestCommandLimits, ClampTwoAxleSteeringCommand)
 {
-  romea::TwoAxleSteeringCommandLimits limits(-1, 1, 0.5, 0.5);
-  romea::TwoAxleSteeringCommand command(-2, 1.5, -1.5);
-  romea::TwoAxleSteeringCommand clamped_command = clamp(command, limits);
+  romea::core::TwoAxleSteeringCommandLimits limits(-1, 1, 0.5, 0.5);
+  romea::core::TwoAxleSteeringCommand command(-2, 1.5, -1.5);
+  romea::core::TwoAxleSteeringCommand clamped_command = clamp(command, limits);
   EXPECT_DOUBLE_EQ(clamped_command.longitudinalSpeed, limits.longitudinalSpeed.lower());
   EXPECT_DOUBLE_EQ(clamped_command.frontSteeringAngle, limits.frontSteeringAngle.upper());
   EXPECT_DOUBLE_EQ(clamped_command.rearSteeringAngle, limits.rearSteeringAngle.lower());
@@ -98,30 +98,30 @@ TEST(TestCommandLimits, ClampTwoAxleSteeringCommand)
 
 TEST(TestCommandLimits, SkidSteeringLimits)
 {
-  EXPECT_THROW(romea::SkidSteeringCommandLimits(1, 1, 1), std::runtime_error);
-  EXPECT_THROW(romea::SkidSteeringCommandLimits(-1, -1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::SkidSteeringCommandLimits(1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::SkidSteeringCommandLimits(-1, -1, 1), std::runtime_error);
 }
 
 TEST(TestCommandLimits, ClampSkidSteeringCommand)
 {
-  romea::SkidSteeringCommandLimits limits(-1, 1, 0.5);
-  romea::SkidSteeringCommand command(-2, -3);
-  romea::SkidSteeringCommand clamped_command = clamp(command, limits);
+  romea::core::SkidSteeringCommandLimits limits(-1, 1, 0.5);
+  romea::core::SkidSteeringCommand command(-2, -3);
+  romea::core::SkidSteeringCommand clamped_command = clamp(command, limits);
   EXPECT_DOUBLE_EQ(clamped_command.longitudinalSpeed, limits.longitudinalSpeed.lower());
   EXPECT_DOUBLE_EQ(clamped_command.angularSpeed, limits.angularSpeed.lower());
 }
 
 TEST(TestCommandLimits, OmniSteeringLimits)
 {
-  EXPECT_THROW(romea::OmniSteeringCommandLimits(1, 1, 1, 1), std::runtime_error);
-  EXPECT_THROW(romea::OmniSteeringCommandLimits(-1, -1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::OmniSteeringCommandLimits(1, 1, 1, 1), std::runtime_error);
+  EXPECT_THROW(romea::core::OmniSteeringCommandLimits(-1, -1, 1, 1), std::runtime_error);
 }
 
 TEST(TestCommandLimits, ClampOmniSteeringCommand)
 {
-  romea::OmniSteeringCommandLimits limits(-1, 1, 0.5, 0.5);
-  romea::OmniSteeringCommand command(1.5, -2, -3);
-  romea::OmniSteeringCommand clamped_command = clamp(command, limits);
+  romea::core::OmniSteeringCommandLimits limits(-1, 1, 0.5, 0.5);
+  romea::core::OmniSteeringCommand command(1.5, -2, -3);
+  romea::core::OmniSteeringCommand clamped_command = clamp(command, limits);
   EXPECT_DOUBLE_EQ(clamped_command.longitudinalSpeed, limits.longitudinalSpeed.upper());
   EXPECT_DOUBLE_EQ(clamped_command.lateralSpeed, limits.lateralSpeed.lower());
   EXPECT_DOUBLE_EQ(clamped_command.angularSpeed, limits.angularSpeed.lower());

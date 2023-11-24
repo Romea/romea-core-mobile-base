@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 TwoAxleSteeringCommand::TwoAxleSteeringCommand()
@@ -70,6 +72,7 @@ bool isValid(const TwoAxleSteeringCommand & command)
          std::isfinite(command.rearSteeringAngle);
 }
 
+}  // namespace core
 }  // namespace romea
 
 

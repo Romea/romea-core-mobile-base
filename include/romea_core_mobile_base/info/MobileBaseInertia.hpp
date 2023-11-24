@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct MobileBaseInertia
 {
@@ -30,6 +32,7 @@ struct MobileBaseInertia
 
 //  std::ostream& operator<<(std::ostream& os, const MobileBaseInertia & inertia);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINERTIA_HPP_

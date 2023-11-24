@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 
 //-----------------------------------------------------------------------------
@@ -92,5 +94,5 @@ std::ostream & operator<<(std::ostream & os, const LinearMotionState & state)
   return os;
 }
 
-
+}  // namespace core
 }  // namespace romea

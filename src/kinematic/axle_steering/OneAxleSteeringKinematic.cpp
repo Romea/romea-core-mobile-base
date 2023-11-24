@@ -27,6 +27,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 OneAxleSteeringKinematic::Parameters::Parameters()
@@ -167,7 +169,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(
   double maximalAbsoluteSteeringAngle =
     std::min(maximalSteeringAngle, userLimits.steeringAngle.upper());
 
-  double steeringAngle = romea::clamp(
+  double steeringAngle = romea::core::clamp(
     command.steeringAngle,
     -maximalAbsoluteSteeringAngle,
     maximalAbsoluteSteeringAngle);
@@ -202,7 +204,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(
     maximalAbsoluteLinearSpeed,
     userLimits.longitudinalSpeed.upper());
 
-  double linearSpeed = romea::clamp(
+  double linearSpeed = romea::core::clamp(
     command.longitudinalSpeed,
     minimalLinearSpeed,
     maximalLinearSpeed);
@@ -230,7 +232,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(
   // clamp steering angular speed
   double steeringAngularSpeed = currentCommand.steeringAngle - previousCommand.steeringAngle;
 
-  steeringAngularSpeed = romea::clamp(
+  steeringAngularSpeed = romea::core::clamp(
     steeringAngularSpeed,
     -maximalSteeringAngularSpeed,
     maximalSteeringAngularSpeed);
@@ -258,7 +260,7 @@ OneAxleSteeringCommand OneAxleSteeringKinematic::clamp(
 
   double linearAcceleration = currentCommand.longitudinalSpeed - previousCommand.longitudinalSpeed;
 
-  linearAcceleration = romea::clamp(
+  linearAcceleration = romea::core::clamp(
     linearAcceleration,
     -maximalAbsoluteLinearAcceleration,
     maximalAbsoluteLinearAcceleration);
@@ -486,4 +488,5 @@ OneAxleSteeringCommand clamp(
 //}
 
 
+}  // namespace core
 }  // namespace romea

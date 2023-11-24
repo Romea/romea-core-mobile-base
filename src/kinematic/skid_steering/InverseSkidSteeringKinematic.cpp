@@ -26,22 +26,24 @@ void inverseKinematicImpl(
   const double & leftWheelSpeed,
   const double & rightWheelSpeed,
   const double & wheelSpeedVariance,
-  romea::SkidSteeringMeasure & skidSteeringMeasure)
+  romea::core::SkidSteeringMeasure & skidSteeringMeasure)
 {
-  skidSteeringMeasure.longitudinalSpeed = romea::SkidSteeringKinematic::
+  skidSteeringMeasure.longitudinalSpeed = romea::core::SkidSteeringKinematic::
     computeLinearSpeed(leftWheelSpeed, rightWheelSpeed);
 
-  skidSteeringMeasure.angularSpeed = romea::SkidSteeringKinematic::
+  skidSteeringMeasure.angularSpeed = romea::core::SkidSteeringKinematic::
     computeAngularSpeed(leftWheelSpeed, rightWheelSpeed, wheelTrack);
 
   skidSteeringMeasure.covariance << 0.5, 1 / wheelTrack, 1 / wheelTrack,
-      1 / (wheelTrack * wheelTrack);
+    1 / (wheelTrack * wheelTrack);
   skidSteeringMeasure.covariance *= wheelSpeedVariance;
 }
 
 }  // namespace
 
 namespace romea
+{
+namespace core
 {
 
 //-----------------------------------------------------------------------------
@@ -97,4 +99,5 @@ void inverseKinematic(
     skidSteeringMeasure);
 }
 
+}  // namespace core
 }  // namespace romea

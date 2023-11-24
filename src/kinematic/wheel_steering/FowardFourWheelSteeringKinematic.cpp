@@ -26,6 +26,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 void  forwardKinematic(
@@ -127,4 +129,5 @@ void  forwardKinematic(
   commandOdometryFrame.rearRightWheelSteeringAngle = rearRightWheelAngle;
 }
 
+}  // namespace core
 }  // namespace romea

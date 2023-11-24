@@ -24,6 +24,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 void forwardKinematic(
   const TwoWheelSteeringKinematic::Parameters & parameters,
@@ -40,6 +42,7 @@ void forwardKinematic(
   const OneAxleSteeringCommand & commandFrame,
   OdometryFrame2FWS4WD & commandOdometryFrame);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__WHEEL_STEERING__FOWARDTWOWHEELSTEERINGKINEMATIC_HPP_

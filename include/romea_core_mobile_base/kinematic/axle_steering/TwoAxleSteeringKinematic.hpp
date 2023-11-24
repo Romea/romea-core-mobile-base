@@ -25,6 +25,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct TwoAxleSteeringKinematic
 {
@@ -113,7 +115,7 @@ TwoAxleSteeringCommand clamp(
   const TwoAxleSteeringCommand & currentCommand,
   const double & dt);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__AXLE_STEERING__TWOAXLESTEERINGKINEMATIC_HPP_

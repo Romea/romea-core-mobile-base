@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 ////-----------------------------------------------------------------------------
 //std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WD & baseInformation)
@@ -83,4 +85,5 @@ void to_kinematic_parameters(
   kinematicParameters.maximalWheelLinearAcceleration = wheelsCommand.maximalAcceleration;
 }
 
+}  // namespace core
 }  // namespace romea

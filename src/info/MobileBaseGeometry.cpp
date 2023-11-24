@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 ////-----------------------------------------------------------------------------
 //template<typename FrontAxle, typename RearAxle>
@@ -49,5 +51,5 @@ namespace romea
 
 ////std::ostream& operator<<(std::ostream& os, const TwoAxleGeometry<RubberWheel> & twoAxlesGeometry);
 
-
+}  // namespace core
 }  // namespace romea

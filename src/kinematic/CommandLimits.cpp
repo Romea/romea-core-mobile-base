@@ -25,6 +25,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 Interval1D<double> makeSymmetricCommandLimits(const double & maximalAbsoluteCommand)
@@ -80,4 +82,5 @@ double clamp(const double & value, const Interval1D<double> & limits)
   return clamp(value, limits.lower(), limits.upper());
 }
 
+}  // namespace core
 }  // namespace romea

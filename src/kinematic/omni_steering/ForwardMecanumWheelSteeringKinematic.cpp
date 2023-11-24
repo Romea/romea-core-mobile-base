@@ -22,6 +22,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 void forwardKinematic(
@@ -68,4 +70,5 @@ void forwardKinematic(
     halfTrack);
 }
 
+}  // namespace core
 }  // namespace romea

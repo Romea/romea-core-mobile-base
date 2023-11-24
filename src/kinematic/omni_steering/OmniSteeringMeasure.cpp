@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 OmniSteeringMeasure::OmniSteeringMeasure()
@@ -77,4 +79,5 @@ std::ostream & operator<<(std::ostream & os, const OmniSteeringMeasure & measure
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

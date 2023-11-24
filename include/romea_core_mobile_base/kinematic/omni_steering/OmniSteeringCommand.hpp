@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct OmniSteeringCommand
 {
@@ -44,6 +46,7 @@ OmniSteeringCommand clamp(
 
 bool isValid(const OmniSteeringCommand & commaand);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__OMNI_STEERING__OMNISTEERINGCOMMAND_HPP

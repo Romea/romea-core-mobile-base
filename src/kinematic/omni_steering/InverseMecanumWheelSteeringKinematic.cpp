@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 void inverseKinematic(
   const MecanumWheelSteeringKinematic::Parameters & parameters,
@@ -57,4 +59,5 @@ void inverseKinematic(
   omniSteeringMeasure.covariance = J * J.transpose();
 }
 
+}  // namespace core
 }  // namespace romea

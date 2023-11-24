@@ -17,6 +17,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //------------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & os, const HardwareCommand2FWS4WD & command)
@@ -56,4 +58,5 @@ std::ostream & operator<<(std::ostream & os, const HardwareState2FWS4WD & state)
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

@@ -19,6 +19,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 OneAxleSteeringCommand::OneAxleSteeringCommand()
@@ -64,6 +66,7 @@ bool isValid(const OneAxleSteeringCommand & command)
 }
 
 
+}  // namespace core
 }  // namespace romea
 
 

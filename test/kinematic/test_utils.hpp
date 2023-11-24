@@ -18,8 +18,9 @@
 
 #include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
 
-void compareKinematicMeasure(const romea::KinematicMeasure & measure1,
-                             const romea::KinematicMeasure & measure2)
+void compareKinematicMeasure(
+  const romea::core::KinematicMeasure & measure1,
+  const romea::core::KinematicMeasure & measure2)
 {
   ASSERT_NEAR(measure1.longitudinalSpeed, measure2.longitudinalSpeed, 0.001);
   ASSERT_NEAR(measure2.lateralSpeed, measure2.lateralSpeed, 0.001);

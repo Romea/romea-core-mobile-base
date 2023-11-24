@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct SimulationCommand2ASxxx
 {
@@ -51,7 +53,7 @@ struct SimulationState2ASxxx
   RotationalMotionState rearRightWheelSpinningMotion;
 };
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2ASXXX_HPP_

@@ -20,9 +20,9 @@
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS2FWD.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
 
-romea::HardwareCommand2FWS2FWD toHardwareCommand2FWS2FWD(
+romea::core::HardwareCommand2FWS2FWD toHardwareCommand2FWS2FWD(
   const double & frontWheelRadius,
-  const romea::OdometryFrame2FWS2FWD & odometryFrame)
+  const romea::core::OdometryFrame2FWS2FWD & odometryFrame)
 {
   return {odometryFrame.frontLeftWheelSteeringAngle,
     odometryFrame.frontRightWheelSteeringAngle,
@@ -30,10 +30,10 @@ romea::HardwareCommand2FWS2FWD toHardwareCommand2FWS2FWD(
     odometryFrame.frontRightWheelLinearSpeed / frontWheelRadius};
 }
 
-romea::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
+romea::core::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
   const double & frontWheelRadius,
   const double & rearWheelRadius,
-  const romea::OdometryFrame2FWS4WD & odometryFrame)
+  const romea::core::OdometryFrame2FWS4WD & odometryFrame)
 {
   return {odometryFrame.frontLeftWheelSteeringAngle,
     odometryFrame.frontRightWheelSteeringAngle,
@@ -62,8 +62,8 @@ public:
     command.longitudinalSpeed = 1.;
     command.steeringAngle = 0.4;
 
-    romea::OdometryFrame2FWS2FWD odometryCommand;
-    romea::forwardKinematic(parameters, command, odometryCommand);
+    romea::core::OdometryFrame2FWS2FWD odometryCommand;
+    romea::core::forwardKinematic(parameters, command, odometryCommand);
     hardwareCommand2FWS2FWD = toHardwareCommand2FWS2FWD(
       frontWheelRadius,
       odometryCommand);
@@ -87,18 +87,18 @@ public:
 
   double frontWheelRadius;
   double rearWheelRadius;
-  romea::TwoWheelSteeringKinematic::Parameters parameters;
+  romea::core::TwoWheelSteeringKinematic::Parameters parameters;
 
-  romea::OneAxleSteeringCommand command;
-  romea::HardwareCommand2FWS2FWD hardwareCommand2FWS2FWD;
-  romea::SimulationCommand2FWS2FWD simulationCommand2FWS2FWD;
+  romea::core::OneAxleSteeringCommand command;
+  romea::core::HardwareCommand2FWS2FWD hardwareCommand2FWS2FWD;
+  romea::core::SimulationCommand2FWS2FWD simulationCommand2FWS2FWD;
 };
 
 
 TEST_F(TestSimulation2FWS2FWD, toSimulation)
 {
-  romea::OdometryFrame2FWS4WD odometryCommand2FWS4WD;
-  romea::forwardKinematic(parameters, command, odometryCommand2FWS4WD);
+  romea::core::OdometryFrame2FWS4WD odometryCommand2FWS4WD;
+  romea::core::forwardKinematic(parameters, command, odometryCommand2FWS4WD);
   auto hardwareCommand2FWS4WD = toHardwareCommand2FWS4WD(
     frontWheelRadius,
     rearWheelRadius,
@@ -133,7 +133,7 @@ TEST_F(TestSimulation2FWS2FWD, toSimulation)
 
 TEST_F(TestSimulation2FWS2FWD, toHardware)
 {
-  romea::SimulationState2FWSxxx simulationState;
+  romea::core::SimulationState2FWSxxx simulationState;
   simulationState.frontLeftWheelSteeringAngle =
     simulationCommand2FWS2FWD.frontLeftWheelSteeringAngle;
   simulationState.frontRightWheelSteeringAngle =
@@ -147,7 +147,7 @@ TEST_F(TestSimulation2FWS2FWD, toHardware)
   simulationState.rearRightWheelSpinningMotion.velocity =
     simulationCommand2FWS2FWD.rearRightWheelSpinningSetPoint;
 
-  auto hardwareState2FWS2FWD = romea::toHardwareState2FWS2FWD(simulationState);
+  auto hardwareState2FWS2FWD = romea::core::toHardwareState2FWS2FWD(simulationState);
 
   EXPECT_DOUBLE_EQ(
     hardwareState2FWS2FWD.frontLeftWheelSteeringAngle,

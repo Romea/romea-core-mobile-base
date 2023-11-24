@@ -21,6 +21,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //-----------------------------------------------------------------------------
 std::ostream & operator<<(std::ostream & os, const SimulationCommand1FASxxx & command)
@@ -64,4 +66,5 @@ std::ostream & operator<<(std::ostream & os, const SimulationState1FASxxx & stat
   return os;
 }
 
+}  // namespace core
 }  // namespace romea

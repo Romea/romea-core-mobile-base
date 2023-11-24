@@ -18,6 +18,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 //--------------------------------------------------------------------------
 void forwardKinematic(
@@ -68,4 +70,5 @@ void forwardKinematic(
   odometryCommandFrame.rearRightWheelLinearSpeed = rightWheelSpeed;
 }
 
+}  // namespace core
 }  // namespace romea

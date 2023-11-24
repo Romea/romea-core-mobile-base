@@ -22,13 +22,13 @@
 namespace
 {
 
-romea::RotationalMotionState toHardwareSprocketSpinMotion(
+romea::core::RotationalMotionState toHardwareSprocketSpinMotion(
   const double & sprocketWheelRadius,
   const double & rollerWheelRadius,
   const double & trackThickness,
-  const romea::RotationalMotionState & sprocketWheelSpinningMotion,
-  const romea::RotationalMotionState & frontRollerWheelSpinningMotion,
-  const romea::RotationalMotionState & rearRollerWheelSpinningMotion)
+  const romea::core::RotationalMotionState & sprocketWheelSpinningMotion,
+  const romea::core::RotationalMotionState & frontRollerWheelSpinningMotion,
+  const romea::core::RotationalMotionState & rearRollerWheelSpinningMotion)
 {
   const double sprocketWheelVirtualRadius = sprocketWheelRadius + trackThickness;
   const double rollerWheelVirtualRadius = rollerWheelRadius + trackThickness;
@@ -39,7 +39,7 @@ romea::RotationalMotionState toHardwareSprocketSpinMotion(
   const double rearRollerWheelLinearSpeed =
     rollerWheelVirtualRadius * rearRollerWheelSpinningMotion.velocity;
 
-  romea::RotationalMotionState output;
+  romea::core::RotationalMotionState output;
   output.position = sprocketWheelSpinningMotion.position;
   if (std::signbit(frontRollerWheelLinearSpeed) != std::signbit(rearRollerWheelLinearSpeed)) {
     output.velocity = 0;
@@ -57,6 +57,8 @@ romea::RotationalMotionState toHardwareSprocketSpinMotion(
 }  // namespace
 
 namespace romea
+{
+namespace core
 {
 
 //-----------------------------------------------------------------------------
@@ -151,4 +153,5 @@ HardwareState2TD toHardwareState2TTD(
       simulationState.rearRightRollerWheelSpinningMotion)};
 }
 
+}  // namespace core
 }  // namespace romea

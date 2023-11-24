@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct OmniSteeringMeasure : public OmniSteeringCommand
 {
@@ -38,7 +40,7 @@ KinematicMeasure toKinematicMeasure(
   const OmniSteeringMeasure & measure,
   const MecanumWheelSteeringKinematic::Parameters & parameters);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__OMNI_STEERING__OMNISTEERINGMEASURE_HPP_

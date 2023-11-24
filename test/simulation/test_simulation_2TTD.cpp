@@ -20,10 +20,10 @@
 #include "romea_core_mobile_base/simulation/SimulationControl2TTD.hpp"
 #include "romea_core_mobile_base/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
 
-romea::HardwareCommand2TD toHardwareCommand2TD(
+romea::core::HardwareCommand2TD toHardwareCommand2TD(
   const double & sprocketWheelRadius,
   const double & trackThickness,
-  const romea::OdometryFrame2TD & odometryFrame)
+  const romea::core::OdometryFrame2TD & odometryFrame)
 {
   return {odometryFrame.leftTrackLinearSpeed / (sprocketWheelRadius + trackThickness),
     odometryFrame.rightTrackLinearSpeed / (sprocketWheelRadius + trackThickness)};
@@ -45,8 +45,8 @@ public:
     command.longitudinalSpeed = 1.;
     command.angularSpeed = 0.6;
 
-    romea::OdometryFrame2TD odometryCommand;
-    romea::forwardKinematic(parameters, command, odometryCommand);
+    romea::core::OdometryFrame2TD odometryCommand;
+    romea::core::forwardKinematic(parameters, command, odometryCommand);
     hardwareCommand2TD = toHardwareCommand2TD(
       sprocketWheelRadius,
       trackThickness,
@@ -68,11 +68,11 @@ public:
   double rollerWheelRadius;
   double idlerWheelRadius;
   double trackThickness;
-  romea::SkidSteeringKinematic::Parameters parameters;
+  romea::core::SkidSteeringKinematic::Parameters parameters;
 
-  romea::SkidSteeringCommand command;
-  romea::HardwareCommand2TD hardwareCommand2TD;
-  romea::SimulationCommand2TTD simulationCommand2TTD;
+  romea::core::SkidSteeringCommand command;
+  romea::core::HardwareCommand2TD hardwareCommand2TD;
+  romea::core::SimulationCommand2TTD simulationCommand2TTD;
 };
 
 
@@ -114,7 +114,7 @@ TEST_F(TestSimulation2TTD, toSimulation)
 
 TEST_F(TestSimulation2TTD, toHardware)
 {
-  romea::SimulationState2TTD simulationState;
+  romea::core::SimulationState2TTD simulationState;
   simulationState.leftSprocketWheelSpinningMotion.velocity =
     simulationCommand2TTD.leftSprocketWheelSpinningSetPoint * 2;
   simulationState.rightSprocketWheelSpinningMotion.velocity =
@@ -133,7 +133,7 @@ TEST_F(TestSimulation2TTD, toHardware)
     simulationCommand2TTD.rearRightRollerWheelSpinningSetPoint;
 
 
-  auto hardwareState2TD = romea::toHardwareState2TTD(
+  auto hardwareState2TD = romea::core::toHardwareState2TTD(
     sprocketWheelRadius,
     rollerWheelRadius,
     trackThickness,

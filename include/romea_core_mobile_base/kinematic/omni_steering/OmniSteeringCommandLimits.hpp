@@ -20,6 +20,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct OmniSteeringCommandLimits
 {
@@ -38,6 +40,7 @@ struct OmniSteeringCommandLimits
 
 std::ostream & operator<<(std::ostream & os, const OmniSteeringCommandLimits & limits);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__OMNI_STEERING__OMNISTEERINGCOMMANDLIMITS_HPP_

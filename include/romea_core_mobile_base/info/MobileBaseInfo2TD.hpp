@@ -23,6 +23,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 struct MobileBaseInfo2TD
 {
@@ -38,6 +40,7 @@ void to_kinematic_parameters(
   const MobileBaseInfo2TD & base_information,
   SkidSteeringKinematic::Parameters & kinematic_parameters);
 
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO2TD_HPP_

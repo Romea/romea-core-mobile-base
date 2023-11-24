@@ -24,6 +24,8 @@
 
 namespace romea
 {
+namespace core
+{
 
 void forwardKinematic(
   const SkidSteeringKinematic::Parameters & parameters,
@@ -56,7 +58,7 @@ void forwardKinematic(
   const OdometryFrame2WD & startOdometryFrame,
   OdometryFrame4WD & odometryCommandFrame);
 
-
+}  // namespace core
 }  // namespace romea
 
 #endif  // ROMEA_CORE_MOBILE_BASE__KINEMATIC__SKID_STEERING__FORWARDSKIDSTEERINGKINEMATIC_HPP_
