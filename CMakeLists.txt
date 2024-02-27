@@ -86,6 +86,7 @@ add_library(${PROJECT_NAME} SHARED
  src/info/MobileBaseInfo2WD.cpp
  src/info/MobileBaseInfo4WD.cpp
  src/info/MobileBaseInfo4WS4WD.cpp
+ src/info/MobileBaseType.cpp
  src/simulation/SimulationControl1FAS2FWD.cpp
  src/simulation/SimulationControl1FAS2RWD.cpp
  src/simulation/SimulationControl1FAS4WD.cpp

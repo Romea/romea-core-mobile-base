@@ -79,3 +79,8 @@ add_executable(${PROJECT_NAME}_test_simulation_2TTD simulation/test_simulation_2
 target_link_libraries(${PROJECT_NAME}_test_simulation_2TTD ${PROJECT_NAME} GTest::GTest GTest::Main)
 target_compile_options(${PROJECT_NAME}_test_simulation_2TTD PRIVATE -std=c++17)
 add_test(test_simulation_control_2TTD ${PROJECT_NAME}_test_simulation_2TTD)
+
+add_executable(${PROJECT_NAME}_test_mobile_base_type info/test_mobile_base_type.cpp )
+target_link_libraries(${PROJECT_NAME}_test_mobile_base_type ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_mobile_base_type PRIVATE -std=c++17)
+add_test(test_mobile_base_type ${PROJECT_NAME}_test_mobile_base_type)
