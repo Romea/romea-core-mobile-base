@@ -17,13 +17,12 @@
 #include <gtest/gtest.h>
 
 // romea
-#include "romea_core_mobile_base/simulation/SimulationControl1FAS4WD.hpp"
+#include "romea_core_mobile_base/simulation/SimulationControl1FAS2RWD.hpp"
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS4WD.hpp"
 #include "romea_core_mobile_base/kinematic/axle_steering/FowardOneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/kinematic/wheel_steering/FowardTwoWheelSteeringKinematic.hpp"
 
-romea::core::HardwareCommand1FAS4WD toHardwareCommand1FAS4WD(
-  const double & frontWheelRadius,
+romea::core::HardwareCommand1FAS2RWD toHardwareCommand1FAS2RWD(
   const double & rearWheelRadius,
   const romea::core::OdometryFrame1FAS2RWD & odometryFrame)
 {
@@ -45,12 +44,13 @@ romea::core::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
     odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
 }
 
-class TestSimulation1AS2RWD : public ::testing::Test
+class TestSimulation1FAS2RWD : public ::testing::Test
 {
-public:
-  TestSimulation1AS2RWD() {}
 
-  void SetUp()override
+public:
+  TestSimulation1FAS2RWD() {}
+
+  virtual void SetUp()override
   {
     frontWheelRadius = 0.3;
     rearWheelRadius = 0.7;
@@ -95,7 +95,7 @@ public:
 };
 
 
-TEST_F(TestSimulation1AS2RWD, toSimulation)
+TEST_F(TestSimulation1FAS2RWD, toSimulation)
 {
   romea::core::TwoWheelSteeringKinematic::Parameters parameters2;
   parameters2.frontWheelBase = parameters.frontWheelBase;
@@ -139,7 +139,7 @@ TEST_F(TestSimulation1AS2RWD, toSimulation)
 }
 
 
-TEST_F(TestSimulation1AS2RWD, toHardware)
+TEST_F(TestSimulation1FAS2RWD, toHardware)
 {
   romea::core::SimulationState1FASxxx simulationState;
   simulationState.frontAxleSteeringAngle =
@@ -157,7 +157,7 @@ TEST_F(TestSimulation1AS2RWD, toHardware)
   simulationState.rearRightWheelSpinningMotion.velocity =
     simulationCommand1FAS2RWD.rearRightWheelSpinningSetPoint;
 
-  auto hardwareState1FAS2RWD = toHardwareState1FAS2RWD(
+  auto hardwareState1FAS2RWD = romea::core::toHardwareState1FAS2RWD(
     parameters.rearWheelBase +
     parameters.frontWheelBase,
     parameters.frontWheelTrack,

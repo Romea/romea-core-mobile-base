@@ -43,7 +43,7 @@ struct HardwareCommand1FAS4WD
   RotationalMotionCommand rearRightWheelSpinningSetPoint;
 };
 
-std::ostream & operator<<(std::ostream & os, const HardwareState1FAS4WD & command);
+std::ostream & operator<<(std::ostream & os, const HardwareCommand1FAS4WD & command);
 
 
 }  // namespace core

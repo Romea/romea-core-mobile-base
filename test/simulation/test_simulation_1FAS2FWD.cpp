@@ -44,10 +44,10 @@ romea::core::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
     odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
 }
 
-class TestSimulation1AS2FWD : public ::testing::Test
+class TestSimulation1FAS2FWD : public ::testing::Test
 {
 public:
-  TestSimulation1AS2FWD() {}
+  TestSimulation1FAS2FWD() {}
 
   void SetUp()override
   {
@@ -95,7 +95,7 @@ public:
 };
 
 
-TEST_F(TestSimulation1AS2FWD, toSimulation)
+TEST_F(TestSimulation1FAS2FWD, toSimulation)
 {
   romea::core::TwoWheelSteeringKinematic::Parameters parameters2;
   parameters2.frontWheelBase = parameters.frontWheelBase;
@@ -136,7 +136,7 @@ TEST_F(TestSimulation1AS2FWD, toSimulation)
 }
 
 
-TEST_F(TestSimulation1AS2FWD, toHardware)
+TEST_F(TestSimulation1FAS2FWD, toHardware)
 {
   romea::core::SimulationState1FASxxx simulationState;
   simulationState.frontAxleSteeringAngle =

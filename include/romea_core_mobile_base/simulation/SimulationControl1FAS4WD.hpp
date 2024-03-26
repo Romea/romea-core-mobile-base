@@ -27,17 +27,15 @@ namespace core
 using SimulationCommand1FAS4WD = SimulationCommand1FASxxx;
 using SimulationState1FAS4WD = SimulationState1FASxxx;
 
-void toSimulation(
+SimulationCommand1FAS4WD toSimulationCommand1FAS4WD(
   const double & wheelbase,
   const double & frontTrack,
-  const HardwareCommand1FAS4WD & hardwareCommand,
-  SimulationCommand1FAS4WD & simulationCommand);
+  const HardwareCommand1FAS4WD & hardwareCommand);
 
-void fromSimulation(
+HardwareState1FAS4WD toHardwareState1FAS4WD(
   const double & wheelbase,
   const double & frontTrack,
-  const SimulationState1FAS4WD & simulationState,
-  HardwareState1FAS4WD & hardwareState);
+  const SimulationState1FAS4WD & simulationState);
 
 }  // namespace core
 }  // namespace romea

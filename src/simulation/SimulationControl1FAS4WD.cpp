@@ -38,7 +38,7 @@ SimulationCommand1FAS4WD toSimulationCommand1FAS4WD(
 }
 
 //-----------------------------------------------------------------------------
-SimulationCommand1FAS4WD toSimulationCommand1FAS2RWD(
+SimulationCommand1FAS4WD toSimulationCommand1FAS4WD(
   const double & wheelbase,
   const double & frontTrack,
   const HardwareCommand1FAS4WD & hardwareCommand)
