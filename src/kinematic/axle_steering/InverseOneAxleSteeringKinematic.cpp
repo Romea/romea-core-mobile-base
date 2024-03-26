@@ -59,18 +59,12 @@ void inverseKinematic(
   Eigen::MatrixXd J = Eigen::MatrixXd::Zero(2, 3);
   J(0, 0) = 0.5 / gammaLeft;
   J(0, 1) = 0.5 / gammaRight;
-  J(
-    0,
-    2) +=
+  J(0, 2) +=
     (2 * (alphaLeft * halfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaLeft -
-    hubCarrierOffset /
-    wheelBase) / (gammaLeft * gammaLeft);
-  J(
-    0,
-    2) +=
+    hubCarrierOffset / wheelBase) / (gammaLeft * gammaLeft);
+  J(0, 2) +=
     (2 * (alphaRight * halfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaRight -
-    hubCarrierOffset /
-    wheelBase) / (gammaRight * gammaRight);
+    hubCarrierOffset / wheelBase) / (gammaRight * gammaRight);
   J(0, 2) *= 0.5 * (1 + tanFrontSteeringAngle * tanFrontSteeringAngle);
   J(1, 2) = 1;
 
@@ -98,6 +92,68 @@ void inverseKinematic(
   oneAxleSteeringMeasure.covariance(0, 0) = 0.5 * wheelSpeedVariance;
   oneAxleSteeringMeasure.covariance(1, 1) = steeringAngleVariance;
 }
+
+
+//-----------------------------------------------------------------------------
+void inverseKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OdometryFrame1FAS4WD & odometryFrame,
+  OneAxleSteeringMeasure & oneAxleSteeringMeasure)
+{
+  const double & wheelSpeedVariance = parameters.wheelLinearSpeedVariance;
+  const double & steeringAngleVariance = parameters.steeringAngleVariance;
+
+  const double frontHalfWheelTrack = parameters.frontWheelTrack / 2;
+  const double wheelBase = parameters.frontWheelBase + parameters.rearWheelBase;
+  const double hubCarrierOffset = parameters.rearHubCarrierOffset;
+
+  const double & frontLeftWheelSpeed = odometryFrame.frontLeftWheelLinearSpeed;
+  const double & frontRightWheelSpeed = odometryFrame.frontRightWheelLinearSpeed;
+  const double & rearLeftWheelSpeed = odometryFrame.rearLeftWheelLinearSpeed;
+  const double & rearRightWheelSpeed = odometryFrame.rearRightWheelLinearSpeed;
+  const double & frontSteeringAngle = odometryFrame.frontAxleSteeringAngle;
+
+  double tanFrontSteeringAngle = std::tan(frontSteeringAngle);
+  double instantaneousCurvature = tanFrontSteeringAngle / wheelBase;
+  double instantaneousCurvatureHalfTrack_ = instantaneousCurvature * frontHalfWheelTrack;
+
+  double alphaLeft = 1 - instantaneousCurvatureHalfTrack_;
+  double alphaRight = 1 + instantaneousCurvatureHalfTrack_;
+  double squareTanFrontSteeringAngle = tanFrontSteeringAngle * tanFrontSteeringAngle;
+  double betaLeft = std::sqrt(alphaLeft * alphaLeft + squareTanFrontSteeringAngle);
+  double betaRight = std::sqrt(alphaRight * alphaRight + squareTanFrontSteeringAngle);
+  double gammaLeft = betaLeft - tanFrontSteeringAngle * hubCarrierOffset / wheelBase;
+  double gammaRight = betaRight + tanFrontSteeringAngle * hubCarrierOffset / wheelBase;
+
+
+  Eigen::MatrixXd covariance = Eigen::MatrixXd::Zero(5, 5);
+  covariance(0, 0) = wheelSpeedVariance;
+  covariance(1, 1) = wheelSpeedVariance;
+  covariance(2, 2) = wheelSpeedVariance;
+  covariance(3, 3) = wheelSpeedVariance;
+  covariance(2, 2) = steeringAngleVariance;
+
+  Eigen::MatrixXd J = Eigen::MatrixXd::Zero(2, 5);
+  J(0, 0) = 0.25 / gammaLeft;
+  J(0, 1) = 0.25 / gammaRight;
+  J(0, 2) = 0.25;
+  J(0, 3) = 0.25;
+  J(0, 4) +=
+    (2 * (alphaLeft * frontHalfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaLeft -
+    hubCarrierOffset / wheelBase) / (gammaLeft * gammaLeft);
+  J(0, 4) +=
+    (2 * (alphaRight * frontHalfWheelTrack / wheelBase + tanFrontSteeringAngle) / betaRight -
+    hubCarrierOffset / wheelBase) / (gammaRight * gammaRight);
+  J(0, 4) *= 0.5 * (1 + tanFrontSteeringAngle * tanFrontSteeringAngle);
+  J(1, 4) = 1;
+
+  oneAxleSteeringMeasure.steeringAngle = frontSteeringAngle;
+  oneAxleSteeringMeasure.longitudinalSpeed =
+    0.25 * (frontLeftWheelSpeed / gammaLeft + frontRightWheelSpeed / gammaRight) +
+    0.25 * (rearLeftWheelSpeed + rearRightWheelSpeed);
+  oneAxleSteeringMeasure.covariance = J * covariance * J.transpose();
+}
+
 
 }  // namespace core
 }  // namespace romea

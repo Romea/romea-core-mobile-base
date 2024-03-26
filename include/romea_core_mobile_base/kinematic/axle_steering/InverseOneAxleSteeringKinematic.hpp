@@ -21,6 +21,7 @@
 #include "romea_core_mobile_base/kinematic/axle_steering/OneAxleSteeringKinematic.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame1FAS2FWD.hpp"
 #include "romea_core_mobile_base/odometry/OdometryFrame1FAS2RWD.hpp"
+#include "romea_core_mobile_base/odometry/OdometryFrame1FAS4WD.hpp"
 
 namespace romea
 {
@@ -35,6 +36,11 @@ void inverseKinematic(
 void inverseKinematic(
   const OneAxleSteeringKinematic::Parameters & parameters,
   const OdometryFrame1FAS2RWD & odometryFrame,
+  OneAxleSteeringMeasure & oneAxleSteeringMeasure);
+
+void inverseKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OdometryFrame1FAS4WD & odometryFrame,
   OneAxleSteeringMeasure & oneAxleSteeringMeasure);
 
 }  // namespace core

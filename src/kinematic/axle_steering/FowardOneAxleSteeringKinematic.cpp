@@ -81,5 +81,50 @@ void forwardKinematic(
   odometryCommandFrame.rearRightWheelLinearSpeed = rearRightWheelSpeed;
 }
 
+//-----------------------------------------------------------------------------
+void forwardKinematic(
+  const OneAxleSteeringKinematic::Parameters & parameters,
+  const OneAxleSteeringCommand & commandFrame,
+  OdometryFrame1FAS4WD & odometryCommandFrame)
+{
+  const double rearWheelTrack = parameters.rearWheelTrack + 2 * parameters.rearHubCarrierOffset;
+  const double frontHalfWheelTrack = parameters.frontWheelTrack / 2.;
+  const double wheelBase = parameters.frontWheelBase + parameters.rearWheelBase;
+  const double hubCarrierOffset = parameters.frontHubCarrierOffset;
+
+  const double & linearSpeed = commandFrame.longitudinalSpeed;
+  const double & steeringAngle = commandFrame.steeringAngle;
+  double tanSteeringAngle = std::tan(steeringAngle);
+  double instantaneousCurvature = tanSteeringAngle / wheelBase;
+
+  double frontLeftWheelSpeed = OneAxleSteeringKinematic::
+    computeLeftWheelLinearSpeed(
+    linearSpeed,
+    tanSteeringAngle,
+    instantaneousCurvature,
+    hubCarrierOffset,
+    frontHalfWheelTrack);
+
+  double frontRightWheelSpeed = OneAxleSteeringKinematic::
+    computeRightWheelLinearSpeed(
+    linearSpeed,
+    tanSteeringAngle,
+    instantaneousCurvature,
+    hubCarrierOffset,
+    frontHalfWheelTrack);
+
+  double rearLeftWheelSpeed = SkidSteeringKinematic::computeLeftWheelLinearSpeed(
+    linearSpeed, instantaneousCurvature * linearSpeed, rearWheelTrack);
+  double rearRightWheelSpeed = SkidSteeringKinematic::computeRightWheelLinearSpeed(
+    linearSpeed, instantaneousCurvature * linearSpeed, rearWheelTrack);
+
+  odometryCommandFrame.frontAxleSteeringAngle = steeringAngle;
+  odometryCommandFrame.frontLeftWheelLinearSpeed = frontLeftWheelSpeed;
+  odometryCommandFrame.frontRightWheelLinearSpeed = frontRightWheelSpeed;
+  odometryCommandFrame.rearLeftWheelLinearSpeed = rearLeftWheelSpeed;
+  odometryCommandFrame.rearRightWheelLinearSpeed = rearRightWheelSpeed;
+}
+
+
 }  // namespace core
 }  // namespace romea
