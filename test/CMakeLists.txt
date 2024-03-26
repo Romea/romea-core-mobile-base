@@ -55,6 +55,12 @@ target_link_libraries(${PROJECT_NAME}_test_simulation_1AS2RWD ${PROJECT_NAME} GT
 target_compile_options(${PROJECT_NAME}_test_simulation_1AS2RWD PRIVATE -std=c++17)
 add_test(test_simulation_control_1AS2RWD ${PROJECT_NAME}_test_simulation_1AS2RWD)
 
+
+add_executable(${PROJECT_NAME}_test_simulation_2AS4WD simulation/test_simulation_2AS4WD.cpp )
+target_link_libraries(${PROJECT_NAME}_test_simulation_2AS4WD ${PROJECT_NAME} GTest::GTest GTest::Main)
+target_compile_options(${PROJECT_NAME}_test_simulation_2AS4WD PRIVATE -std=c++17)
+add_test(test_simulation_control_2AS4WD ${PROJECT_NAME}_test_simulation_2AS4WD)
+
 add_executable(${PROJECT_NAME}_test_simulation_2FWS2FWD simulation/test_simulation_2FWS2FWD.cpp )
 target_link_libraries(${PROJECT_NAME}_test_simulation_2FWS2FWD ${PROJECT_NAME} GTest::GTest GTest::Main)
 target_compile_options(${PROJECT_NAME}_test_simulation_2FWS2FWD PRIVATE -std=c++17)
