@@ -20,7 +20,7 @@
 #include <limits>
 
 // romea core
-#include <romea_core_common/math/Algorithm.hpp>
+#include "romea_core_common/math/Algorithm.hpp"
 
 // local
 #include "test_utils.hpp"

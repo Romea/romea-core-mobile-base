@@ -15,9 +15,8 @@
 
 // gtest
 #include <gtest/gtest.h>
-// #include "test_utils.hpp"
 
-//romea
+// romea
 #include "romea_core_mobile_base/simulation/SimulationControl2AS4WD.hpp"
 #include "romea_core_mobile_base/simulation/SimulationControl4WS4WD.hpp"
 #include "romea_core_mobile_base/simulation/SimulationControl2FWS2FWD.hpp"
@@ -42,17 +41,6 @@ romea::core::HardwareCommand2FWS2FWD toHardwareCommand2FWS2FWD(
   const double & wheelRadius,
   const romea::core::OdometryFrame2FWS2FWD & odometryFrame)
 {
-
-  // return {
-  //   odometryFrame.frontLeftWheelSteeringAngle,
-  //   odometryFrame.frontRightWheelSteeringAngle,
-  //   odometryFrame.rearLeftWheelSteeringAngle,
-  //   odometryFrame.rearRightWheelSteeringAngle,
-  //   odometryFrame.frontLeftWheelLinearSpeed / frontWheelRadius,
-  //   odometryFrame.frontRightWheelLinearSpeed / frontWheelRadius,
-  //   odometryFrame.rearLeftWheelLinearSpeed / rearWheelRadius,
-  //   odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
-
   return {
     odometryFrame.frontLeftWheelSteeringAngle,
     odometryFrame.frontRightWheelSteeringAngle,
@@ -87,17 +75,13 @@ public:
       rearWheelRadius,
       odometryCommand);
 
-    // std::cout << " hardwareCommand " << hardwareCommand << std::endl;
     simulationCommand = romea::core::toSimulationCommand2AS4WD(
       parameters.frontWheelBase +
       parameters.rearWheelBase,
       parameters.frontWheelTrack,
       parameters.rearWheelTrack,
       hardwareCommand);
-
-    // std::cout << " simulationCommand " << simulationCommand << std::endl;
   }
-
 
   double frontWheelRadius;
   double rearWheelRadius;
@@ -181,7 +165,6 @@ TEST_F(TestSimulation2AS4WD, toSimulation)
 
 TEST_F(TestSimulation2AS4WD, toHardware)
 {
-
   romea::core::SimulationState2AS4WD simulationState;
   simulationState.frontAxleSteeringAngle =
     command.frontSteeringAngle;

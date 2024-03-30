@@ -46,11 +46,10 @@ romea::core::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
 
 class TestSimulation1FAS2RWD : public ::testing::Test
 {
-
 public:
   TestSimulation1FAS2RWD() {}
 
-  virtual void SetUp()override
+  void SetUp()override
   {
     frontWheelRadius = 0.3;
     rearWheelRadius = 0.7;
@@ -80,7 +79,6 @@ public:
       frontWheelRadius,
       rearWheelRadius,
       hardwareCommand1FAS2RWD);
-
   }
 
 
@@ -91,7 +89,6 @@ public:
   romea::core::OneAxleSteeringCommand command;
   romea::core::HardwareCommand1FAS2RWD hardwareCommand1FAS2RWD;
   romea::core::SimulationCommand1FAS2RWD simulationCommand1FAS2RWD;
-
 };
 
 
@@ -133,9 +130,6 @@ TEST_F(TestSimulation1FAS2RWD, toSimulation)
   EXPECT_DOUBLE_EQ(
     simulationCommand1FAS2RWD.rearRightWheelSpinningSetPoint,
     hardwareCommand2FWS4WD.rearRightWheelSpinningSetPoint);
-
-  std::cout << simulationCommand1FAS2RWD << std::endl;
-
 }
 
 

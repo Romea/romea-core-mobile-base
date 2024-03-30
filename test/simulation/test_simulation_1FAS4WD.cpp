@@ -78,7 +78,6 @@ public:
       parameters.rearWheelBase,
       parameters.frontWheelTrack,
       hardwareCommand1FAS4WD);
-
   }
 
 
@@ -89,7 +88,6 @@ public:
   romea::core::OneAxleSteeringCommand command;
   romea::core::HardwareCommand1FAS4WD hardwareCommand1FAS4WD;
   romea::core::SimulationCommand1FAS4WD simulationCommand1FAS4WD;
-
 };
 
 

@@ -52,16 +52,11 @@ public:
       trackThickness,
       odometryCommand);
 
-    std::cout << "hardwareCommand2TD " << hardwareCommand2TD << std::endl;
-
     simulationCommand2TD = toSimulationCommand2TD(
       sprocketWheelRadius,
       idlerWheelRadius,
       trackThickness,
       hardwareCommand2TD);
-
-    std::cout << "simulationCommand2TD " << simulationCommand2TD << std::endl;
-
   }
 
   double sprocketWheelRadius;

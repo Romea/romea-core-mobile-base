@@ -30,7 +30,6 @@ SimulationCommand1FAS2FWD toSimulationCommand1FAS2FWD(
   const double & rearLeftWheelAngularSpeedCommand,
   const double & rearRightWheelAngularSpeedCommand)
 {
-
   return {hardwareCommand.frontAxleSteeringAngle,
     frontLeftWheelSteeringAngleCommand,
     frontRightWheelSteeringAngleCommand,
