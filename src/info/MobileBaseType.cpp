@@ -39,7 +39,7 @@ std::string get_kinematic_type(const std::string & mobile_base_type)
   {
     return "skid_steering";
   } else {
-    throw std::runtime_error("Mobile base type " + mobile_base_type + "not available");
+    throw std::runtime_error("Mobile base type " + mobile_base_type + " not available");
   }
 }
 
