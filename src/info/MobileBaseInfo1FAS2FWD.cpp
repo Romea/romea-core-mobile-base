@@ -20,24 +20,24 @@ namespace romea
 namespace core
 {
 
-////-----------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FAS2FWD & baseInformation)
-//{
-//  os << "Base information:"<< std::endl;
-//  os << " type:"<< std::endl;
-//  os << "  1FAS2FWD"<< std::endl;
-//  os << " geometry:"<< std::endl;
-//  os << baseInformation.geometry<< std::endl;
-//  os << " front axle steering control:" <<std::endl;
-//  os << baseInformation.frontAxleSteeringControl<< std::endl;
-//  os << " frontwheels speed control: " <<std::endl;
-//  os << baseInformation.frontWheelsSpeedControl<< std::endl;
-//  os << " intertia:" << std::endl;
-//  os << baseInformation.inertia;
-//  os << " control point:" << std::endl;
-//  os << "  " << baseInformation.controlPoint << std::endl;
-//  return os;
-//}
+// //-----------------------------------------------------------------------------
+// std::ostream & operator<<(std::ostream & os, const MobileBaseInfo1FAS2FWD & baseInformation)
+// {
+//   os << "Base information:" << std::endl;
+//   os << " type:" << std::endl;
+//   os << "  1FAS2FWD" << std::endl;
+//   os << " geometry:" << std::endl;
+//   os << baseInformation.geometry << std::endl;
+//   os << " front axle steering control:" << std::endl;
+//   os << baseInformation.frontAxleSteeringControl << std::endl;
+//   os << " frontwheels speed control: " << std::endl;
+//   os << baseInformation.frontWheelsSpeedControl << std::endl;
+//   os << " intertia:" << std::endl;
+//   os << baseInformation.inertia;
+//   os << " control point:" << std::endl;
+//   os << "  " << baseInformation.controlPoint << std::endl;
+//   return os;
+// }
 
 //-----------------------------------------------------------------------------
 void to_kinematic_parameters(

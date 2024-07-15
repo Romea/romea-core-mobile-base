@@ -93,5 +93,45 @@ HardwareState1FAS4WD toHardwareState1FAS4WD(
   return toHardwareState1FAS4WD(simulationState, frontAxleSteeringAngle);
 }
 
+
+//-----------------------------------------------------------------------------
+SimulationState1FAS4WD toSimulationState1FAS4WD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const HardwareState1FAS4WD & hardwareState)
+{
+  core::HardwareCommand1FAS4WD fakeHardwareCommand = {
+    hardwareState.frontAxleSteeringAngle,
+    hardwareState.frontLeftWheelSpinningMotion.velocity,
+    hardwareState.frontRightWheelSpinningMotion.velocity,
+    hardwareState.rearLeftWheelSpinningMotion.velocity,
+    hardwareState.rearRightWheelSpinningMotion.velocity
+  };
+
+  SimulationCommand1FAS4WD fakeSimulationCommand = toSimulationCommand1FAS4WD(
+    wheelbase,
+    frontTrack,
+    fakeHardwareCommand);
+
+  SimulationState1FAS4WD simulationState;
+  simulationState.frontAxleSteeringAngle =
+    hardwareState.frontAxleSteeringAngle;
+  simulationState.frontLeftWheelSteeringAngle =
+    fakeSimulationCommand.frontLeftWheelSteeringAngle;
+  simulationState.frontRightWheelSteeringAngle =
+    fakeSimulationCommand.frontRightWheelSteeringAngle;
+  simulationState.frontLeftWheelSpinningMotion =
+    hardwareState.frontLeftWheelSpinningMotion;
+  simulationState.frontRightWheelSpinningMotion =
+    hardwareState.frontRightWheelSpinningMotion;
+  simulationState.rearLeftWheelSpinningMotion =
+    hardwareState.rearLeftWheelSpinningMotion;
+  simulationState.rearRightWheelSpinningMotion =
+    hardwareState.rearRightWheelSpinningMotion;
+
+  return simulationState;
+}
+
+
 }  // namespace core
 }  // namespace romea

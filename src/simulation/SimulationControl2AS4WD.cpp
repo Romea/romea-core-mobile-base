@@ -90,6 +90,54 @@ SimulationCommand2AS4WD toSimulationCommand2AS4WD(
 }
 
 //-----------------------------------------------------------------------------
+SimulationState2AS4WD toSimulationState2AS4WD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const HardwareState2AS4WD & hardwareState)
+{
+  core::HardwareCommand2AS4WD fakeHardwareCommand = {
+    hardwareState.frontAxleSteeringAngle,
+    hardwareState.rearAxleSteeringAngle,
+    hardwareState.frontLeftWheelSpinningMotion.velocity,
+    hardwareState.frontRightWheelSpinningMotion.velocity,
+    hardwareState.rearLeftWheelSpinningMotion.velocity,
+    hardwareState.rearRightWheelSpinningMotion.velocity
+  };
+
+  SimulationCommand2AS4WD fakeSimulationCommand = toSimulationCommand2AS4WD(
+    wheelbase,
+    frontTrack,
+    rearTrack,
+    fakeHardwareCommand);
+
+  SimulationState2AS4WD simulationState;
+  simulationState.frontAxleSteeringAngle =
+    hardwareState.frontAxleSteeringAngle;
+  simulationState.rearAxleSteeringAngle =
+    hardwareState.rearAxleSteeringAngle;
+  simulationState.frontLeftWheelSteeringAngle =
+    fakeSimulationCommand.frontLeftWheelSteeringAngle;
+  simulationState.frontRightWheelSteeringAngle =
+    fakeSimulationCommand.frontRightWheelSteeringAngle;
+  simulationState.rearLeftWheelSteeringAngle =
+    fakeSimulationCommand.rearLeftWheelSteeringAngle;
+  simulationState.rearRightWheelSteeringAngle =
+    fakeSimulationCommand.rearRightWheelSteeringAngle;
+  simulationState.frontLeftWheelSpinningMotion =
+    hardwareState.frontLeftWheelSpinningMotion;
+  simulationState.frontRightWheelSpinningMotion =
+    hardwareState.frontRightWheelSpinningMotion;
+  simulationState.rearLeftWheelSpinningMotion =
+    hardwareState.rearLeftWheelSpinningMotion;
+  simulationState.rearRightWheelSpinningMotion =
+    hardwareState.rearRightWheelSpinningMotion;
+
+  return simulationState;
+}
+
+
+//-----------------------------------------------------------------------------
 HardwareState2AS4WD toHardwareState2AS4WD(
   const SimulationState2AS4WD & simulationState,
   const double frontAxleSteeringAngle,

@@ -97,22 +97,24 @@ std::ostream & operator<<(std::ostream & os, const SkidSteeringMeasure & measure
 
 
 // old codes
-////-----------------------------------------------------------------------------
-//SkidSteeringMeasure toSkidSteeringMeasure(const KinematicMeasure & measure)
-//{
-//  assert(measure.beta<std::numeric_limits<double>::epsilon());
-//  SkidSteeringMeasure convertedMeasure;
-//  convertedMeasure.longitudinalSpeed=measure.speed;
-//  convertedMeasure.angularSpeed=measure.angularSpeed;
-//  convertedMeasure.covariance(0,0) = measure.covariance(0,0);
-//  convertedMeasure.covariance(0,1) = measure.covariance(0,2);
-//  convertedMeasure.covariance(1,0) = measure.covariance(2,0);
-//  convertedMeasure.covariance(1,1) = measure.covariance(2,2);
-//  return convertedMeasure;
-//}
+// //-----------------------------------------------------------------------------
+// SkidSteeringMeasure toSkidSteeringMeasure(const KinematicMeasure & measure)
+// {
+//   assert(measure.beta < std::numeric_limits<double>::epsilon());
+//   SkidSteeringMeasure convertedMeasure;
+//   convertedMeasure.longitudinalSpeed = measure.speed;
+//   convertedMeasure.angularSpeed = measure.angularSpeed;
+//   convertedMeasure.covariance(0, 0) = measure.covariance(0, 0);
+//   convertedMeasure.covariance(0, 1) = measure.covariance(0, 2);
+//   convertedMeasure.covariance(1, 0) = measure.covariance(2, 0);
+//   convertedMeasure.covariance(1, 1) = measure.covariance(2, 2);
+//   return convertedMeasure;
+// }
 
-////-----------------------------------------------------------------------------
-//SkidSteeringMeasure toSkidSteeringCommand(const KinematicMeasure & measure,const Kinematic & /*kinematic*/)
-//{
-//  return toSkidSteeringMeasure(measure);
-//}
+// //-----------------------------------------------------------------------------
+// SkidSteeringMeasure toSkidSteeringCommand(
+//   const KinematicMeasure & measure,
+//   const Kinematic & /*kinematic*/)
+// {
+//   return toSkidSteeringMeasure(measure);
+// }

@@ -44,6 +44,19 @@ romea::core::HardwareCommand2FWS4WD toHardwareCommand2FWS4WD(
     odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius};
 }
 
+romea::core::HardwareState2FWS4WD toHardwareState2FWS4WD(
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const romea::core::OdometryFrame2FWS4WD & odometryFrame)
+{
+  return {odometryFrame.frontLeftWheelSteeringAngle,
+    odometryFrame.frontRightWheelSteeringAngle,
+    {0.0, odometryFrame.frontLeftWheelLinearSpeed / frontWheelRadius, 0.0},
+    {0.0, odometryFrame.frontRightWheelLinearSpeed / frontWheelRadius, 0.0},
+    {0.0, odometryFrame.rearLeftWheelLinearSpeed / rearWheelRadius, 0.0},
+    {0.0, odometryFrame.rearRightWheelLinearSpeed / rearWheelRadius, 0.0}};
+}
+
 class TestSimulation1FAS2FWD : public ::testing::Test
 {
 public:
@@ -135,6 +148,46 @@ TEST_F(TestSimulation1FAS2FWD, toSimulation)
     hardwareCommand2FWS4WD.rearRightWheelSpinningSetPoint);
 }
 
+TEST_F(TestSimulation1FAS2FWD, toSimulationFeedback)
+{
+  romea::core::TwoWheelSteeringKinematic::Parameters parameters2;
+  parameters2.frontWheelBase = parameters.frontWheelBase;
+  parameters2.rearWheelBase = parameters.rearWheelBase;
+  parameters2.frontWheelTrack = parameters.frontWheelTrack;
+  parameters2.rearWheelTrack = parameters.rearWheelTrack;
+  parameters2.frontHubCarrierOffset = parameters.frontHubCarrierOffset;
+  parameters2.rearHubCarrierOffset = parameters.rearHubCarrierOffset;
+
+  romea::core::OdometryFrame2FWS4WD odometryCommand2FWS4WD;
+  romea::core::forwardKinematic(parameters2, command, odometryCommand2FWS4WD);
+  auto hardwareCommand2FWS4WD = toHardwareCommand2FWS4WD(
+    frontWheelRadius,
+    rearWheelRadius,
+    odometryCommand2FWS4WD);
+
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.frontAxleSteeringAngle,
+    command.steeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.frontLeftWheelSteeringAngle,
+    hardwareCommand2FWS4WD.frontLeftWheelSteeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.frontRightWheelSteeringAngle,
+    hardwareCommand2FWS4WD.frontRightWheelSteeringAngle);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.frontLeftWheelSpinningSetPoint,
+    hardwareCommand2FWS4WD.frontLeftWheelSpinningSetPoint);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.frontRightWheelSpinningSetPoint,
+    hardwareCommand2FWS4WD.frontRightWheelSpinningSetPoint);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.rearLeftWheelSpinningSetPoint,
+    hardwareCommand2FWS4WD.rearLeftWheelSpinningSetPoint);
+  EXPECT_DOUBLE_EQ(
+    simulationCommand1FA2FWD.rearRightWheelSpinningSetPoint,
+    hardwareCommand2FWS4WD.rearRightWheelSpinningSetPoint);
+}
+
 
 TEST_F(TestSimulation1FAS2FWD, toHardware)
 {
@@ -170,6 +223,7 @@ TEST_F(TestSimulation1FAS2FWD, toHardware)
     hardwareState1FAS2FWD.frontRightWheelSpinningMotion.velocity,
     hardwareCommand1FAS2FWD.frontRightWheelSpinningSetPoint);
 }
+
 
 //-----------------------------------------------------------------------------
 int main(int argc, char ** argv)

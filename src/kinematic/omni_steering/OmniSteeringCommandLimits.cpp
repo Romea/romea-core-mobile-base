@@ -32,7 +32,6 @@ OmniSteeringCommandLimits::OmniSteeringCommandLimits()
   lateralSpeed(),
   angularSpeed()
 {
-
 }
 
 //--------------------------------------------------------------------------

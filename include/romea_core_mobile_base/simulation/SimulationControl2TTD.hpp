@@ -62,6 +62,14 @@ SimulationCommand2TTD toSimulationCommand2TTD(
   const double & trackThickness,
   const HardwareCommand2TD & hardwareCommand);
 
+SimulationState2TTD toSimulationState2TTD(
+  const double & sprocketWheelRadius,
+  const double & rollerWheelRadius,
+  const double & idlerWheelRadius,
+  const double & trackThickness,
+  const HardwareState2TD & hardwareState);
+
+
 HardwareState2TD toHardwareState2TTD(
   const double & sprocketWheelRadius,
   const double & rollerWheelRadius,

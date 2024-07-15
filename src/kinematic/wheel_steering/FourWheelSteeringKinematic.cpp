@@ -132,96 +132,110 @@ TwoAxleSteeringCommand clamp(
 
 
 // old codes
-////--------------------------------------------------------------------------
-//double maximalPermissibleLinearSpeed(const FourWheelSteeringKinematic::Parameters & parameters,
-//                                     const double & instantaneousCurvature)
-//{
+// //--------------------------------------------------------------------------
+// double maximalPermissibleLinearSpeed(
+//   const FourWheelSteeringKinematic::Parameters & parameters,
+//   const double & instantaneousCurvature)
+// {
 
-//}
+// }
 
-////--------------------------------------------------------------------------
-//double maximalPermissibleInstantaneousCurvature(const FourWheelSteeringKinematic::Parameters & parameters,
-//                                                const double & linearSpeed)
-//{
+// //--------------------------------------------------------------------------
+// double maximalPermissibleInstantaneousCurvature(
+//   const FourWheelSteeringKinematic::Parameters & parameters,
+//   const double & linearSpeed)
+// {
 
-//}
-
-
-////--------------------------------------------------------------------------
-//double FourWheelSteeringKinematic::computeMaximalInstantaneousCurvature()const
-//{
-//  double wheelBase = getWheelBase("wheelbase");
-//  const double frontTrack = getTrack("front_track");
-//  const double rearTrack = getTrack("rear_track");
-//  const double track = (frontTrack+rearTrack)/2.;
-
-//  double maximalAbsoluteIntantaneousCurvature=OneAxleSteeringKinematic::
-//      computeInstantaneousCurvature(maximalWheelAngle_,wheelBase/2.0);
-
-//  maximalAbsoluteIntantaneousCurvature= maximalAbsoluteIntantaneousCurvature
-//      /(1+maximalAbsoluteIntantaneousCurvature*track/2.0);
-
-//  return maximalAbsoluteIntantaneousCurvature;
-
-//}
-
-////--------------------------------------------------------------------------
-//double FourWheelSteeringKinematic::computeMaximalSteeringAngle()const
-//{
-//  double wheelBase = getWheelBase("wheelbase");
-//  return OneAxleSteeringKinematic::computeSteeringAngle(computeMaximalInstantaneousCurvature(),wheelBase/2.0);
-//}
-
-////--------------------------------------------------------------------------
-//KinematicCommand FourWheelSteeringKinematic::clamp(const KinematicCommand & command,
-//                                                   const KinematicConstraints &userLimits)const
-//{
+// }
 
 
-//  //clamp lateral speed
-//  //double maximalAbsoluteBeta = maximalWheelAngle_;
+// //--------------------------------------------------------------------------
+// double FourWheelSteeringKinematic::computeMaximalInstantaneousCurvature()const
+// {
+//   double wheelBase = getWheelBase("wheelbase");
+//   const double frontTrack = getTrack("front_track");
+//   const double rearTrack = getTrack("rear_track");
+//   const double track = (frontTrack + rearTrack) / 2.;
 
-//  double maximalAbsoluteLateralSpeed = maximalWheelSpeed_;
-//  maximalAbsoluteLateralSpeed = std::min(maximalAbsoluteLateralSpeed,
-//                                         userLimits.getMaximalAbsoluteLinearSpeedAlongYBodyAxis());
+//   double maximalAbsoluteIntantaneousCurvature = OneAxleSteeringKinematic::
+//     computeInstantaneousCurvature(maximalWheelAngle_, wheelBase / 2.0);
 
-//  double lateralSpeed = romea::clamp(command.getLinearSpeedAlongYBodyAxis(),
-//                                         -maximalAbsoluteLateralSpeed,
-//                                         maximalAbsoluteLateralSpeed);
+//   maximalAbsoluteIntantaneousCurvature = maximalAbsoluteIntantaneousCurvature /
+//     (1 + maximalAbsoluteIntantaneousCurvature * track / 2.0);
 
-//  //clamp curvature
-//  double cosBeta = std::cos(std::atan(lateralSpeed/std::abs(command.getLinearSpeedAlongXBodyAxis())));
+//   return maximalAbsoluteIntantaneousCurvature;
 
-//  double maximalAbsoluteInstantaneousCurvature = 2*cosBeta/track_;
-//  maximalAbsoluteInstantaneousCurvature=std::min(maximalAbsoluteInstantaneousCurvature,
-//                                                 userLimits.getMaximalAbsoluteInstantaneousCurvature());
+// }
 
-//  double instantaneousCurvature =romea::clamp(command.getInstantaneousCurvature(),
-//                                                  -maximalAbsoluteInstantaneousCurvature,
-//                                                  maximalAbsoluteInstantaneousCurvature);
+// //--------------------------------------------------------------------------
+// double FourWheelSteeringKinematic::computeMaximalSteeringAngle()const
+// {
+//   double wheelBase = getWheelBase("wheelbase");
+//   return OneAxleSteeringKinematic::computeSteeringAngle(
+//     computeMaximalInstantaneousCurvature(), wheelBase / 2.0);
+// }
 
-
-//  //clamp linear speed
-
-//  double maximalAbsoluteLinearSpeed= maximalWheelSpeed_*std::cos(wheelAngle)/
-//                                     (1 + std::abs(instantaneousCurvature)*track/(2*std::cos(beta)));
-
-//  double absoluteMaximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeedAroundZBodyAxis();
-//  if(absoluteMaximalAngularSpeed < std::abs(instantaneousCurvature)*maximalAbsoluteLinearSpeed)
-//    maximalAbsoluteLinearSpeed = absoluteMaximalAngularSpeed/std::abs(instantaneousCurvature);
-
-//  double minimalLinearSpeed = std::min(-maximalAbsoluteLinearSpeed,
-//                                       userLimits.getMinimalLinearSpeedAlongXBodyAxis());
-
-//  double maximalLinearSpeed = std::min(maximalAbsoluteLinearSpeed,
-//                                       userLimits.getMaximalLinearSpeedAlongXBodyAxis());
+// //--------------------------------------------------------------------------
+// KinematicCommand FourWheelSteeringKinematic::clamp(
+//   const KinematicCommand & command,
+//   const KinematicConstraints & userLimits)const
+// {
 
 
-//  double linearSpeed = romea::clamp(command.getLinearSpeedAlongXBodyAxis(),
-//                                        minimalLinearSpeed,
-//                                        maximalLinearSpeed);
+//   //clamp lateral speed
+//   //double maximalAbsoluteBeta = maximalWheelAngle_;
+
+//   double maximalAbsoluteLateralSpeed = maximalWheelSpeed_;
+//   maximalAbsoluteLateralSpeed = std::min(
+//     maximalAbsoluteLateralSpeed,
+//     userLimits.getMaximalAbsoluteLinearSpeedAlongYBodyAxis());
+
+//   double lateralSpeed = romea::clamp(
+//     command.getLinearSpeedAlongYBodyAxis(),
+//     -maximalAbsoluteLateralSpeed,
+//     maximalAbsoluteLateralSpeed);
+
+//   //clamp curvature
+//   double cosBeta =
+//     std::cos(std::atan(lateralSpeed / std::abs(command.getLinearSpeedAlongXBodyAxis())));
+
+//   double maximalAbsoluteInstantaneousCurvature = 2 * cosBeta / track_;
+//   maximalAbsoluteInstantaneousCurvature = std::min(
+//     maximalAbsoluteInstantaneousCurvature,
+//     userLimits.getMaximalAbsoluteInstantaneousCurvature());
+
+//   double instantaneousCurvature = romea::clamp(
+//     command.getInstantaneousCurvature(),
+//     -maximalAbsoluteInstantaneousCurvature,
+//     maximalAbsoluteInstantaneousCurvature);
 
 
-//  //make command
-//  return makeFourWheelSteeringCommand(command.getDuration(),linearSpeed,lateralSpeed,instantaneousCurvature);
-//}
+//   //clamp linear speed
+
+//   double maximalAbsoluteLinearSpeed = maximalWheelSpeed_ * std::cos(wheelAngle) /
+//     (1 + std::abs(instantaneousCurvature) * track / (2 * std::cos(beta)));
+
+// double absoluteMaximalAngularSpeed = userLimits.getMaximalAbsoluteAngularSpeedAroundZBodyAxis();
+// if (absoluteMaximalAngularSpeed < std::abs(instantaneousCurvature) * maximalAbsoluteLinearSpeed) {  //NOLINT
+//   maximalAbsoluteLinearSpeed = absoluteMaximalAngularSpeed / std::abs(instantaneousCurvature);
+//   }
+
+//   double minimalLinearSpeed = std::min(
+//     -maximalAbsoluteLinearSpeed,
+//     userLimits.getMinimalLinearSpeedAlongXBodyAxis());
+
+//   double maximalLinearSpeed = std::min(
+//     maximalAbsoluteLinearSpeed,
+//     userLimits.getMaximalLinearSpeedAlongXBodyAxis());
+
+
+//   double linearSpeed = romea::clamp(
+//     command.getLinearSpeedAlongXBodyAxis(),
+//     minimalLinearSpeed,
+//     maximalLinearSpeed);
+
+
+//   //make command
+//   return makeFourWheelSteeringCommand(
+//     command.getDuration(), linearSpeed, lateralSpeed, instantaneousCurvature);
+// }

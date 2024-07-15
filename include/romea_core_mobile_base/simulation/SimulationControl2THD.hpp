@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2THD_HPP_
-#define ROMEA_CORE_MOBILE_BASE_SIMULATION_SIMULATIONCONTROL2THD_HPP_
+#ifndef ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2THD_HPP_
+#define ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL2THD_HPP_
 
 #include "romea_core_mobile_base/hardware/HardwareControl2TD.hpp"
 
@@ -54,6 +54,12 @@ SimulationCommand2THD toSimulationCommand2THD(
   const double & idlerWheelRadius,
   const double & trackThickness,
   const HardwareCommand2TD & hardwareCommand);
+
+SimulationState2THD toSimulationState2THD(
+  const double & sprocketWheelRadius,
+  const double & idlerWheelRadius,
+  const double & trackThickness,
+  const HardwareState2TD & hardwareState);
 
 HardwareState2TD toHardwareState2TD(
   const double & sprocketWheelRadius,

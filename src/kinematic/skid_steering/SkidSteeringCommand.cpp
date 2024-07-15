@@ -90,48 +90,50 @@ bool isValid(const SkidSteeringCommand & command)
 }  // namespace romea
 
 // old codes
-////-----------------------------------------------------------------------------
+// //-----------------------------------------------------------------------------
 // KinematicCommand toKinematicCommand(const SkidSteeringCommand & command)
-//{
+// {
 
-//  auto instantaneousCurvature = safe_divide(command.angularSpeed,
-//                                            command.longitudinalSpeed);
+//   auto instantaneousCurvature = safe_divide(
+//     command.angularSpeed,
+//     command.longitudinalSpeed);
 
-//  KinematicCommand convertedCommand;
-//  convertedCommand.beta=0;
-//  convertedCommand.speed=command.longitudinalSpeed;
-//  convertedCommand.angularSpeed = command.angularSpeed;
+//   KinematicCommand convertedCommand;
+//   convertedCommand.beta = 0;
+//   convertedCommand.speed = command.longitudinalSpeed;
+//   convertedCommand.angularSpeed = command.angularSpeed;
 
-//  if(instantaneousCurvature)
-//  {
-//    convertedCommand.instantaneousCurvature = *instantaneousCurvature;
-//  }
-//  else
-//  {
-//    convertedCommand.instantaneousCurvature = 0;
-//  }
+//   if (instantaneousCurvature) {
+//     convertedCommand.instantaneousCurvature = *instantaneousCurvature;
+//   } else {
+//     convertedCommand.instantaneousCurvature = 0;
+//   }
 
-//  return convertedCommand;
-//}
+//   return convertedCommand;
+// }
 
-////-----------------------------------------------------------------------------
-//KinematicCommand toKinematicCommand(const SkidSteeringCommand & command,const Kinematic & /*kinematic*/)
-//{
-//  return toKinematicCommand(command);
-//}
+// //-----------------------------------------------------------------------------
+// KinematicCommand toKinematicCommand(
+//   const SkidSteeringCommand & command,
+//   const Kinematic & /*kinematic*/)
+// {
+//   return toKinematicCommand(command);
+// }
 
-////-----------------------------------------------------------------------------
-//SkidSteeringCommand toSkidSteeringCommand(const KinematicCommand & command)
-//{
-//  assert(command.beta<std::numeric_limits<double>::epsilon());
-//  SkidSteeringCommand convertedCommand;
-//  convertedCommand.longitudinalSpeed=command.speed;
-//  convertedCommand.angularSpeed=command.angularSpeed;
-//  return convertedCommand;
-//}
+// //-----------------------------------------------------------------------------
+// SkidSteeringCommand toSkidSteeringCommand(const KinematicCommand & command)
+// {
+//   assert(command.beta < std::numeric_limits<double>::epsilon());
+//   SkidSteeringCommand convertedCommand;
+//   convertedCommand.longitudinalSpeed = command.speed;
+//   convertedCommand.angularSpeed = command.angularSpeed;
+//   return convertedCommand;
+// }
 
-////----------------------------------------------------------------------------
-//SkidSteeringCommand toSkidSteeringCommand(const KinematicCommand & command,const Kinematic & /*kinematic*/)
-//{
-//  return toSkidSteeringCommand(command);
-//}
+// //----------------------------------------------------------------------------
+// SkidSteeringCommand toSkidSteeringCommand(
+//   const KinematicCommand & command,
+//   const Kinematic & /*kinematic*/)
+// {
+//   return toSkidSteeringCommand(command);
+// }

@@ -131,6 +131,48 @@ SimulationCommand2TTD toSimulationCommand2TTD(
 }
 
 //-----------------------------------------------------------------------------
+SimulationState2TTD  toSimulationState2TTD(
+  const double & sprocketWheelRadius,
+  const double & rollerWheelRadius,
+  const double & idlerWheelRadius,
+  const double & trackThickness,
+  const HardwareState2TD & hardwareState)
+{
+  HardwareCommand2TD fakeHardwareCommand = {
+    hardwareState.leftSprocketWheelSpinningMotion.velocity,
+    hardwareState.rightSprocketWheelSpinningMotion.velocity
+  };
+
+
+  SimulationCommand2TTD fakeSimulationCommand = toSimulationCommand2TTD(
+    sprocketWheelRadius,
+    rollerWheelRadius,
+    idlerWheelRadius,
+    trackThickness,
+    fakeHardwareCommand);
+
+  SimulationState2TTD simulationState;
+  simulationState.leftSprocketWheelSpinningMotion =
+    hardwareState.leftSprocketWheelSpinningMotion;
+  simulationState.rightSprocketWheelSpinningMotion =
+    hardwareState.rightSprocketWheelSpinningMotion;
+  simulationState.leftIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.leftIdlerWheelSpinningSetPoint;
+  simulationState.rightIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rightIdlerWheelSpinningSetPoint;
+  simulationState.frontLeftRollerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.frontLeftRollerWheelSpinningSetPoint;
+  simulationState.frontRightRollerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.frontRightRollerWheelSpinningSetPoint;
+  simulationState.rearLeftRollerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearLeftRollerWheelSpinningSetPoint;
+  simulationState.rearRightRollerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearRightRollerWheelSpinningSetPoint;
+
+  return simulationState;
+}
+
+//-----------------------------------------------------------------------------
 HardwareState2TD toHardwareState2TTD(
   const double & sprocketWheelRadius,
   const double & rollerWheelRadius,

@@ -16,6 +16,7 @@
 // romea
 #include "romea_core_mobile_base/kinematic/skid_steering/ForwardSkidSteeringKinematic.hpp"
 
+#include <iostream>
 namespace romea
 {
 namespace core

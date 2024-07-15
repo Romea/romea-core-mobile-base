@@ -37,6 +37,16 @@ SimulationCommand2FWS2FWD  toSimulationCommand2FWS2FWD(
   const double & rearHubCarrierOffset,
   const HardwareCommand2FWS2FWD & hardwareCommand);
 
+SimulationState2FWS2FWD  toSimulationState2FWS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearHubCarrierOffset,
+  const HardwareState2FWS2FWD & hardwareState);
+
 HardwareState2FWS2FWD toHardwareState2FWS2FWD(const SimulationState2FWS2FWD & simulationState);
 
 }  // namespace core

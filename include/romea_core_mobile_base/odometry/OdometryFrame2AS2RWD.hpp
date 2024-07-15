@@ -30,7 +30,6 @@ struct OdometryFrame2AS2RWD
   double rearAxleSteeringAngle;
   double rearLeftWheelLinearSpeed;
   double rearRightWheelLinearSpeed;
-
 };
 
 std::ostream & operator<<(std::ostream & s, const OdometryFrame2AS2RWD & frame);

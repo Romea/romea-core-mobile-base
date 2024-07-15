@@ -27,7 +27,7 @@ namespace core
 using SimulationCommand2AS2RWD = SimulationCommand2ASxxx;
 using SimulationState2AS2RWD = SimulationState2ASxxx;
 
-void toSimulation(
+SimulationCommand2AS2RWD toSimulationCommand2AS2RWD(
   const double & wheelbase,
   const double & frontTrack,
   const double & frontWheelRadius,
@@ -35,15 +35,23 @@ void toSimulation(
   const double & rearTrack,
   const double & rearWheelRadius,
   const double & rearHubCarrierOffset,
-  const HardwareCommand2AS2RWD & hardwareCommand,
-  SimulationCommand2AS2RWD & simulationCommand);
+  const HardwareCommand2AS2RWD & hardwareCommand);
 
-void fromSimulation(
+SimulationState2AS2RWD toSimulationState2AS2RWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & frontWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearTrack,
+  const double & rearWheelRadius,
+  const double & rearHubCarrierOffset,
+  const HardwareState2AS2RWD & hardwareState);
+
+HardwareState2AS2RWD toHardwareState2AS2RWD(
   const double & wheelbase,
   const double & front_track,
   const double & rearTrack,
-  const SimulationState2AS2RWD & simulationState,
-  HardwareState2AS2RWD & hardwareState);
+  const SimulationState2AS2RWD & simulationState);
 
 }  // namespace core
 }  // namespace romea

@@ -32,6 +32,11 @@ SimulationCommand1FAS4WD toSimulationCommand1FAS4WD(
   const double & frontTrack,
   const HardwareCommand1FAS4WD & hardwareCommand);
 
+SimulationState1FAS4WD toSimulationState1FAS4WD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const HardwareState1FAS4WD & hardwareState);
+
 HardwareState1FAS4WD toHardwareState1FAS4WD(
   const double & wheelbase,
   const double & frontTrack,

@@ -36,7 +36,6 @@ struct TwoAxleSteeringCommandLimits
   Interval1D<double> longitudinalSpeed;
   Interval1D<double> frontSteeringAngle;
   Interval1D<double> rearSteeringAngle;
-
 };
 
 std::ostream & operator<<(std::ostream & os, const TwoAxleSteeringCommandLimits & limits);
