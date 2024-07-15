@@ -19,6 +19,7 @@
 #include <iostream>
 #include <vector>
 #include <array>
+#include <string>
 
 namespace romea
 {
@@ -32,4 +33,4 @@ std::string get_command_type(const std::string & mobile_base_type);
 }  // namespace core
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE__INFO__TYPE_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASETYPE_HPP_

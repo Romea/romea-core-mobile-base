@@ -35,7 +35,7 @@ struct MobileBaseInfo2AS4WD
   Eigen::Vector3d controlPoint;
 };
 
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation);
+// std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2AS4WD & baseInformation);
 
 void to_kinematic_parameters(
   const MobileBaseInfo2AS4WD & baseInformation,

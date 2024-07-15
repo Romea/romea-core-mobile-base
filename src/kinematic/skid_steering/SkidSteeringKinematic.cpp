@@ -191,97 +191,110 @@ SkidSteeringCommand clamp(
 
 
 // old codes
-////--------------------------------------------------------------------------
-//double maximalPermissibleLinearSpeed(const SkidSteeringKinematic::Parameters & parameters,
-//                                     const double & instantaneousCurvature)
-//{
-//  return SkidSteeringKinematic::
-//      maximalPermissibleLinearSpeed(parameters.track,
-//                                    parameters.maximalWheelSpeed,
-//                                    instantaneousCurvature);
+// //--------------------------------------------------------------------------
+// double maximalPermissibleLinearSpeed(
+//   const SkidSteeringKinematic::Parameters & parameters,
+//   const double & instantaneousCurvature)
+// {
+//   return SkidSteeringKinematic::
+//          maximalPermissibleLinearSpeed(
+//     parameters.track,
+//     parameters.maximalWheelSpeed,
+//     instantaneousCurvature);
 
-//}
+// }
 
-////--------------------------------------------------------------------------
-//double maximalPermissibleInstantaneousCurvature(const SkidSteeringKinematic::Parameters & parameters,
-//                                                const double & linearSpeed)
-//{
-//  return SkidSteeringKinematic::
-//      maximalPermissibleInstantaneousCurvature(parameters.track,
-//                                               parameters.maximalWheelSpeed,
-//                                               linearSpeed);
+// //--------------------------------------------------------------------------
+// double maximalPermissibleInstantaneousCurvature(
+//   const SkidSteeringKinematic::Parameters & parameters,
+//   const double & linearSpeed)
+// {
+//   return SkidSteeringKinematic::
+//          maximalPermissibleInstantaneousCurvature(
+//     parameters.track,
+//     parameters.maximalWheelSpeed,
+//     linearSpeed);
 
-//}
-
-
-////--------------------------------------------------------------------------
-//double SkidSteeringKinematic::maximalPermissibleLinearSpeed(const double & track,
-//                                                            const double & maximalWheelSpeed,
-//                                                            const double & instantaneousCurvature)
-//{
-//  double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
-//  return maximalWheelSpeed/(1 + absoluteInstantaneousCurvature * track/2.0);
-//}
-
-////--------------------------------------------------------------------------
-//double SkidSteeringKinematic::maximalPermissibleInstantaneousCurvature(const double & track,
-//                                                                       const double & maximalWheelSpeed,
-//                                                                       const double & linearSpeed)
-//{
-//  double absoluteLinearSpeed = std::abs(linearSpeed);
-//  assert(absoluteLinearSpeed <=maximalWheelSpeed);
-
-//  if(absoluteLinearSpeed < std::numeric_limits<float>::epsilon())
-//  {
-//    return std::numeric_limits<double>::max();
-//  }
-//  else
-//  {
-//    return 2*(maximalWheelSpeed/absoluteLinearSpeed-1)/track;
-//  }
-//}
+// }
 
 
-////--------------------------------------------------------------------------
-//double SkidSteeringKinematic::computeMaximalLinearSpeed(const double & instantaneousCurvature,
-//                                                        const KinematicConstraints &userLimits)const
-//{
+// //--------------------------------------------------------------------------
+// double SkidSteeringKinematic::maximalPermissibleLinearSpeed(
+//   const double & track,
+//   const double & maximalWheelSpeed,
+//   const double & instantaneousCurvature)
+// {
+//   double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
+//   return maximalWheelSpeed / (1 + absoluteInstantaneousCurvature * track / 2.0);
+// }
 
-//  assert(userLimits.isValidInstantaneousCurvature(instantaneousCurvature));
+// //--------------------------------------------------------------------------
+// double SkidSteeringKinematic::maximalPermissibleInstantaneousCurvature(
+//   const double & track,
+//   const double & maximalWheelSpeed,
+//   const double & linearSpeed)
+// {
+//   double absoluteLinearSpeed = std::abs(linearSpeed);
+//   assert(absoluteLinearSpeed <= maximalWheelSpeed);
 
-//  double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
-//  if( absoluteInstantaneousCurvature < std::numeric_limits<float>::epsilon() )
-//    return maximalWheelSpeed_;
+//   if (absoluteLinearSpeed < std::numeric_limits<float>::epsilon()) {
+//     return std::numeric_limits<double>::max();
+//   } else {
+//     return 2 * (maximalWheelSpeed / absoluteLinearSpeed - 1) / track;
+//   }
+// }
 
-//  //Compute maximal speed
-//  double maximalLinearSpeed = maximalWheelSpeed_/(1 + absoluteInstantaneousCurvature * getTrack("track")/2.0);
 
-//  //Saturation according maximal angular speed
-//  double maximalAngularSpeed = computeMaximalAngularSpeed();
-//  if(maximalAngularSpeed< absoluteInstantaneousCurvature * maximalLinearSpeed)
-//    maximalLinearSpeed = maximalAngularSpeed/absoluteInstantaneousCurvature;
+// //--------------------------------------------------------------------------
+// double SkidSteeringKinematic::computeMaximalLinearSpeed(
+//   const double & instantaneousCurvature,
+//   const KinematicConstraints & userLimits)const
+// {
 
-//  return maximalLinearSpeed;
-//}
+//   assert(userLimits.isValidInstantaneousCurvature(instantaneousCurvature));
 
-////--------------------------------------------------------------------------
-//double SkidSteeringKinematic::computeMaximalInstantaneousCurvature(const double & linearSpeed,
-//                                                                   const KinematicConstraints &userLimits)const
-//{
-//  assert(userLimits.isValidSpeed(linearSpeed));
+//   double absoluteInstantaneousCurvature = std::abs(instantaneousCurvature);
+//   if (absoluteInstantaneousCurvature < std::numeric_limits<float>::epsilon() ) {
+//     return maximalWheelSpeed_;
+//   }
 
-//  double absoluteLinearSpeed = std::abs(linearSpeed);
-//  if(absoluteLinearSpeed < std::numeric_limits<float>::epsilon())
-//    return userLimits.getMaximalAbsoluteInstantaneousCurvature();
+//   //Compute maximal speed
+//   double maximalLinearSpeed = maximalWheelSpeed_ /
+//     (1 + absoluteInstantaneousCurvature * getTrack("track") / 2.0);
 
-//  //Compute maximal instantaneous curvature
-//  double maximalIntantaneousCurvature = 2*(maximalWheelSpeed_/absoluteLinearSpeed-1)/getTrack("track");
-//  maximalIntantaneousCurvature = std::min(maximalIntantaneousCurvature,userLimits.getMaximalAbsoluteInstantaneousCurvature());
+//   //Saturation according maximal angular speed
+//   double maximalAngularSpeed = computeMaximalAngularSpeed();
+//   if (maximalAngularSpeed < absoluteInstantaneousCurvature * maximalLinearSpeed) {
+//     maximalLinearSpeed = maximalAngularSpeed / absoluteInstantaneousCurvature;
+//   }
 
-//  //Saturation according maximal angular speed
-//  double maximalAngularSpeed = computeMaximalAngularSpeed();
-//  if(maximalAngularSpeed< maximalIntantaneousCurvature * absoluteLinearSpeed)
-//    maximalIntantaneousCurvature = maximalAngularSpeed/absoluteLinearSpeed;
+//   return maximalLinearSpeed;
+// }
 
-//  return maximalIntantaneousCurvature;
-//}
+// //--------------------------------------------------------------------------
+// double SkidSteeringKinematic::computeMaximalInstantaneousCurvature(
+//   const double & linearSpeed,
+//   const KinematicConstraints & userLimits)const
+// {
+//   assert(userLimits.isValidSpeed(linearSpeed));
+
+//   double absoluteLinearSpeed = std::abs(linearSpeed);
+//   if (absoluteLinearSpeed < std::numeric_limits<float>::epsilon()) {
+//     return userLimits.getMaximalAbsoluteInstantaneousCurvature();
+//   }
+
+//   //Compute maximal instantaneous curvature
+//   double maximalIntantaneousCurvature = 2 * (maximalWheelSpeed_ / absoluteLinearSpeed - 1) /
+//     getTrack("track");
+//   maximalIntantaneousCurvature = std::min(
+//     maximalIntantaneousCurvature,
+//     userLimits.getMaximalAbsoluteInstantaneousCurvature());
+
+//   //Saturation according maximal angular speed
+//   double maximalAngularSpeed = computeMaximalAngularSpeed();
+//   if (maximalAngularSpeed < maximalIntantaneousCurvature * absoluteLinearSpeed) {
+//     maximalIntantaneousCurvature = maximalAngularSpeed / absoluteLinearSpeed;
+//   }
+
+//   return maximalIntantaneousCurvature;
+// }

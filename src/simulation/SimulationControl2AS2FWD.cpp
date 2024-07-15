@@ -129,6 +129,60 @@ SimulationCommand2AS2FWD toSimulationCommand2AS2FWD(
   return {};
 }
 
+
+//-----------------------------------------------------------------------------
+SimulationState2AS2FWD toSimulationState2AS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & frontWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearTrack,
+  const double & rearWheelRadius,
+  const double & rearHubCarrierOffset,
+  const HardwareState2AS2FWD & hardwareState)
+{
+  core::HardwareCommand2AS2FWD fakeHardwareCommand = {
+    hardwareState.frontAxleSteeringAngle,
+    hardwareState.rearAxleSteeringAngle,
+    hardwareState.frontLeftWheelSpinningMotion.velocity,
+    hardwareState.frontRightWheelSpinningMotion.velocity,
+  };
+
+  SimulationCommand2AS2FWD fakeSimulationCommand = toSimulationCommand2AS2FWD(
+    wheelbase,
+    frontTrack,
+    frontWheelRadius,
+    frontHubCarrierOffset,
+    rearTrack,
+    rearWheelRadius,
+    rearHubCarrierOffset,
+    fakeHardwareCommand);
+
+  SimulationState2AS2FWD simulationState;
+  simulationState.frontAxleSteeringAngle =
+    hardwareState.frontAxleSteeringAngle;
+  simulationState.rearAxleSteeringAngle =
+    hardwareState.rearAxleSteeringAngle;
+  simulationState.frontLeftWheelSteeringAngle =
+    fakeSimulationCommand.frontLeftWheelSteeringAngle;
+  simulationState.frontRightWheelSteeringAngle =
+    fakeSimulationCommand.frontRightWheelSteeringAngle;
+  simulationState.rearLeftWheelSteeringAngle =
+    fakeSimulationCommand.rearLeftWheelSteeringAngle;
+  simulationState.rearRightWheelSteeringAngle =
+    fakeSimulationCommand.rearRightWheelSteeringAngle;
+  simulationState.frontLeftWheelSpinningMotion =
+    hardwareState.frontLeftWheelSpinningMotion;
+  simulationState.frontRightWheelSpinningMotion =
+    hardwareState.frontRightWheelSpinningMotion;
+  simulationState.rearLeftWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearLeftWheelSpinningSetPoint;
+  simulationState.rearRightWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearRightWheelSpinningSetPoint;
+
+  return simulationState;
+}
+
 //-----------------------------------------------------------------------------
 HardwareState2AS2FWD toHardwareState2AS2FWD(
   const SimulationState2AS2FWD & simulationState,

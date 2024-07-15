@@ -21,24 +21,24 @@ namespace romea
 namespace core
 {
 
-////-----------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo4WS4WD & baseInformation)
-//{
-//  os << "Base information:" << std::endl;
-//  os << " type:" << std::endl;
-//  os << "  4WS4WD"<<std::endl;
-//  os << " geometry:";
-//  os << baseInformation.geometry<< std::endl;
-//  os << " wheels steering control:" <<std::endl;
-//  os << baseInformation.wheelsSteeringControl<< std::endl;
-//  os << " wheels speed control: " <<std::endl;
-//  os << baseInformation.wheelsSpeedControl<< std::endl;
-//  os << " intertia:" << std::endl;
-//  os << baseInformation.inertia;
-//  os << " control point:" << std::endl;
-//  os << "  " << baseInformation.controlPoint << std::endl;
-//  return os;
-//}
+// //-----------------------------------------------------------------------------
+// std::ostream & operator<<(std::ostream & os, const MobileBaseInfo4WS4WD & baseInformation)
+// {
+//   os << "Base information:" << std::endl;
+//   os << " type:" << std::endl;
+//   os << "  4WS4WD" << std::endl;
+//   os << " geometry:";
+//   os << baseInformation.geometry << std::endl;
+//   os << " wheels steering control:" << std::endl;
+//   os << baseInformation.wheelsSteeringControl << std::endl;
+//   os << " wheels speed control: " << std::endl;
+//   os << baseInformation.wheelsSpeedControl << std::endl;
+//   os << " intertia:" << std::endl;
+//   os << baseInformation.inertia;
+//   os << " control point:" << std::endl;
+//   os << "  " << baseInformation.controlPoint << std::endl;
+//   return os;
+// }
 
 //-----------------------------------------------------------------------------
 void to_kinematic_parameters(

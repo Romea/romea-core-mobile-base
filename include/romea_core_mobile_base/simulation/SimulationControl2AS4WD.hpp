@@ -33,6 +33,12 @@ SimulationCommand2AS4WD toSimulationCommand2AS4WD(
   const double & rearTrack,
   const HardwareCommand2AS4WD & hardwareCommand);
 
+SimulationState2AS4WD toSimulationState2AS4WD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const HardwareState2AS4WD & hardwareState);
+
 HardwareState2AS4WD toHardwareState2AS4WD(
   const double & wheelbase,
   const double & front_track,

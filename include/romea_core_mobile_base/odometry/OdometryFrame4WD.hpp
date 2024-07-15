@@ -37,4 +37,4 @@ std::ostream & operator<<(std::ostream & s, const OdometryFrame4WD & frame);
 }  // namespace core
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE_ODOMETRY_ODOMETRYFRAME4WD_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__ODOMETRY__ODOMETRYFRAME4WD_HPP_

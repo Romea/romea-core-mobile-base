@@ -118,6 +118,41 @@ SimulationCommand2THD toSimulationCommand2THD(
 }
 
 //-----------------------------------------------------------------------------
+SimulationState2THD  toSimulationState2THD(
+  const double & sprocketWheelRadius,
+  const double & idlerWheelRadius,
+  const double & trackThickness,
+  const HardwareState2TD & hardwareState)
+{
+  HardwareCommand2TD fakeHardwareCommand = {
+    hardwareState.leftSprocketWheelSpinningMotion.velocity,
+    hardwareState.rightSprocketWheelSpinningMotion.velocity
+  };
+
+
+  SimulationCommand2THD fakeSimulationCommand = toSimulationCommand2THD(
+    sprocketWheelRadius,
+    idlerWheelRadius,
+    trackThickness,
+    fakeHardwareCommand);
+
+  SimulationState2THD simulationState;
+  simulationState.leftSprocketWheelSpinningMotion =
+    hardwareState.leftSprocketWheelSpinningMotion;
+  simulationState.rightSprocketWheelSpinningMotion =
+    hardwareState.rightSprocketWheelSpinningMotion;
+  simulationState.frontLeftIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.frontLeftIdlerWheelSpinningSetPoint;
+  simulationState.frontRightIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.frontRightIdlerWheelSpinningSetPoint;
+  simulationState.rearLeftIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearLeftIdlerWheelSpinningSetPoint;
+  simulationState.rearRightIdlerWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearRightIdlerWheelSpinningSetPoint;
+
+  return simulationState;
+}
+//-----------------------------------------------------------------------------
 HardwareState2TD toHardwareState2TD(
   const double & sprocketWheelRadius,
   const double & idlerWheelRadius,

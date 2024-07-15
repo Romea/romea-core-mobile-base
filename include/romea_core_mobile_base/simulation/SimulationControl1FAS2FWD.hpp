@@ -37,6 +37,17 @@ SimulationCommand1FAS2FWD toSimulationCommand1FAS2FWD(
   const double & rearHubCarrierOffset,
   const HardwareCommand1FAS2FWD & hardwareCommand);
 
+SimulationState1FAS2FWD toSimulationState1FAS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearHubCarrierOffset,
+  const HardwareState1FAS2FWD & hardwareState);
+
+
 HardwareState1FAS2FWD toHardwareState1FAS2FWD(
   const double & wheelbase,
   const double & frontTrack,

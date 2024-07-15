@@ -24,20 +24,20 @@ namespace romea
 namespace core
 {
 
-////-----------------------------------------------------------------------------
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2WD & baseInformation)
-//{
-//  os << "Base information:" << std::endl;
-//  os << " geometry:" << std::endl;
-//  os << baseInformation.geometry << std::endl;
-//  os << " tracks speed control:" << std::endl;
-//  os << baseInformation.wheelsSpeedControl<< std::endl;
-//  os << " inertia:" << std::endl;
-//  os << baseInformation.inertia<< std::endl;
-//  os << " control point:" << std::endl;
-//  os << "  " << baseInformation.controlPoint << std::endl;
-//  return os;
-//}
+// //-----------------------------------------------------------------------------
+// std::ostream & operator<<(std::ostream & os, const MobileBaseInfo2WD & baseInformation)
+// {
+//   os << "Base information:" << std::endl;
+//   os << " geometry:" << std::endl;
+//   os << baseInformation.geometry << std::endl;
+//   os << " tracks speed control:" << std::endl;
+//   os << baseInformation.wheelsSpeedControl << std::endl;
+//   os << " inertia:" << std::endl;
+//   os << baseInformation.inertia << std::endl;
+//   os << " control point:" << std::endl;
+//   os << "  " << baseInformation.controlPoint << std::endl;
+//   return os;
+// }
 
 //-----------------------------------------------------------------------------
 void to_kinematic_parameters(

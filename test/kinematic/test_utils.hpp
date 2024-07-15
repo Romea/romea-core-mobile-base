@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef TEST_KINEMATIC_TEST_UTILS_HPP_
-#define TEST_KINEMATIC_TEST_UTILS_HPP_
+#ifndef KINEMATIC__TEST_UTILS_HPP_
+#define KINEMATIC__TEST_UTILS_HPP_
 
 #include "romea_core_mobile_base/kinematic/KinematicMeasure.hpp"
 
@@ -30,4 +30,4 @@ void compareKinematicMeasure(
 }
 
 
-#endif  // TEST_KINEMATIC_TEST_UTILS_HPP_
+#endif  // KINEMATIC__TEST_UTILS_HPP_

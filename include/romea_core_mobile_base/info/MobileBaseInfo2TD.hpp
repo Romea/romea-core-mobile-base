@@ -34,7 +34,7 @@ struct MobileBaseInfo2TD
   Eigen::Vector3d controlPoint;
 };
 
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2TD & base_information);
+// std::ostream& operator<<(std::ostream& os, const MobileBaseInfo2TD & base_information);
 
 void to_kinematic_parameters(
   const MobileBaseInfo2TD & base_information,

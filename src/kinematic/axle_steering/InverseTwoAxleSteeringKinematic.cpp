@@ -84,18 +84,26 @@ void inverseKinematic(
   covariance(5, 5) = steeringAngleVariance;
 
   Eigen::MatrixXd J = Eigen::MatrixXd::Zero(3, 6);
-//  J(0,0) = 0.25/frontGammaLeft;
-//  J(0,1) = 0.25/frontGammaRight;
-//  J(0,2) = 0.25/rearGammaLeft;
-//  J(0,3) = 0.25/rearGammaRight;
-//  J(0,4) += ((frontAlphaLeft*frontHalfTrack/frontWheelbase+tanFrontSteeringAngle)/frontBetaLeft - frontHubCarrierOffset/frontWheelbase)/(frontGammaLeft*frontGammaLeft);
-//  J(0,4) += ((frontAlphaRight*frontHalfTrack/frontWheelbase+tanFrontSteeringAngle)/frontBetaRight + frontHubCarrierOffset/frontWheelbase)/(frontGammaRight*frontGammaRight);
-//  J(0,4) *= 0.25*(1+tanFrontSteeringAngle*tanFrontSteeringAngle);
-//  J(0,5) += ((-rearAlphaLeft*rearHalfTrack/rearWheelbase+tanFrontSteeringAngle)/rearBetaLeft + rearHubCarrierOffset/rearWheelbase)/(rearGammaLeft*rearGammaLeft);
-//  J(0,5) += ((-rearAlphaRight*rearHalfTrack/rearWheelbase+tanFrontSteeringAngle)/rearBetaRight - rearHubCarrierOffset/rearWheelbase)/(rearGammaRight*rearGammaRight);
-//  J(0,5) *= 0.25*(1+tanFrontSteeringAngle*tanFrontSteeringAngle);
-//  J(1,4) =1;
-//  J(2,5) =1;
+  // J(0, 0) = 0.25 / frontGammaLeft;
+  // J(0, 1) = 0.25 / frontGammaRight;
+  // J(0, 2) = 0.25 / rearGammaLeft;
+  // J(0, 3) = 0.25 / rearGammaRight;
+  // J(0, 4) +=
+  //   ((frontAlphaLeft * frontHalfTrack / frontWheelbase + tanFrontSteeringAngle) / frontBetaLeft -
+  //   frontHubCarrierOffset / frontWheelbase) / (frontGammaLeft * frontGammaLeft);
+  // J(0, 4) +=
+  //   ((frontAlphaRight * frontHalfTrack / frontWheelbase + tanFrontSteeringAngle) / frontBetaRight +  // NOLINT
+  //   frontHubCarrierOffset / frontWheelbase) / (frontGammaRight * frontGammaRight);
+  // J(0, 4) *= 0.25 * (1 + tanFrontSteeringAngle * tanFrontSteeringAngle);
+  // J(0, 5) +=
+  //   ((-rearAlphaLeft * rearHalfTrack / rearWheelbase + tanFrontSteeringAngle) / rearBetaLeft +
+  //   rearHubCarrierOffset / rearWheelbase) / (rearGammaLeft * rearGammaLeft);
+  // J(0, 5) +=
+  //   ((-rearAlphaRight * rearHalfTrack / rearWheelbase + tanFrontSteeringAngle) / rearBetaRight -
+  //   rearHubCarrierOffset / rearWheelbase) / (rearGammaRight * rearGammaRight);
+  // J(0, 5) *= 0.25 * (1 + tanFrontSteeringAngle * tanFrontSteeringAngle);
+  // J(1, 4) = 1;
+  // J(2, 5) = 1;
 
 
   twoAxleSteeringMeasure.frontSteeringAngle = frontSteeringAngle;

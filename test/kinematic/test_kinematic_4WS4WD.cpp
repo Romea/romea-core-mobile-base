@@ -254,8 +254,8 @@ TEST(testInverseForward4WS4WD, HubOffset)
 }
 
 
-//TEST(testInverseForward4WS4WD,MechanicalLimits)
-//{
+// TEST(testInverseForward4WS4WD,MechanicalLimits)
+// {
 //  romea::TwoAxleSteeringCommandLimits userLimits;
 
 //  romea::FourWheelSteeringKinematic::Parameters parameters;
@@ -268,12 +268,12 @@ TEST(testInverseForward4WS4WD, HubOffset)
 
 //  testInverseForward4WS4WD(parameters,
 //                           userLimits);
-//}
+// }
 
 
-////-----------------------------------------------------------------------------
-//TEST(Test4WS, testInverseForward)
-//{
+// //-----------------------------------------------------------------------------
+// TEST(Test4WS, testInverseForward)
+// {
 
 //  {
 //    romea::FourWheelSteeringKinematic kinematic(1.4,1.4,1.1,1.1);
@@ -288,11 +288,11 @@ TEST(testInverseForward4WS4WD, HubOffset)
 //    testInverseForward(kinematic,odometry);
 //  }
 
-//}
+// }
 
-////-----------------------------------------------------------------------------
-//TEST(Test4WS, testInverseForwardTranslation)
-//{
+// //-----------------------------------------------------------------------------
+// TEST(Test4WS, testInverseForwardTranslation)
+// {
 
 //  {
 //    romea::FourWheelSteeringKinematic kinematic1(1.4,1.4,1.1,1.1);
@@ -309,11 +309,11 @@ TEST(testInverseForward4WS4WD, HubOffset)
 //    testInverseForwardTranslation(kinematic1,kinematic2,odometry);
 //  }
 
-//}
+// }
 
-////-----------------------------------------------------------------------------
-//TEST(Test4WS, testInverseForwardHub)
-//{
+// //-----------------------------------------------------------------------------
+// TEST(Test4WS, testInverseForwardHub)
+// {
 
 //  {
 //    romea::FourWheelSteeringKinematic kinematic(1.4,1.4,1.1,1.1,0.1,0.1);
@@ -328,12 +328,12 @@ TEST(testInverseForward4WS4WD, HubOffset)
 //    testInverseForward(kinematic,odometry);
 //  }
 
-//}
+// }
 
 
-////-----------------------------------------------------------------------------
-//TEST(Test4WS, testInverseForwardFake2WS)
-//{
+// //-----------------------------------------------------------------------------
+// TEST(Test4WS, testInverseForwardFake2WS)
+// {
 
 //  romea::TwoWheelSteeringKinematic kinematic2WS(2.8,1.1,1.1,0.1,0.1);
 //  romea::FourWheelSteeringKinematic kinematic4WS(2.8,0,1.1,1.1,0.1,0.1);
@@ -347,7 +347,8 @@ TEST(testInverseForward4WS4WD, HubOffset)
 
 //      double instantaneousCurvature = -0.5+j*0.05;
 //      double angularSpeed =instantaneousCurvature * linearSpeed;
-//      double extendedTrack = kinematic4WS.getTrack("rear_track").get()+kinematic4WS.getHubCarrierOffset("rear_hub_carrier_offset").get();
+//      double extendedTrack = kinematic4WS.getTrack("rear_track").get()+
+//         kinematic4WS.getHubCarrierOffset("rear_hub_carrier_offset").get();
 
 //      romea::KinematicCommand kinematicCommand;
 //      kinematicCommand.speed =linearSpeed;
@@ -355,7 +356,8 @@ TEST(testInverseForward4WS4WD, HubOffset)
 //      kinematicCommand.angularSpeed=instantaneousCurvature*linearSpeed;
 //      kinematicCommand.instantaneousCurvature = instantaneousCurvature;
 
-//      romea::OdometryFrame2FWS2FWD odometryFrame2WS = romea::forwardKinematic2FWS2FWD(odometry.getName(),kinematic2WS,kinematicCommand);
+//      romea::OdometryFrame2FWS2FWD odometryFrame2WS =
+//         romea::forwardKinematic2FWS2FWD(odometry.getName(),kinematic2WS,kinematicCommand);
 
 
 //      romea::OdometryFrame4WS4WD odometryFrame4WS;
@@ -363,18 +365,21 @@ TEST(testInverseForward4WS4WD, HubOffset)
 //      odometryFrame4WS. frontLeftWheelAngle= odometryFrame2WS.frontLeftWheelAngle;
 //      odometryFrame4WS.frontRightWheelSpeed=odometryFrame2WS.frontRightWheelSpeed;
 //      odometryFrame4WS.frontRightWheelAngle=odometryFrame2WS.frontRightWheelAngle;
-//      odometryFrame4WS.rearLeftWheelSpeed= romea::SkidSteeringKinematic::computeLeftWheelSpeed(linearSpeed,
-//                                                                                               angularSpeed,
-//                                                                                               extendedTrack);
+//      odometryFrame4WS.rearLeftWheelSpeed =
+//        romea::SkidSteeringKinematic::computeLeftWheelSpeed(linearSpeed,
+//                                                            angularSpeed,
+//                                                            extendedTrack);
 //      odometryFrame4WS.rearLeftWheelAngle=0;
-//      odometryFrame4WS.rearRightWheelSpeed=romea::SkidSteeringKinematic::computeRightWheelSpeed(linearSpeed,
-//                                                                                                angularSpeed,
-//                                                                                                extendedTrack);
+//      odometryFrame4WS.rearRightWheelSpeed=
+//        romea::SkidSteeringKinematic::computeRightWheelSpeed(linearSpeed,
+//                                                            angularSpeed,
+//                                                            extendedTrack);
 //      odometryFrame4WS.rearRightWheelAngle=0;
 //      odometryFrame4WS.emitterName =odometryFrame2WS.emitterName;
 
 
-//      romea::KinematicMeasure kinematicMeasure = romea::inverseKinematic4WS4WD(kinematic4WS,odometry,odometryFrame4WS);
+//      romea::KinematicMeasure kinematicMeasure =
+//         romea::inverseKinematic4WS4WD(kinematic4WS,odometry,odometryFrame4WS);
 
 //      ASSERT_EQ(false,std::isnan(linearSpeed));
 //      ASSERT_EQ(false,std::isnan(instantaneousCurvature));
@@ -384,7 +389,7 @@ TEST(testInverseForward4WS4WD, HubOffset)
 
 //    }
 //  }
-//}
+// }
 
 //-----------------------------------------------------------------------------
 TEST(Test4WS, testCircularMovement)
@@ -406,9 +411,9 @@ TEST(Test4WS, testCircularMovement)
   }
 }
 
-////-----------------------------------------------------------------------------
-//TEST(Test4WS, testInverseForwardTranslationHub)
-//{
+// //-----------------------------------------------------------------------------
+// TEST(Test4WS, testInverseForwardTranslationHub)
+// {
 
 //  {
 //    romea::FourWheelSteeringKinematic kinematic1(1.4,1.4,1.1,1.1,0.1,0.1);
@@ -425,7 +430,7 @@ TEST(Test4WS, testCircularMovement)
 //    testInverseForwardTranslation(kinematic1,kinematic2,odometry);
 //  }
 
-//}
+// }
 
 
 //-----------------------------------------------------------------------------

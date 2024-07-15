@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP
-#define ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP
+#ifndef ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP_
+#define ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP_
 
 #include "romea_core_mobile_base/info/MobileBaseControl.hpp"
 #include "romea_core_mobile_base/info/MobileBaseGeometry.hpp"
@@ -35,7 +35,7 @@ struct MobileBaseInfo1FAS2RWD
   Eigen::Vector3d controlPoint;
 };
 
-//std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FAS2RWD & baseInformation);
+// std::ostream& operator<<(std::ostream& os, const MobileBaseInfo1FAS2RWD & baseInformation);
 
 void to_kinematic_parameters(
   const MobileBaseInfo1FAS2RWD & baseInformation,
@@ -44,4 +44,4 @@ void to_kinematic_parameters(
 }  // namespace core
 }  // namespace romea
 
-#endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP
+#endif  // ROMEA_CORE_MOBILE_BASE__INFO__MOBILEBASEINFO1FAS2RWD_HPP_

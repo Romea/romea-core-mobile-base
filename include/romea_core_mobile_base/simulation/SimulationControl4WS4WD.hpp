@@ -29,4 +29,4 @@ using SimulationState4WS4WD = HardwareState4WS4WD;
 }  // namespace core
 }  // namespace romea
 
-#endif // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL4WS4WD_HPP_
+#endif  // ROMEA_CORE_MOBILE_BASE__SIMULATION__SIMULATIONCONTROL4WS4WD_HPP_

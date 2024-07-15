@@ -72,13 +72,14 @@ struct TwoAxles
 using TwoWheeledAxles = TwoAxles<WheeledAxle, WheeledAxle>;
 
 
-//std::ostream& operator<<(std::ostream& os, const Wheel & wheel);
+// std::ostream& operator<<(std::ostream& os, const Wheel & wheel);
 
-//template<typename Wheel>
-//std::ostream& operator<<(std::ostream& os, const OneAxleGeometry<Wheel> & oneAxleGeometry);
+// template<typename Wheel>
+// std::ostream & operator<<(std::ostream & os, const OneAxleGeometry<Wheel> & oneAxleGeometry);
 
-//template<typename FrontWheel,typename RearWheel>
-//std::ostream& operator<<(std::ostream& os, const TwoAxlesGeometry<FrontWheel,RearWheel> & twoAxlesGeometry);
+// template<typename FrontWheel, typename RearWheel>
+// std::ostream & operator<<(
+//   std::ostream & os, const TwoAxlesGeometry<FrontWheel, RearWheel> & twoAxlesGeometry);
 
 }  // namespace core
 }  // namespace romea

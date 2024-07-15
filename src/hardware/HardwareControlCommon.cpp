@@ -48,6 +48,17 @@ RotationalMotionState::RotationalMotionState()
 {
 }
 
+//-----------------------------------------------------------------------------
+RotationalMotionState::RotationalMotionState(
+  const double & position_,
+  const double & velocity_,
+  const double & torque_)
+: position(position_),
+  velocity(velocity_),
+  torque(torque_)
+{
+}
+
 
 //-----------------------------------------------------------------------------
 std::string toCommandType(LinearMotionControlType type)
@@ -67,6 +78,17 @@ LinearMotionState::LinearMotionState()
 : position(std::numeric_limits<double>::quiet_NaN()),
   velocity(std::numeric_limits<double>::quiet_NaN()),
   force(std::numeric_limits<double>::quiet_NaN())
+{
+}
+
+//-----------------------------------------------------------------------------
+LinearMotionState::LinearMotionState(
+  const double & position_,
+  const double & velocity_,
+  const double & force_)
+: position(position_),
+  velocity(velocity_),
+  force(force_)
 {
 }
 

@@ -31,6 +31,7 @@ using SteeringAngleState = double;
 struct RotationalMotionState
 {
   RotationalMotionState();
+  RotationalMotionState(const double & position, const double & velocity, const double & torque);
   double position;
   double velocity;
   double torque;
@@ -49,6 +50,7 @@ std::string toCommandType(RotationalMotionControlType type);
 struct LinearMotionState
 {
   LinearMotionState();
+  LinearMotionState(const double & position, const double & velocity, const double & force);
   double position;
   double velocity;
   double force;

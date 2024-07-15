@@ -108,6 +108,52 @@ SimulationCommand1FAS2FWD toSimulationCommand1FAS2FWD(
 }
 
 //-----------------------------------------------------------------------------
+SimulationState1FAS2FWD toSimulationState1FAS2FWD(
+  const double & wheelbase,
+  const double & frontTrack,
+  const double & rearTrack,
+  const double & frontWheelRadius,
+  const double & rearWheelRadius,
+  const double & frontHubCarrierOffset,
+  const double & rearHubCarrierOffset,
+  const HardwareState1FAS2FWD & hardwareState)
+{
+  core::HardwareCommand1FAS2FWD fakeHardwareCommand = {
+    hardwareState.frontAxleSteeringAngle,
+    hardwareState.frontLeftWheelSpinningMotion.velocity,
+    hardwareState.frontRightWheelSpinningMotion.velocity
+  };
+
+  SimulationCommand1FAS2FWD fakeSimulationCommand = toSimulationCommand1FAS2FWD(
+    wheelbase,
+    frontTrack,
+    rearTrack,
+    frontWheelRadius,
+    rearWheelRadius,
+    frontHubCarrierOffset,
+    rearHubCarrierOffset,
+    fakeHardwareCommand);
+
+  SimulationState1FAS2FWD simulationState;
+  simulationState.frontAxleSteeringAngle =
+    hardwareState.frontAxleSteeringAngle;
+  simulationState.frontLeftWheelSteeringAngle =
+    fakeSimulationCommand.frontLeftWheelSteeringAngle;
+  simulationState.frontRightWheelSteeringAngle =
+    fakeSimulationCommand.frontRightWheelSteeringAngle;
+  simulationState.frontLeftWheelSpinningMotion =
+    hardwareState.frontLeftWheelSpinningMotion;
+  simulationState.frontRightWheelSpinningMotion =
+    hardwareState.frontRightWheelSpinningMotion;
+  simulationState.rearLeftWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearLeftWheelSpinningSetPoint;
+  simulationState.rearRightWheelSpinningMotion.velocity =
+    fakeSimulationCommand.rearRightWheelSpinningSetPoint;
+
+  return simulationState;
+}
+
+//-----------------------------------------------------------------------------
 HardwareState1FAS2FWD toHardwareState1FAS2FWD(
   const SimulationState1FAS2FWD & simulationState,
   const double frontAxleSteeringAngle)
