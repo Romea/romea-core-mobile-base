@@ -1,6 +1,7 @@
 ## ROMEA Core Mobile base library
 
-This library offers a comprehensive set of tools for computing both forward and inverse kinematics for four-wheeled vehicles or two-tracked systems. It supports various kinematic models, including one-axle steering, two-axle steering, skid steering, and omni-directional steering. The library enables precise control of actuators and calculates odometry. It also extends these models for simulations. Supported vehicle types include:
+This library offers a comprehensive set of tools for computing both forward and inverse kinematics for four-wheeled vehicles or two-tracked systems. It supports various kinematic models according command space, including one-axle steering, two-axle steering, skid steering, and omni-directional steering kinematics. The library enables precise control of actuators and help to calculate odometry. It also extends these models for simulations. Many vehicles are supported, with the following acronyms and characteristics:
+
 - **1FAS2F2WD**: One front-axle steering, two front-wheel drive
 - **1FAS2R2WD**: One front-axle steering, two rear-wheel drive
 - **1FAS4WD**: One front-axle steering, four-wheel drive
@@ -12,7 +13,8 @@ This library offers a comprehensive set of tools for computing both forward and 
 - **2FWS4WD**: Two front-wheel steering, four-wheel drive
 - **2TD**: Two track drive
 - **4WD**: Four-wheel drive
-- **4WS4WD**: Four-wheel steering, four-wheel drive
+- **4WS4WD**: Four-wheel steering, four-wheel drive:
+- **4WD**: Four-wheel drive
 
 This library allows flexible vehicle control and extends easily to simulation environments.
 
