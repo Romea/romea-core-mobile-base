@@ -1,6 +1,6 @@
-## ROMEA Core Mobile base library
+# romea_core_mobile_base 
 
-This library offers a comprehensive set of tools for computing both forward and inverse kinematics for four-wheeled vehicles or two-tracked systems. It supports various kinematic models according command space, including one-axle steering, two-axle steering, skid steering, and omni-directional steering kinematics. The library enables precise control of actuators and help to calculate odometry. It also extends these models for simulations. Many vehicles are supported, with the following acronyms and characteristics:
+This projects is a C++ library that provides a comprehensive set of tools for computing both forward and inverse kinematics for four-wheeled vehicles or two-tracked systems. It supports various kinematic models according command space, including one-axle steering, two-axle steering, skid steering, and omni-directional steering kinematics. The library enables precise control of actuators and help to calculate odometry. It also extends these models for simulations. Many vehicles are supported, with the following acronyms and characteristics:
 
 - **1FAS2F2WD**: One front-axle steering, two front-wheel drive
 - **1FAS2R2WD**: One front-axle steering, two rear-wheel drive
@@ -49,8 +49,8 @@ This project is released under the Apache License 2.0. See the LICENSE file for 
 
 ## **Authors**
 
-The Romea Core Mobile Base library was developed by **Jean Laneurit** in the context of various research projects carried out at INRAE.
+The romea_core_mobile_base library was developed by **Jean Laneurit** in the context of various research projects carried out at INRAE.
 
 ## **Contact**
 
-If you have any questions or comments about Romea Core Mobile Base library, please contact **[Jean Laneurit](mailto:jean.laneurit@inrae.fr)** 
+If you have any questions or comments about romea_core_mobile_base library, please contact **[Jean Laneurit](mailto:jean.laneurit@inrae.fr)** 
