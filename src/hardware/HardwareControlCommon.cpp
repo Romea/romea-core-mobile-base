@@ -42,9 +42,9 @@ std::string toCommandType(RotationalMotionControlType type)
 
 //-----------------------------------------------------------------------------
 RotationalMotionState::RotationalMotionState()
-: position(std::numeric_limits<double>::quiet_NaN()),
-  velocity(std::numeric_limits<double>::quiet_NaN()),
-  torque(std::numeric_limits<double>::quiet_NaN())
+: position(0.),
+  velocity(0.),
+  torque(0.)
 {
 }
 
@@ -75,9 +75,9 @@ std::string toCommandType(LinearMotionControlType type)
 
 //-----------------------------------------------------------------------------
 LinearMotionState::LinearMotionState()
-: position(std::numeric_limits<double>::quiet_NaN()),
-  velocity(std::numeric_limits<double>::quiet_NaN()),
-  force(std::numeric_limits<double>::quiet_NaN())
+: position(0.),
+  velocity(0.),
+  force(0.)
 {
 }
 
