@@ -1,5 +1,5 @@
 find_package(GTest REQUIRED)
-include(romea_add_gtest)
+include("${romea_core_common_DIR}/romea_add_gtest.cmake")
 
 romea_add_gtest(test_kinematic_1FAS2FWD kinematic/test_kinematic_1FAS2FWD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_kinematic_1FAS2RWD kinematic/test_kinematic_1FAS2RWD.cpp LIBRARIES ${PROJECT_NAME})
