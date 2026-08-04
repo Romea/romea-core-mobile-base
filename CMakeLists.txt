@@ -26,6 +26,7 @@ add_library(${PROJECT_NAME} SHARED
  src/hardware/HardwareControl2FWS2RWD.cpp
  src/hardware/HardwareControl2FWS2FWD.cpp
  src/hardware/HardwareControl2FWS4WD.cpp
+ src/hardware/HardwareControl2FWC2RWD.cpp
  src/hardware/HardwareControl4WS4WD.cpp
  src/odometry/OdometryFrame1FAS2RWD.cpp
  src/odometry/OdometryFrame1FAS2FWD.cpp
@@ -85,6 +86,7 @@ add_library(${PROJECT_NAME} SHARED
  src/info/MobileBaseInfo2FWS2FWD.cpp
  src/info/MobileBaseInfo2FWS2RWD.cpp
  src/info/MobileBaseInfo2FWS4WD.cpp
+ src/info/MobileBaseInfo2FWC2RWD.cpp
  src/info/MobileBaseInfo2TD.cpp
  src/info/MobileBaseInfo2WD.cpp
  src/info/MobileBaseInfo4WD.cpp
@@ -102,6 +104,7 @@ add_library(${PROJECT_NAME} SHARED
  src/simulation/SimulationControl2TTD.cpp
  src/simulation/SimulationControl2FWS2RWD.cpp
  src/simulation/SimulationControl2FWS2FWD.cpp
+ src/simulation/SimulationControl2FWC2RWD.cpp
  )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

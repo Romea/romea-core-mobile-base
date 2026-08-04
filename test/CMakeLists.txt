@@ -18,6 +18,7 @@ romea_add_gtest(test_simulation_control_1FAS4WD simulation/test_simulation_1FAS4
 romea_add_gtest(test_simulation_control_2AS4WD simulation/test_simulation_2AS4WD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2FWS2FWD simulation/test_simulation_2FWS2FWD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2FWS2RWD simulation/test_simulation_2FWS2RWD.cpp LIBRARIES ${PROJECT_NAME})
+romea_add_gtest(test_simulation_control_2FWC2RWD simulation/test_simulation_2FWC2RWD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2TD simulation/test_simulation_2TD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2THD simulation/test_simulation_2THD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2TTD simulation/test_simulation_2TTD.cpp LIBRARIES ${PROJECT_NAME})

@@ -36,6 +36,8 @@ std::string get_kinematic_type(const std::string & mobile_base_type)
     return "four_wheel_steering";
   } else if (mobile_base_type.find("4WMD") != std::string::npos) {
     return "omni_steering";
+  } else if (mobile_base_type.find("2FWC") != std::string::npos) {
+    return "skid_steering";
   } else if (mobile_base_type.find("2WD") != std::string::npos ||
     mobile_base_type.find("4WD") != std::string::npos ||
     mobile_base_type.find("2T") != std::string::npos)
