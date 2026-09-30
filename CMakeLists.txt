@@ -105,6 +105,7 @@ add_library(${PROJECT_NAME} SHARED
  src/simulation/SimulationControl2FWS2RWD.cpp
  src/simulation/SimulationControl2FWS2FWD.cpp
  src/simulation/SimulationControl2FWC2RWD.cpp
+ src/simulation/SimulationControl3PHM.cpp
  )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

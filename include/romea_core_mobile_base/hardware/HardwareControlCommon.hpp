@@ -1,4 +1,5 @@
-// Copyright 2022 INRAE, French National Research Institute for Agriculture, Food and Environment
+// Copyright 2022 INRAE, French National Research Institute for Agriculture,
+// Food and Environment
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,26 +13,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_
 #define ROMEA_CORE_MOBILE_BASE__HARDWARE__HARDWARECONTROLCOMMON_HPP_
 
 #include <iostream>
 #include <string>
 
-namespace romea
-{
-namespace core
-{
+namespace romea {
+namespace core {
 
 using SteeringAngleCommand = double;
 using SteeringAngleState = double;
 
-
-struct RotationalMotionState
-{
+struct RotationalMotionState {
   RotationalMotionState();
-  RotationalMotionState(const double & position, const double & velocity, const double & torque);
+  RotationalMotionState(const double& position, const double& velocity,
+                        const double& torque);
   double position;
   double velocity;
   double torque;
@@ -39,18 +36,14 @@ struct RotationalMotionState
 
 using RotationalMotionCommand = double;
 
-enum class RotationalMotionControlType
-{
-  VELOCITY,
-  TORQUE
-};
+enum class RotationalMotionControlType { VELOCITY, TORQUE };
 
 std::string toCommandType(RotationalMotionControlType type);
 
-struct LinearMotionState
-{
+struct LinearMotionState {
   LinearMotionState();
-  LinearMotionState(const double & position, const double & velocity, const double & force);
+  LinearMotionState(const double& position, const double& velocity,
+                    const double& force);
   double position;
   double velocity;
   double force;
@@ -58,14 +51,10 @@ struct LinearMotionState
 
 using LinearMotionCommand = double;
 
-enum class LinearMotionControlType
-{
-  VELOCITY,
-  FORCE
-};
+enum class LinearMotionControlType { VELOCITY, FORCE };
 
-std::ostream & operator<<(std::ostream & s, const RotationalMotionState & state);
-std::ostream & operator<<(std::ostream & s, const LinearMotionState & state);
+std::ostream& operator<<(std::ostream& s, const RotationalMotionState& state);
+std::ostream& operator<<(std::ostream& s, const LinearMotionState& state);
 
 }  // namespace core
 }  // namespace romea

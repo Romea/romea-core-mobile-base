@@ -22,5 +22,6 @@ romea_add_gtest(test_simulation_control_2FWC2RWD simulation/test_simulation_2FWC
 romea_add_gtest(test_simulation_control_2TD simulation/test_simulation_2TD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2THD simulation/test_simulation_2THD.cpp LIBRARIES ${PROJECT_NAME})
 romea_add_gtest(test_simulation_control_2TTD simulation/test_simulation_2TTD.cpp LIBRARIES ${PROJECT_NAME})
+romea_add_gtest(test_simulation_control_3PHM simulation/test_simulation_3PHM.cpp LIBRARIES ${PROJECT_NAME})
 
 romea_add_gtest(test_mobile_base_type info/test_mobile_base_type.cpp LIBRARIES ${PROJECT_NAME})
